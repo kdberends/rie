@@ -1,26 +1,33 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
   <title>Scrolling Sections</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 <div class="container">
   <div id='graphic'>
+    <div id='vis'> </div>
     <div id='sections'>
       <section class="step">
-        <div class="title">OpenVis Conf 2013</div>
-        I did what no presenter should ever do: I watched my own talk.<br/><br/>My first visit to OpenVis Conf in 2013.
+        <div class="title">ENV soft 2018</div>
+        I did what no presenter shouldf ever do: I watched my own talk. Poor me<br/><br/>My first visit to OpenVis Conf in 2013
       </section>
       <section class="step">
         <div class="title">Filler Words</div>
         As expected, I could only focus on the flaws: the rushed speech, the odd phrases, and, most especially, all the filler words. In fact, I found 180 filler words in my 30 minute talk.
       </section>
+     
       <section class="step">
         <div class="title">My Talk</div>
         Here are all 5,040 words of my talk.
       </section>
+       <!--
       <section class="step">
         <div class="title">My Stumbles</div>
         And here are all the fillers I used in those 30 minutes.
@@ -45,9 +52,9 @@
         <div class="title">Best of Luck to Me in 2015</div>
         The world may never know, or care, but hopefully these insights improve my speaking in 2015. Though preliminary results aren't looking so good.
       </section>
+        -->
     </div>
-    <div id='vis'>
-    </div>
+    
     <div id="extra-space">
     </div>
   </div>
@@ -57,5 +64,9 @@
 <script src="lib/d3.js"></script>
 <script src="js/scroller.js"></script>
 <script src="js/sections.js"></script>
+<script src="js/data.js"></script>
+<script src="js/display.js"></script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>

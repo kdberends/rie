@@ -42,21 +42,21 @@ div.tooltip {
   position: relative;
   display: inline-block;
   max-width: 420px;
-  top: 520px;
+  top: 100px;
   z-index: 90;
   padding-bottom: 200px;
 }
 
 .step {
-  margin-bottom: 20px;
-  font-family: "TiemposTextWeb-Regular","Georgia";
+  margin-bottom: 200px;
+  font-family: "Raleway","Georgia";
   font-size: 16px;
   line-height: 23px;
   color: #767678;
 }
 
 #sections .title {
-  font-family: Arial,Helvetica,"san-serif";
+  font-family: Georgia,Helvetica,"serif";
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 2px;

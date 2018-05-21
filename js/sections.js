@@ -7,8 +7,10 @@
 var scrollVis = function () {
   // constants to define the size
   // and margins of the #vis div
-  var width = 600;
-  var height = 220;
+  var aspect = [10 / 4];
+  var width = 400;
+  var height = width / aspect;
+
   var margin = { top: 40, left: 60, bottom: 40, right: 40 };
 
   // Keep track of which visualization

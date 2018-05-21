@@ -13,7 +13,7 @@ function display(data) {
   d3.select('#vis')
     .data([data])
     .call(plot);
-
+  
   // setup scroll functionality
   var scroll = scroller()
     .container(d3.select('#graphic'));

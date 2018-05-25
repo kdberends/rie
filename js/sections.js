@@ -102,7 +102,8 @@ var scrollVis = function () {
 
       svg.attr('width', width + margin.left + margin.right);
       svg.attr('height', height + margin.top + margin.bottom);
-
+      //svg.attr("preserveAspectRatio", "xMinYMin meet")
+      //svg.attr("viewBox", "0 0 600 400")
       svg.append('g');
 
       // other elements.

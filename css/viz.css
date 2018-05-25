@@ -1,0 +1,80 @@
+body {
+  font-family: 'Helvetica Neue',Helvetica,sans-serif;
+  margin: 0;
+  background-color: #777;
+}
+header {
+  margin: 100px auto 50px;
+  width: 950px;
+  box-sizing: border-box;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 0 0 4px 4px;
+}
+/* todo: rest reponsive see https://jsfiddle.net/kmsxpk3q/ */
+main {
+  display: flex;
+  align-items: flex-start;
+  max-width: 950px;
+  margin: 0 auto 50px;
+}
+
+section {
+  width: 600px;
+  box-sizing: border-box;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+aside {
+  margin: 0 0 0 50px;
+  width: 950px;
+  position: sticky;
+  top: 0px;
+  min-height: 300px;
+  box-sizing: border-box;
+  padding: 50px;
+  background-color: #f3671c;
+  border: 10px solid #fff;
+  border-radius: 4px;
+}
+
+.content {
+  width: 100%;
+  height: 40px;
+  background: repeating-linear-gradient(0deg, #777, #777 10px, #fff 10px, #fff 40px);
+  border-top: 10px solid #777;
+}
+section .content {
+  height: 1000px;
+}
+.checkbox {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+#on:checked ~ .checkbox::after {
+  content: '?';
+  font-size: 50px;
+  line-height: 1;
+  color: #00ae8b;
+}
+.expandable {
+  display: block;
+  width: 100%;
+  height: 180px;
+  transition: height 0.5s;
+}
+#expand:checked ~ .expandable {
+  height: 600px;
+}
+#on, #expand {
+  position: absolute;
+  opacity: 0;
+}

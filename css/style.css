@@ -1,7 +1,13 @@
 
 .container {
   max-width: 890px;
+  scroll-snap-type: mandatory;
+  /* older spec implementation */
+  scroll-snap-destination: 0% 100%;
+  scroll-snap-points-x: repeat(100%);
 }
+
+
 
 .axis { 
   font: 12px sans-serif; 
@@ -39,6 +45,7 @@ div.tooltip {
 }
 
 #sections {
+  border: 1px solid #F01B1B;
   position: relative;
   display: inline-block;
   max-width: 420px;
@@ -48,11 +55,13 @@ div.tooltip {
 }
 
 .step {
+  border: 1px solid #AAAAAA;
   margin-bottom: 200px;
   font-family: "Raleway","Georgia";
   font-size: 16px;
   line-height: 23px;
   color: #767678;
+  scroll-snap-align: start;
 }
 
 #sections .title {
@@ -69,9 +78,10 @@ div.tooltip {
 }
 
 #vis {
+  border: 1px solid #0048EA;
   display: inline-block;
-  position: fixed;
-  top: 60px;
+  position: sticky;
+  margin-top: 150px;
   z-index: 1;
   margin-left: 0;
   /* height: 600px; */
@@ -97,16 +107,4 @@ div.tooltip {
   stroke: #666;
   shape-rendering: crispEdges;
 }
-
-.highlight {
-  fill: #008080;
-  font-weight: bold;
-}
-
-.cough-arrow {
-  stroke: #000;
-  stroke-width: 4px;
-
-}
-
 

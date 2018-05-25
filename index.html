@@ -7,14 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta content="utf-8" http-equiv="encoding">
   <meta name="author" content="K.D. Berends">
-
+  <!-- one page scroll
+  <script type="text/javascript" src="js/onepagescroll.js"></script>
+  <link href='css/onepage-scroll.css' rel='stylesheet' type='text/css'>-->
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-  <!-- Custom css -->
+  <!-- Custom css --> 
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-
+  
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
       <a class="navbar-brand" href="#">RiverCare F1</a>
@@ -39,7 +41,7 @@
 <!-- MAIN BODY-->
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-sm-4">
       <div id='graphic'>
         <div id='sections'>
           <section class="step">
@@ -58,11 +60,11 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4"><div id='vis'> </div></div>
+    <div class="col-sm-4 order-first order-sm-2"><div id='vis'> </div></div>
   </div>
   </div>
 
-</div>
+
 
 <footer class="fixed-bottom bg-light navbar">
           <p> by K.D. Berends</p>
@@ -82,6 +84,14 @@
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <!--<script src="js/popper.min.js"></script>-->
     <script src="js/bootstrap.min.js"></script>
+    <!--<script>
 
+   onePageScroll(".container", {
+     sectionContainer: "section",
+     loop: true,
+     responsiveFallback: false
+   });
+    
+  </script>-->
 </body>
 </html>

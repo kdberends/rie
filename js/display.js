@@ -13,7 +13,17 @@ function display(data) {
   d3.select('#vis')
     .data([data])
     .call(plot);
-  
+  vis = d3.select('#vis');
+  //window.addEventListener("resize", draw)
+  /*
+  d3.select(window)
+    .on("resize", function(){
+      var targetWidth = vis.node().getBoundingClientRect().width;
+      vis.attr("width", targetWidth);
+      vis.attr("height", targetWidth / 2);
+      console.log('resizing!')
+    })
+    */
   // setup scroll functionality
   var scroll = scroller()
     .container(d3.select('#graphic'));

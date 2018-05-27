@@ -47,7 +47,7 @@ function scroller() {
     // initially to setup
     // scroller.
     resize();
-
+    console.log(sectionPositions)
     // hack to get position
     // to be called once for
     // the scroll position on

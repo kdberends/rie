@@ -3,40 +3,76 @@ body {
   margin: 0;
   background-color: #777;
 }
+
 header {
-  margin: 100px auto 50px;
-  width: 950px;
-  box-sizing: border-box;
-  padding: 50px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  max-width: 950px;
+  padding: 10px;
   background-color: #fff;
   border-radius: 0 0 4px 4px;
+  transition: all 0.6s ease-out;
 }
+
 /* todo: rest reponsive see https://jsfiddle.net/kmsxpk3q/ */
 main {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+
+
+.container {
   display: flex;
+  padding: 0px;
+  margin-bottom: 10%;
   align-items: flex-start;
   max-width: 950px;
-  margin: 0 auto 50px;
 }
 
 section {
-  width: 600px;
+  width: 400px;
+  margin-left: 0px;
   box-sizing: border-box;
-  padding: 50px;
+  padding: 20px;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 aside {
-  margin: 0 0 0 50px;
+  margin: 0 0px 0 10px;
   width: 950px;
   position: sticky;
-  top: 0px;
+  top: 40%;
   min-height: 300px;
   box-sizing: border-box;
   padding: 50px;
   background-color: #f3671c;
-  border: 10px solid #fff;
+  border: 4px solid #fff;
   border-radius: 4px;
+}
+
+.step {
+  width: 100%;
+  /* Choose a sensible bottom margin 
+  to have something to scroll to*/
+  margin-bottom: 20px;
+  font-family: "Raleway","Georgia";
+  font-size: 16px;
+  line-height: 23px;
+  color: #767678;
+  border: 1px solid #777;
+}
+
+.title {
+  font-family: Georgia,Helvetica,"serif";
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #262626;
+  line-height: 1.2em;
 }
 
 .content {
@@ -78,3 +114,4 @@ section .content {
   position: absolute;
   opacity: 0;
 }
+

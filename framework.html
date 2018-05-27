@@ -12,7 +12,8 @@
 
 		<!-- STYLE SHEETS-->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/stickystyle.css"/>
+		<link rel="stylesheet" type="text/css" href="css/viz.css"/>
+    
 
 	</head>
 
@@ -28,7 +29,7 @@
             <a class="nav-link" href="#">Story <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Xplore</a>
+            <a class="nav-link disabled" href="#explore">Xplore</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">About</a>
@@ -39,50 +40,89 @@
 
 <!-- MAIN BODY -->
 <body>
-	<header>
-	  <div class="content">Header content</div>
-	</header>
-<main class="d-flex">
-
-
-
-
-
-
-
 	
-  <section>
-    <div class="content">
+  <main>
+    <header>
+      <div class="content">Header content</div>
+    </header>
+    <div class="container">
+      <section>
+        <div class="step">
+          <div class="title"> Step 1 </div>
+          But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
+        </div>
+        <div class="step">
+         No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.
+        </div>
+        <div class="step">
+         To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+        </div>
+      </section>
+      <aside>
+        <input type="checkbox" id="expand">
+        <label class="expandable" for="expand"></label>
+      </aside>
     </div>
-  </section>
-  <aside>
-    <input type="checkbox" id="expand">
-    <label class="expandable" for="expand"></label>
-  </aside>
-</main>
-<main>
-  <section>
-    <div class="content"></div>
-  </section>
-  <aside>
-    <input type="checkbox" id="expand">
-    <label class="expandable" for="expand"></label>
-  </aside>
-</main>
+    <div class="container">
+      <section>
+        <div class="step">
+          On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.
+        </div>
+        <div class="step">
+          These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.
+        </div>
+        <div class="step">
+          But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.
+        </div>
+      </section>
+      <aside>
+        <input type="checkbox" id="expand">
+        <label class="expandable" for="expand"></label>
+      </aside>
+    </div>
+    
+    <section id="explore" class="container">
+
+        Midwinter spring is its own season
+Sempiternal though sodden towards sundown,
+Suspended in time, between pole and tropic.
+When the short day is brightest, with frost and fire,
+The brief sun flames the ice, on pond and ditches,
+In windless cold that is the heart's heat,
+Reflecting in a watery mirror
+A glare that is blindness in the early afternoon.
+And glow more intense than blaze of branch, or brazier,
+Stirs the dumb spirit: no wind, but pentecostal fire
+In the dark time of the year. Between melting and freezing
+The soul's sap quivers. There is no earth smell
+Or smell of living thing. This is the spring time
+But not in time's covenant. Now the hedgerow
+Is blanched for an hour with transitory blossom
+Of snow, a bloom more sudden
+Than that of summer, neither budding nor fading,
+Not in the scheme of generation.
+Where is the summer, the unimaginable Zero summer?
+        </section>
+
+
+  </main>
 </body>
 <!-- FOOTER -->
 <footer class="fixed-bottom bg-light navbar">
           <p> Design by K.D. Berends</p>
 </footer>
 <script src="lib/d3.js"></script>
-<!--
+
 <script src="js/scroller.js"></script>
+<script src="js/viz.js"></script>
+
+<!--
 <script src="js/sections.js"></script>
 <script src="js/data.js"></script>
 <script src="js/display.js"></script>
 
-
 <!-- Core Javascripts -->
+
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

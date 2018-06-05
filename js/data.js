@@ -2,6 +2,7 @@ function parseData(rawData){
     // let's start with a single line
 
     x = rawData.x
+
     parsedData = {'meta': {'tooltips':['80', '60', '40', '20']}, 
 
                   'data':[]}
@@ -18,7 +19,7 @@ function parseData(rawData){
                              ]
                          })
     }
-
+    
 
     return parsedData
 };

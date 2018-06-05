@@ -47,7 +47,6 @@ function scroller() {
     // initially to setup
     // scroller.
     resize();
-    console.log(sectionPositions)
     // hack to get position
     // to be called once for
     // the scroll position on
@@ -74,13 +73,14 @@ function scroller() {
     sectionPositions = [];
     var startPos;
     sections.each(function (d, i) {
-      var top = this.getBoundingClientRect().top;
+      var bottom = this.getBoundingClientRect().top;
       if (i === 0) {
-        startPos = top;
+        startPos = bottom;
       }
-      sectionPositions.push(top - startPos);
+      sectionPositions.push(bottom - startPos);
     });
     containerStart = container.node().getBoundingClientRect().top + window.pageYOffset;
+    
   }
 
   /**
@@ -91,7 +91,8 @@ function scroller() {
    *
    */
   function position() {
-    var pos = window.pageYOffset - 10 - containerStart;
+    var pos = window.pageYOffset - 50 - containerStart;
+
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 

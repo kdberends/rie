@@ -80,7 +80,7 @@ div.tooltip {
 #vis {
   border: 1px solid #0048EA;
   display: inline-block;
-  position: sticky;
+  position: fixed;
   margin-top: 150px;
   z-index: 1;
   margin-left: 0;

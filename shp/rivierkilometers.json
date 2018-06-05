@@ -1,0 +1,5557 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.215185507023885,
+          51.8287580947415
+        ]
+      },
+      "properties": {
+        "OBJECTID": 1,
+        "MODELKILOM": "854.00_BR",
+        "KENMERK": "01 BR 854.00",
+        "KILOMETER": 854.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.200837544787718,
+          51.82985818590189
+        ]
+      },
+      "properties": {
+        "OBJECTID": 2,
+        "MODELKILOM": "855.00_BR",
+        "KENMERK": "01 BR 855.00",
+        "KILOMETER": 855.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.187490108235019,
+          51.83322525285264
+        ]
+      },
+      "properties": {
+        "OBJECTID": 3,
+        "MODELKILOM": "856.00_BR",
+        "KENMERK": "01 BR 856.00",
+        "KILOMETER": 856.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.175296050265931,
+          51.837888942232055
+        ]
+      },
+      "properties": {
+        "OBJECTID": 4,
+        "MODELKILOM": "857.00_BR",
+        "KENMERK": "01 BR 857.00",
+        "KILOMETER": 857.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.162055251897088,
+          51.84182343958423
+        ]
+      },
+      "properties": {
+        "OBJECTID": 5,
+        "MODELKILOM": "858.00_BR",
+        "KENMERK": "01 BR 858.00",
+        "KILOMETER": 858.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.14851564756429,
+          51.84499882707338
+        ]
+      },
+      "properties": {
+        "OBJECTID": 6,
+        "MODELKILOM": "859.00_BR",
+        "KENMERK": "01 BR 859.00",
+        "KILOMETER": 859.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.134625767406049,
+          51.84737825298807
+        ]
+      },
+      "properties": {
+        "OBJECTID": 7,
+        "MODELKILOM": "860.00_BR",
+        "KENMERK": "01 BR 860.00",
+        "KILOMETER": 860.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.120319804647083,
+          51.84767775629415
+        ]
+      },
+      "properties": {
+        "OBJECTID": 8,
+        "MODELKILOM": "861.00_BR",
+        "KENMERK": "01 BR 861.00",
+        "KILOMETER": 861.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.105807984182168,
+          51.84851665514516
+        ]
+      },
+      "properties": {
+        "OBJECTID": 9,
+        "MODELKILOM": "862.00_BR",
+        "KENMERK": "01 BR 862.00",
+        "KILOMETER": 862.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.092195247165599,
+          51.8516278198854
+        ]
+      },
+      "properties": {
+        "OBJECTID": 10,
+        "MODELKILOM": "863.00_BR",
+        "KENMERK": "01 BR 863.00",
+        "KILOMETER": 863.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.080483654269607,
+          51.85719130919292
+        ]
+      },
+      "properties": {
+        "OBJECTID": 11,
+        "MODELKILOM": "864.00_BR",
+        "KENMERK": "01 BR 864.00",
+        "KILOMETER": 864.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.069536274714676,
+          51.86282361216002
+        ]
+      },
+      "properties": {
+        "OBJECTID": 12,
+        "MODELKILOM": "865.00_BR",
+        "KENMERK": "01 BR 865.00",
+        "KILOMETER": 865.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.058065701713239,
+          51.86732839894875
+        ]
+      },
+      "properties": {
+        "OBJECTID": 13,
+        "MODELKILOM": "866.00_BR",
+        "KENMERK": "01 BR 866.00",
+        "KILOMETER": 866.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.044495586733866,
+          51.87100171073704
+        ]
+      },
+      "properties": {
+        "OBJECTID": 14,
+        "MODELKILOM": "867.00_BR",
+        "KENMERK": "01 BR 867.00",
+        "KILOMETER": 867.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.031334538263014,
+          51.87457232652525
+        ]
+      },
+      "properties": {
+        "OBJECTID": 15,
+        "MODELKILOM": "868.00_WA",
+        "KENMERK": "02 WA 868.00",
+        "KILOMETER": 868.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.019983778632765,
+          51.88005863285252
+        ]
+      },
+      "properties": {
+        "OBJECTID": 16,
+        "MODELKILOM": "869.00_WA",
+        "KENMERK": "02 WA 869.00",
+        "KILOMETER": 869.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.006773567035556,
+          51.881479325331654
+        ]
+      },
+      "properties": {
+        "OBJECTID": 17,
+        "MODELKILOM": "870.00_WA",
+        "KENMERK": "02 WA 870.00",
+        "KILOMETER": 870.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.994955013967596,
+          51.87669965144878
+        ]
+      },
+      "properties": {
+        "OBJECTID": 18,
+        "MODELKILOM": "871.00_WA",
+        "KENMERK": "02 WA 871.00",
+        "KILOMETER": 871.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.986922514466452,
+          51.86919256652996
+        ]
+      },
+      "properties": {
+        "OBJECTID": 19,
+        "MODELKILOM": "872.00_WA",
+        "KENMERK": "02 WA 872.00",
+        "KILOMETER": 872.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.982183272551919,
+          51.861176446771985
+        ]
+      },
+      "properties": {
+        "OBJECTID": 20,
+        "MODELKILOM": "873.00_WA",
+        "KENMERK": "02 WA 873.00",
+        "KILOMETER": 873.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.971936641581502,
+          51.85499018151172
+        ]
+      },
+      "properties": {
+        "OBJECTID": 21,
+        "MODELKILOM": "874.00_WA",
+        "KENMERK": "02 WA 874.00",
+        "KILOMETER": 874.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.959180542719378,
+          51.855522408183425
+        ]
+      },
+      "properties": {
+        "OBJECTID": 22,
+        "MODELKILOM": "875.00_WA",
+        "KENMERK": "02 WA 875.00",
+        "KILOMETER": 875.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.949045909621674,
+          51.86158438997049
+        ]
+      },
+      "properties": {
+        "OBJECTID": 23,
+        "MODELKILOM": "876.00_WA",
+        "KENMERK": "02 WA 876.00",
+        "KILOMETER": 876.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9412344040690135,
+          51.86882692246351
+        ]
+      },
+      "properties": {
+        "OBJECTID": 24,
+        "MODELKILOM": "877.00_WA",
+        "KENMERK": "02 WA 877.00",
+        "KILOMETER": 877.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.931858784292423,
+          51.87297544290068
+        ]
+      },
+      "properties": {
+        "OBJECTID": 25,
+        "MODELKILOM": "878.00_WA",
+        "KENMERK": "02 WA 878.00",
+        "KILOMETER": 878.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.918570202936884,
+          51.874382925503944
+        ]
+      },
+      "properties": {
+        "OBJECTID": 26,
+        "MODELKILOM": "879.00_WA",
+        "KENMERK": "02 WA 879.00",
+        "KILOMETER": 879.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9043789035421215,
+          51.87269691816873
+        ]
+      },
+      "properties": {
+        "OBJECTID": 27,
+        "MODELKILOM": "880.00_WA",
+        "KENMERK": "02 WA 880.00",
+        "KILOMETER": 880.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.892271592587592,
+          51.86855735608101
+        ]
+      },
+      "properties": {
+        "OBJECTID": 28,
+        "MODELKILOM": "881.00_WA",
+        "KENMERK": "02 WA 881.00",
+        "KILOMETER": 881.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.883425550432006,
+          51.861672564292235
+        ]
+      },
+      "properties": {
+        "OBJECTID": 29,
+        "MODELKILOM": "882.00_WA",
+        "KENMERK": "02 WA 882.00",
+        "KILOMETER": 882.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.876589909799334,
+          51.85370799011803
+        ]
+      },
+      "properties": {
+        "OBJECTID": 30,
+        "MODELKILOM": "883.00_WA",
+        "KENMERK": "02 WA 883.00",
+        "KILOMETER": 883.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.863874829161811,
+          51.8512606867288
+        ]
+      },
+      "properties": {
+        "OBJECTID": 31,
+        "MODELKILOM": "884.00_WA",
+        "KENMERK": "02 WA 884.00",
+        "KILOMETER": 884.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.850271344024831,
+          51.85404202452003
+        ]
+      },
+      "properties": {
+        "OBJECTID": 32,
+        "MODELKILOM": "885.00_WA",
+        "KENMERK": "02 WA 885.00",
+        "KILOMETER": 885.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.838620203695773,
+          51.859405486619984
+        ]
+      },
+      "properties": {
+        "OBJECTID": 33,
+        "MODELKILOM": "886.00_WA",
+        "KENMERK": "02 WA 886.00",
+        "KILOMETER": 886.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.82774065693204,
+          51.86540699999415
+        ]
+      },
+      "properties": {
+        "OBJECTID": 34,
+        "MODELKILOM": "887.00_WA",
+        "KENMERK": "02 WA 887.00",
+        "KILOMETER": 887.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.81630244251413,
+          51.87058541034367
+        ]
+      },
+      "properties": {
+        "OBJECTID": 35,
+        "MODELKILOM": "888.00_WA",
+        "KENMERK": "02 WA 888.00",
+        "KILOMETER": 888.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.803270065785198,
+          51.874706040963076
+        ]
+      },
+      "properties": {
+        "OBJECTID": 36,
+        "MODELKILOM": "889.00_WA",
+        "KENMERK": "02 WA 889.00",
+        "KILOMETER": 889.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.789029593475824,
+          51.87693730038123
+        ]
+      },
+      "properties": {
+        "OBJECTID": 37,
+        "MODELKILOM": "890.00_WA",
+        "KENMERK": "02 WA 890.00",
+        "KILOMETER": 890.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7751163930347795,
+          51.87841606093299
+        ]
+      },
+      "properties": {
+        "OBJECTID": 38,
+        "MODELKILOM": "891.00_WA",
+        "KENMERK": "02 WA 891.00",
+        "KILOMETER": 891.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.761396771170259,
+          51.881068346479616
+        ]
+      },
+      "properties": {
+        "OBJECTID": 39,
+        "MODELKILOM": "892.00_WA",
+        "KENMERK": "02 WA 892.00",
+        "KILOMETER": 892.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.74777832130306,
+          51.884142010767015
+        ]
+      },
+      "properties": {
+        "OBJECTID": 40,
+        "MODELKILOM": "893.00_WA",
+        "KENMERK": "02 WA 893.00",
+        "KILOMETER": 893.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.734033133537429,
+          51.88567857827195
+        ]
+      },
+      "properties": {
+        "OBJECTID": 41,
+        "MODELKILOM": "894.00_WA",
+        "KENMERK": "02 WA 894.00",
+        "KILOMETER": 894.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.72033674399357,
+          51.88881079608878
+        ]
+      },
+      "properties": {
+        "OBJECTID": 42,
+        "MODELKILOM": "895.00_WA",
+        "KENMERK": "02 WA 895.00",
+        "KILOMETER": 895.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.707477208249668,
+          51.89309581960771
+        ]
+      },
+      "properties": {
+        "OBJECTID": 43,
+        "MODELKILOM": "896.00_WA",
+        "KENMERK": "02 WA 896.00",
+        "KILOMETER": 896.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.693863427833839,
+          51.895360992167674
+        ]
+      },
+      "properties": {
+        "OBJECTID": 44,
+        "MODELKILOM": "897.00_WA",
+        "KENMERK": "02 WA 897.00",
+        "KILOMETER": 897.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.679293556228083,
+          51.895544763335664
+        ]
+      },
+      "properties": {
+        "OBJECTID": 45,
+        "MODELKILOM": "898.00_WA",
+        "KENMERK": "02 WA 898.00",
+        "KILOMETER": 898.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.664814050307168,
+          51.895823138199084
+        ]
+      },
+      "properties": {
+        "OBJECTID": 46,
+        "MODELKILOM": "899.00_WA",
+        "KENMERK": "02 WA 899.00",
+        "KILOMETER": 899.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.650732685722566,
+          51.897364502836965
+        ]
+      },
+      "properties": {
+        "OBJECTID": 47,
+        "MODELKILOM": "900.00_WA",
+        "KENMERK": "02 WA 900.00",
+        "KILOMETER": 900.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.636229197365191,
+          51.89902136026664
+        ]
+      },
+      "properties": {
+        "OBJECTID": 48,
+        "MODELKILOM": "901.00_WA",
+        "KENMERK": "02 WA 901.00",
+        "KILOMETER": 901.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.621700687060803,
+          51.89939311323157
+        ]
+      },
+      "properties": {
+        "OBJECTID": 49,
+        "MODELKILOM": "902.00_WA",
+        "KENMERK": "02 WA 902.00",
+        "KILOMETER": 902.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.607456565092282,
+          51.89910302019522
+        ]
+      },
+      "properties": {
+        "OBJECTID": 50,
+        "MODELKILOM": "903.00_WA",
+        "KENMERK": "02 WA 903.00",
+        "KILOMETER": 903.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.592634128405023,
+          51.89954475942115
+        ]
+      },
+      "properties": {
+        "OBJECTID": 51,
+        "MODELKILOM": "904.00_WA",
+        "KENMERK": "02 WA 904.00",
+        "KILOMETER": 904.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5784044920273645,
+          51.90128921491194
+        ]
+      },
+      "properties": {
+        "OBJECTID": 52,
+        "MODELKILOM": "905.00_WA",
+        "KENMERK": "02 WA 905.00",
+        "KILOMETER": 905.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.564048726254834,
+          51.90166731939106
+        ]
+      },
+      "properties": {
+        "OBJECTID": 53,
+        "MODELKILOM": "906.00_WA",
+        "KENMERK": "02 WA 906.00",
+        "KILOMETER": 906.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.549866012724737,
+          51.89999353831162
+        ]
+      },
+      "properties": {
+        "OBJECTID": 54,
+        "MODELKILOM": "907.00_WA",
+        "KENMERK": "02 WA 907.00",
+        "KILOMETER": 907.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.536619955966628,
+          51.896495323355026
+        ]
+      },
+      "properties": {
+        "OBJECTID": 55,
+        "MODELKILOM": "908.00_WA",
+        "KENMERK": "02 WA 908.00",
+        "KILOMETER": 908.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.523555963661335,
+          51.892473240470025
+        ]
+      },
+      "properties": {
+        "OBJECTID": 56,
+        "MODELKILOM": "909.00_WA",
+        "KENMERK": "02 WA 909.00",
+        "KILOMETER": 909.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.50952044005339,
+          51.889883512519454
+        ]
+      },
+      "properties": {
+        "OBJECTID": 57,
+        "MODELKILOM": "910.00_WA",
+        "KENMERK": "02 WA 910.00",
+        "KILOMETER": 910.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.495010023715311,
+          51.88903908248164
+        ]
+      },
+      "properties": {
+        "OBJECTID": 58,
+        "MODELKILOM": "911.00_WA",
+        "KENMERK": "02 WA 911.00",
+        "KILOMETER": 911.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.48052855628325,
+          51.889519734794945
+        ]
+      },
+      "properties": {
+        "OBJECTID": 59,
+        "MODELKILOM": "912.00_WA",
+        "KENMERK": "02 WA 912.00",
+        "KILOMETER": 912.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.466014147779923,
+          51.889123949946544
+        ]
+      },
+      "properties": {
+        "OBJECTID": 60,
+        "MODELKILOM": "913.00_WA",
+        "KENMERK": "02 WA 913.00",
+        "KILOMETER": 913.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.452076278911199,
+          51.88700957181747
+        ]
+      },
+      "properties": {
+        "OBJECTID": 61,
+        "MODELKILOM": "914.00_WA",
+        "KENMERK": "02 WA 914.00",
+        "KILOMETER": 914.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.44083067427207,
+          51.88206917087136
+        ]
+      },
+      "properties": {
+        "OBJECTID": 62,
+        "MODELKILOM": "915.00_WA",
+        "KENMERK": "02 WA 915.00",
+        "KILOMETER": 915.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.431441948699851,
+          51.8753967543135
+        ]
+      },
+      "properties": {
+        "OBJECTID": 63,
+        "MODELKILOM": "916.00_WA",
+        "KENMERK": "02 WA 916.00",
+        "KILOMETER": 916.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.424215074760764,
+          51.8678681859094
+        ]
+      },
+      "properties": {
+        "OBJECTID": 64,
+        "MODELKILOM": "917.00_WA",
+        "KENMERK": "02 WA 917.00",
+        "KILOMETER": 917.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.418656540474801,
+          51.85954579069123
+        ]
+      },
+      "properties": {
+        "OBJECTID": 65,
+        "MODELKILOM": "918.00_WA",
+        "KENMERK": "02 WA 918.00",
+        "KILOMETER": 918.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.414765432857748,
+          51.85107527678207
+        ]
+      },
+      "properties": {
+        "OBJECTID": 66,
+        "MODELKILOM": "919.00_WA",
+        "KENMERK": "02 WA 919.00",
+        "KILOMETER": 919.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.408288546418243,
+          51.843155376276805
+        ]
+      },
+      "properties": {
+        "OBJECTID": 67,
+        "MODELKILOM": "920.00_WA",
+        "KENMERK": "02 WA 920.00",
+        "KILOMETER": 920.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.398662062771512,
+          51.83664551299762
+        ]
+      },
+      "properties": {
+        "OBJECTID": 68,
+        "MODELKILOM": "921.00_WA",
+        "KENMERK": "02 WA 921.00",
+        "KILOMETER": 921.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.388451969722859,
+          51.830422771425326
+        ]
+      },
+      "properties": {
+        "OBJECTID": 69,
+        "MODELKILOM": "922.00_WA",
+        "KENMERK": "02 WA 922.00",
+        "KILOMETER": 922.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.379962637264678,
+          51.822826842980774
+        ]
+      },
+      "properties": {
+        "OBJECTID": 70,
+        "MODELKILOM": "923.00_WA",
+        "KENMERK": "02 WA 923.00",
+        "KILOMETER": 923.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3740504888565,
+          51.8154098125203
+        ]
+      },
+      "properties": {
+        "OBJECTID": 71,
+        "MODELKILOM": "924.00_WA",
+        "KENMERK": "02 WA 924.00",
+        "KILOMETER": 924.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.365724796100417,
+          51.807771286802904
+        ]
+      },
+      "properties": {
+        "OBJECTID": 72,
+        "MODELKILOM": "925.00_WA",
+        "KENMERK": "02 WA 925.00",
+        "KILOMETER": 925.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.352786293189425,
+          51.804040010852944
+        ]
+      },
+      "properties": {
+        "OBJECTID": 73,
+        "MODELKILOM": "926.00_WA",
+        "KENMERK": "02 WA 926.00",
+        "KILOMETER": 926.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.340420243068443,
+          51.80607611126389
+        ]
+      },
+      "properties": {
+        "OBJECTID": 74,
+        "MODELKILOM": "927.00_WA",
+        "KENMERK": "02 WA 927.00",
+        "KILOMETER": 927.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.330945473868397,
+          51.81275735091002
+        ]
+      },
+      "properties": {
+        "OBJECTID": 75,
+        "MODELKILOM": "928.00_WA",
+        "KENMERK": "02 WA 928.00",
+        "KILOMETER": 928.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.322302538466119,
+          51.8192753678626
+        ]
+      },
+      "properties": {
+        "OBJECTID": 76,
+        "MODELKILOM": "929.00_WA",
+        "KENMERK": "02 WA 929.00",
+        "KILOMETER": 929.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3100428786504255,
+          51.82330289833055
+        ]
+      },
+      "properties": {
+        "OBJECTID": 77,
+        "MODELKILOM": "930.00_WA",
+        "KENMERK": "02 WA 930.00",
+        "KILOMETER": 930.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.296043309531097,
+          51.82392655760827
+        ]
+      },
+      "properties": {
+        "OBJECTID": 78,
+        "MODELKILOM": "931.00_WA",
+        "KENMERK": "02 WA 931.00",
+        "KILOMETER": 931.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.282230483292569,
+          51.82126964495408
+        ]
+      },
+      "properties": {
+        "OBJECTID": 79,
+        "MODELKILOM": "932.00_WA",
+        "KENMERK": "02 WA 932.00",
+        "KILOMETER": 932.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.268528720241687,
+          51.81922242616657
+        ]
+      },
+      "properties": {
+        "OBJECTID": 80,
+        "MODELKILOM": "933.00_WA",
+        "KENMERK": "02 WA 933.00",
+        "KILOMETER": 933.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.253976928481333,
+          51.81814114288085
+        ]
+      },
+      "properties": {
+        "OBJECTID": 81,
+        "MODELKILOM": "934.00_WA",
+        "KENMERK": "02 WA 934.00",
+        "KILOMETER": 934.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.240186001199983,
+          51.81583799316625
+        ]
+      },
+      "properties": {
+        "OBJECTID": 82,
+        "MODELKILOM": "935.00_WA",
+        "KENMERK": "02 WA 935.00",
+        "KILOMETER": 935.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.228423632273682,
+          51.81254473046625
+        ]
+      },
+      "properties": {
+        "OBJECTID": 83,
+        "MODELKILOM": "936.00_WA",
+        "KENMERK": "02 WA 936.00",
+        "KILOMETER": 936.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.214508729336046,
+          51.810150473516444
+        ]
+      },
+      "properties": {
+        "OBJECTID": 84,
+        "MODELKILOM": "937.00_WA",
+        "KENMERK": "02 WA 937.00",
+        "KILOMETER": 937.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.200810733737844,
+          51.81055928824836
+        ]
+      },
+      "properties": {
+        "OBJECTID": 85,
+        "MODELKILOM": "938.00_WA",
+        "KENMERK": "02 WA 938.00",
+        "KILOMETER": 938.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.188047376144209,
+          51.81362921986561
+        ]
+      },
+      "properties": {
+        "OBJECTID": 86,
+        "MODELKILOM": "939.00_WA",
+        "KENMERK": "02 WA 939.00",
+        "KILOMETER": 939.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.174457385294744,
+          51.81666087748332
+        ]
+      },
+      "properties": {
+        "OBJECTID": 87,
+        "MODELKILOM": "940.00_WA",
+        "KENMERK": "02 WA 940.00",
+        "KILOMETER": 940.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.160077299655998,
+          51.8165123198374
+        ]
+      },
+      "properties": {
+        "OBJECTID": 88,
+        "MODELKILOM": "941.00_WA",
+        "KENMERK": "02 WA 941.00",
+        "KILOMETER": 941.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.146407956754787,
+          51.81466127966094
+        ]
+      },
+      "properties": {
+        "OBJECTID": 89,
+        "MODELKILOM": "942.00_WA",
+        "KENMERK": "02 WA 942.00",
+        "KILOMETER": 942.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.131487705857706,
+          51.81451288273628
+        ]
+      },
+      "properties": {
+        "OBJECTID": 90,
+        "MODELKILOM": "943.00_WA",
+        "KENMERK": "02 WA 943.00",
+        "KILOMETER": 943.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.118525217355066,
+          51.817766951516674
+        ]
+      },
+      "properties": {
+        "OBJECTID": 91,
+        "MODELKILOM": "944.00_WA",
+        "KENMERK": "02 WA 944.00",
+        "KILOMETER": 944.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.106368467977132,
+          51.822708251538735
+        ]
+      },
+      "properties": {
+        "OBJECTID": 92,
+        "MODELKILOM": "945.00_WA",
+        "KENMERK": "02 WA 945.00",
+        "KILOMETER": 945.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.093887456623106,
+          51.82614501515233
+        ]
+      },
+      "properties": {
+        "OBJECTID": 93,
+        "MODELKILOM": "946.00_WA",
+        "KENMERK": "02 WA 946.00",
+        "KILOMETER": 946.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.080833650075259,
+          51.826732161445214
+        ]
+      },
+      "properties": {
+        "OBJECTID": 94,
+        "MODELKILOM": "947.00_WA",
+        "KENMERK": "02 WA 947.00",
+        "KILOMETER": 947.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.06734949157472,
+          51.823937602040246
+        ]
+      },
+      "properties": {
+        "OBJECTID": 95,
+        "MODELKILOM": "948.00_WA",
+        "KENMERK": "02 WA 948.00",
+        "KILOMETER": 948.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.05484781476033,
+          51.819548547046814
+        ]
+      },
+      "properties": {
+        "OBJECTID": 96,
+        "MODELKILOM": "949.00_WA",
+        "KENMERK": "02 WA 949.00",
+        "KILOMETER": 949.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.040903663720232,
+          51.81738641011495
+        ]
+      },
+      "properties": {
+        "OBJECTID": 97,
+        "MODELKILOM": "950.00_WA",
+        "KENMERK": "02 WA 950.00",
+        "KILOMETER": 950.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.026835369457486,
+          51.81867547963132
+        ]
+      },
+      "properties": {
+        "OBJECTID": 98,
+        "MODELKILOM": "951.00_WA",
+        "KENMERK": "02 WA 951.00",
+        "KILOMETER": 951.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.013063095339108,
+          51.8207752954935
+        ]
+      },
+      "properties": {
+        "OBJECTID": 99,
+        "MODELKILOM": "952.00_WA",
+        "KENMERK": "02 WA 952.00",
+        "KILOMETER": 952.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.998265954840151,
+          51.82082158249706
+        ]
+      },
+      "properties": {
+        "OBJECTID": 100,
+        "MODELKILOM": "953.00_WA",
+        "KENMERK": "02 WA 953.00",
+        "KILOMETER": 953.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.983811453047981,
+          51.82160030271562
+        ]
+      },
+      "properties": {
+        "OBJECTID": 101,
+        "MODELKILOM": "954.00_WA",
+        "KENMERK": "02 WA 954.00",
+        "KILOMETER": 954.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.969315353492681,
+          51.8238042954589
+        ]
+      },
+      "properties": {
+        "OBJECTID": 102,
+        "MODELKILOM": "955.00_WA",
+        "KENMERK": "02 WA 955.00",
+        "KILOMETER": 955.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.95559010442162,
+          51.82569333571135
+        ]
+      },
+      "properties": {
+        "OBJECTID": 103,
+        "MODELKILOM": "956.00_WA",
+        "KENMERK": "02 WA 956.00",
+        "KILOMETER": 956.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.941495603762033,
+          51.82760437063219
+        ]
+      },
+      "properties": {
+        "OBJECTID": 104,
+        "MODELKILOM": "957.00_WA",
+        "KENMERK": "02 WA 957.00",
+        "KILOMETER": 957.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.926908026084218,
+          51.828437941345335
+        ]
+      },
+      "properties": {
+        "OBJECTID": 105,
+        "MODELKILOM": "958.00_WA",
+        "KENMERK": "02 WA 958.00",
+        "KILOMETER": 958.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.912649813849746,
+          51.82626859635594
+        ]
+      },
+      "properties": {
+        "OBJECTID": 106,
+        "MODELKILOM": "959.00_WA",
+        "KENMERK": "02 WA 959.00",
+        "KILOMETER": 959.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8994839770206,
+          51.82233441285929
+        ]
+      },
+      "properties": {
+        "OBJECTID": 107,
+        "MODELKILOM": "960.00_WA",
+        "KENMERK": "02 WA 960.00",
+        "KILOMETER": 960.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.034162367095287,
+          51.8771555927764
+        ]
+      },
+      "properties": {
+        "OBJECTID": 108,
+        "MODELKILOM": "868.00_PK",
+        "KENMERK": "03 PK 868.00",
+        "KILOMETER": 868.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.027217810399269,
+          51.884983063128125
+        ]
+      },
+      "properties": {
+        "OBJECTID": 109,
+        "MODELKILOM": "869.00_PK",
+        "KENMERK": "03 PK 869.00",
+        "KILOMETER": 869.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.024104456309281,
+          51.89339639785665
+        ]
+      },
+      "properties": {
+        "OBJECTID": 110,
+        "MODELKILOM": "870.00_PK",
+        "KENMERK": "03 PK 870.00",
+        "KILOMETER": 870.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.017721816072791,
+          51.89963263154947
+        ]
+      },
+      "properties": {
+        "OBJECTID": 111,
+        "MODELKILOM": "871.00_PK",
+        "KENMERK": "03 PK 871.00",
+        "KILOMETER": 871.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.005096024562854,
+          51.90423667497292
+        ]
+      },
+      "properties": {
+        "OBJECTID": 112,
+        "MODELKILOM": "872.00_PK",
+        "KENMERK": "03 PK 872.00",
+        "KILOMETER": 872.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.99323088831012,
+          51.90921322425369
+        ]
+      },
+      "properties": {
+        "OBJECTID": 113,
+        "MODELKILOM": "873.00_PK",
+        "KENMERK": "03 PK 873.00",
+        "KILOMETER": 873.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.983956259056737,
+          51.91614474973971
+        ]
+      },
+      "properties": {
+        "OBJECTID": 114,
+        "MODELKILOM": "874.00_PK",
+        "KENMERK": "03 PK 874.00",
+        "KILOMETER": 874.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.976022167351688,
+          51.92363396524221
+        ]
+      },
+      "properties": {
+        "OBJECTID": 115,
+        "MODELKILOM": "875.00_PK",
+        "KENMERK": "03 PK 875.00",
+        "KILOMETER": 875.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.966143592750419,
+          51.93018310226013
+        ]
+      },
+      "properties": {
+        "OBJECTID": 116,
+        "MODELKILOM": "876.00_PK",
+        "KENMERK": "03 PK 876.00",
+        "KILOMETER": 876.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.961611209415106,
+          51.93862946762067
+        ]
+      },
+      "properties": {
+        "OBJECTID": 117,
+        "MODELKILOM": "877.00_PK",
+        "KENMERK": "03 PK 877.00",
+        "KILOMETER": 877.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9574287958993235,
+          51.94717197563405
+        ]
+      },
+      "properties": {
+        "OBJECTID": 118,
+        "MODELKILOM": "878.00_PK",
+        "KENMERK": "03 PK 878.00",
+        "KILOMETER": 878.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.94632461675366,
+          51.95296581888302
+        ]
+      },
+      "properties": {
+        "OBJECTID": 119,
+        "MODELKILOM": "879.00_NR",
+        "KENMERK": "04 NR 879.00",
+        "KILOMETER": 879.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.936328290185643,
+          51.95935340319213
+        ]
+      },
+      "properties": {
+        "OBJECTID": 120,
+        "MODELKILOM": "880.00_NR",
+        "KENMERK": "04 NR 880.00",
+        "KILOMETER": 880.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.93204237041745,
+          51.966629208394856
+        ]
+      },
+      "properties": {
+        "OBJECTID": 121,
+        "MODELKILOM": "881.00_NR",
+        "KENMERK": "04 NR 881.00",
+        "KILOMETER": 881.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.921628441851165,
+          51.97058947033409
+        ]
+      },
+      "properties": {
+        "OBJECTID": 122,
+        "MODELKILOM": "882.00_NR",
+        "KENMERK": "04 NR 882.00",
+        "KILOMETER": 882.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.909955654284938,
+          51.97553132504644
+        ]
+      },
+      "properties": {
+        "OBJECTID": 123,
+        "MODELKILOM": "883.00_NR",
+        "KENMERK": "04 NR 883.00",
+        "KILOMETER": 883.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.898330498971423,
+          51.980586685454405
+        ]
+      },
+      "properties": {
+        "OBJECTID": 124,
+        "MODELKILOM": "884.00_NR",
+        "KENMERK": "04 NR 884.00",
+        "KILOMETER": 884.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.885298235328199,
+          51.98282367981304
+        ]
+      },
+      "properties": {
+        "OBJECTID": 125,
+        "MODELKILOM": "885.00_NR",
+        "KENMERK": "04 NR 885.00",
+        "KILOMETER": 885.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8736162839000565,
+          51.977684354386945
+        ]
+      },
+      "properties": {
+        "OBJECTID": 126,
+        "MODELKILOM": "886.00_NR",
+        "KENMERK": "04 NR 886.00",
+        "KILOMETER": 886.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.864772027254494,
+          51.970672641900144
+        ]
+      },
+      "properties": {
+        "OBJECTID": 127,
+        "MODELKILOM": "887.00_NR",
+        "KENMERK": "04 NR 887.00",
+        "KILOMETER": 887.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.851181557257221,
+          51.97075121426826
+        ]
+      },
+      "properties": {
+        "OBJECTID": 128,
+        "MODELKILOM": "888.00_NR",
+        "KENMERK": "04 NR 888.00",
+        "KILOMETER": 888.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.837445502078337,
+          51.9735457702779
+        ]
+      },
+      "properties": {
+        "OBJECTID": 129,
+        "MODELKILOM": "889.00_NR",
+        "KENMERK": "04 NR 889.00",
+        "KILOMETER": 889.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8235176011656,
+          51.97159248410328
+        ]
+      },
+      "properties": {
+        "OBJECTID": 130,
+        "MODELKILOM": "890.00_NR",
+        "KENMERK": "04 NR 890.00",
+        "KILOMETER": 890.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.812179391644627,
+          51.965965207165624
+        ]
+      },
+      "properties": {
+        "OBJECTID": 131,
+        "MODELKILOM": "891.00_NR",
+        "KENMERK": "04 NR 891.00",
+        "KILOMETER": 891.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.799305136970486,
+          51.9621106827258
+        ]
+      },
+      "properties": {
+        "OBJECTID": 132,
+        "MODELKILOM": "892.00_NR",
+        "KENMERK": "04 NR 892.00",
+        "KILOMETER": 892.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.784817241587706,
+          51.959711269549196
+        ]
+      },
+      "properties": {
+        "OBJECTID": 133,
+        "MODELKILOM": "893.00_NR",
+        "KENMERK": "04 NR 893.00",
+        "KILOMETER": 893.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.770908446401912,
+          51.960572900866985
+        ]
+      },
+      "properties": {
+        "OBJECTID": 134,
+        "MODELKILOM": "894.00_NR",
+        "KENMERK": "04 NR 894.00",
+        "KILOMETER": 894.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.758493912640227,
+          51.96523021617194
+        ]
+      },
+      "properties": {
+        "OBJECTID": 135,
+        "MODELKILOM": "895.00_NR",
+        "KENMERK": "04 NR 895.00",
+        "KILOMETER": 895.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.74616118112986,
+          51.96988905270556
+        ]
+      },
+      "properties": {
+        "OBJECTID": 136,
+        "MODELKILOM": "896.00_NR",
+        "KENMERK": "04 NR 896.00",
+        "KILOMETER": 896.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.732333074747795,
+          51.96829459854652
+        ]
+      },
+      "properties": {
+        "OBJECTID": 137,
+        "MODELKILOM": "897.00_NR",
+        "KENMERK": "04 NR 897.00",
+        "KILOMETER": 897.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.720322903627179,
+          51.963619117379444
+        ]
+      },
+      "properties": {
+        "OBJECTID": 138,
+        "MODELKILOM": "898.00_NR",
+        "KENMERK": "04 NR 898.00",
+        "KILOMETER": 898.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7062571183056034,
+          51.96278908566947
+        ]
+      },
+      "properties": {
+        "OBJECTID": 139,
+        "MODELKILOM": "899.00_NR",
+        "KENMERK": "04 NR 899.00",
+        "KILOMETER": 899.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6922767762854365,
+          51.96050554776164
+        ]
+      },
+      "properties": {
+        "OBJECTID": 140,
+        "MODELKILOM": "900.00_NR",
+        "KENMERK": "04 NR 900.00",
+        "KILOMETER": 900.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.678234085822385,
+          51.95830701602733
+        ]
+      },
+      "properties": {
+        "OBJECTID": 141,
+        "MODELKILOM": "901.00_NR",
+        "KENMERK": "04 NR 901.00",
+        "KILOMETER": 901.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.666675150032244,
+          51.953104188482314
+        ]
+      },
+      "properties": {
+        "OBJECTID": 142,
+        "MODELKILOM": "902.00_NR",
+        "KENMERK": "04 NR 902.00",
+        "KILOMETER": 902.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.652463652958401,
+          51.953501432230006
+        ]
+      },
+      "properties": {
+        "OBJECTID": 143,
+        "MODELKILOM": "903.00_NR",
+        "KENMERK": "04 NR 903.00",
+        "KILOMETER": 903.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.640752907423809,
+          51.9497221639283
+        ]
+      },
+      "properties": {
+        "OBJECTID": 144,
+        "MODELKILOM": "904.00_NR",
+        "KENMERK": "04 NR 904.00",
+        "KILOMETER": 904.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6307435054910595,
+          51.94325100910001
+        ]
+      },
+      "properties": {
+        "OBJECTID": 145,
+        "MODELKILOM": "905.00_NR",
+        "KENMERK": "04 NR 905.00",
+        "KILOMETER": 905.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.616816537067844,
+          51.94141314840644
+        ]
+      },
+      "properties": {
+        "OBJECTID": 146,
+        "MODELKILOM": "906.00_NR",
+        "KENMERK": "04 NR 906.00",
+        "KILOMETER": 906.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.603058377643658,
+          51.9441514378098
+        ]
+      },
+      "properties": {
+        "OBJECTID": 147,
+        "MODELKILOM": "907.00_NR",
+        "KENMERK": "04 NR 907.00",
+        "KILOMETER": 907.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5914272200301625,
+          51.949615455818005
+        ]
+      },
+      "properties": {
+        "OBJECTID": 148,
+        "MODELKILOM": "908.00_NR",
+        "KENMERK": "04 NR 908.00",
+        "KILOMETER": 908.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.577728387283183,
+          51.95255936584066
+        ]
+      },
+      "properties": {
+        "OBJECTID": 149,
+        "MODELKILOM": "909.00_NR",
+        "KENMERK": "04 NR 909.00",
+        "KILOMETER": 909.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5634240976644875,
+          51.95418805758325
+        ]
+      },
+      "properties": {
+        "OBJECTID": 150,
+        "MODELKILOM": "910.00_NR",
+        "KENMERK": "04 NR 910.00",
+        "KILOMETER": 910.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.5509004223830445,
+          51.95837306007119
+        ]
+      },
+      "properties": {
+        "OBJECTID": 151,
+        "MODELKILOM": "911.00_NR",
+        "KENMERK": "04 NR 911.00",
+        "KILOMETER": 911.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.542645990324063,
+          51.96552540700701
+        ]
+      },
+      "properties": {
+        "OBJECTID": 152,
+        "MODELKILOM": "912.00_NR",
+        "KENMERK": "04 NR 912.00",
+        "KILOMETER": 912.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.530389799868854,
+          51.96962499915929
+        ]
+      },
+      "properties": {
+        "OBJECTID": 153,
+        "MODELKILOM": "913.00_NR",
+        "KENMERK": "04 NR 913.00",
+        "KILOMETER": 913.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.516416742431749,
+          51.97205115972369
+        ]
+      },
+      "properties": {
+        "OBJECTID": 154,
+        "MODELKILOM": "914.00_NR",
+        "KENMERK": "04 NR 914.00",
+        "KILOMETER": 914.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.504306678760118,
+          51.976839956386584
+        ]
+      },
+      "properties": {
+        "OBJECTID": 155,
+        "MODELKILOM": "915.00_NR",
+        "KENMERK": "04 NR 915.00",
+        "KILOMETER": 915.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4923638252724105,
+          51.9816821229091
+        ]
+      },
+      "properties": {
+        "OBJECTID": 156,
+        "MODELKILOM": "916.00_NR",
+        "KENMERK": "04 NR 916.00",
+        "KILOMETER": 916.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4787057902016585,
+          51.98361113016953
+        ]
+      },
+      "properties": {
+        "OBJECTID": 157,
+        "MODELKILOM": "917.00_NR",
+        "KENMERK": "04 NR 917.00",
+        "KILOMETER": 917.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.464339801606446,
+          51.983256302474416
+        ]
+      },
+      "properties": {
+        "OBJECTID": 158,
+        "MODELKILOM": "918.00_NR",
+        "KENMERK": "04 NR 918.00",
+        "KILOMETER": 918.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.450231886954023,
+          51.984622221141734
+        ]
+      },
+      "properties": {
+        "OBJECTID": 159,
+        "MODELKILOM": "919.00_NR",
+        "KENMERK": "04 NR 919.00",
+        "KILOMETER": 919.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.436156066555789,
+          51.98533788189173
+        ]
+      },
+      "properties": {
+        "OBJECTID": 160,
+        "MODELKILOM": "920.00_NR",
+        "KENMERK": "04 NR 920.00",
+        "KILOMETER": 920.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.424947056335675,
+          51.97974127283572
+        ]
+      },
+      "properties": {
+        "OBJECTID": 161,
+        "MODELKILOM": "921.00_NR",
+        "KENMERK": "04 NR 921.00",
+        "KILOMETER": 921.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.412533300151087,
+          51.97525502313601
+        ]
+      },
+      "properties": {
+        "OBJECTID": 162,
+        "MODELKILOM": "922.00_NR",
+        "KENMERK": "04 NR 922.00",
+        "KILOMETER": 922.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.398476090215289,
+          51.972888282134505
+        ]
+      },
+      "properties": {
+        "OBJECTID": 163,
+        "MODELKILOM": "923.00_NR",
+        "KENMERK": "04 NR 923.00",
+        "KILOMETER": 923.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.384995913605251,
+          51.96947892739721
+        ]
+      },
+      "properties": {
+        "OBJECTID": 164,
+        "MODELKILOM": "924.00_NR",
+        "KENMERK": "04 NR 924.00",
+        "KILOMETER": 924.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.370623340435994,
+          51.96983676543251
+        ]
+      },
+      "properties": {
+        "OBJECTID": 165,
+        "MODELKILOM": "925.00_NR",
+        "KENMERK": "04 NR 925.00",
+        "KILOMETER": 925.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.356345645415754,
+          51.970435272610295
+        ]
+      },
+      "properties": {
+        "OBJECTID": 166,
+        "MODELKILOM": "926.00_NR",
+        "KENMERK": "04 NR 926.00",
+        "KILOMETER": 926.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.348403528345848,
+          51.96771259971707
+        ]
+      },
+      "properties": {
+        "OBJECTID": 167,
+        "MODELKILOM": "928.00_NR",
+        "KENMERK": "04 NR 928.00",
+        "KILOMETER": 928.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3393626280714255,
+          51.96074483506874
+        ]
+      },
+      "properties": {
+        "OBJECTID": 168,
+        "MODELKILOM": "929.00_LE",
+        "KENMERK": "05 LE 929.00",
+        "KILOMETER": 929.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3275352532097076,
+          51.95575688991283
+        ]
+      },
+      "properties": {
+        "OBJECTID": 169,
+        "MODELKILOM": "930.00_LE",
+        "KENMERK": "05 LE 930.00",
+        "KILOMETER": 930.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.313898912557115,
+          51.95588907804943
+        ]
+      },
+      "properties": {
+        "OBJECTID": 170,
+        "MODELKILOM": "931.00_LE",
+        "KENMERK": "05 LE 931.00",
+        "KILOMETER": 931.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.302329051555944,
+          51.96114559285896
+        ]
+      },
+      "properties": {
+        "OBJECTID": 171,
+        "MODELKILOM": "932.00_LE",
+        "KENMERK": "05 LE 932.00",
+        "KILOMETER": 932.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.288036624167553,
+          51.962561306743204
+        ]
+      },
+      "properties": {
+        "OBJECTID": 172,
+        "MODELKILOM": "933.00_LE",
+        "KENMERK": "05 LE 933.00",
+        "KILOMETER": 933.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.273801013114315,
+          51.96452783265271
+        ]
+      },
+      "properties": {
+        "OBJECTID": 173,
+        "MODELKILOM": "934.00_LE",
+        "KENMERK": "05 LE 934.00",
+        "KILOMETER": 934.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.260949387260991,
+          51.968706067035505
+        ]
+      },
+      "properties": {
+        "OBJECTID": 174,
+        "MODELKILOM": "935.00_LE",
+        "KENMERK": "05 LE 935.00",
+        "KILOMETER": 935.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.250359209872027,
+          51.974853398678185
+        ]
+      },
+      "properties": {
+        "OBJECTID": 175,
+        "MODELKILOM": "936.00_LE",
+        "KENMERK": "05 LE 936.00",
+        "KILOMETER": 936.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.238679606762423,
+          51.97902577812543
+        ]
+      },
+      "properties": {
+        "OBJECTID": 176,
+        "MODELKILOM": "937.00_LE",
+        "KENMERK": "05 LE 937.00",
+        "KILOMETER": 937.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.228156582642481,
+          51.97391067390593
+        ]
+      },
+      "properties": {
+        "OBJECTID": 177,
+        "MODELKILOM": "938.00_LE",
+        "KENMERK": "05 LE 938.00",
+        "KILOMETER": 938.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.222075785328402,
+          51.96578764020053
+        ]
+      },
+      "properties": {
+        "OBJECTID": 178,
+        "MODELKILOM": "939.00_LE",
+        "KENMERK": "05 LE 939.00",
+        "KILOMETER": 939.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.211127115576493,
+          51.96005246010856
+        ]
+      },
+      "properties": {
+        "OBJECTID": 179,
+        "MODELKILOM": "940.00_LE",
+        "KENMERK": "05 LE 940.00",
+        "KILOMETER": 940.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.197099804173792,
+          51.96058678685717
+        ]
+      },
+      "properties": {
+        "OBJECTID": 180,
+        "MODELKILOM": "941.00_LE",
+        "KENMERK": "05 LE 941.00",
+        "KILOMETER": 941.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.184956910527822,
+          51.96517610101024
+        ]
+      },
+      "properties": {
+        "OBJECTID": 181,
+        "MODELKILOM": "942.00_LE",
+        "KENMERK": "05 LE 942.00",
+        "KILOMETER": 942.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.172544053671258,
+          51.96963895700999
+        ]
+      },
+      "properties": {
+        "OBJECTID": 182,
+        "MODELKILOM": "943.00_LE",
+        "KENMERK": "05 LE 943.00",
+        "KILOMETER": 943.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.157981486573985,
+          51.9709190034179
+        ]
+      },
+      "properties": {
+        "OBJECTID": 183,
+        "MODELKILOM": "944.00_LE",
+        "KENMERK": "05 LE 944.00",
+        "KILOMETER": 944.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1471110691649065,
+          51.976548391543815
+        ]
+      },
+      "properties": {
+        "OBJECTID": 184,
+        "MODELKILOM": "945.00_LE",
+        "KENMERK": "05 LE 945.00",
+        "KILOMETER": 945.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1402201024678655,
+          51.984508361939454
+        ]
+      },
+      "properties": {
+        "OBJECTID": 185,
+        "MODELKILOM": "946.00_LE",
+        "KENMERK": "05 LE 946.00",
+        "KILOMETER": 946.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.132410615318028,
+          51.99213955499211
+        ]
+      },
+      "properties": {
+        "OBJECTID": 186,
+        "MODELKILOM": "947.00_LE",
+        "KENMERK": "05 LE 947.00",
+        "KILOMETER": 947.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.122414967085355,
+          51.998672140476316
+        ]
+      },
+      "properties": {
+        "OBJECTID": 187,
+        "MODELKILOM": "948.00_LE",
+        "KENMERK": "05 LE 948.00",
+        "KILOMETER": 948.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.109386206120381,
+          52.00252698546034
+        ]
+      },
+      "properties": {
+        "OBJECTID": 188,
+        "MODELKILOM": "949.00_LE",
+        "KENMERK": "05 LE 949.00",
+        "KILOMETER": 949.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.100511650224117,
+          52.0030020281384
+        ]
+      },
+      "properties": {
+        "OBJECTID": 189,
+        "MODELKILOM": "950.00_LE",
+        "KENMERK": "05 LE 950.00",
+        "KILOMETER": 950.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.086557787185152,
+          52.000520187926256
+        ]
+      },
+      "properties": {
+        "OBJECTID": 190,
+        "MODELKILOM": "951.00_LE",
+        "KENMERK": "05 LE 951.00",
+        "KILOMETER": 951.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.073633135488302,
+          51.99667772129655
+        ]
+      },
+      "properties": {
+        "OBJECTID": 191,
+        "MODELKILOM": "952.00_LE",
+        "KENMERK": "05 LE 952.00",
+        "KILOMETER": 952.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.062569859885971,
+          51.99106492635729
+        ]
+      },
+      "properties": {
+        "OBJECTID": 192,
+        "MODELKILOM": "953.00_LE",
+        "KENMERK": "05 LE 953.00",
+        "KILOMETER": 953.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0512966027255395,
+          51.98549177231336
+        ]
+      },
+      "properties": {
+        "OBJECTID": 193,
+        "MODELKILOM": "954.00_LE",
+        "KENMERK": "05 LE 954.00",
+        "KILOMETER": 954.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.041426154771594,
+          51.97892143407186
+        ]
+      },
+      "properties": {
+        "OBJECTID": 194,
+        "MODELKILOM": "955.00_LE",
+        "KENMERK": "05 LE 955.00",
+        "KILOMETER": 955.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0354010302374155,
+          51.97084729267824
+        ]
+      },
+      "properties": {
+        "OBJECTID": 195,
+        "MODELKILOM": "956.00_LE",
+        "KENMERK": "05 LE 956.00",
+        "KILOMETER": 956.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.022102598095357,
+          51.96910631547234
+        ]
+      },
+      "properties": {
+        "OBJECTID": 196,
+        "MODELKILOM": "957.00_LE",
+        "KENMERK": "05 LE 957.00",
+        "KILOMETER": 957.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.011352780053998,
+          51.97493591000674
+        ]
+      },
+      "properties": {
+        "OBJECTID": 197,
+        "MODELKILOM": "958.00_LE",
+        "KENMERK": "05 LE 958.00",
+        "KILOMETER": 958.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.997667229925773,
+          51.97738986183745
+        ]
+      },
+      "properties": {
+        "OBJECTID": 198,
+        "MODELKILOM": "959.00_LE",
+        "KENMERK": "05 LE 959.00",
+        "KILOMETER": 959.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.985944704294502,
+          51.97244371769557
+        ]
+      },
+      "properties": {
+        "OBJECTID": 199,
+        "MODELKILOM": "960.00_LE",
+        "KENMERK": "05 LE 960.00",
+        "KILOMETER": 960.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.977943166269244,
+          51.96498846299304
+        ]
+      },
+      "properties": {
+        "OBJECTID": 200,
+        "MODELKILOM": "961.00_LE",
+        "KENMERK": "05 LE 961.00",
+        "KILOMETER": 961.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9669646166265595,
+          51.95992305396933
+        ]
+      },
+      "properties": {
+        "OBJECTID": 201,
+        "MODELKILOM": "962.00_LE",
+        "KENMERK": "05 LE 962.00",
+        "KILOMETER": 962.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.953715076547255,
+          51.962270363084976
+        ]
+      },
+      "properties": {
+        "OBJECTID": 202,
+        "MODELKILOM": "963.00_LE",
+        "KENMERK": "05 LE 963.00",
+        "KILOMETER": 963.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.940094478131234,
+          51.96318928273231
+        ]
+      },
+      "properties": {
+        "OBJECTID": 203,
+        "MODELKILOM": "964.00_LE",
+        "KENMERK": "05 LE 964.00",
+        "KILOMETER": 964.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.93111154031051,
+          51.9567657879086
+        ]
+      },
+      "properties": {
+        "OBJECTID": 204,
+        "MODELKILOM": "965.00_LE",
+        "KENMERK": "05 LE 965.00",
+        "KILOMETER": 965.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.925711120837556,
+          51.94844821021059
+        ]
+      },
+      "properties": {
+        "OBJECTID": 205,
+        "MODELKILOM": "966.00_LE",
+        "KENMERK": "05 LE 966.00",
+        "KILOMETER": 966.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.915293137870822,
+          51.94263185713134
+        ]
+      },
+      "properties": {
+        "OBJECTID": 206,
+        "MODELKILOM": "967.00_LE",
+        "KENMERK": "05 LE 967.00",
+        "KILOMETER": 967.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.90112621534195,
+          51.94069895976992
+        ]
+      },
+      "properties": {
+        "OBJECTID": 207,
+        "MODELKILOM": "968.00_LE",
+        "KENMERK": "05 LE 968.00",
+        "KILOMETER": 968.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.886929905874296,
+          51.93880972981581
+        ]
+      },
+      "properties": {
+        "OBJECTID": 208,
+        "MODELKILOM": "969.00_LE",
+        "KENMERK": "05 LE 969.00",
+        "KILOMETER": 969.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.872584967432655,
+          51.93824616501322
+        ]
+      },
+      "properties": {
+        "OBJECTID": 209,
+        "MODELKILOM": "970.00_LE",
+        "KENMERK": "05 LE 970.00",
+        "KILOMETER": 970.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8586850989397545,
+          51.940864740390936
+        ]
+      },
+      "properties": {
+        "OBJECTID": 210,
+        "MODELKILOM": "971.00_LE",
+        "KENMERK": "05 LE 971.00",
+        "KILOMETER": 971.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.844320106094277,
+          51.94114367059684
+        ]
+      },
+      "properties": {
+        "OBJECTID": 211,
+        "MODELKILOM": "972.00_LE",
+        "KENMERK": "05 LE 972.00",
+        "KILOMETER": 972.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.830894322420657,
+          51.938266710389755
+        ]
+      },
+      "properties": {
+        "OBJECTID": 212,
+        "MODELKILOM": "973.00_LE",
+        "KENMERK": "05 LE 973.00",
+        "KILOMETER": 973.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.821359619549015,
+          51.93149113608199
+        ]
+      },
+      "properties": {
+        "OBJECTID": 213,
+        "MODELKILOM": "974.00_LE",
+        "KENMERK": "05 LE 974.00",
+        "KILOMETER": 974.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.81174035033924,
+          51.924740480786404
+        ]
+      },
+      "properties": {
+        "OBJECTID": 214,
+        "MODELKILOM": "975.00_LE",
+        "KENMERK": "05 LE 975.00",
+        "KILOMETER": 975.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.798569579902887,
+          51.921133262447
+        ]
+      },
+      "properties": {
+        "OBJECTID": 215,
+        "MODELKILOM": "976.00_LE",
+        "KENMERK": "05 LE 976.00",
+        "KILOMETER": 976.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.784870446186486,
+          51.91821452653116
+        ]
+      },
+      "properties": {
+        "OBJECTID": 216,
+        "MODELKILOM": "977.00_LE",
+        "KENMERK": "05 LE 977.00",
+        "KILOMETER": 977.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.77074035602605,
+          51.9164691372506
+        ]
+      },
+      "properties": {
+        "OBJECTID": 217,
+        "MODELKILOM": "978.00_LE",
+        "KENMERK": "05 LE 978.00",
+        "KILOMETER": 978.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.757725375751629,
+          51.91259353523347
+        ]
+      },
+      "properties": {
+        "OBJECTID": 218,
+        "MODELKILOM": "979.00_LE",
+        "KENMERK": "05 LE 979.00",
+        "KILOMETER": 979.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.746483684015873,
+          51.90698969453224
+        ]
+      },
+      "properties": {
+        "OBJECTID": 219,
+        "MODELKILOM": "980.00_LE",
+        "KENMERK": "05 LE 980.00",
+        "KILOMETER": 980.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7345709247012575,
+          51.901965292688864
+        ]
+      },
+      "properties": {
+        "OBJECTID": 220,
+        "MODELKILOM": "981.00_LE",
+        "KENMERK": "05 LE 981.00",
+        "KILOMETER": 981.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.72180424751103,
+          51.89770279537754
+        ]
+      },
+      "properties": {
+        "OBJECTID": 221,
+        "MODELKILOM": "982.00_LE",
+        "KENMERK": "05 LE 982.00",
+        "KILOMETER": 982.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.707498344170347,
+          51.89684818253768
+        ]
+      },
+      "properties": {
+        "OBJECTID": 222,
+        "MODELKILOM": "983.00_LE",
+        "KENMERK": "05 LE 983.00",
+        "KILOMETER": 983.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.69328401175455,
+          51.89528648344943
+        ]
+      },
+      "properties": {
+        "OBJECTID": 223,
+        "MODELKILOM": "984.00_LE",
+        "KENMERK": "05 LE 984.00",
+        "KILOMETER": 984.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.679617073308713,
+          51.89240222789132
+        ]
+      },
+      "properties": {
+        "OBJECTID": 224,
+        "MODELKILOM": "985.00_LE",
+        "KENMERK": "05 LE 985.00",
+        "KILOMETER": 985.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.666235882517427,
+          51.88945043273842
+        ]
+      },
+      "properties": {
+        "OBJECTID": 225,
+        "MODELKILOM": "986.00_LE",
+        "KENMERK": "05 LE 986.00",
+        "KILOMETER": 986.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.65183626532318,
+          51.88976595736214
+        ]
+      },
+      "properties": {
+        "OBJECTID": 226,
+        "MODELKILOM": "987.00_LE",
+        "KENMERK": "05 LE 987.00",
+        "KILOMETER": 987.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.637551330402789,
+          51.89085487540969
+        ]
+      },
+      "properties": {
+        "OBJECTID": 227,
+        "MODELKILOM": "988.00_LE",
+        "KENMERK": "05 LE 988.00",
+        "KILOMETER": 988.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.949818910741784,
+          51.95474710592081
+        ]
+      },
+      "properties": {
+        "OBJECTID": 228,
+        "MODELKILOM": "879.00_IJ",
+        "KENMERK": "06 IJ 879.00",
+        "KILOMETER": 879.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.951524663032633,
+          51.96349923947896
+        ]
+      },
+      "properties": {
+        "OBJECTID": 229,
+        "MODELKILOM": "880.00_IJ",
+        "KENMERK": "06 IJ 880.00",
+        "KILOMETER": 880.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.960880152444998,
+          51.97011407576163
+        ]
+      },
+      "properties": {
+        "OBJECTID": 230,
+        "MODELKILOM": "881.00_IJ",
+        "KENMERK": "06 IJ 881.00",
+        "KILOMETER": 881.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.974864408899004,
+          51.972726645019115
+        ]
+      },
+      "properties": {
+        "OBJECTID": 231,
+        "MODELKILOM": "882.00_IJ",
+        "KENMERK": "06 IJ 882.00",
+        "KILOMETER": 882.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.989123554201033,
+          51.97429770935302
+        ]
+      },
+      "properties": {
+        "OBJECTID": 232,
+        "MODELKILOM": "883.00_IJ",
+        "KENMERK": "06 IJ 883.00",
+        "KILOMETER": 883.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.000957793149838,
+          51.97916892265939
+        ]
+      },
+      "properties": {
+        "OBJECTID": 233,
+        "MODELKILOM": "884.00_IJ",
+        "KENMERK": "06 IJ 884.00",
+        "KILOMETER": 884.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.005165273009385,
+          51.98775159305208
+        ]
+      },
+      "properties": {
+        "OBJECTID": 234,
+        "MODELKILOM": "885.00_IJ",
+        "KENMERK": "06 IJ 885.00",
+        "KILOMETER": 885.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.011690977509897,
+          51.99545360257158
+        ]
+      },
+      "properties": {
+        "OBJECTID": 235,
+        "MODELKILOM": "886.00_IJ",
+        "KENMERK": "06 IJ 886.00",
+        "KILOMETER": 886.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0251867575831595,
+          51.99606935459715
+        ]
+      },
+      "properties": {
+        "OBJECTID": 236,
+        "MODELKILOM": "887.00_IJ",
+        "KENMERK": "06 IJ 887.00",
+        "KILOMETER": 887.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.037837295475956,
+          51.99965188238086
+        ]
+      },
+      "properties": {
+        "OBJECTID": 237,
+        "MODELKILOM": "888.00_IJ",
+        "KENMERK": "06 IJ 888.00",
+        "KILOMETER": 888.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.045421490830116,
+          52.00673075248646
+        ]
+      },
+      "properties": {
+        "OBJECTID": 238,
+        "MODELKILOM": "889.00_IJ",
+        "KENMERK": "06 IJ 889.00",
+        "KILOMETER": 889.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.055290687334556,
+          52.01296475743256
+        ]
+      },
+      "properties": {
+        "OBJECTID": 239,
+        "MODELKILOM": "890.00_IJ",
+        "KENMERK": "06 IJ 890.00",
+        "KILOMETER": 890.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.068617521650194,
+          52.013995031464965
+        ]
+      },
+      "properties": {
+        "OBJECTID": 240,
+        "MODELKILOM": "891.00_IJ",
+        "KENMERK": "06 IJ 891.00",
+        "KILOMETER": 891.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.078512304523777,
+          52.00804652977513
+        ]
+      },
+      "properties": {
+        "OBJECTID": 241,
+        "MODELKILOM": "896.00_IJ",
+        "KENMERK": "06 IJ 896.00",
+        "KILOMETER": 896.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0794858222748696,
+          51.999675388183555
+        ]
+      },
+      "properties": {
+        "OBJECTID": 242,
+        "MODELKILOM": "897.00_IJ",
+        "KENMERK": "06 IJ 897.00",
+        "KILOMETER": 897.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.088568302454599,
+          51.993155246282505
+        ]
+      },
+      "properties": {
+        "OBJECTID": 243,
+        "MODELKILOM": "898.00_IJ",
+        "KENMERK": "06 IJ 898.00",
+        "KILOMETER": 898.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.102587713578756,
+          51.994307013186685
+        ]
+      },
+      "properties": {
+        "OBJECTID": 244,
+        "MODELKILOM": "899.00_IJ",
+        "KENMERK": "06 IJ 899.00",
+        "KILOMETER": 899.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.112889740486849,
+          51.99998023509639
+        ]
+      },
+      "properties": {
+        "OBJECTID": 245,
+        "MODELKILOM": "900.00_IJ",
+        "KENMERK": "06 IJ 900.00",
+        "KILOMETER": 900.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.121152853487629,
+          52.00681891166917
+        ]
+      },
+      "properties": {
+        "OBJECTID": 246,
+        "MODELKILOM": "901.00_IJ",
+        "KENMERK": "06 IJ 901.00",
+        "KILOMETER": 901.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.127522253044807,
+          52.01446778996366
+        ]
+      },
+      "properties": {
+        "OBJECTID": 247,
+        "MODELKILOM": "902.00_IJ",
+        "KENMERK": "06 IJ 902.00",
+        "KILOMETER": 902.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.130111466027899,
+          52.0198417344059
+        ]
+      },
+      "properties": {
+        "OBJECTID": 248,
+        "MODELKILOM": "903.00_IJ",
+        "KENMERK": "06 IJ 903.00",
+        "KILOMETER": 903.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.131146217808155,
+          52.028497811172784
+        ]
+      },
+      "properties": {
+        "OBJECTID": 249,
+        "MODELKILOM": "904.00_IJ",
+        "KENMERK": "06 IJ 904.00",
+        "KILOMETER": 904.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.121216833261414,
+          52.03470121731081
+        ]
+      },
+      "properties": {
+        "OBJECTID": 250,
+        "MODELKILOM": "905.00_IJ",
+        "KENMERK": "06 IJ 905.00",
+        "KILOMETER": 905.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.115766600046116,
+          52.03631844402301
+        ]
+      },
+      "properties": {
+        "OBJECTID": 251,
+        "MODELKILOM": "910.00_IJ",
+        "KENMERK": "06 IJ 910.00",
+        "KILOMETER": 910.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1112066208002975,
+          52.04403222863392
+        ]
+      },
+      "properties": {
+        "OBJECTID": 252,
+        "MODELKILOM": "911.00_IJ",
+        "KENMERK": "06 IJ 911.00",
+        "KILOMETER": 911.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.11977972933141,
+          52.05115109472967
+        ]
+      },
+      "properties": {
+        "OBJECTID": 253,
+        "MODELKILOM": "912.00_IJ",
+        "KENMERK": "06 IJ 912.00",
+        "KILOMETER": 912.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.132185913027173,
+          52.05572278094811
+        ]
+      },
+      "properties": {
+        "OBJECTID": 254,
+        "MODELKILOM": "913.00_IJ",
+        "KENMERK": "06 IJ 913.00",
+        "KILOMETER": 913.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.141589579683976,
+          52.06240196537972
+        ]
+      },
+      "properties": {
+        "OBJECTID": 255,
+        "MODELKILOM": "914.00_IJ",
+        "KENMERK": "06 IJ 914.00",
+        "KILOMETER": 914.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.151954926281925,
+          52.06820846828296
+        ]
+      },
+      "properties": {
+        "OBJECTID": 256,
+        "MODELKILOM": "915.00_IJ",
+        "KENMERK": "06 IJ 915.00",
+        "KILOMETER": 915.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1626852822281775,
+          52.07406278480842
+        ]
+      },
+      "properties": {
+        "OBJECTID": 257,
+        "MODELKILOM": "916.00_IJ",
+        "KENMERK": "06 IJ 916.00",
+        "KILOMETER": 916.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.171392105647535,
+          52.080441959495914
+        ]
+      },
+      "properties": {
+        "OBJECTID": 258,
+        "MODELKILOM": "917.00_IJ",
+        "KENMERK": "06 IJ 917.00",
+        "KILOMETER": 917.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.174469144998224,
+          52.089216865167714
+        ]
+      },
+      "properties": {
+        "OBJECTID": 259,
+        "MODELKILOM": "918.00_IJ",
+        "KENMERK": "06 IJ 918.00",
+        "KILOMETER": 918.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.187564652804232,
+          52.09113837566975
+        ]
+      },
+      "properties": {
+        "OBJECTID": 260,
+        "MODELKILOM": "919.00_IJ",
+        "KENMERK": "06 IJ 919.00",
+        "KILOMETER": 919.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.201008337502857,
+          52.0938360572308
+        ]
+      },
+      "properties": {
+        "OBJECTID": 261,
+        "MODELKILOM": "920.00_IJ",
+        "KENMERK": "06 IJ 920.00",
+        "KILOMETER": 920.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.214213223838668,
+          52.09412555242242
+        ]
+      },
+      "properties": {
+        "OBJECTID": 262,
+        "MODELKILOM": "921.00_IJ",
+        "KENMERK": "06 IJ 921.00",
+        "KILOMETER": 921.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.218269865405488,
+          52.10227703432678
+        ]
+      },
+      "properties": {
+        "OBJECTID": 263,
+        "MODELKILOM": "922.00_IJ",
+        "KENMERK": "06 IJ 922.00",
+        "KILOMETER": 922.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.213662304229048,
+          52.110746465643274
+        ]
+      },
+      "properties": {
+        "OBJECTID": 264,
+        "MODELKILOM": "923.00_IJ",
+        "KENMERK": "06 IJ 923.00",
+        "KILOMETER": 923.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.200589782718606,
+          52.11403756251573
+        ]
+      },
+      "properties": {
+        "OBJECTID": 265,
+        "MODELKILOM": "924.00_IJ",
+        "KENMERK": "06 IJ 924.00",
+        "KILOMETER": 924.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.187504859614021,
+          52.11637367379735
+        ]
+      },
+      "properties": {
+        "OBJECTID": 266,
+        "MODELKILOM": "925.00_IJ",
+        "KENMERK": "06 IJ 925.00",
+        "KILOMETER": 925.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.186409762838073,
+          52.124976505050896
+        ]
+      },
+      "properties": {
+        "OBJECTID": 267,
+        "MODELKILOM": "926.00_IJ",
+        "KENMERK": "06 IJ 926.00",
+        "KILOMETER": 926.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.191237086104994,
+          52.133467722866385
+        ]
+      },
+      "properties": {
+        "OBJECTID": 268,
+        "MODELKILOM": "927.00_IJ",
+        "KENMERK": "06 IJ 927.00",
+        "KILOMETER": 927.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.189227407128361,
+          52.14232368840729
+        ]
+      },
+      "properties": {
+        "OBJECTID": 269,
+        "MODELKILOM": "928.00_IJ",
+        "KENMERK": "06 IJ 928.00",
+        "KILOMETER": 928.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1829415971106725,
+          52.150386104919626
+        ]
+      },
+      "properties": {
+        "OBJECTID": 270,
+        "MODELKILOM": "929.00_IJ",
+        "KENMERK": "06 IJ 929.00",
+        "KILOMETER": 929.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.184247812416105,
+          52.15904313448851
+        ]
+      },
+      "properties": {
+        "OBJECTID": 271,
+        "MODELKILOM": "930.00_IJ",
+        "KENMERK": "06 IJ 930.00",
+        "KILOMETER": 930.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.190207788615123,
+          52.166845558705006
+        ]
+      },
+      "properties": {
+        "OBJECTID": 272,
+        "MODELKILOM": "931.00_IJ",
+        "KENMERK": "06 IJ 931.00",
+        "KILOMETER": 931.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1940868127860975,
+          52.175216959807564
+        ]
+      },
+      "properties": {
+        "OBJECTID": 273,
+        "MODELKILOM": "932.00_IJ",
+        "KENMERK": "06 IJ 932.00",
+        "KILOMETER": 932.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.18375479649966,
+          52.18065429777821
+        ]
+      },
+      "properties": {
+        "OBJECTID": 274,
+        "MODELKILOM": "933.00_IJ",
+        "KENMERK": "06 IJ 933.00",
+        "KILOMETER": 933.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.173332920803761,
+          52.18663173125173
+        ]
+      },
+      "properties": {
+        "OBJECTID": 275,
+        "MODELKILOM": "934.00_IJ",
+        "KENMERK": "06 IJ 934.00",
+        "KILOMETER": 934.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.161040914317212,
+          52.1895765847791
+        ]
+      },
+      "properties": {
+        "OBJECTID": 276,
+        "MODELKILOM": "935.00_IJ",
+        "KENMERK": "06 IJ 935.00",
+        "KILOMETER": 935.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.156515677617016,
+          52.197181841145586
+        ]
+      },
+      "properties": {
+        "OBJECTID": 277,
+        "MODELKILOM": "936.00_IJ",
+        "KENMERK": "06 IJ 936.00",
+        "KILOMETER": 936.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.167432718289739,
+          52.20105065982115
+        ]
+      },
+      "properties": {
+        "OBJECTID": 278,
+        "MODELKILOM": "937.00_IJ",
+        "KENMERK": "06 IJ 937.00",
+        "KILOMETER": 937.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.181056520816699,
+          52.20376469293865
+        ]
+      },
+      "properties": {
+        "OBJECTID": 279,
+        "MODELKILOM": "938.00_IJ",
+        "KENMERK": "06 IJ 938.00",
+        "KILOMETER": 938.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.190603366310281,
+          52.209771080194685
+        ]
+      },
+      "properties": {
+        "OBJECTID": 280,
+        "MODELKILOM": "939.00_IJ",
+        "KENMERK": "06 IJ 939.00",
+        "KILOMETER": 939.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.188022552246552,
+          52.2183147852904
+        ]
+      },
+      "properties": {
+        "OBJECTID": 281,
+        "MODELKILOM": "940.00_IJ",
+        "KENMERK": "06 IJ 940.00",
+        "KILOMETER": 940.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.177608770944204,
+          52.22457980475052
+        ]
+      },
+      "properties": {
+        "OBJECTID": 282,
+        "MODELKILOM": "941.00_IJ",
+        "KENMERK": "06 IJ 941.00",
+        "KILOMETER": 941.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.167283751391636,
+          52.23067280385493
+        ]
+      },
+      "properties": {
+        "OBJECTID": 283,
+        "MODELKILOM": "942.00_IJ",
+        "KENMERK": "06 IJ 942.00",
+        "KILOMETER": 942.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.160960247439756,
+          52.238033302374454
+        ]
+      },
+      "properties": {
+        "OBJECTID": 284,
+        "MODELKILOM": "943.00_IJ",
+        "KENMERK": "06 IJ 943.00",
+        "KILOMETER": 943.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.163326059149267,
+          52.246495567603354
+        ]
+      },
+      "properties": {
+        "OBJECTID": 285,
+        "MODELKILOM": "944.00_IJ",
+        "KENMERK": "06 IJ 944.00",
+        "KILOMETER": 944.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.151884766507374,
+          52.25174258784842
+        ]
+      },
+      "properties": {
+        "OBJECTID": 286,
+        "MODELKILOM": "945.00_IJ",
+        "KENMERK": "06 IJ 945.00",
+        "KILOMETER": 945.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.14090378659708,
+          52.257612467616305
+        ]
+      },
+      "properties": {
+        "OBJECTID": 287,
+        "MODELKILOM": "946.00_IJ",
+        "KENMERK": "06 IJ 946.00",
+        "KILOMETER": 946.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1277082119677635,
+          52.261558277509806
+        ]
+      },
+      "properties": {
+        "OBJECTID": 288,
+        "MODELKILOM": "947.00_IJ",
+        "KENMERK": "06 IJ 947.00",
+        "KILOMETER": 947.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.122842863704106,
+          52.269603229440236
+        ]
+      },
+      "properties": {
+        "OBJECTID": 289,
+        "MODELKILOM": "948.00_IJ",
+        "KENMERK": "06 IJ 948.00",
+        "KILOMETER": 948.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.113998712388307,
+          52.27663691099186
+        ]
+      },
+      "properties": {
+        "OBJECTID": 290,
+        "MODELKILOM": "949.00_IJ",
+        "KENMERK": "06 IJ 949.00",
+        "KILOMETER": 949.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1116405767642865,
+          52.28519817389356
+        ]
+      },
+      "properties": {
+        "OBJECTID": 291,
+        "MODELKILOM": "950.00_IJ",
+        "KENMERK": "06 IJ 950.00",
+        "KILOMETER": 950.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.105987883209712,
+          52.29279358268339
+        ]
+      },
+      "properties": {
+        "OBJECTID": 292,
+        "MODELKILOM": "951.00_IJ",
+        "KENMERK": "06 IJ 951.00",
+        "KILOMETER": 951.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1014621802443685,
+          52.3011318322262
+        ]
+      },
+      "properties": {
+        "OBJECTID": 293,
+        "MODELKILOM": "952.00_IJ",
+        "KENMERK": "06 IJ 952.00",
+        "KILOMETER": 952.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.103039897998448,
+          52.310005791368084
+        ]
+      },
+      "properties": {
+        "OBJECTID": 294,
+        "MODELKILOM": "953.00_IJ",
+        "KENMERK": "06 IJ 953.00",
+        "KILOMETER": 953.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.095100253701326,
+          52.31717768886156
+        ]
+      },
+      "properties": {
+        "OBJECTID": 295,
+        "MODELKILOM": "954.00_IJ",
+        "KENMERK": "06 IJ 954.00",
+        "KILOMETER": 954.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.093962386175347,
+          52.325551719186144
+        ]
+      },
+      "properties": {
+        "OBJECTID": 296,
+        "MODELKILOM": "955.00_IJ",
+        "KENMERK": "06 IJ 955.00",
+        "KILOMETER": 955.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.09427359612723,
+          52.334499036847745
+        ]
+      },
+      "properties": {
+        "OBJECTID": 297,
+        "MODELKILOM": "956.00_IJ",
+        "KENMERK": "06 IJ 956.00",
+        "KILOMETER": 956.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.103140888634886,
+          52.341453749291794
+        ]
+      },
+      "properties": {
+        "OBJECTID": 298,
+        "MODELKILOM": "957.00_IJ",
+        "KENMERK": "06 IJ 957.00",
+        "KILOMETER": 957.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.10131980208086,
+          52.34965415474558
+        ]
+      },
+      "properties": {
+        "OBJECTID": 299,
+        "MODELKILOM": "958.00_IJ",
+        "KENMERK": "06 IJ 958.00",
+        "KILOMETER": 958.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.094374580828864,
+          52.35759595874222
+        ]
+      },
+      "properties": {
+        "OBJECTID": 300,
+        "MODELKILOM": "959.00_IJ",
+        "KENMERK": "06 IJ 959.00",
+        "KILOMETER": 959.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.082489932913093,
+          52.361747176663926
+        ]
+      },
+      "properties": {
+        "OBJECTID": 301,
+        "MODELKILOM": "960.00_IJ",
+        "KENMERK": "06 IJ 960.00",
+        "KILOMETER": 960.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.078195875003193,
+          52.36913198797368
+        ]
+      },
+      "properties": {
+        "OBJECTID": 302,
+        "MODELKILOM": "961.00_IJ",
+        "KENMERK": "06 IJ 961.00",
+        "KILOMETER": 961.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0901603188642195,
+          52.37306223827975
+        ]
+      },
+      "properties": {
+        "OBJECTID": 303,
+        "MODELKILOM": "962.00_IJ",
+        "KENMERK": "06 IJ 962.00",
+        "KILOMETER": 962.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.104232583059207,
+          52.37569102128488
+        ]
+      },
+      "properties": {
+        "OBJECTID": 304,
+        "MODELKILOM": "963.00_IJ",
+        "KENMERK": "06 IJ 963.00",
+        "KILOMETER": 963.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.118215078613953,
+          52.378409693720876
+        ]
+      },
+      "properties": {
+        "OBJECTID": 305,
+        "MODELKILOM": "964.00_IJ",
+        "KENMERK": "06 IJ 964.00",
+        "KILOMETER": 964.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1261548350152975,
+          52.38547232044387
+        ]
+      },
+      "properties": {
+        "OBJECTID": 306,
+        "MODELKILOM": "965.00_IJ",
+        "KENMERK": "06 IJ 965.00",
+        "KILOMETER": 965.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.126199334963356,
+          52.39438884139138
+        ]
+      },
+      "properties": {
+        "OBJECTID": 307,
+        "MODELKILOM": "966.00_IJ",
+        "KENMERK": "06 IJ 966.00",
+        "KILOMETER": 966.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1310946100180095,
+          52.402693565894786
+        ]
+      },
+      "properties": {
+        "OBJECTID": 308,
+        "MODELKILOM": "967.00_IJ",
+        "KENMERK": "06 IJ 967.00",
+        "KILOMETER": 967.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.134860114844766,
+          52.41130266209927
+        ]
+      },
+      "properties": {
+        "OBJECTID": 309,
+        "MODELKILOM": "968.00_IJ",
+        "KENMERK": "06 IJ 968.00",
+        "KILOMETER": 968.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.131782433973514,
+          52.41989755465947
+        ]
+      },
+      "properties": {
+        "OBJECTID": 310,
+        "MODELKILOM": "969.00_IJ",
+        "KENMERK": "06 IJ 969.00",
+        "KILOMETER": 969.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.125633546338658,
+          52.427953729125
+        ]
+      },
+      "properties": {
+        "OBJECTID": 311,
+        "MODELKILOM": "970.00_IJ",
+        "KENMERK": "06 IJ 970.00",
+        "KILOMETER": 970.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.116958064866233,
+          52.43519968336831
+        ]
+      },
+      "properties": {
+        "OBJECTID": 312,
+        "MODELKILOM": "971.00_IJ",
+        "KENMERK": "06 IJ 971.00",
+        "KILOMETER": 971.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.106811769216054,
+          52.44154391218441
+        ]
+      },
+      "properties": {
+        "OBJECTID": 313,
+        "MODELKILOM": "972.00_IJ",
+        "KENMERK": "06 IJ 972.00",
+        "KILOMETER": 972.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1025600980778,
+          52.449414829842084
+        ]
+      },
+      "properties": {
+        "OBJECTID": 314,
+        "MODELKILOM": "973.00_IJ",
+        "KENMERK": "06 IJ 973.00",
+        "KILOMETER": 973.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.102905538982926,
+          52.45836226378675
+        ]
+      },
+      "properties": {
+        "OBJECTID": 315,
+        "MODELKILOM": "974.00_IJ",
+        "KENMERK": "06 IJ 974.00",
+        "KILOMETER": 974.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.101335451077812,
+          52.46732067602477
+        ]
+      },
+      "properties": {
+        "OBJECTID": 316,
+        "MODELKILOM": "975.00_IJ",
+        "KENMERK": "06 IJ 975.00",
+        "KILOMETER": 975.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.093227012805315,
+          52.474729601911655
+        ]
+      },
+      "properties": {
+        "OBJECTID": 317,
+        "MODELKILOM": "976.00_IJ",
+        "KENMERK": "06 IJ 976.00",
+        "KILOMETER": 976.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.080702292960714,
+          52.479235018497896
+        ]
+      },
+      "properties": {
+        "OBJECTID": 318,
+        "MODELKILOM": "977.00_IJ",
+        "KENMERK": "06 IJ 977.00",
+        "KILOMETER": 977.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.068266099688811,
+          52.483783526737646
+        ]
+      },
+      "properties": {
+        "OBJECTID": 319,
+        "MODELKILOM": "978.00_IJ",
+        "KENMERK": "06 IJ 978.00",
+        "KILOMETER": 978.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.061041792807061,
+          52.4915856181141
+        ]
+      },
+      "properties": {
+        "OBJECTID": 320,
+        "MODELKILOM": "979.00_IJ",
+        "KENMERK": "06 IJ 979.00",
+        "KILOMETER": 979.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.054719344162254,
+          52.499575967223784
+        ]
+      },
+      "properties": {
+        "OBJECTID": 321,
+        "MODELKILOM": "980.00_IJ",
+        "KENMERK": "06 IJ 980.00",
+        "KILOMETER": 980.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.043155342970297,
+          52.50519875420076
+        ]
+      },
+      "properties": {
+        "OBJECTID": 322,
+        "MODELKILOM": "981.00_IJ",
+        "KENMERK": "06 IJ 981.00",
+        "KILOMETER": 981.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.029955215104502,
+          52.50911742717639
+        ]
+      },
+      "properties": {
+        "OBJECTID": 323,
+        "MODELKILOM": "982.00_IJ",
+        "KENMERK": "06 IJ 982.00",
+        "KILOMETER": 982.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.018087468651052,
+          52.514302925485445
+        ]
+      },
+      "properties": {
+        "OBJECTID": 324,
+        "MODELKILOM": "983.00_IJ",
+        "KENMERK": "06 IJ 983.00",
+        "KILOMETER": 983.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.015515329892906,
+          52.52275501763371
+        ]
+      },
+      "properties": {
+        "OBJECTID": 325,
+        "MODELKILOM": "984.00_IJ",
+        "KENMERK": "06 IJ 984.00",
+        "KILOMETER": 984.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0184272261715215,
+          52.530818763715686
+        ]
+      },
+      "properties": {
+        "OBJECTID": 326,
+        "MODELKILOM": "985.00_IJ",
+        "KENMERK": "06 IJ 985.00",
+        "KILOMETER": 985.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0043598073007765,
+          52.531585657803255
+        ]
+      },
+      "properties": {
+        "OBJECTID": 327,
+        "MODELKILOM": "986.00_IJ",
+        "KENMERK": "06 IJ 986.00",
+        "KILOMETER": 986.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.992352124122462,
+          52.52662210844655
+        ]
+      },
+      "properties": {
+        "OBJECTID": 328,
+        "MODELKILOM": "987.00_IJ",
+        "KENMERK": "06 IJ 987.00",
+        "KILOMETER": 987.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.980469603219667,
+          52.52169070652266
+        ]
+      },
+      "properties": {
+        "OBJECTID": 329,
+        "MODELKILOM": "988.00_IJ",
+        "KENMERK": "06 IJ 988.00",
+        "KILOMETER": 988.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.969323603905377,
+          52.51632254461688
+        ]
+      },
+      "properties": {
+        "OBJECTID": 330,
+        "MODELKILOM": "989.00_IJ",
+        "KENMERK": "06 IJ 989.00",
+        "KILOMETER": 989.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.958432416115119,
+          52.521169195158514
+        ]
+      },
+      "properties": {
+        "OBJECTID": 331,
+        "MODELKILOM": "990.00_IJ",
+        "KENMERK": "06 IJ 990.00",
+        "KILOMETER": 990.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.957527429309558,
+          52.53007619454929
+        ]
+      },
+      "properties": {
+        "OBJECTID": 332,
+        "MODELKILOM": "991.00_IJ",
+        "KENMERK": "06 IJ 991.00",
+        "KILOMETER": 991.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.949555727879734,
+          52.53705115248421
+        ]
+      },
+      "properties": {
+        "OBJECTID": 333,
+        "MODELKILOM": "992.00_IJ",
+        "KENMERK": "06 IJ 992.00",
+        "KILOMETER": 992.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.936230250095114,
+          52.54033583612386
+        ]
+      },
+      "properties": {
+        "OBJECTID": 334,
+        "MODELKILOM": "993.00_IJ",
+        "KENMERK": "06 IJ 993.00",
+        "KILOMETER": 993.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.928384325547176,
+          52.54745339709028
+        ]
+      },
+      "properties": {
+        "OBJECTID": 335,
+        "MODELKILOM": "994.00_IJ",
+        "KENMERK": "06 IJ 994.00",
+        "KILOMETER": 994.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.923484224506274,
+          52.555824084826895
+        ]
+      },
+      "properties": {
+        "OBJECTID": 336,
+        "MODELKILOM": "995.00_IJ",
+        "KENMERK": "06 IJ 995.00",
+        "KILOMETER": 995.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.914620394862696,
+          52.56293180920228
+        ]
+      },
+      "properties": {
+        "OBJECTID": 337,
+        "MODELKILOM": "996.00_IJ",
+        "KENMERK": "06 IJ 996.00",
+        "KILOMETER": 996.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.902699009559059,
+          52.568085345239695
+        ]
+      },
+      "properties": {
+        "OBJECTID": 338,
+        "MODELKILOM": "997.00_IJ",
+        "KENMERK": "06 IJ 997.00",
+        "KILOMETER": 997.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.890306727301362,
+          52.57267346590444
+        ]
+      },
+      "properties": {
+        "OBJECTID": 339,
+        "MODELKILOM": "998.00_IJ",
+        "KENMERK": "06 IJ 998.00",
+        "KILOMETER": 998.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.878733818798055,
+          52.57847607482306
+        ]
+      },
+      "properties": {
+        "OBJECTID": 340,
+        "MODELKILOM": "999.00_IJ",
+        "KENMERK": "06 IJ 999.00",
+        "KILOMETER": 999.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.865670599579439,
+          52.58272678747473
+        ]
+      },
+      "properties": {
+        "OBJECTID": 341,
+        "MODELKILOM": "1000.00_IJ",
+        "KENMERK": "06 IJ 1000.00",
+        "KILOMETER": 1000.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.851224584544815,
+          52.581775303986326
+        ]
+      },
+      "properties": {
+        "OBJECTID": 342,
+        "MODELKILOM": "1001.00_IJ",
+        "KENMERK": "06 IJ 1001.00",
+        "KILOMETER": 1001.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.8368323641200615,
+          52.582644030885994
+        ]
+      },
+      "properties": {
+        "OBJECTID": 343,
+        "MODELKILOM": "1002.00_IJ",
+        "KENMERK": "06 IJ 1002.00",
+        "KILOMETER": 1002.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.822109176882294,
+          52.58320441115301
+        ]
+      },
+      "properties": {
+        "OBJECTID": 344,
+        "MODELKILOM": "1003.00_IJ",
+        "KENMERK": "06 IJ 1003.00",
+        "KILOMETER": 1003.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.807365796564309,
+          52.58349847438106
+        ]
+      },
+      "properties": {
+        "OBJECTID": 345,
+        "MODELKILOM": "1004.00_IJ",
+        "KENMERK": "06 IJ 1004.00",
+        "KILOMETER": 1004.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.79258394100128,
+          52.58351476177208
+        ]
+      },
+      "properties": {
+        "OBJECTID": 346,
+        "MODELKILOM": "1005.00_IJ",
+        "KENMERK": "06 IJ 1005.00",
+        "KILOMETER": 1005.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.77807478549848,
+          52.583553587597926
+        ]
+      },
+      "properties": {
+        "OBJECTID": 347,
+        "MODELKILOM": "1006.00_IJ",
+        "KENMERK": "06 IJ 1006.00",
+        "KILOMETER": 1006.0
+      }
+    }
+  ]
+}

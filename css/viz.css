@@ -11,7 +11,7 @@ body {
   box-shadow: 0px 4px 6px #2F2F2F;
   
 
-}
+} 
 header {
   display: flex;
   margin-left: auto;
@@ -53,8 +53,6 @@ main {
   margin-bottom: 10%;
   align-items: flex-start;
   max-width: 1050px;
-
-
 }
 .map{
   width: 960px;

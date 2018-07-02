@@ -64,8 +64,7 @@ var BackwaterChart = {};
 	    yScale.domain([-1, 0.1]);
 	    this.drawBands()
 	    this.drawAxis()
-	    
-	    this.drawZeroline()
+	    this.drawZeroLine() 
 	    
 	};
 
@@ -117,8 +116,9 @@ var BackwaterChart = {};
 	          .call(d3.axisLeft(yScale));
 
     };
+    
 
-    this.drawZeroline = function(){
+    this.drawZeroLine = function(){
     	var zeroline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(0); });
@@ -129,16 +129,21 @@ var BackwaterChart = {};
     	.attr("d", zeroline)
     };
     
-    this.drawValueLine = function (){
-
+    this.drawValueLineNoAnimation = function (){
     	var valueline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 
-    	g.selectAll('.area')
-	      .transition()
-	      .duration(400)
-	      .attr('opacity', 0);
+    	d3.select(canvas).selectAll('.valueline')
+    	.transition()
+    	.duration(0)
+    	.attr("d", valueline)
+    };
+
+    this.drawValueLine = function (){
+    	var valueline = d3.line()
+		      .x(function(d) { return xScale(d.x); })
+		      .y(function(d) { return yScale(d.y); });
 
     	d3.select(canvas).selectAll('.valueline')
     	.transition()
@@ -227,18 +232,12 @@ var BackwaterChart = {};
         this.removeAll()
 	    this.updateScales()
 	    this.init()
-	    
-
-		
-    	
-    	//this.updateScales()
-    	//this.init()
-    	//svg.attr('width', d3.select(canvas).style("width"))
-    	//console.log("after " + d3.select(canvas).style("width"))
-  		//svg.style('width', width)
-  		//d3.select(canvas).style('width', width)
+	    this.drawBands()
+	    this.drawValueLineNoAnimation()
+	    this.showBands()
     };
 
+   
     this.drawBands = function(){
     	areas = []
 	    for (var i = 0; i < 4; i ++){
@@ -302,6 +301,23 @@ var BackwaterChart = {};
       .attr('opacity', 1);
     };
 
+    this.hideBands = function() {
+    	g.selectAll('.area')
+      	 .transition()
+     	 .delay(function (d, i) { return 100 * (4-i);})
+      	 .duration(750)
+      	 .attr('opacity', 0);
+
+    };
+
+    this.removeBands = function() {
+    	g.selectAll(".area")
+         .transition()
+         .duration(750)
+         .attr("opacity", 0)
+         .remove();
+    }
+
     this.setColor = function(color){
     	d3.select(canvas).style('background-color', color)
     };
@@ -313,5 +329,38 @@ var BackwaterChart = {};
     this.reset = function() {
         id = 0;     
     };
+
+    /* 
+     *
+     */
+    this.updateData = function(rawData){    	
+    	// parse raw data from json
+    	data = parseData(rawData)
+    	
+    	DB = this.drawBands
+    	SB = this.showBands
+    	var valueline = d3.line()
+		      .x(function(d) { return xScale(d.x); })
+		      .y(function(d) { return yScale(d.y); });
+
+    	// remove current bands, then change line
+    	g.selectAll(".area")
+         .transition()
+         .duration(750)
+         .attr("opacity", 0)
+         .remove()
+         .on("end", function () {    
+	    	d3.select(canvas).selectAll('.valueline')
+	    	.datum(data.data)
+	    	.transition()
+	    	.duration(500)
+	    	.attr("d", valueline)
+	    	.on("end", function () {
+	    		DB()
+	    		SB()	
+	    	})
+    	})
+    }
+
 }).apply(BackwaterChart);    
  

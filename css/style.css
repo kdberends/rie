@@ -1,6 +1,6 @@
 
 .container {
-  max-width: 890px;
+  max-width: 960px;
   scroll-snap-type: mandatory;
   /* older spec implementation */
   scroll-snap-destination: 0% 100%;

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- META -->
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="author" content="K.D. Berends">
+
+    <title>Explore</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
+    <!-- STYLE SHEETS-->
+    <link rel="stylesheet" type="text/css" href="js/vendor/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="js/thirdparty/leaflet-velocity.css"/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/bootstrap.min.css"/>
+    <link href="grid.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/explore.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dropdown.css"/>
+    
+    
+  </head>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light navbar-custom">
+  <a class="navbar-brand" href="#">RiverCare F1</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="framework.html">Story</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href='explore.html'>Explore <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">About</a>
+      </li>
+
+      <div class="dropdown">
+        <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
+        <div id="InterventionDropdown" class="dropdown-content">
+          <a href="#"" onclick="showReference()">No intervention</a>
+          <a href="#" onclick="showSmooth()">Smoothing</a>
+          <a href="#" onclick="showRelo()">Relocation</a>
+          
+        </div>
+      </div> 
+
+    </ul>
+
+  </div>
+</nav>
+
+
+<body>
+<div id="map"></div>
+
+  
+  
+  <div class="container overlay">
+    <div><br><br><br><br><br></div>
+      <div class="row ">
+        
+        <div class="col-md-5 offset-md-7 btn"><svg id="canvas2" class="canvas"></svg></div>
+      </div>
+      <div class="row">
+        <div class="col-5 offset-md-7 caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
+      </div>
+  </div> 
+</body>
+
+
+<!-- LOAD JS -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="js/vendor/leaflet.js"></script>
+<script src="js/dropdown.js"></script>
+<script src="lib/d3.js"></script>
+<script src="js/scroller.js"></script>
+<script src="js/data.js"></script>
+<script src="js/figures_new.js"></script>
+<script src="js/explore.js"></script>
+<script src="js/thirdparty/leaflet-velocity.js"></script>
+
+<!-- FOOTER -->
+<footer class="fixed-bottom bg-light navbar">
+          <p> Design by K.D. Berends</p>
+</footer>
+
+</html>

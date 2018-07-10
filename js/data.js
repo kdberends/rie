@@ -3,7 +3,10 @@ function parseData(rawData){
 
     x = rawData.x
 
-    parsedData = {'meta': {'tooltips':['80', '60', '40', '20']}, 
+    parsedData = {'meta': {'tooltips':['Very high confidence', 
+                                       'High confidence', 
+                                       'Medium confidence', 
+                                       'Low confidence']}, 
 
                   'data':[]}
     for (var i = 0; i < x.length; i++){
@@ -11,9 +14,9 @@ function parseData(rawData){
                          "y":rawData.cdfs[i][50],
 
                          "p":[
+                              [rawData.cdfs[i][5], rawData.cdfs[i][95]],
                               [rawData.cdfs[i][10], rawData.cdfs[i][90]],
-                              [rawData.cdfs[i][20], rawData.cdfs[i][80]],
-                              [rawData.cdfs[i][30], rawData.cdfs[i][70]],
+                              [rawData.cdfs[i][25], rawData.cdfs[i][75]],
                               [rawData.cdfs[i][40], rawData.cdfs[i][60]],
 
                              ]

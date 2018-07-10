@@ -62,10 +62,11 @@ function display(error, dataset1, dataset2) {
       map.setView([51.823, 5.3682], 11);
      };
     if (index == 3){
-      BackwaterChart.drawZeroline()
+      BackwaterChart.drawZeroLine()
     };
     if (index == 4){
       BackwaterChart.drawValueLine()
+      BackwaterChart.hideBands()
     };
     if (index == 5){
       BackwaterChart.showBands()

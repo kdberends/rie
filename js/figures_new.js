@@ -77,12 +77,12 @@ var BackwaterChart = {};
 
 	    
 	    
-	    // text label for the y axis
+	    // text labels
 	    
 	    g.append("text")
 	      .attr("class", "line labels")
 	      .attr("transform", "rotate(-90)")
-	      .attr("y", - margin.left)
+	      .attr("y", 0 )
 	      .attr("x",0 - (height / 2))
 	      .attr("dy", "1em")
 	      .style("text-anchor", "middle")
@@ -94,7 +94,7 @@ var BackwaterChart = {};
 	      .attr("y", yScale(0.1))
 	      .attr("x", xScale(905))
 	      .style("text-anchor", "middle")
-	      .text("River coordinate [km]"); 
+	      .text("River kilometer [km]"); 
 	    	
 	    b = g.append("path")
 		      .data([data.data])
@@ -103,11 +103,12 @@ var BackwaterChart = {};
 		      .attr("stroke-width", "2")
 		      .attr("fill", "none")
 		      .attr("d", zeroline)
+
 	      // Add the X Axis
 	      g.append("g")
 	          .attr("transform", "translate(0," + yScale(0)+ ")")
 	          .attr("class", "axis line")
-	          .call(d3.axisBottom(xScale));
+	          .call(d3.axisTop(xScale));
 
 	      // Add the Y Axis
 	      g.append("g")
@@ -115,6 +116,7 @@ var BackwaterChart = {};
 	          .attr("transform", "translate(" + xScale(868)+ ",0)")
 	          .call(d3.axisLeft(yScale));
 
+	      g.on("mousemove", function(){console.log(xScale.invert(d3.mouse(this)[0]))})
     };
     
 
@@ -273,7 +275,7 @@ var BackwaterChart = {};
 	                }
 	            )
 	            // Tooltip
-	            div.html(d3.select(this).attr("tooltip") + ' percent interval')
+	            div.html(d3.select(this).attr("tooltip"))
 	               .style("left", (d3.event.pageX) + "px")    
 	               .style("top", (d3.event.pageY - 28) + "px")
 	               .transition().duration(400).style("opacity", 1);  
@@ -342,7 +344,7 @@ var BackwaterChart = {};
     	var valueline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
-
+		
     	// remove current bands, then change line
     	g.selectAll(".area")
          .transition()
@@ -357,9 +359,12 @@ var BackwaterChart = {};
 	    	.attr("d", valueline)
 	    	.on("end", function () {
 	    		DB()
-	    		SB()	
+	    		SB()
+	    		//d3.select(this).moveToFront()	
 	    	})
+
     	})
+
     }
 
 }).apply(BackwaterChart);    

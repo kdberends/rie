@@ -50,12 +50,6 @@ function display(error, dataset1, dataset2) {
     fillOpacity: 0.8
 };
 
-  function onEachFeature(feature, layer) {
-    // does this feature have a property names KILOMETER
-    if (feature.properties && feature.properties.KILOMETER) {
-        layer.bindPopup(feature.properties.KILOMETER);
-    }
-}
 
   d3.json('shp/banddijken.json', function(geojsonFeature){
       Dike = L.geoJson(geojsonFeature, {style:LineStyle})

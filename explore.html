@@ -13,71 +13,92 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 
     <!-- STYLE SHEETS-->
-    <link rel="stylesheet" type="text/css" href="js/vendor/leaflet.css"/>
-    <link rel="stylesheet" type="text/css" href="js/thirdparty/leaflet-velocity.css"/>
-    <link rel="stylesheet" type="text/css" href="css/thirdparty/bootstrap.min.css"/>
-    <link href="grid.css" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="js/vendor/leaflet.css"/>-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
+ <!--   <link rel="stylesheet" type="text/css" href="css/thirdparty/bootstrap.min.css"/>-->
+
     <link rel="stylesheet" type="text/css" href="css/explore.css"/>
     <link rel="stylesheet" type="text/css" href="css/dropdown.css"/>
+    
     
     
   </head>
 
 <!-- NAVIGATION -->
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light navbar-custom">
-  <a class="navbar-brand" href="#">RiverCare F1</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="framework.html">Story</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href='explore.html'>Explore <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">About</a>
-      </li>
-
-      <div class="dropdown">
-        <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
-        <div id="InterventionDropdown" class="dropdown-content">
-          <a href="#"" onclick="showReference()">No intervention</a>
-          <a href="#" onclick="showSmooth()">Smoothing</a>
-          <a href="#" onclick="showRelo()">Relocation</a>
-          
-        </div>
-      </div> 
-
-    </ul>
-
-  </div>
-</nav>
 
 
 <body>
-<div id="map"></div>
-
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+<div id="map" class="map"></div>   
+<div class="container overlay">
+	<nav role="navigation">
+	  	<div id="menuToggle">
+		    <!--
+		    A fake / hidden checkbox is used as click reciever,
+		    so you can use the :checked selector on it.
+		    -->
+		    <input type="checkbox" />
+		    
+		    <!--
+		    Some spans to act as a hamburger.
+		    
+		    They are acting like a real hamburger,
+		    not that McDonalds stuff.
+		    -->
+		    <span></span>
+		    <span></span>
+		    <span></span>
+		    
+		    <!--
+		    Too bad the menu has to be inside of the button
+		    but hey, it's pure CSS magic.
+		    -->
+		    <ul id="menu">
+		      <a href="framework.html"><li>Storymode</li></a>
+		      <a href="#"><li>Explore mode</li></a>
+		      <a href="www.rivercare.nl"><li>More RiverCare!</li></a>
+		    </ul>
+	  	</div>
+	</nav>
+  <div class="dropdown">
+    <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
+    <div id="InterventionDropdown" class="dropdown-content">
+      <a href="#"" onclick="showReference()">No intervention</a>
+      <a href="#" onclick="showSmooth()">Smoothing</a>
+      <a href="#" onclick="showRelo()">Relocation</a>
+      
+    </div>
+  </div>
+  <div class="canvas02 glass griditem">
+    <div id="mappo" class="map canvas02 blur"></div>
+    <div class="glass footer canvas02">
+    <svg id="canvas2" class='canvas02'></svg></div>
+  </div>
   
   
-  <div class="container overlay">
-    <div><br><br><br><br><br></div>
-      <div class="row ">
-        
-        <div class="col-md-5 offset-md-7 btn"><svg id="canvas2" class="canvas"></svg></div>
-      </div>
-      <div class="row">
-        <div class="col-5 offset-md-7 caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
-      </div>
-  </div> 
+  <!--
+  <div class="canvas02 diagram"><svg id="canvas2" class="canvas"></svg></div>
+  <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
+-->
+</div> <!-- container -->
 </body>
 
+<!-- FOOTER -->
+<footer>
+  
+  <div class="footer glass">Design by Koen Berends</div>
+</footer>
 
 <!-- LOAD JS -->
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="js/vendor/leaflet.js"></script>
+<!--<script src="js/vendor/leaflet.js"></script>-->
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="js/thirdparty/L.Map.Sync.js"></script>
+<script src="js/vendor/leaflet.pattern.js"></script>
 <script src="js/dropdown.js"></script>
 <script src="lib/d3.js"></script>
 <script src="js/scroller.js"></script>
@@ -85,10 +106,5 @@
 <script src="js/figures_new.js"></script>
 <script src="js/explore.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
-
-<!-- FOOTER -->
-<footer class="fixed-bottom bg-light navbar">
-          <p> Design by K.D. Berends</p>
-</footer>
 
 </html>

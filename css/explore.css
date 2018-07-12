@@ -2,12 +2,109 @@
   font-family: 'Helvetica Neue',Helvetica,sans-serif;
   margin: 0;
   background-color: #EEEEEE;
+  overflow: hidden;
+}
+
+.map { 
+  z-index:-1;
+  position:absolute;
+  width:100%;
+  height:100%; 
+  pointer-events: visible; 
+}
+
+.griditem{
+  border-radius: 4px;
+}
+
+.blur{
+  -moz-filter:blur(10px);
+  -o-filter:blur(10px);
+  -webkit-filter:blur(10px);
+  filter: blur(10px); 
 
 }
 
+.glass{
+  background-color: rgba(231, 251, 255, 0.2);
+  background-image: linear-gradient(to top right, 
+    rgba(43, 40, 50, 0.4) 0%, 
+    rgba(83, 86, 99, 0.4) 40%, 
+    rgba(255, 255, 255, 0.15) 60%);
+  filter: blur(0px);
+}
+
+.footer {
+  border-radius: inherit;
+  width:100%;
+  height: 100%;
+  color: #FFFFFF;
+  font-family: Raleway;
+  font-size: 0.8em;
+  
+
+}
+
+@media (min-width: 1000px) {
 .container {
-  max-width: 90%;
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-gap: 0px;
+  grid-template:
+    '. . . . . .'
+    '. . . fig2 fig2 .'
+    '. . . fig2 fig2 .'
+    '. . . fig2 fig2 .'
+    '. . . . cap2 .'
+    '. . . . . .';
 }
+}
+
+@media (max-width: 999px) {
+.container {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-gap: 0px;
+  grid-template:
+    '. . . .'
+    '. fig2 fig2 .'
+    '. fig2 fig2 .'
+    '. fig2 fig2 .'
+    '. . cap2 .'
+    '. . . .';
+}
+}
+
+@media (max-width: 500px) {
+.container {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-gap: 0px;
+  grid-template:
+    '. . '
+    'fig2 fig2 '
+    'fig2 fig2 '
+    'fig2 fig2 '
+    'cap2 cap2 '
+    '. . ';
+}
+}
+
+
+svg { 
+  position:absolute; 
+  width:100%;
+  height:100%;
+}
+
+.canvas{
+  width: 100%;
+  height: 100%;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -15,23 +112,17 @@
   pointer-events: none;
 }
 
-.overlay .btn {
-  pointer-events: initial;
-}
-
-.navbar-custom{
-  font: 18px sans-serif; 
-  font-family: "Raleway";
-  box-shadow: 0px 4px 6px #A2A2A2;
-  background-color: rgb(224, 0, 0, 0);
-}
-
-[class*="col-"] {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.diagram{
   background-color: rgba(224, 224, 224, .45);
-  border: 1px solid rgba(86, 61, 124, .2);
+  border: 5px solid rgba(86, 61, 124, .2);
+  filter: blur(0px);
 }
+
+.canvas02 {
+  pointer-events: initial;
+  grid-area: fig2;
+}
+
 
 header {
   display: flex;
@@ -47,18 +138,6 @@ header {
 }
 
 
-.canvas {
-  height: 300px;
-  width: 100%;
-}
-
-.empty{
-  background-color: rgba(224, 224, 224, 0);
-  border: 1px solid rgba(86, 61, 124, 0);
-  pointer-events: none;
-}
-
-
 .caption{
   background-color: rgba(224, 224, 224, 0);
   border: 1px solid rgba(86, 61, 124, 0);
@@ -68,25 +147,6 @@ header {
 }
 
 
-#map { 
-  z-index:-1; 
-  position:absolute; 
-  width:100%;
-  height:100%; 
-  margin:0; 
-  padding:0; }
-
-aside {
-  margin: 0 0px 0 10px;
-  width: 950px;
-  top: 20%;
-  height: 300px;
-  position: sticky !important;
-  box-sizing: border-box;
-  padding: 0px;
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 0px solid #fff;
-}
 
 .highlightedArea{
   fill: white;
@@ -104,4 +164,177 @@ div.tooltip {
     border: 1px;    
     border-radius: 1px;     
     pointer-events: none; 
+}
+
+footer {
+   position:absolute;
+   bottom:10px;
+   margin: auto;
+   width:10%;
+   height:60px;   /* Height of the footer */
+   overflow: hidden;
+   border-radius: 2px;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+}
+
+.LVelocityLegend {
+  color: #FFFFFF;
+  font-family: "Helvetica";
+  font-size: 1.25em;
+  font-weight: lighter;
+}
+
+/* MENU BUTTONS */
+/*
+ * Based on work by Erik Terwan
+ * 24th of November 2015
+ * MIT License
+ *
+ *
+ * If you are thinking of using this in
+ * production code, beware of the browser
+ * prefixes.
+ */
+a
+{
+  text-decoration: none;
+  color: #232323;
+  transition: color 0.1s ease;
+}
+
+a:hover
+{
+  color: #125D9B;
+ 
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  pointer-events: initial;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  
+  height: 1000px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  background: #ededed;
+  list-style-type: cjk-ideographic;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  font-family: Raleway;
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
 }

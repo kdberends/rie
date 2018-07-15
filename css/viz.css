@@ -54,6 +54,7 @@ main {
   align-items: flex-start;
   max-width: 1050px;
 }
+
 .map{
   width: 960px;
   height: 500px;

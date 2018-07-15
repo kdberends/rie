@@ -1,6 +1,22 @@
+/* Map Variables
+ *
+ *
+ */
 var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
 //var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+
+var LineStyle = {
+    "stroke": true,
+    "color": "#6C716C",
+    "weight": 5
+  };
+
+
+/* LEAFLET
+ *
+ *
+ */
 var map = new L.Map("map", {center: [51.855, 5.36], 
                               zoom: 13,
                               zoomControl: false})
@@ -16,22 +32,44 @@ var map2 = new L.Map("mappo", {center: [51.84, 5.46],
   .addLayer(new L.TileLayer(host));
 
 // sync so that they overlap
-console.log(map2.getContainer().parentElement.offsetLeft)
-// for footer this works fine
 xc = map2.getContainer().parentElement.offsetLeft / map.getSize().x
 yc = map2.getContainer().parentElement.offsetTop / map.getSize().y
-console.log(xc, yc)
 map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
-//map.sync(map2, {offsetFn: offsetGlobal})
-var LineStyle = {
-    "stroke": true,
-    "color": "#FF0000",
-    "opacity": 0.5 
-  };
-d3.json('shp/banddijken.json', function(geojsonFeature){
-      console.log(geojsonFeature)
-      L.geoJson(geojsonFeature, {style:LineStyle}).addTo(map);
-       })
+
+var points = null
+//d3.json('shp/banddijken.json', function(geojsonFeature){
+//      points = L.geoJson(geojsonFeature, {style:LineStyle}).addTo(map);
+//       })
+//
+var dike =  new L.geoJson(null, {
+      style: LineStyle,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
+dike.addTo(map);
+d3.json('shp/banddijken.json', function (data) {
+    dike.addData(data)
+  });
+
+
+map.on('zoomend', function() {
+    if (map.getZoom() < 11){
+        if (map.hasLayer(dike)) {
+            map.removeLayer(dike);
+        } else {
+            console.log("no point layer active");
+        }
+    }
+    if (map.getZoom() >= 11){
+        if (map.hasLayer(dike)){
+            console.log("dike_ref already added");
+        } else {
+            map.addLayer(dike);
+        }
+    }
+}
+)
 /*
  *
  *

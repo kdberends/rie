@@ -1,144 +1,148 @@
-var BackwaterChart = {};
-(function() {
-    var id = 0;
- 	var canvas = 'body';
- 	var margin = { top: 40, left: 60, bottom: 40, right: 40 };
- 	var resizeTimer;
- 	var svg = {};
- 	var xScale = {};
- 	var yScale = {};
- 	var zeroline = {};
- 	var valueline = {};
- 	var data = {};
- 	var width = null;
- 	var height = null;
- 	var g = null 
-    var colormap = ["#440154ff", "#440558ff", "#450a5cff", "#450e60ff", "#451465ff", "#461969ff",
-                  "#461d6dff", "#462372ff", "#472775ff", "#472c7aff", "#46307cff", "#45337dff",
-                  "#433880ff", "#423c81ff", "#404184ff", "#3f4686ff", "#3d4a88ff", "#3c4f8aff",
-                  "#3b518bff", "#39558bff", "#37598cff", "#365c8cff", "#34608cff", "#33638dff",
-                  "#31678dff", "#2f6b8dff", "#2d6e8eff", "#2c718eff", "#2b748eff", "#29788eff",
-                  "#287c8eff", "#277f8eff", "#25848dff", "#24878dff", "#238b8dff", "#218f8dff",
-                  "#21918dff", "#22958bff", "#23988aff", "#239b89ff", "#249f87ff", "#25a186ff",
-                  "#25a584ff", "#26a883ff", "#27ab82ff", "#29ae80ff", "#2eb17dff", "#35b479ff",
-                  "#3cb875ff", "#42bb72ff", "#49be6eff", "#4ec16bff", "#55c467ff", "#5cc863ff",
-                  "#61c960ff", "#6bcc5aff", "#72ce55ff", "#7cd04fff", "#85d349ff", "#8dd544ff",
-                  "#97d73eff", "#9ed93aff", "#a8db34ff", "#b0dd31ff", "#b8de30ff", "#c3df2eff",
-                  "#cbe02dff", "#d6e22bff", "#e1e329ff", "#eae428ff", "#f5e626ff", "#fde725ff"];
+class BackWaterChart {
+	constructor(canvas, data){
+	    this.id = 0;
+	 	this.canvas = 'body';
+	 	this.margin = { top: 40, left: 60, bottom: 40, right: 40 };
+	 	this.resizeTimer;
+	 	this.svg = {};
+	 	this.xScale = {};
+	 	this.yScale = {};
+	 	this.zeroline = {};
+	 	this.valueline = {};
+	 	this.areas = []
+	 	this.data = {};
+	 	this.width = null;
+	 	this.height = null;
+	 	this.g = null 
+	    this.colormap = ["#440154ff", "#440558ff", "#450a5cff", "#450e60ff", "#451465ff", "#461969ff",
+	                  "#461d6dff", "#462372ff", "#472775ff", "#472c7aff", "#46307cff", "#45337dff",
+	                  "#433880ff", "#423c81ff", "#404184ff", "#3f4686ff", "#3d4a88ff", "#3c4f8aff",
+	                  "#3b518bff", "#39558bff", "#37598cff", "#365c8cff", "#34608cff", "#33638dff",
+	                  "#31678dff", "#2f6b8dff", "#2d6e8eff", "#2c718eff", "#2b748eff", "#29788eff",
+	                  "#287c8eff", "#277f8eff", "#25848dff", "#24878dff", "#238b8dff", "#218f8dff",
+	                  "#21918dff", "#22958bff", "#23988aff", "#239b89ff", "#249f87ff", "#25a186ff",
+	                  "#25a584ff", "#26a883ff", "#27ab82ff", "#29ae80ff", "#2eb17dff", "#35b479ff",
+	                  "#3cb875ff", "#42bb72ff", "#49be6eff", "#4ec16bff", "#55c467ff", "#5cc863ff",
+	                  "#61c960ff", "#6bcc5aff", "#72ce55ff", "#7cd04fff", "#85d349ff", "#8dd544ff",
+	                  "#97d73eff", "#9ed93aff", "#a8db34ff", "#b0dd31ff", "#b8de30ff", "#c3df2eff",
+	                  "#cbe02dff", "#d6e22bff", "#e1e329ff", "#eae428ff", "#f5e626ff", "#fde725ff"];
 
- 	this.updateScales = function(){
- 		width = parseFloat(d3.select(canvas).style('width'))
- 		height = parseFloat(d3.select(canvas).style('height'))
-	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
-		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
+	    this.setCanvas(canvas)
+	    this.setData(data)
+	    this.init()
+     }
+
+ 	updateScales(){
+ 		this.width = parseFloat(d3.select(this.canvas).style('width'))
+ 		this.height = parseFloat(d3.select(this.canvas).style('height'))
+	 	this.xScale = d3.scaleLinear().range([this.margin.left, this.width - this.margin.right]);
+		this.yScale = d3.scaleLinear().range([this.height-this.margin.bottom, this.margin.top]);
 	}
 
-    this.setCanvas = function(name){
-    	canvas = name
+    setCanvas(name){
+    	this.canvas = name
     };
 
-    this.setData = function(rawData){
-    	data = parseData(rawData)
+    setData(rawData){
+    	this.data = parseData(rawData)
     };
 
-    this.init = function(){
+    init(){
     	//this.setColor("#FFF")    	
     	this.updateScales()
-    	d3.select(canvas).append('g');
+    	d3.select(this.canvas).append('g');
 
 	    // other elements.
-	    g = d3.select(canvas).select('g')
+	    this.g = d3.select(this.canvas).select('g')
 	     .attr('transform', 'translate(' + 10 + ',' + 10 + ')');
 
     	var zeroline = d3.line()
-		      .x(function(d) { return xScale(d.x); })
-		      .y(function(d) { return yScale(0); });
+		      .x(function(d) { return this.xScale(d.x); })
+		      .y(function(d) { return this.yScale(0); });
 		      //.curve(d3.curveCardinalOpen);
 		var valueline = d3.line()
-		      .x(function(d) { return xScale(d.x); })
-		      .y(function(d) { return yScale(d.y); });
+		      .x(function(d) { return this.xScale(d.x); })
+		      .y(function(d) { return this.yScale(d.y); });
 
 		// Scale the range of the data
 	
-	    xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain([-1, 0.1]);
+	    this.xScale.domain(d3.extent(this.data.data, function(d) { return d.x; }));
+	    this.yScale.domain([-1, 0.1]);
 	    this.drawBands()
 	    this.drawAxis()
-	    this.drawZeroLine() 
-	    
+	    this.drawValueLine() 
+	    this.showBands()	    
 	};
 
-	this.drawAxis = function(){
-	    
-
+	drawAxis(){
+	   
 	    var div = d3.select("body").append("div") 
 	              .attr("class", "tooltip")       
 	              .style("opacity", 0);
 
-	    
-	    
-	    // text labels
-	    
-	    g.append("text")
+	    // text labels	    
+	    this.g.append("text")
 	      .attr("class", "line labels")
 	      .attr("transform", "rotate(-90)")
 	      .attr("y", 0 )
-	      .attr("x",0 - (height / 2))
+	      .attr("x",0 - (this.height / 2))
 	      .attr("dy", "1em")
 	      .style("text-anchor", "middle")
 	      .text("Flood level decrease [m]"); 
 
 
-	    g.append("text")
+	    this.g.append("text")
 	      .attr("class", "line labels")
-	      .attr("y", yScale(0.1))
-	      .attr("x", xScale(905))
+	      .attr("y", this.yScale(0.1))
+	      .attr("x", this.xScale(905))
 	      .style("text-anchor", "middle")
 	      .text("River kilometer [km]"); 
 	    	
-	    b = g.append("path")
-		      .data([data.data])
+	    this.g.append("path")
+		      .data([this.data.data])
 		      .attr("class", "line valueline")
 		      .attr("stroke", "red")
 		      .attr("stroke-width", "2")
 		      .attr("fill", "none")
-		      .attr("d", zeroline)
+		      .attr("d", this.zeroline)
 
 	      // Add the X Axis
-	      g.append("g")
-	          .attr("transform", "translate(0," + yScale(0)+ ")")
+	      this.g.append("g")
+	          .attr("transform", "translate(0," + this.yScale(0)+ ")")
 	          .attr("class", "axis line")
-	          .call(d3.axisTop(xScale));
+	          .call(d3.axisTop(this.xScale));
 
 	      // Add the Y Axis
-	      g.append("g")
+	      this.g.append("g")
 	          .attr("class", "axis line")
-	          .attr("transform", "translate(" + xScale(868)+ ",0)")
-	          .call(d3.axisLeft(yScale));
+	          .attr("transform", "translate(" + this.xScale(868)+ ",0)")
+	          .call(d3.axisLeft(this.yScale));
 
-	      g.on("mousemove", function(){
-	      	console.log(drawZeroLine)
+	      this.g.on("mousemove", function(){
+	      	console.log(this.drawZeroLine)
 	      	//console.log(XCoorFunc(Math.round(xScale.invert(d3.mouse(this)[0]))))
 	      });
     };
     
-    this.XCoorFunc = function (input){
+    XCoorFunc(input){
     	1+1
     };
 
 
-    this.drawZeroLine = function(){
+    drawZeroLine(){
+    	var xScale = this.xScale;
+    	var yScale = this.yScale;
     	var zeroline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(0); });
 
-    	d3.select(canvas).selectAll('.valueline')
+    	d3.select(this.canvas).selectAll('.valueline')
     	.transition()
     	.duration(500)
-    	.attr("d", zeroline)
+    	.attr("d", this.zeroline)
     };
     
-    this.drawValueLineNoAnimation = function (){
+    drawValueLineNoAnimation(){
     	var valueline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
@@ -149,18 +153,20 @@ var BackwaterChart = {};
     	.attr("d", valueline)
     };
 
-    this.drawValueLine = function (){
+    drawValueLine(){
+    	var xScale = this.xScale;
+    	var yScale = this.yScale;
     	var valueline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 
-    	d3.select(canvas).selectAll('.valueline')
+    	d3.select(this.canvas).selectAll('.valueline')
     	.transition()
     	.duration(500)
     	.attr("d", valueline)
     };
 
-    this.drawBackground = function(){
+    drawBackground() {
     	// draw background
 	    bd = [{'x':865, 'y':0},
 	          {'x':870, 'y':0.2},
@@ -232,12 +238,12 @@ var BackwaterChart = {};
         });
     };
       
-   	this.removeAll = function(){
+   	removeAll(){
    		s = d3.select(canvas).select('g')
 	    s = s.remove();	    
    	};
 
-    this.resize = function(){
+    resize(){
         this.removeAll()
 	    this.updateScales()
 	    this.init()
@@ -246,15 +252,15 @@ var BackwaterChart = {};
 	    this.showBands()
     };
 
-   
-    this.drawBands = function(){
-    	areas = []
+    drawBands(){
+    	var xScale = this.xScale;
+    	var yScale = this.yScale;
 	    for (var i = 0; i < 4; i ++){
 	      var area = d3.area()
 	         .x(function(d) {return xScale(d.x)})
 	         .y0(function(d) {return yScale(d.p[i][1])})
 	         .y1(function(d) {return yScale(d.p[i][0])})
-	      areas.push(area)
+	      this.areas.push(area)
 	    }
 	    var div = d3.select("body").append("div") 
               .attr("class", "tooltip")       
@@ -262,20 +268,20 @@ var BackwaterChart = {};
 
 
     	for (var i = 0; i < 4; i ++){
-	      g.append("path")
-	       .datum(data.data)
-	       .attr("tooltip", data.meta.tooltips[i])
+	      this.g.append("path")
+	       .datum(this.data.data)
+	       .attr("tooltip", this.data.meta.tooltips[i])
 	       .attr("class", "area")
-	       .attr('index', i / 4 * colormap.length)
-	       .attr("fill", colormap[i / 4 * colormap.length])
-	       .attr("d", areas[i])
+	       .attr('index', i / 4 * this.colormap.length)
+	       .attr("fill", this.colormap[i / 4 * this.colormap.length])
+	       .attr("d", this.areas[i])
 	       .attr("opacity", 0)
 	       .on("mouseover", function(d) {
 	        if (d3.select(this).attr("opacity") != 0){
 	            d3.select(this).attr("class", "highlightedArea")
 	            // On hover, make other lines invisible
-	            var curId = d3.select(this).attr("index")
-	            d3.select(canvas).selectAll("path").each(function(){
+	            curId = d3.select(this).attr("index")
+	            d3.select(this.canvas).selectAll("path").each(function(){
 	                if (curId != d3.select(this).attr("index")){
 	                  d3.select(this).attr('opacity', 0.2)
 	                  }
@@ -292,7 +298,7 @@ var BackwaterChart = {};
 	       .on("mouseout", function(d) {
 	        if (d3.select(this).attr("opacity") != 0){
 	        d3.select(this).attr("class", "area")
-	        d3.select(this).attr("fill", colormap[d3.select(this).attr("index")])
+	        d3.select(this).attr("fill", this.colormap[d3.select(this).attr("index")])
 	                       .attr("opacity", 1)
 	        d3.select(canvas).selectAll("path").each(function(){
 	          d3.select(this).attr('opacity', 1)
@@ -302,15 +308,15 @@ var BackwaterChart = {};
 	    }
     };
 
-    this.showBands = function() {
-    	 g.selectAll('.area')
+    showBands() {
+    	 this.g.selectAll('.area')
       .transition()
       .delay(function (d, i) { return 100 * (4-i);})
       .duration(750)
       .attr('opacity', 1);
     };
 
-    this.hideBands = function() {
+    hideBands() {
     	g.selectAll('.area')
       	 .transition()
      	 .delay(function (d, i) { return 100 * (4-i);})
@@ -319,7 +325,7 @@ var BackwaterChart = {};
 
     };
 
-    this.removeBands = function() {
+    removeBands() {
     	g.selectAll(".area")
          .transition()
          .duration(750)
@@ -327,22 +333,22 @@ var BackwaterChart = {};
          .remove();
     }
 
-    this.setColor = function(color){
+    setColor(color){
     	d3.select(canvas).style('background-color', color)
     };
 
-    this.next = function() {
+    next() {
         return id++;    
     };
  
-    this.reset = function() {
+    reset() {
         id = 0;     
     };
 
     /* 
      *
      */
-    this.updateData = function(rawData){    	
+    updateData(rawData){    	
     	// parse raw data from json
     	data = parseData(rawData)
     	
@@ -374,5 +380,5 @@ var BackwaterChart = {};
 
     }
 
-}).apply(BackwaterChart);    
+}
  

@@ -13,6 +13,17 @@ var LineStyle = {
   };
 
 
+var geojsonMarkerOptions = {
+    radius: 10,
+    fillColor: "#EBCECE",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+
+
 /* LEAFLET
  *
  *
@@ -53,6 +64,22 @@ d3.json('shp/banddijken.json', function (data) {
   });
 
 
+var riverkm = new L.geoJson(null, {
+  style: geojsonMarkerOptions,
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, geojsonMarkerOptions)
+  }
+});
+riverkm.addTo(map)
+d3.json('shp/rivierkilometers.json', function (data) {
+  console.log(data.features[0])
+  riverkm.addData(data.features[0])
+})
+
+/* Events for Map Interaction
+ *
+ *
+ */
 map.on('zoomend', function() {
     if (map.getZoom() < 11){
         if (map.hasLayer(dike)) {
@@ -120,21 +147,16 @@ function display(error, dataset1, dataset2) {
 
 
   // Backwaterchart figure
-	BackwaterChart.setCanvas("#canvas2")
-	BackwaterChart.setData(dataset2)
-	BackwaterChart.init()
-	//BackwaterChart.drawValueLine()
-	BackwaterChart.showBands()
-
+	//BackwaterChart.setCanvas("#canvas2")
+	//BackwaterChart.setData(dataset2)
+	//BackwaterChart.init()
+	////BackwaterChart.drawValueLine()
+	//BackwaterChart.showBands()
+  bwc = new BackWaterChart("#canvas2", dataset2)
 	d3.select(window)
 	   .on("resize.chart", function(){BackwaterChart.resize()})
 }
 
-
-d3.queue()
-  .defer(d3.json, 'data/relocation_int100.json')
-  .defer(d3.json, 'data/smoothing_int99.json')
-  .await(display)
 
 
 /* When the user clicks on the button,
@@ -182,3 +204,9 @@ function showSmooth() {
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int11_0000.json', map)
 }
+
+d3.queue()
+  .defer(d3.json, 'data/relocation_int100.json')
+  .defer(d3.json, 'data/smoothing_int99.json')
+  .await(display)
+

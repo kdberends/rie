@@ -75,8 +75,9 @@ class BackWaterChart {
 	};
 
 	drawAxis(){
-	   
-	    var div = d3.select("body").append("div") 
+	   var xfunc = this.XCoorFunc;
+	   var xScale = this.xScale;
+	   var div = d3.select("body").append("div") 
 	              .attr("class", "tooltip")       
 	              .style("opacity", 0);
 
@@ -117,16 +118,20 @@ class BackWaterChart {
 	          .attr("class", "axis line")
 	          .attr("transform", "translate(" + this.xScale(868)+ ",0)")
 	          .call(d3.axisLeft(this.yScale));
-
-	      this.g.on("mousemove", function(){
-	      	console.log(this.drawZeroLine)
-	      	//console.log(XCoorFunc(Math.round(xScale.invert(d3.mouse(this)[0]))))
-	      });
+	      
+	      
     };
     
-    XCoorFunc(input){
-    	1+1
+    setXaxisCallback (fnc) {
+    	var xScale = this.xScale;
+    	this.g.on("mousemove", function(){
+	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])))
+	 });
     };
+
+    //XCoorFunc(input){
+   // 	console.log(input);
+    //};
 
 
     drawZeroLine(){
@@ -255,6 +260,7 @@ class BackWaterChart {
     drawBands(){
     	var xScale = this.xScale;
     	var yScale = this.yScale;
+    	var cm = this.colormap;
 	    for (var i = 0; i < 4; i ++){
 	      var area = d3.area()
 	         .x(function(d) {return xScale(d.x)})
@@ -280,7 +286,7 @@ class BackWaterChart {
 	        if (d3.select(this).attr("opacity") != 0){
 	            d3.select(this).attr("class", "highlightedArea")
 	            // On hover, make other lines invisible
-	            curId = d3.select(this).attr("index")
+	            var curID = d3.select(this).attr("index")
 	            d3.select(this.canvas).selectAll("path").each(function(){
 	                if (curId != d3.select(this).attr("index")){
 	                  d3.select(this).attr('opacity', 0.2)
@@ -295,12 +301,13 @@ class BackWaterChart {
 	         }
 	      }
 	        )
+
 	       .on("mouseout", function(d) {
 	        if (d3.select(this).attr("opacity") != 0){
 	        d3.select(this).attr("class", "area")
-	        d3.select(this).attr("fill", this.colormap[d3.select(this).attr("index")])
+	        d3.select(this).attr("fill", cm[d3.select(this).attr("index")])
 	                       .attr("opacity", 1)
-	        d3.select(canvas).selectAll("path").each(function(){
+	        d3.select(this.canvas).selectAll("path").each(function(){
 	          d3.select(this).attr('opacity', 1)
 	        })
 	        div.transition().duration(500).style("opacity", 0)

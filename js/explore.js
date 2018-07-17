@@ -9,17 +9,26 @@ var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMa
 var LineStyle = {
     "stroke": true,
     "color": "#6C716C",
-    "weight": 5
+    "weight": 5,
+    "dashArray": "1 0",
+    "dashOffset": "1"
   };
 
+var DashStyle = {
+    "stroke": true,
+    "color": "#6C716C",
+    "weight": 2,
+    "dashArray": "10 5",
+    "dashOffset": "1"
+  };
 
 var geojsonMarkerOptions = {
-    radius: 10,
-    fillColor: "#EBCECE",
-    color: "#000",
-    weight: 1,
+    radius: 8,
+    fillColor: "#C18126",
+    color: "#FFFFFF",
+    weight: 0,
     opacity: 1,
-    fillOpacity: 0.8
+    fillOpacity: 0.6
 };
 
 
@@ -71,10 +80,13 @@ var riverkm = new L.geoJson(null, {
   }
 });
 riverkm.addTo(map)
-d3.json('shp/rivierkilometers.json', function (data) {
-  console.log(data.features[0])
-  riverkm.addData(data.features[0])
-})
+
+var dikeNew =  new L.geoJson(null, {
+      style: LineStyle,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
 
 /* Events for Map Interaction
  *
@@ -93,6 +105,20 @@ map.on('zoomend', function() {
             console.log("dike_ref already added");
         } else {
             map.addLayer(dike);
+        }
+    }
+    if (map.getZoom() < 11){
+        if (map.hasLayer(dikeNew)) {
+            map.removeLayer(dikeNew);
+        } else {
+            1+1;
+        }
+    }
+    if (map.getZoom() >= 11){
+        if (map.hasLayer(dikeNew)){
+            1+1;
+        } else {
+            map.addLayer(dikeNew);
         }
     }
 }
@@ -147,13 +173,21 @@ function display(error, dataset1, dataset2) {
 
 
   // Backwaterchart figure
-	//BackwaterChart.setCanvas("#canvas2")
-	//BackwaterChart.setData(dataset2)
-	//BackwaterChart.init()
+	BackwaterChart.setCanvas("#canvas2")
+	BackwaterChart.setData(dataset2)
+	BackwaterChart.init()
+  BackwaterChart.setXaxisCallback(function (coor) {
+    d3.json('shp/rivierkilometers.json', function (data) {
+      riverkm.clearLayers();
+      let index = (coor - 854) 
+      riverkm.addData(data.features[index]);
+});
+
+  });
 	////BackwaterChart.drawValueLine()
 	//BackwaterChart.showBands()
-  bwc = new BackWaterChart("#canvas2", dataset2)
-  bwc.setXaxisCallback(function (coor) {console.log('new func: ' + coor)})
+  //bwc = new BackWaterChart("#canvas2", dataset2)
+  //bwc.setXaxisCallback(function (coor) {console.log('new func: ' + coor)})
 	d3.select(window)
 	   .on("resize.chart", function(){BackwaterChart.resize()})
 }
@@ -191,23 +225,34 @@ function showReference() {
     }
   })
   addVelocityLayerToMap('data/waal_reference_0000.json', map)
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  dike.setStyle(LineStyle);
 }
 
 function showRelo() {
   d3.json('data/relocation_int100.json', function(d){BackwaterChart.updateData(d)})  
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int07_0000.json', map)
+  dike.setStyle(DashStyle)
+  
+  dikeNew.addTo(map);
+
+  d3.json('shp/banddijken_relocation_int100.json', function (data) {
+      dikeNew.addData(data)
+    });
 
 }
 
 function showSmooth() {
   d3.json('data/smoothing_int99.json', function(d){BackwaterChart.updateData(d)})  
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int11_0000.json', map)
+  addVelocityLayerToMap('data/waal_int11_0000.json', map);
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  dike.setStyle(LineStyle);
 }
 
 d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')
   .defer(d3.json, 'data/smoothing_int99.json')
-  .await(display)
+  .await(display);
 

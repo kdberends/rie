@@ -61,7 +61,7 @@ var BackwaterChart = {};
 		// Scale the range of the data
 	
 	    xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain([-1, 0.1]);
+	    yScale.domain([-1.2, 0.1]);
 	    this.drawBands()
 	    this.drawAxis()
 	    this.drawZeroLine() 
@@ -70,7 +70,7 @@ var BackwaterChart = {};
 
 	this.drawAxis = function(){
 	    
-
+		let self = this;
 	    var div = d3.select("body").append("div") 
 	              .attr("class", "tooltip")       
 	              .style("opacity", 0);
@@ -115,18 +115,14 @@ var BackwaterChart = {};
 	          .attr("class", "axis line")
 	          .attr("transform", "translate(" + xScale(868)+ ",0)")
 	          .call(d3.axisLeft(yScale));
+    };
 
-	      g.on("mousemove", function(){
-	      	console.log(drawZeroLine)
-	      	//console.log(XCoorFunc(Math.round(xScale.invert(d3.mouse(this)[0]))))
-	      });
+    this.setXaxisCallback  = function(fnc) {
+    	g.on("mousemove", function(){
+	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])))
+	 });
     };
     
-    this.XCoorFunc = function (input){
-    	1+1
-    };
-
-
     this.drawZeroLine = function(){
     	var zeroline = d3.line()
 		      .x(function(d) { return xScale(d.x); })

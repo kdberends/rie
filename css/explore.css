@@ -5,6 +5,7 @@
   overflow: hidden;
 }
  
+
 .map { 
   z-index:-1;
   position:absolute;

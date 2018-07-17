@@ -48,6 +48,7 @@ var BackwaterChart = {};
 
 	    // other elements.
 	    g = d3.select(canvas).select('g')
+	     .style('pointer-events', 'all')
 	     .attr('transform', 'translate(' + 10 + ',' + 10 + ')');
 
     	var zeroline = d3.line()
@@ -58,6 +59,9 @@ var BackwaterChart = {};
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 
+		var crosshair = d3.line()
+		      .x(function(d) { return xScale(d.x); })
+		      .y(function(d) { return yScale(d.y); });
 		// Scale the range of the data
 	
 	    xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
@@ -115,11 +119,53 @@ var BackwaterChart = {};
 	          .attr("class", "axis line")
 	          .attr("transform", "translate(" + xScale(868)+ ",0)")
 	          .call(d3.axisLeft(yScale));
-    };
+
+	      // transparent back-rectangle to capture mousemove events
+	      g.append("rect")
+	      	  .style("opacity", 0)
+		      .attr("x", 0)
+		      .attr("y", 0)
+		      .attr("width", width)
+		      .attr("height", height);
+
+		  // 'crosshair' to visualise where we are pointing
+		  g.append("line")
+		  	  .attr("class", "crosshair chx")
+		      .attr("stroke", 'black')
+		      .attr("stroke-width", 1)
+		  	  .attr("x1", xScale(900))
+		  	  .attr("y1", yScale(0.1))
+		  	  .attr("x2", xScale(900))
+		  	  .attr("y2", yScale(-1.1))
+
+		  g.on('mouseenter', function() {
+		  	g.selectAll('.crosshair')
+		  		.attr('stroke-width', 1)
+		  });
+
+		  g.on('mouseleave', function() {
+		  	g.selectAll('.crosshair')
+		  		.attr('stroke-width', 0)
+		  });
+
+
+     };
+
+    this.updateCrosshairX = function(mouseX){
+    	if (mouseX >= 868 & mouseX <= 940) {
+		 g.selectAll('.chx')
+		 	.transition()
+		 	.duration(100)
+		  	.attr('x1', xScale(mouseX))
+		  	.attr('x2', xScale(mouseX))
+		  	}
+		 };
 
     this.setXaxisCallback  = function(fnc) {
+    	let self = this;
     	g.on("mousemove", function(){
-	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])))
+    	 self.updateCrosshairX(Math.round(xScale.invert(d3.mouse(this)[0])));
+	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])));
 	 });
     };
     

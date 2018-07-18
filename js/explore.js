@@ -181,15 +181,23 @@ function display(error, dataset1, dataset2) {
       riverkm.clearLayers();
       let index = (coor - 854) 
       riverkm.addData(data.features[index]);
-});
-
-  });
+      });
+    });
 	////BackwaterChart.drawValueLine()
 	//BackwaterChart.showBands()
   //bwc = new BackWaterChart("#canvas2", dataset2)
   //bwc.setXaxisCallback(function (coor) {console.log('new func: ' + coor)})
 	d3.select(window)
-	   .on("resize.chart", function(){BackwaterChart.resize()})
+	   .on("resize.chart", function(){
+      BackwaterChart.resize()
+      BackwaterChart.setXaxisCallback(function (coor) {
+    d3.json('shp/rivierkilometers.json', function (data) {
+      riverkm.clearLayers();
+      let index = (coor - 854) 
+      riverkm.addData(data.features[index]);
+      });
+    });
+    })
 }
 
 

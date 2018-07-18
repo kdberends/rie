@@ -131,33 +131,57 @@ var BackwaterChart = {};
 		  // 'crosshair' to visualise where we are pointing
 		  g.append("line")
 		  	  .attr("class", "crosshair chx")
-		      .attr("stroke", 'black')
+		      .attr("stroke", '#2A2B41')
 		      .attr("stroke-width", 1)
+		      .attr("stroke-opacity", 0.5)
+		      .attr("stroke-dasharray", "4 2")
 		  	  .attr("x1", xScale(900))
-		  	  .attr("y1", yScale(0.1))
+		  	  .attr("y1", yScale(0))
 		  	  .attr("x2", xScale(900))
-		  	  .attr("y2", yScale(-1.1))
+		  	  .attr("y2", yScale(-1.2))
 
-		  g.on('mouseenter', function() {
+		  g.append("line")
+		  	  .attr("class", "crosshair chy")
+		      .attr("stroke", '#2A2B41')
+		      .attr("stroke-width", 1)
+		      .attr("stroke-opacity", 0.5)
+		      .attr("stroke-dasharray", "4 2")
+		  	  .attr("x1", xScale(868))
+		  	  .attr("y1", yScale(-0.5))
+		  	  .attr("x2", xScale(940))
+		  	  .attr("y2", yScale(-0.5))
+
+		  g.on('mouseover', function() {
 		  	g.selectAll('.crosshair')
-		  		.attr('stroke-width', 1)
+		  	.style('stroke-opacity', '1')
 		  });
 
 		  g.on('mouseleave', function() {
 		  	g.selectAll('.crosshair')
-		  		.attr('stroke-width', 0)
+		  		.style('stroke-opacity', '0')
 		  });
 
 
      };
 
+
     this.updateCrosshairX = function(mouseX){
     	if (mouseX >= 868 & mouseX <= 940) {
 		 g.selectAll('.chx')
 		 	.transition()
-		 	.duration(100)
+		 	.duration(10)
 		  	.attr('x1', xScale(mouseX))
 		  	.attr('x2', xScale(mouseX))
+		  	}
+		 };
+
+	this.updateCrosshairY = function(mouseY){
+    	if (mouseY >= -1.2 & mouseY <= 0) {
+		 g.selectAll('.chy')
+		 	.transition()
+		 	.duration(10)
+		  	.attr('y1', yScale(mouseY))
+		  	.attr('y2', yScale(mouseY))
 		  	}
 		 };
 
@@ -165,10 +189,11 @@ var BackwaterChart = {};
     	let self = this;
     	g.on("mousemove", function(){
     	 self.updateCrosshairX(Math.round(xScale.invert(d3.mouse(this)[0])));
+    	 self.updateCrosshairY(yScale.invert(d3.mouse(this)[1]));
 	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])));
 	 });
     };
-    
+
     this.drawZeroLine = function(){
     	var zeroline = d3.line()
 		      .x(function(d) { return xScale(d.x); })

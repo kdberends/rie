@@ -5,7 +5,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="utf-8" http-equiv="encoding">
-    <meta name="author" content="K.D. Berends">
+    <meta name="author" contents">
 
     <title>Explore</title>
 
@@ -57,28 +57,32 @@
 		    but hey, it's pure CSS magic.
 		    -->
 		    <ul id="menu">
+
 		      <a href="framework.html"><li>Storymode</li></a>
 		      <a href="#"><li>Explore mode</li></a>
 		      <a href="www.rivercare.nl"><li>More RiverCare!</li></a>
+          <br /><br />
+          
 		    </ul>
 	  	</div>
 	</nav>
-  <div class="dropdown">
-    <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
-    <div id="InterventionDropdown" class="dropdown-content">
-      <a href="#"" onclick="showReference()">No intervention</a>
-      <a href="#" onclick="showSmooth()">Smoothing</a>
-      <a href="#" onclick="showRelo()">Relocation</a>
-      
-    </div>
-  </div>
+
   <div class="canvas02 glass griditem">
     <div id="mappo" class="map canvas02 blur"></div>
     <div class="glass footer canvas02">
-    <svg id="canvas2" class='canvas02'></svg></div>
+    	<svg id="canvas2" class='canvas02'></svg>
+    	<div class="dropdown">
+            <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
+            <div id="InterventionDropdown" class="dropdown-content">
+              <a href="#"" onclick="showReference()">No intervention</a>
+              <a href="#" onclick="showSmooth()">Smoothing</a>
+              <a href="#" onclick="showRelo()">Relocation</a>
+            </div>
+          </div>
+    	</div>    
   </div>
   
-  
+      	
   <!--
   <div class="canvas02 diagram"><svg id="canvas2" class="canvas"></svg></div>
   <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
@@ -88,7 +92,6 @@
 
 <!-- FOOTER -->
 <footer>
-  
   <div class="footer glass">Design by Koen Berends</div>
 </footer>
 
@@ -104,7 +107,6 @@
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>
 <script src="js/figures_new.js"></script>
-<script src="js/BackWaterChart.js"></script>
 <script src="js/explore.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
 

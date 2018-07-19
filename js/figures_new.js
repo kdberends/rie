@@ -65,7 +65,7 @@ var BackwaterChart = {};
 		// Scale the range of the data
 	
 	    xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain([-1.2, 0.1]);
+	    yScale.domain([-1.2, 0.0]);
 	    this.drawBands()
 	    this.drawAxis()
 	    this.drawZeroLine() 
@@ -95,7 +95,7 @@ var BackwaterChart = {};
 
 	    g.append("text")
 	      .attr("class", "line labels")
-	      .attr("y", yScale(0.1))
+	      .attr("y", yScale(0.2))
 	      .attr("x", xScale(905))
 	      .style("text-anchor", "middle")
 	      .text("River kilometer [km]"); 

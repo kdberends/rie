@@ -1,0 +1,143 @@
+<!doctype html> 
+<html lang="en">
+  <head>
+    <!-- META -->
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="author" contents">
+
+    <title>Explore</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
+    <!-- STYLE SHEETS-->
+    <!--<link rel="stylesheet" type="text/css" href="js/vendor/leaflet.css"/>-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/story.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/map.css"/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
+    
+  </head>
+
+<!-- NAVIGATION -->
+
+
+<body>
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+<div id="map" class="map"></div>   
+<div class="container overlay">
+  <nav role="navigation">
+      <div id="menuToggle">
+        <!--
+        A fake / hidden checkbox is used as click reciever,
+        so you can use the :checked selector on it.
+        -->
+        <input type="checkbox" />
+        
+        <!--
+        Some spans to act as a hamburger.
+        
+        They are acting like a real hamburger,
+        not that McDonalds stuff.
+        -->
+        <span></span>
+        <span></span>
+        <span></span>
+        
+        <!--
+        Too bad the menu has to be inside of the button
+        but hey, it's pure CSS magic.
+        -->
+        <ul id="menu">
+
+          <a href="#"><li>Storymode</li></a>
+          <a href="explore.html"><li>Explore mode</li></a>
+          <a href="www.rivercare.nl"><li>More RiverCare!</li></a>
+          <br /><br />
+          
+        </ul>
+      </div>
+  </nav>
+
+  <div class="canvas griditem storybox">
+    <div id="mapclone_one" class="map blur"></div>
+    <div class="glass uicontainer">
+      <div id='storycontainer'> 
+        <div class='storystep'>
+        <h1> Ingrijpen in de rivier </h1>
+        Rivieren banen zich van nature een weg door het landschap. 
+        De rivier kan voor veel doeleinden worden gebruikt door zowel mens als natuur: zoals voor drinkwater, scheepvaart, en een leefomgeving. 
+        <br><br>
+        De rivier kan ook gevaar stichten. De bijna-ramp van 1995 staat nog vers in het geheugen. 
+        <br><br>
+        Om de waterveiligheid te verbeteren, worden rivierverruimende ingrepen gepleegd. Deze ingrepen, ontworpen met behulp van computersimulaties, zijn vaak heel ingrijpend. <em> Maar hoe nauwkeurig zijn deze simulaties? </em>
+
+
+        </div>
+        <div class='storystep'>
+        <h1> Onzekerheid </h1>
+        Om die vraag te kunnen beantwoorden, moet een belangrijke term worden geintroduceerd: <em> onzekerheid </em>. In de wetenschap heeft deze term een andere betekenis dan in spreektaal. We noemen iets onzeker, als we het antwoord niet precies weten. Maar vaak weten we het antwoord wel ongeveer. We spreken dan over <em>waarschijnlijkheid</em>. 
+        </div>
+        <div class='storystep'>
+        <h1> Ook riviermodellen zijn onzeker </h1>
+        Bij lagere afvoeren, die vaak voorkomen, hebben we veel metingen om modellen te verbeteren. Maar bij hoge afvoeren, die <em>bijna nooit</em> voorkomen, is dat niet zo. We weten dan niet precies hoeveel weerstand planten, bomen en de rivierbodem geven tegen waterstroming.
+        <br><br> 
+
+        <br><br>
+        <a id='aScrollToTop'>Back to top</a>
+      </div>
+      </div>  
+      <div class='uielements'>
+      
+    </div>
+    </div>    
+  </div>
+
+  <div class="canvas griditem figurebox">
+    <div id="mapclone_two" class="map blur"></div>
+    <div class="glass">
+      <svg id="canvas2" class='canvas02'></svg>
+
+    </div>
+  </div>
+  
+        
+  <!--
+  <div class="canvas02 diagram"><svg id="canvas2" class="canvas"></svg></div>
+  <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
+-->
+</div> <!-- container -->
+</body>
+
+<!-- FOOTER -->
+<footer>
+  <img src="img/UT_Logo_2400_White_EN.png" style="max-width: 400px">
+  <div style="color: #FFFFFF">Design by Koen Berends</div>
+</footer>
+
+<!-- LOAD JS -->
+
+
+<!--<script src="js/vendor/leaflet.js"></script>-->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="js/thirdparty/L.Map.Sync.js"></script>
+<script src="js/vendor/leaflet.pattern.js"></script>
+<script src="js/dropdown.js"></script>
+<script src="lib/d3.js"></script>
+<script src="js/divscroller.js"></script>
+<script src="js/thirdparty/perfect-scrollbar.js"></script>
+<script src="js/data.js"></script>
+<script src="js/storymode.js"></script>
+<script src="js/thirdparty/leaflet-velocity.js"></script>
+
+
+</html>

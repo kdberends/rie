@@ -1,5 +1,5 @@
 
-/**
+/** 
  * scroller - handles the details
  * of figuring out which section
  * the user is currently scrolled
@@ -8,6 +8,7 @@
  */
 function scroller() {
   var container = d3.select('body');
+  
   // event dispatcher
   var dispatch = d3.dispatch('active', 'progress');
 
@@ -39,7 +40,7 @@ function scroller() {
     // when window is scrolled call
     // position. When it is resized
     // call resize.
-    d3.select(window)
+    d3.select(window) 
       .on('scroll.scroller', position)
       .on('resize.scroller', resize);
 
@@ -92,10 +93,9 @@ function scroller() {
    */
   function position() {
     var pos = window.pageYOffset - 50 - containerStart;
-
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-
+    
     if (currentIndex !== sectionIndex) {
       // @v4 you now `.call` the dispatch callback
       dispatch.call('active', this, sectionIndex);

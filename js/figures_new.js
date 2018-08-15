@@ -95,10 +95,10 @@ var BackwaterChart = {};
 
 	    g.append("text")
 	      .attr("class", "line labels")
-	      .attr("y", yScale(0.2))
+	      .attr("y", yScale(0.1))
 	      .attr("x", xScale(905))
 	      .style("text-anchor", "middle")
-	      .text("River kilometer [km]"); 
+	      .text("Rhine kilometer [km]"); 
 	    	
 	    b = g.append("path")
 		      .data([data.data])

@@ -1,4 +1,67 @@
-/* Map Variables
+/* Story scroller
+ *
+ *
+ *
+ */
+var scroll = scroller().container(d3.select('#storycontainer'));
+
+// pass in .step selection as the steps
+scroll(d3.selectAll('.storystep'));
+// setup event handling
+scroll.on('active', function (index) {
+  // highlight current step text
+  d3.selectAll('.storystep')
+    .style('opacity', 
+    	   function (d, i) { return i === index ? 1 : 0.2; });
+ 
+  // activate current section
+  if (index==0){
+    d3.select('.figurebox')
+      .transition()
+      .duration(500)
+      .style("opacity", 0)
+      .style("pointer-events", "none")
+  } else if (index==1){
+    d3.select('.figurebox')
+      .transition()
+      .duration(500)
+      .style("opacity", 1)
+      .style("pointer-events", "initial")
+  };
+});
+
+function scrollTopTween(scrollTop) {
+  return function() {
+    var i = d3.interpolateNumber(d3.select('#storycontainer').scrollTop, scrollTop);
+    return function(t) { d3.select('#storycontainer').scrollTop = i(t); };
+ };
+}
+
+function storyScrollToTop(e){
+d3.select('#storycontainer').on('click', function() {
+  d3.select('#storycontainer')
+    .transition()
+    .tween('scrolltotoptween', scrollTopTween(0))
+  e.stopPropagation()
+});
+};
+
+$("#aScrollToTop").click(function(e) {
+  $("#storycontainer").animate({scrollTop: 0}, 500)
+});
+
+/* perfect scrollbar
+ */
+
+const ps = new PerfectScrollbar('#storycontainer', {
+  wheelSpeed: 2,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+ps.update()
+
+/* Background map
  *
  *
  */
@@ -50,24 +113,43 @@ var ActiveRiverKmStyle = {
  *
  *
  */
-var map = new L.Map("map", {center: [51.855, 5.36], 
-                              zoom: 13,
+var map = new L.Map("map", {center: [52.5, 4.4], 
+                              zoom: 8,
                               zoomControl: false})
   .addLayer(new L.TileLayer(host, {
       maxzoom: 19,
       attribution: attr
     }));
 
-var map2 = new L.Map("mappo", {center: [51.84, 5.46], 
+/* Map clones
+ *
+ */
+var mc1 = new L.Map("mapclone_one", {center: [51.84, 5.46], 
                               zoom: 13,
                               zoomControl: false,
                               attributionControl:false})
-  .addLayer(new L.TileLayer(host));
+                         .addLayer(new L.TileLayer(host));
 
 // sync so that they overlap
-xc = map2.getContainer().parentElement.offsetLeft / map.getSize().x
-yc = map2.getContainer().parentElement.offsetTop / map.getSize().y
-map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
+xc = mc1.getContainer().parentElement.offsetLeft / map.getSize().x
+yc = mc1.getContainer().parentElement.offsetTop / map.getSize().y
+map.sync(mc1, 
+        {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
+
+
+var mc2 = new L.Map("mapclone_two", {center: [51.84, 5.46], 
+                              zoom: 13,
+                              zoomControl: false,
+                              attributionControl:false})
+                         .addLayer(new L.TileLayer(host));
+
+// sync so that they overlap
+xc = mc2.getContainer().parentElement.offsetLeft / map.getSize().x
+yc = mc2.getContainer().parentElement.offsetTop / map.getSize().y
+map.sync(mc2, 
+        {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
+
+/* =========================== */
 
 var points = null
 //d3.json('shp/banddijken.json', function(geojsonFeature){
@@ -193,109 +275,4 @@ function addVelocityLayerToMap(file, thismap){
   });
 }
 
-
-function display(error, dataset1, dataset2) {
-  
-  // Background map 
-  // https://leaflet-extras.github.io/leaflet-providers/preview/
-  var attr = 'koen'
-  var host = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-  var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
-  
-  addVelocityLayerToMap('data/waal_reference_0000.json', map)
-  //addVelocityLayerToMap('data/waal_reference_0000.json', map2)
-
-
-
-  // Backwaterchart figure
-	BackwaterChart.setCanvas("#canvas2")
-	BackwaterChart.setData(dataset2)
-	BackwaterChart.init()
-  BackwaterChart.setXaxisCallback(function (coor) {
-    d3.json('shp/rivierkilometers.json', function (data) {
-      riverkmFocus.clearLayers();
-      let index = (coor - 854) 
-      riverkmFocus.addData(data.features[index]).bindTooltip('km '+coor, {direction: 'top'});//.openTooltip();
-      });
-    });
-	////BackwaterChart.drawValueLine()
-	//BackwaterChart.showBands()
-  //bwc = new BackWaterChart("#canvas2", dataset2)
-  //bwc.setXaxisCallback(function (coor) {console.log('new func: ' + coor)})
-	d3.select(window)
-	   .on("resize.chart", function(){
-      BackwaterChart.resize()
-      BackwaterChart.setXaxisCallback(function (coor) {
-    d3.json('shp/rivierkilometers.json', function (data) {
-      riverkmFocus.clearLayers();
-      let index = (coor - 854) 
-      riverkmFocus.addData(data.features[index]);
-      });
-    });
-    })
-}
-
-
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropDownFunction() { 
-    document.getElementById("InterventionDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-} 
-
-
-function showReference() {
-  BackwaterChart.hideBands()
-  BackwaterChart.drawZeroLine()
-  map.eachLayer(function (l) {
-    if (l.id == 'velos'){
-      map.removeLayer(l)
-    }
-  })
-  addVelocityLayerToMap('data/waal_reference_0000.json', map)
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  dike.setStyle(LineStyle);
-}
-
-function showRelo() {
-  d3.json('data/relocation_int100.json', function(d){BackwaterChart.updateData(d)})  
-  removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int07_0000.json', map)
-  dike.setStyle(DashStyle)
-  
-  dikeNew.addTo(map);
-
-  d3.json('shp/banddijken_relocation_int100.json', function (data) {
-      dikeNew.addData(data)
-    });
-
-}
-
-function showSmooth() {
-  d3.json('data/smoothing_int99.json', function(d){BackwaterChart.updateData(d)})  
-  removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int11_0000.json', map);
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  dike.setStyle(LineStyle);
-}
-
-d3.queue()
-  .defer(d3.json, 'data/relocation_int100.json')
-  .defer(d3.json, 'data/smoothing_int99.json')
-  .await(display);
 

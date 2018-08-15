@@ -5,7 +5,6 @@
   overflow: hidden;
 }
  
-
 .griditem{
   border-radius: 4px;
 }
@@ -31,6 +30,9 @@
     rgba(245, 247, 249, .2) 100%
     );
   filter: blur(0px);
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
 }
 
 .footer {
@@ -40,42 +42,52 @@
   color: #FFFFFF;
   font-family: Raleway;
   font-size: 0.8em;
-  
-
 }
 
-@media (min-width: 1000px) {
+/* 
+ Desktops
+*/
+
+@media (min-width: 1200px) {
 .container {
   width: 100%;
   height: 80%;
   display: grid;
-  grid-gap: 0px;
+  grid-gap: 10px;
   grid-template:
     '. . . . . .'
-    '. . . fig2 fig2 .'
-    '. . . fig2 fig2 .'
-    '. . . fig2 fig2 .'
-    '. . . . cap2 .'
+    'storybox storybox storybox figurebox figurebox figurebox'
+    'storybox storybox storybox figurebox figurebox figurebox'
+    'storybox storybox storybox figurebox figurebox figurebox'
     '. . . . . .';
 }
 }
 
-@media (max-width: 999px) {
+/* 
+ Tablets
+*/
+
+@media (max-width: 1200px) {
 .container {
   width: 100%;
   height: 80%;  
   display: grid;
-  grid-gap: 0px;
+  grid-gap: 5px;
   grid-template:
     '. . . .'
-    '. fig2 fig2 .'
-    '. fig2 fig2 .'
-    '. fig2 fig2 .'
-    '. . cap2 .'
+    'storybox storybox storybox .'
+    'storybox storybox storybox .'
+    'storybox storybox storybox .'
+    'figurebox figurebox figurebox .'
+    'figurebox figurebox figurebox .'
+    'figurebox figurebox figurebox .'
+
     '. . . .';
 }
 }
-
+/* 
+ Phones
+*/
 @media (max-width: 600px) {
 .container {
   width: 100%;
@@ -84,17 +96,21 @@
   grid-gap: 0px;
   grid-template:
     '. . '
-    'fig2 fig2 '
-    'fig2 fig2 '
-    'fig2 fig2 '
-    'cap2 cap2 '
-    '. . ';
+    '. . '
+    '. . '
+    'storybox storybox '
+    'storybox storybox '
+    'storybox storybox ';
 }
 }
 
 .canvas{
   width: 100%;
   height: 100%;
+  pointer-events: initial;
+  position:absolute; 
+  width:100%;
+  height:90%;
 }
 
 .overlay {
@@ -110,14 +126,88 @@
   filter: blur(0px);
 }
 
-.canvas02 {
-  pointer-events: initial;
-  grid-area: fig2;
-  position:absolute; 
-  width:100%;
-  height:90%;
+.storybox {
+  grid-area: storybox;
 }
 
+.figurebox {
+  grid-area: figurebox;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+}
+
+.figurebox .map{
+  pointer-events: none;
+}
+
+.storystep{
+  margin-bottom: 50px;
+}
+
+#storycontainer{
+  position: relative;
+  z-index: 100;
+  padding: 5% 0% 0% 5%;
+  width: 90%;
+  height: 80%;
+  color: #FFFFFF;
+  font-family: Raleway;
+  font-size: 0.9em; 
+  overflow: hidden;
+}
+
+.textbox {
+  border-radius: inherit;
+  border-style: dashed;
+  border-width: 1px 1px 1px 1px;
+  padding-left: 5%;
+  padding-top: 5%;
+  width: 90%;
+  height: 200px;
+  color: #FFFFFF;
+  font-family: Raleway;
+  font-size: 0.9em;  
+  overflow: hidden;
+}
+
+
+
+.storystep em{
+  color: #2CB4F2;
+  font-style: normal;
+}
+
+.storystep a:hover{
+  cursor: pointer;
+}
+
+.uicontainer{
+  width:100%;
+  height:100%;
+}
+
+.uicontainer .uielements{
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  position: absolute;
+  bottom: 0px;
+}
+.uielements span {
+  display: block;
+  width: 30px;
+  height: 5px;
+  background: #cdcdcd;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.uielements span:hover {
+  background: #DE1212;
+  transition: background 0.5s cubic-bezier(0.77,0.2,0.05,0.5);
+}
 
 header {
   display: flex;
@@ -163,15 +253,15 @@ div.tooltip {
 
 footer {
    position:absolute;
-   bottom:10px;
-   margin: auto;
-   width:10%;
-   height:60px;   /* Height of the footer */
+   bottom: 0px;
+   width:100%;
+   height:50x;   /* Height of the footer */
    overflow: hidden;
-   border-radius: 2px;
+   pointer-events: none;
+   /*border-radius: 2px;
    left: 50%;
-   transform: translate(-50%, -50%);
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+   transform: translate(-50%, -50%);*/
+   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;*/
 }
 
 .LVelocityLegend {

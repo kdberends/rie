@@ -1,8 +1,71 @@
-/* Story scroller
+/** ////////////////////////////////////////////////////////////
+ * Figure
  *
  *
+ */////////////////////////////////////////////////////////////
+var Figure = {};
+function display(error, dataset1, dataset2) {
+  var datasets = [dataset1, dataset2]
+  // Make SVG responsive
+
+  //let currentHeight = $('#FigureContainer').height();
+  //let currentWidth = $('#FigureContainer').width();
+  //var aspectratio = currentHeight / currentWidth * 100
+  //d3.select("#FigureCanvas")
+  //  .attr('viewBox', '0 0 ' + currentWidth + ' ' + currentHeight)
+  //  //.attr("preserveAspectRatio", "none")
+  //
+  //d3.select(window).on('resize', function(){
+  //  let currentHeight = $('#FigureContainer').height();
+  //  let currentWidth = $('#FigureContainer').width();
+  //  console.log('widht: '+currentWidth + ', height:' + currentHeight)
+  //  d3.select("#FigureCanvas")
+  //  .attr('viewBox', '0 0 ' + currentWidth + ' ' + currentHeight)
+  //  //.attr("preserveAspectRatio", "xMinYMin meet")
+  //});
+
+  protoSchematicRiverChart.apply(Figure)
+  Figure.setCanvas('#FigureCanvas')
+  Figure.setData(dataset2)
+  Figure.init()
+
+
+  // Set callback between map and figure
+  Figure.setXaxisCallback(function (coor) {
+    d3.json('shp/rivierkilometers.json', function (data) {
+      riverkmFocus.clearLayers();
+      let index = (coor - 854) 
+      riverkmFocus.addData(data.features[index]).bindTooltip('km '+coor, {direction: 'top'});//.openTooltip();
+      });
+    });
+
+  // Make sure figure updates when window resizes
+ d3.select(window)
+    .on("resize.chart", function(){
+        Figure.resize()
+        Figure.setXaxisCallback(function (coor) {
+        d3.json('shp/rivierkilometers.json', function (data) {
+        riverkmFocus.clearLayers();
+        let index = (coor - 854) 
+        riverkmFocus.addData(data.features[index]);
+        });
+      });
+    });
+
+  // Scroller
+};
+
+
+d3.queue()
+  .defer(d3.json, 'data/relocation_int100.json')
+  .defer(d3.json, 'data/smoothing_int99.json')
+  .await(display);
+
+/** ////////////////////////////////////////////////////////////
+ * Story scroller
  *
- */
+ *
+ */////////////////////////////////////////////////////////////
 var scroll = scroller().container(d3.select('#storycontainer'));
 
 // pass in .step selection as the steps
@@ -15,18 +78,30 @@ scroll.on('active', function (index) {
     	   function (d, i) { return i === index ? 1 : 0.2; });
  
   // activate current section
-  if (index==0){
+  if (index==2){
     d3.select('.figurebox')
       .transition()
       .duration(500)
       .style("opacity", 0)
       .style("pointer-events", "none")
-  } else if (index==1){
+  } else if (index==0){
     d3.select('.figurebox')
       .transition()
       .duration(500)
       .style("opacity", 1)
       .style("pointer-events", "initial")
+    d3.json('data/reference_waterlevels.json', function(d){
+      Figure.updateData(d)
+      Figure.drawMedian()
+      Figure.drawWater()
+      
+    })
+    
+  } else if (index==1) {
+    d3.json('data/relocation_int100.json', function(d){
+      Figure.updateData(d)
+      Figure.moveAxis('x', 'bottom')
+    });
   };
 });
 
@@ -61,10 +136,12 @@ const ps = new PerfectScrollbar('#storycontainer', {
 });
 ps.update()
 
-/* Background map
+/** ////////////////////////////////////////////////////////////
+ * Background map
  *
  *
- */
+ */////////////////////////////////////////////////////////////
+
 var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
 //var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 //var host = "https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}";
@@ -109,10 +186,7 @@ var ActiveRiverKmStyle = {
 };
 
 
-/* LEAFLET
- *
- *
- */
+
 var map = new L.Map("map", {center: [52.5, 4.4], 
                               zoom: 8,
                               zoomControl: false})
@@ -121,9 +195,11 @@ var map = new L.Map("map", {center: [52.5, 4.4],
       attribution: attr
     }));
 
-/* Map clones
+/** ////////////////////////////////////////////////////////////
+ * Map clones 
  *
- */
+ *
+ */////////////////////////////////////////////////////////////
 var mc1 = new L.Map("mapclone_one", {center: [51.84, 5.46], 
                               zoom: 13,
                               zoomControl: false,
@@ -149,40 +225,50 @@ yc = mc2.getContainer().parentElement.offsetTop / map.getSize().y
 map.sync(mc2, 
         {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
-/* =========================== */
+/** ////////////////////////////////////////////////////////////
+ * Map elements (dikes etc)
+ *
+ *
+ */////////////////////////////////////////////////////////////
+
 
 var points = null
-//d3.json('shp/banddijken.json', function(geojsonFeature){
-//      points = L.geoJson(geojsonFeature, {style:LineStyle}).addTo(map);
-//       })
-//
-var dike =  new L.geoJson(null, {
+
+// Dikes
+var dike_reference =  new L.geoJson(null, {
       style: LineStyle,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
       }
-  });
-dike.addTo(map);
+}).addTo(map);
+
+var dike_new =  new L.geoJson(null, {
+      style: LineStyle,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+});
+
 d3.json('shp/banddijken.json', function (data) {
-    dike.addData(data)
+    dike_reference.addData(data)
+    dike_reference.setStyle({opacity: 0})
   });
 
-
+// rhine kilometers
 var riverkm = new L.geoJson(null, {
   style: InactiveRiverKmStyle,
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, InactiveRiverKmStyle)
   }
-});
-riverkm.addTo(map)
+}).addTo(map)
 
 var riverkmFocus = new L.geoJson(null, {
   style: ActiveRiverKmStyle,
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, ActiveRiverKmStyle)
   }
-});
-riverkmFocus.addTo(map)
+}).addTo(map);
+
 
 d3.json('shp/rivierkilometers.json', function (data) {
     for (var i=0;i<100;i++){
@@ -199,62 +285,47 @@ d3.json('shp/rivierkilometers.json', function (data) {
                        className: 'kmtooltip'}
                       )
        }
-      //riverkm.addData(data.features[1]).bindTooltip(data.features[i].properties.MODELKILOM, {direction: 'top'});//.openTooltip();
 });
 
-var dikeNew =  new L.geoJson(null, {
-      style: LineStyle,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
 
-/* Events for Map Interaction
+/** ////////////////////////////////////////////////////////////
+ * Map events
  *
  *
- */
+ */////////////////////////////////////////////////////////////
+
 map.on('zoomend', function() {
-    if (map.getZoom() < 11){
-        if (map.hasLayer(dike)) {
-            map.removeLayer(dike);
-        } else {
-            console.log("no point layer active");
+    let dikes = [dike_reference, dike_new]
+    for (var i=0;i<dikes.length;i++){
+      if (map.getZoom() < 11){
+        // Only show dike while zoomed in
+          if (map.hasLayer(dikes[i])) {
+              //map.removeLayer(dike);
+              dikes[i].setStyle({opacity: 0.0})
+          } 
+      }
+      else if (map.getZoom() >= 11){
+          if (map.hasLayer(dikes[i])){
+              dikes[i].setStyle({opacity: 1.0})
+          }
         }
     }
-    if (map.getZoom() >= 11){
-        if (map.hasLayer(dike)){
-            console.log("dike_ref already added");
-        } else {
-            map.addLayer(dike);
-        }
-    }
-    if (map.getZoom() < 11){
-        if (map.hasLayer(dikeNew)) {
-            map.removeLayer(dikeNew);
-        } else {
-            1+1;
-        }
-    }
-    if (map.getZoom() >= 11){
-        if (map.hasLayer(dikeNew)){
-            1+1;
-        } else {
-            map.addLayer(dikeNew);
-        }
-    }
-}
-)
-/*
+});
+
+
+/** ////////////////////////////////////////////////////////////
+ * Map functions
  *
  *
- */
+ */////////////////////////////////////////////////////////////
+
 function removeVelocityLayerFromMap(){
   map.eachLayer(function (l) {
     if (l.id == 'velos'){
       map.removeLayer(l)
     }
   })
-}
+};
 
 function addVelocityLayerToMap(file, thismap){
      d3.json(file, function (data) {
@@ -273,6 +344,6 @@ function addVelocityLayerToMap(file, thismap){
       thismap.addLayer(velocityLayer)
       
   });
-}
+};
 
 

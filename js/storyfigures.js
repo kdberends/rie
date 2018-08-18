@@ -41,26 +41,32 @@ var protoSchematicRiverChart = function() {
     var line = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
-    
-    /* Methods */
- 	this.updateScales = function(){
- 		width = parseFloat(d3.select(canvas).style('width'))
- 		height = parseFloat(d3.select(canvas).style('height'))
-	 	
-	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
-		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
-		xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
-	};
 
+    
+    /* /////////////////////////////////////////////////////////////
+	//// Initialisation & general methods
+    *///////////////////////////////////////////////////////////////
+ 	
     this.setCanvas = function(name){
     	canvas = name
     };
 
-    this.setData = function(rawData){
-    	data = parseData(rawData)
-    };
+    this.removeAll = function(){
+   		s = d3.select(canvas).select('g')
+	    s = s.remove();	    
+   	};
 
+    this.resize = function(){
+        //this.removeAll()
+	    this.updateScales()
+	    this.updatePaths()
+	    this.updateAxis()
+	    //this.init()
+	    //this.drawBands()
+	    //this.drawValueLineNoAnimation()
+	    //this.showBands()
+    };
+    
     this.init = function(){
     	//this.setColor("#FFF")    	
     	this.updateScales()
@@ -83,6 +89,61 @@ var protoSchematicRiverChart = function() {
 		//this.drawBands()
 	    //this.drawZeroLine()     
 	};
+
+	this.updateScales = function(){
+ 		width = parseFloat(d3.select(canvas).style('width'))
+ 		height = parseFloat(d3.select(canvas).style('height'))
+	 	
+	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
+		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
+		xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
+	    yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
+	};
+
+	/* /////////////////////////////////////////////////////////////
+	//// Data methods
+    *///////////////////////////////////////////////////////////////
+    
+    /* Call this before initialisation */
+    this.setData = function(rawData){
+    	data = parseData(rawData)
+    };
+
+    /* Call this to dynamically change data after figure creation */
+    this.updateData = function(rawData){    	
+    	// parse raw data from json
+    	data = parseData(rawData)
+    	
+    	// update scales
+    	this.updateScales()
+    	this.updateAxis()
+
+    	// Update confidence limits
+    	DB = this.drawBands
+    	SB = this.showBands
+		
+    	// remove current bands, then change line
+    	g.selectAll(".area")
+         .transition()
+         .duration(750)
+         .attr("opacity", 0)
+         .remove()
+         .on("end", function () {    
+	    	d3.select(canvas).selectAll('.valueline')
+	    	.datum(data.data)
+	    	.transition()
+	    	.duration(500)
+	    	.attr("d", valueline)
+	    	.on("end", function () {
+	    		DB()
+	    		SB()
+	    	});
+    	});
+    };
+
+	/* /////////////////////////////////////////////////////////////
+	//// Axis methods
+    *///////////////////////////////////////////////////////////////
 
 	this.drawAxis = function(){
 		let xticks = Math.round(width / 60)
@@ -110,9 +171,7 @@ var protoSchematicRiverChart = function() {
 	      .attr("x", xScale(905))
 	      .style("text-anchor", "middle")
 	      .text("Rhine kilometer [km]"); 
-	    	
-	    
-
+	    	   
 	      // Add the X Axis
 	      g.append("g")
 	          .attr('id', 'XAxis')
@@ -121,7 +180,6 @@ var protoSchematicRiverChart = function() {
 	          .call(d3.axisTop(xScale).ticks(xticks));
 
 	      // Add the Y Axis
-	      //var yAxis = d3.svg.axis().scale(yScale).ticks(5).orient('left')
 	      g.append("g")
 	      	 .attr("id", "YAxis")
 	         .attr("class", "FigureAxes")
@@ -138,22 +196,14 @@ var protoSchematicRiverChart = function() {
 
 		  // 'crosshair' to visualise where we are pointing
 		  g.append("line")
-		  	  .attr("class", "crosshair chx")
-		      .attr("stroke", '#2A2B41')
-		      .attr("stroke-width", 1)
-		      .attr("stroke-opacity", 0.5)
-		      .attr("stroke-dasharray", "4 2")
+		  	  .attr("class", "FigureLine crosshair chx")
 		  	  .attr("x1", xScale(900))
 		  	  .attr("y1", yScale(0))
 		  	  .attr("x2", xScale(900))
 		  	  .attr("y2", yScale(-1.2))
 
 		  g.append("line")
-		  	  .attr("class", "crosshair chy")
-		      .attr("stroke", '#2A2B41')
-		      .attr("stroke-width", 1)
-		      .attr("stroke-opacity", 0.5)
-		      .attr("stroke-dasharray", "4 2")
+		  	  .attr("class", "FigureLine crosshair chy")
 		  	  .attr("x1", xScale(868))
 		  	  .attr("y1", yScale(-0.5))
 		  	  .attr("x2", xScale(940))
@@ -161,14 +211,14 @@ var protoSchematicRiverChart = function() {
 
 		  g.on('mouseover', function() {
 		  	g.selectAll('.crosshair')
-		  	.style('stroke-opacity', '1')
+		  	    .style('stroke-opacity', '1')
 		  });
 
 		  g.on('mouseleave', function() {
 		  	g.selectAll('.crosshair')
 		  		.style('stroke-opacity', '0')
 		  });
-     };
+    };
 
     this.moveAxis = function(ax, loc) {
     	let xticks = Math.round(width / 60)
@@ -192,12 +242,6 @@ var protoSchematicRiverChart = function() {
     	};
     };
 
-    this.updatePaths = function() {
-       d3.select('.FigureLine')
-	      .transition()
-	      .duration(200)
-	      .attr('d', line)
-    };
     this.updateAxis = function (){
     	// number of ticks
     	let xticks = Math.round(width / 60)
@@ -216,35 +260,41 @@ var protoSchematicRiverChart = function() {
     };
 
     this.updateCrosshairX = function(mouseX){
-    	if (mouseX >= 868 & mouseX <= 940) {
+    	if (mouseX >= xScale.domain()[0] & mouseX <= xScale.domain()[1]) {
 		 g.selectAll('.chx')
 		 	.transition()
 		 	.duration(10)
 		  	.attr('x1', xScale(mouseX))
 		  	.attr('x2', xScale(mouseX))
 		  	}
-		 };
+	};
 
 	this.updateCrosshairY = function(mouseY){
-    	if (mouseY >= -1.2 & mouseY <= 0) {
+    	if (mouseY >= yScale.domain()[0] & mouseY <= yScale.domain()[1]) {
 		 g.selectAll('.chy')
 		 	.transition()
 		 	.duration(10)
 		  	.attr('y1', yScale(mouseY))
 		  	.attr('y2', yScale(mouseY))
 		  	}
-		 };
+	};
 
     this.setXaxisCallback  = function(fnc) {
     	let self = this;
     	g.on("mousemove", function(){
+         // first move mouse
     	 self.updateCrosshairX(Math.round(xScale.invert(d3.mouse(this)[0])));
     	 self.updateCrosshairY(yScale.invert(d3.mouse(this)[1]));
+
+    	 // then add user function
 	     fnc(Math.round(xScale.invert(d3.mouse(this)[0])));
 	 });
     };
 
-    //.///////////////////////////////
+    /* /////////////////////////////////////////////////////////////
+	//// Path (line) methods
+    *///////////////////////////////////////////////////////////////
+
     this.drawZeroLine = function(){
     	var zeroline = d3.line()
 		      .x(function(d) { return xScale(d.x); })
@@ -268,6 +318,29 @@ var protoSchematicRiverChart = function() {
 	    	.attr("d", line)
     };
 
+    this.drawBedlevel = function (){
+    	g.append("path")
+    		.data([data.data])
+    		.attr('class', 'FigureLine')
+    		.style('stroke', 'blue')
+    		.style('stroke-width', "1")
+    		.style("fill", 'none')
+	    	.transition()
+	    	.duration(500)
+	    	.attr("d", line)
+    };
+
+    this.updatePaths = function() {
+       d3.select('.FigureLine')
+	      .transition()
+	      .duration(200)
+	      .attr('d', line)
+    };
+
+    /* /////////////////////////////////////////////////////////////
+	//// Areas and confidence bands
+    *///////////////////////////////////////////////////////////////
+
     this.drawWater = function (){
     	var area = d3.area()
 		    .x(function(d) { return xScale(d.x); })
@@ -278,26 +351,6 @@ var protoSchematicRiverChart = function() {
     	 .datum(data.data)
     	 .style('fill', 'steelblue')
     	 .attr('d', area)
-    };
-
-
-
-    this.draw
-
-   	this.removeAll = function(){
-   		s = d3.select(canvas).select('g')
-	    s = s.remove();	    
-   	};
-
-    this.resize = function(){
-        //this.removeAll()
-	    this.updateScales()
-	    this.updatePaths()
-	    this.updateAxis()
-	    //this.init()
-	    //this.drawBands()
-	    //this.drawValueLineNoAnimation()
-	    //this.showBands()
     };
 
     this.drawBands = function(){
@@ -356,11 +409,11 @@ var protoSchematicRiverChart = function() {
     };
 
     this.showBands = function() {
-    	 g.selectAll('.area')
-      .transition()
-      .delay(function (d, i) { return 100 * (4-i);})
-      .duration(750)
-      .attr('opacity', 1);
+    	g.selectAll('.area')
+	      .transition()
+	      .delay(function (d, i) { return 100 * (4-i);})
+	      .duration(750)
+	      .attr('opacity', 1);
     };
 
     this.hideBands = function() {
@@ -378,52 +431,6 @@ var protoSchematicRiverChart = function() {
          .attr("opacity", 0)
          .remove();
     };
-
-    this.setColor = function(color){
-    	d3.select(canvas).style('background-color', color)
-    };
-
-    this.next = function() {
-        return id++;    
-    };
- 
-    this.reset = function() {
-        id = 0;     
-    };
-
-    /* 
-     *
-     */
-    this.updateData = function(rawData){    	
-    	// parse raw data from json
-    	data = parseData(rawData)
-    	
-    	// update scales
-    	this.updateScales()
-    	this.updateAxis()
-    	DB = this.drawBands
-    	SB = this.showBands
-    	//var valueline = d3.line()
-		//      .x(function(d) { return xScale(d.x); })
-		//      .y(function(d) { return yScale(d.y); });
-		
-    	// remove current bands, then change line
-    	g.selectAll(".area")
-         .transition()
-         .duration(750)
-         .attr("opacity", 0)
-         .remove()
-         .on("end", function () {    
-	    	d3.select(canvas).selectAll('.valueline')
-	    	.datum(data.data)
-	    	.transition()
-	    	.duration(500)
-	    	.attr("d", valueline)
-	    	.on("end", function () {
-	    		DB()
-	    		SB()
-	    	});
-    	});
-    };
+    
 }; // protoSchematicRiverChart
  

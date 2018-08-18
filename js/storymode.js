@@ -6,23 +6,6 @@
 var Figure = {};
 function display(error, dataset1, dataset2) {
   var datasets = [dataset1, dataset2]
-  // Make SVG responsive
-
-  //let currentHeight = $('#FigureContainer').height();
-  //let currentWidth = $('#FigureContainer').width();
-  //var aspectratio = currentHeight / currentWidth * 100
-  //d3.select("#FigureCanvas")
-  //  .attr('viewBox', '0 0 ' + currentWidth + ' ' + currentHeight)
-  //  //.attr("preserveAspectRatio", "none")
-  //
-  //d3.select(window).on('resize', function(){
-  //  let currentHeight = $('#FigureContainer').height();
-  //  let currentWidth = $('#FigureContainer').width();
-  //  console.log('widht: '+currentWidth + ', height:' + currentHeight)
-  //  d3.select("#FigureCanvas")
-  //  .attr('viewBox', '0 0 ' + currentWidth + ' ' + currentHeight)
-  //  //.attr("preserveAspectRatio", "xMinYMin meet")
-  //});
 
   protoSchematicRiverChart.apply(Figure)
   Figure.setCanvas('#FigureCanvas')
@@ -71,20 +54,15 @@ var scroll = scroller().container(d3.select('#storycontainer'));
 // pass in .step selection as the steps
 scroll(d3.selectAll('.storystep'));
 // setup event handling
-scroll.on('active', function (index) {
+scroll.on('active', function (index, positions) {
   // highlight current step text
   d3.selectAll('.storystep')
     .style('opacity', 
     	   function (d, i) { return i === index ? 1 : 0.2; });
  
   // activate current section
-  if (index==2){
-    d3.select('.figurebox')
-      .transition()
-      .duration(500)
-      .style("opacity", 0)
-      .style("pointer-events", "none")
-  } else if (index==0){
+  if (index==0){
+    storyScrollTo(positions[0]+50)
     d3.select('.figurebox')
       .transition()
       .duration(500)
@@ -94,23 +72,39 @@ scroll.on('active', function (index) {
       Figure.updateData(d)
       Figure.drawMedian()
       Figure.drawWater()
-      
-    })
-    
-  } else if (index==1) {
+      })
+  }
+  else if (index==1) {
+    storyScrollTo(positions[1]+50)
     d3.json('data/relocation_int100.json', function(d){
       Figure.updateData(d)
       Figure.moveAxis('x', 'bottom')
     });
-  };
+  }
+  else if (index==2){
+    storyScrollTo(positions[2]+50)
+    d3.select('.figurebox')
+      .transition()
+      .duration(500)
+      .style("opacity", 0)
+      .style("pointer-events", "none")
+  } 
 });
 
 function scrollTopTween(scrollTop) {
+  console.log('scrolling to '+ scrollTop)
   return function() {
-    var i = d3.interpolateNumber(d3.select('#storycontainer').scrollTop, scrollTop);
-    return function(t) { d3.select('#storycontainer').scrollTop = i(t); };
+    var i = d3.interpolateNumber(d3.select('#storycontainer').node().scrollTop, scrollTop);
+    return function(t) { d3.select('#storycontainer').node().scrollTop = i(t); };
  };
-}
+};
+
+function storyScrollTo(scrollTop){
+  d3.select("#storycontainer")
+    .transition()
+    .duration(1000)
+    .tween('scrollme', scrollTopTween(scrollTop))  
+};
 
 function storyScrollToTop(e){
 d3.select('#storycontainer').on('click', function() {
@@ -129,7 +123,7 @@ $("#aScrollToTop").click(function(e) {
  */
 
 const ps = new PerfectScrollbar('#storycontainer', {
-  wheelSpeed: 2,
+  wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,
   swipeEasing: true

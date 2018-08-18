@@ -163,6 +163,7 @@
   grid-area: storybox;
 }
 
+
 .figurebox {
   grid-area: figurebox;
   opacity: 1;
@@ -207,13 +208,24 @@
 
 
 .storystep em{
-  color: #2CB4F2;
-  font-style: normal;
+  font-style: italic;
+}
+
+.storystep a[href^="https://"]:after{
+  content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+  margin: 0 0 0 5px;
+}
+
+.storystep a {
+   color: #B8B5D7;
+   text-decoration: underline;
 }
 
 .storystep a:hover{
   cursor: pointer;
+  color:#DED5FF;
 }
+
 
 .uicontainer{
   width:100%;

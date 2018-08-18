@@ -92,14 +92,13 @@ function scroller() {
    *
    */
   function position() {
-    //var pos = window.pageYOffset - 50 - containerStart;
     var pos = d3.select('#storycontainer').node().scrollTop - 100
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
     
     if (currentIndex !== sectionIndex) {
       // @v4 you now `.call` the dispatch callback
-      dispatch.call('active', this, sectionIndex);
+      dispatch.call('active', this, sectionIndex, sectionPositions);
       currentIndex = sectionIndex;
     }
 

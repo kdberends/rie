@@ -1,3 +1,7 @@
+ :root {
+    --background-light: #ededed;
+    --accent-light: #125D9B;
+}
  /* Dropdown Button */
 .dropbtn {
     background-color: #3498DB;
@@ -140,7 +144,7 @@ a:hover
 {
   opacity: 1;
   transform: translate(-10px, 11px) rotate(-45deg) scale(0.5, 1.4) ;
-  background: #125D9B;
+  background: var(--accent-light);
 }
 
 /*
@@ -173,7 +177,8 @@ a:hover
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  background: #ededed;
+  background: var(--background-light);
+  border-right: 5px solid var(--accent-light);
   list-style-type: square;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */

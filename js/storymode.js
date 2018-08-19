@@ -1,3 +1,13 @@
+
+/** ////////////////////////////////////////////////////////////
+ * Scrollsnap
+ *
+ *
+ */////////////////////////////////////////////////////////////
+
+
+
+
 /** ////////////////////////////////////////////////////////////
  * Figure
  *
@@ -62,7 +72,7 @@ scroll.on('active', function (index, positions) {
  
   // activate current section
   if (index==0){
-    storyScrollTo(positions[0]+50)
+    //storyScrollTo(positions[0]+50)
     d3.select('.figurebox')
       .transition()
       .duration(500)
@@ -71,18 +81,17 @@ scroll.on('active', function (index, positions) {
     d3.json('data/reference_waterlevels.json', function(d){
       Figure.updateData(d)
       Figure.drawMedian()
-      Figure.drawWater()
       })
   }
   else if (index==1) {
-    storyScrollTo(positions[1]+50)
+    //storyScrollTo(positions[1]+50)
     d3.json('data/relocation_int100.json', function(d){
       Figure.updateData(d)
       Figure.moveAxis('x', 'bottom')
     });
   }
   else if (index==2){
-    storyScrollTo(positions[2]+50)
+    //storyScrollTo(positions[2]+50)
     d3.select('.figurebox')
       .transition()
       .duration(500)

@@ -196,18 +196,18 @@ var protoSchematicRiverChart = function() {
 
 		  // 'crosshair' to visualise where we are pointing
 		  g.append("line")
-		  	  .attr("class", "FigureLine crosshair chx")
-		  	  .attr("x1", xScale(900))
-		  	  .attr("y1", yScale(0))
-		  	  .attr("x2", xScale(900))
-		  	  .attr("y2", yScale(-1.2))
+		  	  .attr("class", "crosshair chx")
+		  	  .attr("x1", xScale(xScale.domain()[0]))
+		  	  .attr("y1", yScale(yScale.domain()[1]))
+		  	  .attr("x2", xScale(xScale.domain()[0]))
+		  	  .attr("y2", yScale(yScale.domain()[0]))
 
 		  g.append("line")
-		  	  .attr("class", "FigureLine crosshair chy")
-		  	  .attr("x1", xScale(868))
-		  	  .attr("y1", yScale(-0.5))
-		  	  .attr("x2", xScale(940))
-		  	  .attr("y2", yScale(-0.5))
+		  	  .attr("class", "crosshair chy")
+		  	  .attr("x1", xScale(xScale.domain()[0]))
+		  	  .attr("y1", yScale(yScale.domain()[0]))
+		  	  .attr("x2", xScale(xScale.domain()[1]))
+		  	  .attr("y2", yScale(yScale.domain()[0]))
 
 		  g.on('mouseover', function() {
 		  	g.selectAll('.crosshair')
@@ -331,7 +331,7 @@ var protoSchematicRiverChart = function() {
     };
 
     this.updatePaths = function() {
-       d3.select('.FigureLine')
+       d3.selectAll('.FigureLine')
 	      .transition()
 	      .duration(200)
 	      .attr('d', line)

@@ -176,7 +176,8 @@
 }
 
 .storystep{
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  /*scroll-snap-coordinate: 0% 0%;*/
 }
 
 #storycontainer{
@@ -188,7 +189,11 @@
   color: #FFFFFF;
   font-family: Raleway;
   font-size: 0.9em; 
-  overflow: hidden;
+  overflow: auto;
+  /*
+  scroll-snap-type: mandatory;
+  scroll-behavior: smooth;
+  */
 }
 
 .textbox {

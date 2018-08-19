@@ -1,6 +1,7 @@
 <!doctype html> 
 <html lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <!-- META -->
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,7 +73,7 @@
     <div id="mapclone_one" class="map blur"></div>
     <div class="glass uicontainer">
       <div id='storycontainer'> 
-        <div class='storystep'>
+        <div class='storystep' data-story-id="1">
         <h1> Ingrijpen in de rivier </h1>
         De rivier kan voor veel doeleinden worden gebruikt door zowel mens als natuur: zoals voor drinkwater, scheepvaart, en een leefomgeving. Maar de rivier kan ook voor gevaar stichten, denk aan <a href="https://nl.wikipedia.org/wiki/Kruiend_ijs">ijsdammen</a> en (bijna) overstromingen. 
         <br><br>
@@ -82,11 +83,11 @@
 
 
         </div>
-        <div class='storystep'>
+        <div class='storystep' data-story-id="2">
         <h1> Onzekerheid </h1>
         Om die vraag te kunnen beantwoorden, moet een belangrijke term worden geintroduceerd: <em> onzekerheid </em>. In de wetenschap heeft deze term een andere betekenis dan in spreektaal. We noemen iets onzeker, als we het antwoord niet precies weten. Maar vaak weten we het antwoord wel ongeveer. We spreken dan over <em>waarschijnlijkheid</em>. 
         </div>
-        <div class='storystep'>
+        <div class='storystep' data-story-id="3">
         <h1> Ook riviermodellen zijn onzeker </h1>
         Bij lagere afvoeren, die vaak voorkomen, hebben we veel metingen om modellen te verbeteren. Maar bij hoge afvoeren, die <em>bijna nooit</em> voorkomen, is dat niet zo. We weten dan niet precies hoeveel weerstand planten, bomen en de rivierbodem geven tegen waterstroming.
         <br><br> 
@@ -115,7 +116,7 @@
   <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
 -->
 </div> <!-- container -->
-</body>
+
 
 <!-- FOOTER -->
 <footer>
@@ -127,18 +128,17 @@
 
 
 <!--<script src="js/vendor/leaflet.js"></script>-->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
 <script src="js/thirdparty/L.Map.Sync.js"></script>
-<script src="js/vendor/leaflet.pattern.js"></script>
-<script src="js/dropdown.js"></script>
+<!--script src="js/vendor/leaflet.pattern.js"></script>-->
 <script src="lib/d3.js"></script>
 <script src="js/divscroller.js"></script>
 <script src="js/thirdparty/perfect-scrollbar.js"></script>
+
 <script src="js/data.js"></script>
 <script src="js/storymode.js"></script>
 <script src="js/storyfigures.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
-
-
+</body>
 </html>

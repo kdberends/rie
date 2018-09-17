@@ -12,17 +12,16 @@ function parseData(rawData){
     for (var i = 0; i < x.length; i++){
         parsedData.data.push({"x": x[i],
                          "y":rawData.cdfs[i][50],
-
+                         "pcts": rawData.cdfs[i],
                          "p":[
                               [rawData.cdfs[i][5], rawData.cdfs[i][95]],
                               [rawData.cdfs[i][10], rawData.cdfs[i][90]],
                               [rawData.cdfs[i][25], rawData.cdfs[i][75]],
                               [rawData.cdfs[i][40], rawData.cdfs[i][60]],
-
                              ]
-                         })
+                         });
     }
-    
+    parsedData.extent = rawData.extent
 
     return parsedData
 };

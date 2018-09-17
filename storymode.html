@@ -73,32 +73,46 @@
     <div id="mapclone_one" class="map blur"></div>
     <div class="glass uicontainer">
       <div id='storycontainer'> 
-        <div class='storystep' data-story-id="1">
+        <div class='storystep' data-story-id="0">
         <h1> Ingrijpen in de rivier </h1>
         De rivier kan voor veel doeleinden worden gebruikt door zowel mens als natuur: zoals voor drinkwater, scheepvaart, en een leefomgeving. Maar de rivier kan ook voor gevaar stichten, denk aan <a href="https://nl.wikipedia.org/wiki/Kruiend_ijs">ijsdammen</a> en (bijna) overstromingen. 
-        <br><br>
+
         Om de waterveiligheid te verbeteren, worden rivierverruimende ingrepen gepleegd. Deze ingrijpende ingrepen worden ontworpen met behulp van computersimulaties. 
-        <br><br>
+        
         Hoe gebeurt dit, en hoe betrouwbaar zijn deze simulaties?
-
-
-        </div>
-        <div class='storystep' data-story-id="2">
-        <h1> Onzekerheid </h1>
-        Om die vraag te kunnen beantwoorden, moet een belangrijke term worden geintroduceerd: <em> onzekerheid </em>. In de wetenschap heeft deze term een andere betekenis dan in spreektaal. We noemen iets onzeker, als we het antwoord niet precies weten. Maar vaak weten we het antwoord wel ongeveer. We spreken dan over <em>waarschijnlijkheid</em>. 
-        </div>
-        <div class='storystep' data-story-id="3">
-        <h1> Ook riviermodellen zijn onzeker </h1>
-        Bij lagere afvoeren, die vaak voorkomen, hebben we veel metingen om modellen te verbeteren. Maar bij hoge afvoeren, die <em>bijna nooit</em> voorkomen, is dat niet zo. We weten dan niet precies hoeveel weerstand planten, bomen en de rivierbodem geven tegen waterstroming.
-        <br><br> 
-
-        <br><br>
-        <a id='aScrollToTop'>Back to top</a>
       </div>
-      </div>  
-      <div class='uielements'>
+      <div class='storystep' data-story-id="1">
+              <h1> Onzekerheid </h1>
+              Om die vraag te kunnen beantwoorden, moet een belangrijke term worden geintroduceerd: <em> onzekerheid </em>. In de wetenschap heeft deze term een andere betekenis dan in spreektaal. We noemen iets onzeker, als we het antwoord niet precies weten. Maar vaak weten we het antwoord wel ongeveer. We spreken dan over <em>waarschijnlijkheid</em>. 
+      </div>
+      <div class='storystep' data-story-id="2">
+              <h1> Ook riviermodellen zijn onzeker </h1>
+              Bij lagere afvoeren, die vaak voorkomen, hebben we veel metingen om modellen te verbeteren. Maar bij hoge afvoeren, die bijna nooit voorkomen, is dat niet zo. We weten dan niet precies hoeveel weerstand planten, bomen en de rivierbodem geven tegen waterstroming. En dat zorgt voor onzekerheid. 
+      </div>
+      <div class='storystep' data-story-id="3">
+              <h1>Ruwheid en waterstand</h1>
+              Neem bijvoorbeeld de Waal. Recht zie je een grafiek waarin de gemiddelde waterstand bij een hoge afvoer is weergegeven. Een hogere ruwheid zal zorgen voor een hogere waterstand. Met de onderstaande slider kan je de ruwheid in de rivier verhogen of verlagen, om te zien wat er gebeurd:  
+              <div id=slidercontainer>
+              <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
+              oninput="SliderFunc(this.value)" onchange="SliderFunc(this.value)">
+              </div>
+              some content after slider
+      </div>
+      <div class='storystep' data-story-id="4">
+              <h2>Onzekerheidsbanden</h2>
+              We kunnen dit effectiever samenvatten met onzekerheidsbanden. In de kleinste band (<em>zeer lage waarschijnlijkheid</em>) vallen slechts 1 van de 10 van de simulaties. In de hoogste (<em>zeer hoge waarschijnlijkheid</em>) vallen 9 van de tien simulaties. We zijn er dus vrij zeker van, dat de daadwerlijke waterstand ergens in dit gebied ligt. 
+              <!-- deze data toevoegen -->
+              Door de gemiddelde waterstand af te trekken van de alle waterstanden, zien we duidelijk de onzekerheid langs de rivier. Die onzekerheid is dus zo'n 70 cm. Kunnen we dan wel nauwkeurig ingrepen berekenen van enkele centimeters?
+
+      </div>
+
+      <div class='storystep' data-story-id="5">
+              <h1>Rivieringrepen</h1>
+              Dit zelfde principe kunnen we ook toepassen op rivieringrepen. Maar er zit wel een 
+      </div>
       
-    </div>
+      <a id='aScrollToTop'>Back to top</a>
+      </div>  <!-- storyconatiner -->
     </div>    
   </div>
 
@@ -126,7 +140,6 @@
 
 <!-- LOAD JS -->
 
-
 <!--<script src="js/vendor/leaflet.js"></script>-->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
 
@@ -140,5 +153,8 @@
 <script src="js/storymode.js"></script>
 <script src="js/storyfigures.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
+
+
+
 </body>
 </html>

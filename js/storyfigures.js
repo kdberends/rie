@@ -38,16 +38,17 @@ var protoSchematicRiverChart = function() {
                   "#61c960ff", "#6bcc5aff", "#72ce55ff", "#7cd04fff", "#85d349ff", "#8dd544ff",
                   "#97d73eff", "#9ed93aff", "#a8db34ff", "#b0dd31ff", "#b8de30ff", "#c3df2eff",
                   "#cbe02dff", "#d6e22bff", "#e1e329ff", "#eae428ff", "#f5e626ff", "#fde725ff"];
+    
     var line = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 
-    
+    var pline= {}
     /* /////////////////////////////////////////////////////////////
 	//// Initialisation & general methods
     *///////////////////////////////////////////////////////////////
  	
-    this.setCanvas = function(name){
+    Figure.setCanvas = function(name){
     	canvas = name
     };
 
@@ -81,9 +82,9 @@ var protoSchematicRiverChart = function() {
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 		// Scale the range of the data
-	
-	    xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
+		this.updateScales()
+	    //xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
+	    //yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
 	    this.drawAxis()
 	    
 		//this.drawBands()
@@ -97,7 +98,10 @@ var protoSchematicRiverChart = function() {
 	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
 		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
 		xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
+		if (data.extent){
+	    	yScale.domain(data.extent);
+	    } else {d3.extent(data.data, function(d) { return d.y; })
+		};
 	};
 
 	/* /////////////////////////////////////////////////////////////
@@ -117,6 +121,7 @@ var protoSchematicRiverChart = function() {
     	// update scales
     	this.updateScales()
     	this.updateAxis()
+    	this.updatePaths()
 
     	// Update confidence limits
     	DB = this.drawBands
@@ -279,6 +284,14 @@ var protoSchematicRiverChart = function() {
 		  	}
 	};
 
+	this.setYLabel = function(label){
+		d3.select('#YLabel').text(label)
+	};
+
+	this.setXLabel = function(label){
+		d3.select('#XLabel').text(label)
+	};
+
     this.setXaxisCallback  = function(fnc) {
     	let self = this;
     	g.on("mousemove", function(){
@@ -307,8 +320,10 @@ var protoSchematicRiverChart = function() {
     };
     
     this.drawMedian = function (){
+    	if (d3.select('#sf_median').empty()) {
     	g.append("path")
     		.data([data.data])
+    		.attr('id', 'sf_median')
     		.attr('class', 'FigureLine')
     		.style('stroke', 'blue')
     		.style('stroke-width', "1")
@@ -316,8 +331,44 @@ var protoSchematicRiverChart = function() {
 	    	.transition()
 	    	.duration(500)
 	    	.attr("d", line)
+	    } else {
+	    	// Median already plotted, update instead
+    		console.log('median already exists')
+    	} 
+	    
     };
 
+    this.drawPercentile = function (pct){
+    	var pline = d3.line()
+		      .x(function(d) { return xScale(d.x); })
+		      .y(function(d) { return yScale(d.pcts[pct]); });
+
+    	if (d3.select('#sf_percentile').empty()) {
+    	g.append("path")
+    		.data([data.data])
+    		.attr('id', 'sf_percentile')
+    		.attr('class', 'FigureLine')
+    		.style('stroke', 'red')
+    		.style('stroke-width', "1")
+    		.style("fill", 'none')
+	    	.transition()
+	    	.duration(500)
+	    	.attr("d", pline)
+	    } else {
+	    	// Median already plotted, update instead
+    		console.log('pct already exists')
+    	} 
+    };
+
+    this.updatePercentile = function(pct) {
+    	console.log(pct)
+    	var pline = d3.line()
+		      .x(function(d) { return xScale(d.x); })
+		      .y(function(d) { return yScale(d.pcts[pct]); });
+		d3.selectAll("#sf_percentile")
+		   .attr("d", pline)
+		 console.log (d3.select('#sf_percentile'))
+    }
     this.drawBedlevel = function (){
     	g.append("path")
     		.data([data.data])
@@ -332,8 +383,9 @@ var protoSchematicRiverChart = function() {
 
     this.updatePaths = function() {
        d3.selectAll('.FigureLine')
+          .data([data.data])
 	      .transition()
-	      .duration(200)
+	      .duration(500)
 	      .attr('d', line)
     };
 

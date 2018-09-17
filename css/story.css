@@ -166,7 +166,7 @@
 
 .figurebox {
   grid-area: figurebox;
-  opacity: 1;
+  opacity: 0;
   pointer-events: none;
   position: absolute;
 }

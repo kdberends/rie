@@ -1,6 +1,6 @@
 
 /** ////////////////////////////////////////////////////////////
- * Scrollsnap
+ * ..
  *
  *
  */////////////////////////////////////////////////////////////
@@ -54,6 +54,8 @@ d3.queue()
   .defer(d3.json, 'data/smoothing_int99.json')
   .await(display);
 
+
+
 /** ////////////////////////////////////////////////////////////
  * Story scroller
  *
@@ -69,36 +71,56 @@ scroll.on('active', function (index, positions) {
   d3.selectAll('.storystep')
     .style('opacity', 
     	   function (d, i) { return i === index ? 1 : 0.2; });
- 
+ console.log(index)
   // activate current section
   if (index==0){
-    //storyScrollTo(positions[0]+50)
-    d3.select('.figurebox')
-      .transition()
-      .duration(500)
-      .style("opacity", 1)
-      .style("pointer-events", "initial")
-    d3.json('data/reference_waterlevels.json', function(d){
-      Figure.updateData(d)
-      Figure.drawMedian()
-      })
   }
-  else if (index==1) {
-    //storyScrollTo(positions[1]+50)
-    d3.json('data/relocation_int100.json', function(d){
-      Figure.updateData(d)
-      Figure.moveAxis('x', 'bottom')
-    });
+  else if (index==1){
   }
   else if (index==2){
-    //storyScrollTo(positions[2]+50)
+    // Hide figure
     d3.select('.figurebox')
       .transition()
       .duration(500)
       .style("opacity", 0)
-      .style("pointer-events", "none")
+      .style("pointer-events", "initial")
   } 
+  else if (index ==3){
+    
+    // Show figure
+    Figure.hideBands()
+      d3.select('.figurebox')
+      .transition()
+      .duration(500)
+      .style("opacity", 1)
+      .style("pointer-events", "initial")
+      // .. and load data
+    d3.json('data/reference_waterlevels_norm.json', function(d){
+      Figure.updateData(d)
+      Figure.drawMedian()
+      Figure.setYLabel('Waterstand (+ NAP)')
+      })
+    // draw percentile to play with
+        Figure.drawPercentile(50)
+  }
+  else if (index==4){
+    Figure.drawBands()
+    Figure.showBands()
+  }
+  else if (index ==5) {
+    d3.select('.figurebox')
+      .transition()
+      .duration(500)
+      .style("opacity", 0)
+      .style("pointer-events", "initial")
+  }
 });
+
+function SliderFunc(val) {
+
+  Figure.updatePercentile(val)
+};
+
 
 function scrollTopTween(scrollTop) {
   console.log('scrolling to '+ scrollTop)

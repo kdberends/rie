@@ -90,15 +90,15 @@ var BackwaterChart = {};
 	      .attr("x",0 - (height / 2))
 	      .attr("dy", "1em")
 	      .style("text-anchor", "middle")
-	      .text("Flood level decrease [m]"); 
+	      .text("Waterstandsdaling [m]"); 
 
 
 	    g.append("text")
 	      .attr("class", "line labels")
-	      .attr("y", yScale(0.1))
+	      .attr("y", yScale(0.2))
 	      .attr("x", xScale(905))
 	      .style("text-anchor", "middle")
-	      .text("Rhine kilometer [km]"); 
+	      .text("Rijnkilometer [km]"); 
 	    	
 	    b = g.append("path")
 		      .data([data.data])

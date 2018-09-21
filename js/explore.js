@@ -1,3 +1,14 @@
+/* perfect scrollbar
+ */
+
+const ps = new PerfectScrollbar('#InterventionDescription', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+ps.update()
+
 /* Map Variables
  *
  *
@@ -15,6 +26,14 @@ var LineStyle = {
     "stroke": true,
     "color": "#6C716C",
     "weight": 5,
+    "dashArray": "1 0",
+    "dashOffset": "1"
+  };
+
+var MinorEmbankmentStyle = {
+    "stroke": true,
+    "color": "#0E8E0E",
+    "weight": 1,
     "dashArray": "1 0",
     "dashOffset": "1"
   };
@@ -45,13 +64,19 @@ var ActiveRiverKmStyle = {
     fillOpacity: 1
 };
 
+var PolyVisible = {
+          "stroke": true,
+          "weight": 1,
+          "color": "#00C09E",
+          "opacity": 0.5 
+      };
 
 /* LEAFLET
  *
  *
  */
-var map = new L.Map("map", {center: [51.855, 5.36], 
-                              zoom: 13,
+var map = new L.Map("map", {center: [51.845, 5.36], 
+                              zoom: 12,
                               zoomControl: false})
   .addLayer(new L.TileLayer(host, {
       maxzoom: 19,
@@ -127,6 +152,35 @@ var dikeNew =  new L.geoJson(null, {
       }
   });
 
+var embankments =  new L.geoJson(null, {
+      style: MinorEmbankmentStyle,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
+
+var groynes =  new L.geoJson(null, {
+      style: MinorEmbankmentStyle,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
+
+var sidechannels =  new L.geoJson(null, {
+      style: PolyVisible,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
+
+var lowering =  new L.geoJson(null, {
+      style: PolyVisible,
+      pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {});
+      }
+  });
+
+
 /* Events for Map Interaction
  *
  *
@@ -144,20 +198,6 @@ map.on('zoomend', function() {
             console.log("dike_ref already added");
         } else {
             map.addLayer(dike);
-        }
-    }
-    if (map.getZoom() < 11){
-        if (map.hasLayer(dikeNew)) {
-            map.removeLayer(dikeNew);
-        } else {
-            1+1;
-        }
-    }
-    if (map.getZoom() >= 11){
-        if (map.hasLayer(dikeNew)){
-            1+1;
-        } else {
-            map.addLayer(dikeNew);
         }
     }
 }
@@ -185,7 +225,9 @@ function addVelocityLayerToMap(file, thismap){
           speedUnit: 'm/s'
         },
         data: data,
-        maxVelocity: 4
+        maxVelocity: 4,
+        velocityScale: 0.01
+
         });
       velocityLayer.id = 'velos'
       thismap.addLayer(velocityLayer)
@@ -245,6 +287,7 @@ function dropDownFunction() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
+
   if (!event.target.matches('.dropbtn')) {
 
     var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -260,26 +303,46 @@ window.onclick = function(event) {
 
 
 function showReference() {
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Referentiesituatie";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 0 cm (--)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
+  $('#InterventionDescription').load('html/reference_NL.html');
+  /* Figure */
   BackwaterChart.hideBands()
   BackwaterChart.drawZeroLine()
-  map.eachLayer(function (l) {
-    if (l.id == 'velos'){
-      map.removeLayer(l)
-    }
-  })
+
+  /* Map */
+  removeVelocityLayerFromMap();
   addVelocityLayerToMap('data/waal_reference_0000.json', map)
+
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+
+
   dike.setStyle(LineStyle);
 }
 
 function showRelo() {
-  d3.json('data/relocation_int100.json', function(d){BackwaterChart.updateData(d)})  
-  removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int07_0000.json', map)
-  dike.setStyle(DashStyle)
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 105 cm (<span class='label_high'>hoog</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
+  $('#InterventionDescription').load('html/dikerelocation_NL.html');
+  /* Figure */
+  d3.json('data/relocation_int100.json', function(d){BackwaterChart.updateData(d)});
+  removeVelocityLayerFromMap();
+  addVelocityLayerToMap('data/waal_int07_0000.json', map);
+  dike.setStyle(DashStyle);
   
-  dikeNew.addTo(map);
+  /* map */
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
 
+  dikeNew.addTo(map);
   d3.json('shp/banddijken_relocation_int100.json', function (data) {
       dikeNew.addData(data)
     });
@@ -287,12 +350,129 @@ function showRelo() {
 }
 
 function showSmooth() {
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Maaien van de uitwaard";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 30 cm (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 80% (<span class='label_low'>hoog</span>)";
+  $('#InterventionDescription').load('html/smoothing_NL.html');
+  /* Figure */
   d3.json('data/smoothing_int99.json', function(d){BackwaterChart.updateData(d)})  
+
+  /* Map */
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+  dike.setStyle(LineStyle);
+
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int11_0000.json', map);
+
+  sidechannels.addTo(map);
+  sidechannels.clearLayers();
+  d3.json('shp/flplowering_int99.json', function (data) {
+      sidechannels.addData(data)
+    });
+
+};
+
+function showGROYNLOW(){
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 30% (<span class='label_medium'>gemiddeld</span>)";
+  $('#InterventionDescription').load('html/groynelowering_NL.html');
+  /* Figure */
+  d3.json('data/groynelowering_int363.json', function(d){BackwaterChart.updateData(d)})  
+  
+  /* Map */
+  removeVelocityLayerFromMap()
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
   dike.setStyle(LineStyle);
-}
+  groynes.addTo(map)
+  d3.json('shp/groynlow.json', function (data) {
+      groynes.addData(data)
+    });
+
+  removeVelocityLayerFromMap()
+  addVelocityLayerToMap('data/waal_int01_0000.json', map);
+};
+
+function showMINEMBLOW(){
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 5 cm (<span class='label_low'>laag</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 50% (<span class='label_medium'>gemiddeld</span>)";
+  $('#InterventionDescription').load('html/MINEMBLOW_NL.html');
+  /* Figure */
+  d3.json('data/minemblowering_int150.json', function(d){BackwaterChart.updateData(d)})  
+  dike.setStyle(LineStyle);
+  /* Map */
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+
+  embankments.addTo(map);
+  d3.json('shp/minemblow.json', function (data) {
+      embankments.addData(data)
+    });
+
+  removeVelocityLayerFromMap()
+  addVelocityLayerToMap('data/waal_int04_0000.json', map);
+};
+
+function showFLPLOW(){
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 40% (<span class='label_medium'>gemiddeld</span>)";
+  $('#InterventionDescription').load('html/FLPLOW_NL.html');
+  /* Figure */
+  d3.json('data/lowering_int99.json', function(d){BackwaterChart.updateData(d)})  
+  
+  /* Map */
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+  dike.setStyle(LineStyle);
+  sidechannels.addTo(map);
+  d3.json('shp/flplowering_int99.json', function (data) {
+      sidechannels.addData(data)
+    });
+
+  removeVelocityLayerFromMap();
+  sidechannels.clearLayers();
+  addVelocityLayerToMap('data/waal_int03_0000.json', map);
+
+};
+
+function showSIDECHAN(){
+  /* Titles and descriptions */
+  document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 40 cm (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 25% (<span class='label_high'>laag</span>)";
+  $('#InterventionDescription').load('html/SIDECHAN_NL.html');
+  /* Figure */
+  d3.json('data/sidechannel_int100.json', function(d){BackwaterChart.updateData(d)})  
+
+  /* Map */
+  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
+  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
+  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
+  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+  dike.setStyle(LineStyle);
+  sidechannels.addTo(map);
+  sidechannels.clearLayers();
+  d3.json('shp/sidechannel_int100.json', function (data) {
+      sidechannels.addData(data)
+    });
+
+  removeVelocityLayerFromMap()
+  addVelocityLayerToMap('data/waal_int09_0000.json', map);
+};
 
 d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')

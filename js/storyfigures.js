@@ -172,9 +172,9 @@ var protoSchematicRiverChart = function() {
 	    g.append("text")
 	      .attr("id", "XLabel")
 	      .attr("class", "Figurelabels")
-	      .attr("y", yScale(0) - 10)
+	      .attr("y", yScale(0.1))
 	      .attr("x", xScale(905))
-	      .style("text-anchor", "middle")
+	      .style("text-anchor", "bottom")
 	      .text("Rhine kilometer [km]"); 
 	    	   
 	      // Add the X Axis

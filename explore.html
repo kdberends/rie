@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
   <head>
     <!-- META -->
@@ -11,7 +11,8 @@
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet"> 
     <!-- STYLE SHEETS-->
     <!--<link rel="stylesheet" type="text/css" href="js/vendor/leaflet.css"/>-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
@@ -24,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="css/ui.css"/>
     <link rel="stylesheet" type="text/css" href="css/map.css"/>
     
-    
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
     
   </head>
 
@@ -34,7 +35,7 @@
 <body>
 <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
 <div id="map" class="map"></div>   
-<div class="container overlay">
+<main class="container overlay">
 	<nav role="navigation">
 	  	<div id="menuToggle">
 		    <!--
@@ -68,19 +69,37 @@
 	  	</div>
 	</nav>
 
-  <div class="canvas02 glass griditem">
+  
+  <div class="glass griditem">
     <div id="mappo" class="map blur"></div>
     <div class="glass footer">
-    	<svg id="canvas2" class='canvas02'></svg>
+      <!-- FIGURE -->
+    	
+
+      <!-- Measure selector -->
+      <div id='InterventionInfo'>
     	<div class="dropdown">
-            <button onclick="dropDownFunction()" class="dropbtn">Dropdown</button>
+            <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">INTERVENTION</button>
             <div id="InterventionDropdown" class="dropdown-content">
-              <a href="#"" onclick="showReference()">No intervention</a>
-              <a href="#" onclick="showSmooth()">Smoothing</a>
-              <a href="#" onclick="showRelo()">Relocation</a>
+              <a href="#"" onclick="showReference()">Referentiesituatie</a>
+              <a href="#" onclick="showSmooth()">Maaien van de uiterwaarden</a>
+              <a href="#" onclick="showRelo()">Dijkverlegging</a>
+              <a href="#" onclick="showGROYNLOW()">Kribverlaging</a>
+              <a href="#" onclick="showMINEMBLOW()">Kadeverlaging</a>
+              <a href="#" onclick="showSIDECHAN()">Nevengeulen</a>
+              <a href="#" onclick="showFLPLOW()">Uiterwaardvergraving</a>
             </div>
-          </div>
-    	</div>    
+
+      </div>
+      <div id='InterventionCanvas'><svg id="canvas2" class='canvas02'></svg></div>
+      <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
+      <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
+      <!-- Measure description -->
+      <div id='InterventionDescription'>
+       
+      </div>
+    </div> <!-- in'v info -->
+    </div>    
   </div>
   
       	
@@ -88,14 +107,14 @@
   <div class="canvas02 diagram"><svg id="canvas2" class="canvas"></svg></div>
   <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
 -->
-</div> <!-- container -->
+</main> <!-- container -->
 </body>
 
-<!-- FOOTER -->
+<!-- FOOTER
 <footer>
   <div class="footer glass">Design by Koen Berends</div>
 </footer>
-
+ -->
 <!-- LOAD JS -->
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -107,6 +126,7 @@
 <script src="lib/d3.js"></script>
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>
+<script src="js/thirdparty/perfect-scrollbar.js"></script>
 <script src="js/figures_new.js"></script>
 <script src="js/explore.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>

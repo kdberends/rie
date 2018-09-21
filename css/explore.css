@@ -47,16 +47,16 @@
 @media (min-width: 1000px) {
 .container {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: grid;
   grid-gap: 0px;
   grid-template:
-    '. . . . . .'
-    '. . . fig2 fig2 .'
-    '. . . fig2 fig2 .'
-    '. . . fig2 fig2 .'
-    '. . . . cap2 .'
-    '. . . . . .';
+    'fig2 fig2 . . . .'
+    'fig2 fig2 . . . .'
+    'fig2 fig2 . . . .'
+    'fig2 fig2 . . . .'
+    'fig2 fig2 . . . .'
+    'fig2 fig2 . . . .';
 }
 }
 
@@ -110,12 +110,21 @@
   filter: blur(0px);
 }
 
+.griditem{
+  pointer-events: initial;
+  grid-area: fig2;
+  position:absolute; 
+  width:400px;
+  height:100%;
+}
+
 .canvas02 {
+  top: 50px;
   pointer-events: initial;
   grid-area: fig2;
   position:absolute; 
   width:100%;
-  height:90%;
+  height:200px;
 }
 
 

@@ -19,6 +19,7 @@
    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
    crossorigin=""/>
     <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
  <!--   <link rel="stylesheet" type="text/css" href="css/thirdparty/bootstrap.min.css"/>-->
 
     <link rel="stylesheet" type="text/css" href="css/explore.css"/>
@@ -26,12 +27,11 @@
     <link rel="stylesheet" type="text/css" href="css/map.css"/>
     
     <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
-    
+    <!-- JAVASCRIPT -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   </head>
 
 <!-- NAVIGATION -->
-
-
 <body>
 <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
 <div id="map" class="map"></div>   
@@ -39,37 +39,58 @@
 	<nav role="navigation">
 	  	<div id="menuToggle">
 		    <!--
-		    A fake / hidden checkbox is used as click reciever,
-		    so you can use the :checked selector on it.
+		    A fake / hidden checkbox is used as click receiver
 		    -->
-		    <input type="checkbox" />
-		    
+		    <input id="hiddenmenucheckbox" type="checkbox">
+		    <!--<script>$('#hiddenmenucheckbox').trigger('click')</script>-->
 		    <!--
 		    Some spans to act as a hamburger.
-		    
-		    They are acting like a real hamburger,
-		    not that McDonalds stuff.
 		    -->
 		    <span></span>
 		    <span></span>
 		    <span></span>
 		    
 		    <!--
-		    Too bad the menu has to be inside of the button
-		    but hey, it's pure CSS magic.
+		    Hidden side menu
 		    -->
 		    <ul id="menu">
-
+          <hr>
+          <div> Hi! <i style="color:black;font-size:24px;" class="far fa-grin-beam"></i><br/> <br/>
+            This webapp contains an interactive visualisation of some of the results from my <a>PhD research</a>. 
+            We wanted to know how <a>uncertain</a> computer predictions of human changes to a river (like 
+            engineering) are. 
+            <br/><br/>
+            We hope you enjoy clicking through the results!!
+            <br/><br/>
+            Cheers,<br/>
+            <a>Koen</a>
+          </div>
+          <hr>
+          <div>
+            <img src="img/rivercarelogo_black.svg" style="max-width: 300px;margin-top:10px"></img>
+            <img src="img/ncrlogo_text.svg" style="max-width: 300px;margin-top:10px"></img>
+            <!--
+            <br/><br/>Involved partners: <br/>
+            <img src="img/utlogo.svg" style="max-width: 300px;margin-top:10px"></img>
+            <img src="img/deltareslogo.svg" style="max-width: 300px;margin-top:10px"></img>
+            <img src="img/uulogo.svg" style="max-width: 300px;margin-top:10px"></img>
+          -->
+          </div>
+          <hr>
+        </ul>
+        <!--
 		      <a href="storymode.html"><li>Storymode</li></a>
 		      <a href="#"><li>Explore mode</li></a>
 		      <a href="www.rivercare.nl"><li>More RiverCare!</li></a>
           <br /><br />
           
 		    </ul>
-	  	</div>
+      -->
+	  
+
 	</nav>
 
-  
+  <!-- /NAVIGATION -->
   <div class="glass griditem">
     <div id="mappo" class="map blur"></div>
     <div class="glass footer">
@@ -79,7 +100,7 @@
       <!-- Measure selector -->
       <div id='InterventionInfo'>
     	<div class="dropdown">
-            <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">INTERVENTION</button>
+            <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</button>
             <div id="InterventionDropdown" class="dropdown-content">
               <a href="#"" onclick="showReference()">Referentiesituatie</a>
               <a href="#" onclick="showSmooth()">Maaien van de uiterwaarden</a>
@@ -102,27 +123,27 @@
     </div>    
   </div>
   
-      	
-  <!--
-  <div class="canvas02 diagram"><svg id="canvas2" class="canvas"></svg></div>
-  <div class="caption">Fig. A: The water level decrease (in meters) in the middle of the river </div>
--->
+
+
 </main> <!-- container -->
+
+<!-- FOOTER -->
+  <footer>
+    <img src="img/rivercare_ut_logos.svg" style="max-width: 400px"></img>
+</footer>
+
 </body>
 
-<!-- FOOTER
+<!--
 <footer>
   <div class="footer glass">Design by Koen Berends</div>
 </footer>
  -->
 <!-- LOAD JS -->
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!--<script src="js/vendor/leaflet.js"></script>-->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
 <script src="js/thirdparty/L.Map.Sync.js"></script>
 <script src="js/vendor/leaflet.pattern.js"></script>
-<script src="js/dropdown.js"></script>
 <script src="lib/d3.js"></script>
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>

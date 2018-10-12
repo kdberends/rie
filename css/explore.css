@@ -44,7 +44,7 @@
 
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 600px) {
 .container {
   width: 100%;
   height: 100%;
@@ -60,21 +60,6 @@
 }
 }
 
-@media (max-width: 999px) {
-.container {
-  width: 100%;
-  height: 80%;  
-  display: grid;
-  grid-gap: 0px;
-  grid-template:
-    '. . . .'
-    '. fig2 fig2 .'
-    '. fig2 fig2 .'
-    '. fig2 fig2 .'
-    '. . cap2 .'
-    '. . . .';
-}
-}
 
 @media (max-width: 600px) {
 .container {
@@ -83,12 +68,9 @@
   display: grid;
   grid-gap: 0px;
   grid-template:
-    '. . '
     'fig2 fig2 '
     'fig2 fig2 '
-    'fig2 fig2 '
-    'cap2 cap2 '
-    '. . ';
+    'fig2 fig2 ';
 }
 }
 
@@ -172,15 +154,14 @@ div.tooltip {
 
 footer {
    position:absolute;
+   right:10px;
    bottom:10px;
    margin: auto;
-   width:10%;
+   width:300px;
    height:60px;   /* Height of the footer */
-   overflow: hidden;
+   overflow: all;
    border-radius: 2px;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+   transform: translate(-50%, 0%);
 }
 
 .LVelocityLegend {

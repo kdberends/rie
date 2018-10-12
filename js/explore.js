@@ -1,5 +1,9 @@
-/* perfect scrollbar
- */
+/** ////////////////////////////////////////////////////////////
+ * Perfect scrollbar
+ * 
+ *
+ */////////////////////////////////////////////////////////////
+
 
 const ps = new PerfectScrollbar('#InterventionDescription', {
   wheelSpeed: 1,
@@ -9,17 +13,29 @@ const ps = new PerfectScrollbar('#InterventionDescription', {
 });
 ps.update()
 
-/* Map Variables
+const scroll_welcomemenu = new PerfectScrollbar('#menu', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+scroll_welcomemenu.update()
+
+/** ////////////////////////////////////////////////////////////
+ * Background map
  *
+ * Other servers: (light themes!)
+ * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+ * var host = "https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}";
+ * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}{r}.png";
+ * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+ * var host = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
  *
- */
+ */////////////////////////////////////////////////////////////
+
 var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
-//var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-//var host = "https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}";
-//var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}{r}.png";
-//var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-//var host = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
-  
+
+// Attribution is now embedded in menu, no longer in map
 var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 
 var LineStyle = {
@@ -76,14 +92,16 @@ var PolyVisible = {
  *
  */
 var map = new L.Map("map", {center: [51.845, 5.36], 
-                              zoom: 12,
-                              zoomControl: false})
+                            zoom: 13,
+                            zoomControl: false,
+                            attributionControl:false })
   .addLayer(new L.TileLayer(host, {
       maxzoom: 19,
-      attribution: attr
-    }));
+      attribution: attr}
+    )
+  );
 
-var map2 = new L.Map("mappo", {center: [51.84, 5.46], 
+var map2 = new L.Map("map_clone", {center: [51.84, 5.46], 
                               zoom: 13,
                               zoomControl: false,
                               attributionControl:false})
@@ -142,7 +160,6 @@ d3.json('shp/rivierkilometers.json', function (data) {
                        className: 'kmtooltip'}
                       )
        }
-      //riverkm.addData(data.features[1]).bindTooltip(data.features[i].properties.MODELKILOM, {direction: 'top'});//.openTooltip();
 });
 
 var dikeNew =  new L.geoJson(null, {
@@ -180,7 +197,20 @@ var lowering =  new L.geoJson(null, {
       }
   });
 
-
+// Marker tooltips
+/*
+L.marker([51.807, 5.3765], {
+     icon: L.divIcon({
+           html: '<i class="fas fa-question-circle fa-lg" style="color: white"></i>',
+           iconSize: [20, 20],
+           className: 'myDivIcon'
+            })
+})
+.bindTooltip("Huidige locatie van de dijk", {direction: 'bottom',
+                                 offset: L.point(0, 10)})
+ .addTo(map)
+ .openTooltip()
+*/
 /* Events for Map Interaction
  *
  *
@@ -249,7 +279,7 @@ function display(error, dataset1, dataset2) {
 
 
 
-  // Backwaterchart figure
+  // Backwaterchart figure 
 	BackwaterChart.setCanvas("#canvas2")
 	BackwaterChart.setData(dataset2)
 	BackwaterChart.init()
@@ -328,7 +358,7 @@ function showReference() {
 function showRelo() {
   /* Titles and descriptions */
   document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 105 cm (<span class='label_high'>hoog</span>)";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 108 cm (<span class='label_high'>hoog</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/dikerelocation_NL.html');
   /* Figure */
@@ -351,9 +381,9 @@ function showRelo() {
 
 function showSmooth() {
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Maaien van de uitwaard";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 30 cm (<span class='label_medium'>gemiddeld</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 80% (<span class='label_low'>hoog</span>)";
+  document.getElementById("InterventionTitle").innerHTML = "Maaien van de uiterwaard";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 28 cm (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 82% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('html/smoothing_NL.html');
   /* Figure */
   d3.json('data/smoothing_int99.json', function(d){BackwaterChart.updateData(d)})  
@@ -379,8 +409,8 @@ function showSmooth() {
 function showGROYNLOW(){
   /* Titles and descriptions */
   document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 30% (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 4 cm (<span class='label_low'>laag</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/groynelowering_NL.html');
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){BackwaterChart.updateData(d)})  
@@ -403,8 +433,8 @@ function showGROYNLOW(){
 function showMINEMBLOW(){
   /* Titles and descriptions */
   document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 5 cm (<span class='label_low'>laag</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 50% (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('html/MINEMBLOW_NL.html');
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){BackwaterChart.updateData(d)})  
@@ -427,7 +457,7 @@ function showFLPLOW(){
   /* Titles and descriptions */
   document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 40% (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/FLPLOW_NL.html');
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){BackwaterChart.updateData(d)})  
@@ -452,8 +482,8 @@ function showFLPLOW(){
 function showSIDECHAN(){
   /* Titles and descriptions */
   document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 40 cm (<span class='label_medium'>gemiddeld</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 25% (<span class='label_high'>laag</span>)";
+  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 36 cm (<span class='label_medium'>gemiddeld</span>)";
+  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/SIDECHAN_NL.html');
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){BackwaterChart.updateData(d)})  

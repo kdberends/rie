@@ -1,97 +1,145 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-  <title>Scrolling Sections</title>
-  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta content="utf-8" http-equiv="encoding">
-  <meta name="author" content="K.D. Berends">
-  <!-- one page scroll
-  <script type="text/javascript" src="js/onepagescroll.js"></script>
-  <link href='css/onepage-scroll.css' rel='stylesheet' type='text/css'>-->
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-  <!-- Custom css --> 
-  <link rel="stylesheet" type="text/css" href="css/style.css"/>
-</head>
+<!doctype html> 
+<html lang="en">
+  <head>
+    <!-- META -->
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="K.D. Berends" contents">
+
+    <title>RiverCareF1 - Interactive visualisation</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet"> 
+    
+    <!-- EXTERNAL STYLE SHEETS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+          integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+          crossorigin=""/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
+
+    <!-- LOCAL STYLE SHEETS-->
+    <link rel="stylesheet" type="text/css" href="css/explore.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/map.css"/>
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
+    
+    <!-- JAVASCRIPT -->
+    <!-- Jquery is needed on load to trigger the welcome menu to pop out. 
+         All other javascript is loaded at the end of the document to 
+         speed up page load -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  </head>
+
+
 <body>
-  
-<!-- NAVIGATION -->
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="#">RiverCare F1</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Story <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Xplore</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">About</a>
-          </li>
-        </ul>
-      </div>
-</nav>
+  <!-- GitHub banner-->
+  <a href="https://github.com/kdberends">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" 
+         src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" 
+         alt="Fork me on GitHub">
+  </a>
+  <!-- Background map -->
+  <div id="map" class="map"></div>   
 
-<!-- MAIN BODY-->
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <div id='graphic'>
-        <div id='sections'>
-          <section class="step">
-            <div class="title">Model-based design</div>
-            To prepare our rivers for the future, engineers design the river sytem for extreme events. These events have not been observed. Therefore, we rely on models to tell us how effective interventions are. This is called <span class="highlight">model-based design</span>. 
-          </section>
-          <section class="step">
-            <div class="title">Uncertainty</div>
-            As expected, I could only focus on the flaws: the rushed speech, the odd phrases, and, most especially, all the filler words. In fact, I found 180 filler words in my 30 minute talk.
-          </section>
-          <section class="step">
-            <div class="title">My Talk</div>
-            Here are all 5,040 words of my talk.
-          </section>
-          <div id=extra-space></div>
+  <!-- Main content-->
+  <main class="container overlay">
+    <!-- NAVIGATION -->
+  	<nav role="navigation">
+  	  	<div id="menuToggle">
+  		    <!--
+  		    A fake / hidden checkbox is used as click receiver
+  		    -->
+  		    <input id="hiddenmenucheckbox" type="checkbox">
+  		    <!--<script>$('#hiddenmenucheckbox').trigger('click')</script>-->
+  		    <!--
+  		    Some spans to act as a hamburger.
+  		    -->
+  		    <span></span>
+  		    <span></span>
+  		    <span></span>
+
+  		    <!--
+  		    Hidden side menu
+  		    -->
+  		    <ul id="menu">
+            <hr>
+            <div> Hi! <i style="color:black;font-size:24px;" class="far fa-grin-beam"></i><br/> <br/>
+              This webapp contains an interactive visualisation of some of the results from my <a>PhD research</a>. 
+              We wanted to know how <a>uncertain</a> computer predictions of human changes to a river (like 
+              engineering) are. 
+              <br/><br/>
+              You can start by clicking on the blue arrow on top. We hope you enjoy clicking through the results!
+              <br/><br/>
+              Cheers,<br/>
+              <a href="https://people.utwente.nl/k.d.berends?tab=about-me">Koen</a>
+            </div>
+            <hr>
+            <div>
+              <img src="img/rivercarelogo_black.svg" style="max-width: 300px;margin-top:10px"></img>
+              <img src="img/ncrlogo_text.svg" style="max-width: 300px;margin-top:10px"></img>
+            </div>
+            <hr>
+            Map attribution: <br/><br/>
+              &copy; <a href="https://leafletjs.com/">LeafletJS</a> <br/>
+              &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <br/>
+              &copy; <a href="http://cartodb.com/attributions">CartoDB</a>
+
+          </ul>
+  	</nav>
+
+    <!-- Main UI elements -->
+    <div class="glass griditem">
+      <div id="map_clone" class="map blur"></div>
+      <div class="glass footer">
+        <!-- Measure selector -->
+        <div id='InterventionInfo'>
+      	<div class="dropdown">
+              <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</button>
+              <div id="InterventionDropdown" class="dropdown-content">
+                <a href="#"" onclick="showReference()">Referentiesituatie</a>
+                <a href="#" onclick="showSmooth()">Maaien van de uiterwaarden</a>
+                <a href="#" onclick="showRelo()">Dijkverlegging</a>
+                <a href="#" onclick="showGROYNLOW()">Kribverlaging</a>
+                <a href="#" onclick="showMINEMBLOW()">Kadeverlaging</a>
+                <a href="#" onclick="showSIDECHAN()">Nevengeulen</a>
+                <a href="#" onclick="showFLPLOW()">Uiterwaardvergraving</a>
+              </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm-4 order-first order-sm-2"><div id='vis'> </div></div>
-  </div>
-  </div>
+        <div id='InterventionCanvas'><svg id="canvas2" class='canvas02'></svg></div>
+        <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)<hr></div>
+        <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
+        <div id='InterventionDescription'></div>
+      </div> <!-- in'v info -->
+      </div> <!-- cont' background -->
+    </div> <!-- grid -->
+  </main>
 
+  <!-- FOOTER -->
+  <footer>
+      
+      <img src="img/rivercare_ut_logos.svg" style="max-width: 400px"></img>
+  </footer>
+</body>
 
+<!-- LOAD JS -->
 
-<footer class="fixed-bottom bg-light navbar">
-          <p> by K.D. Berends</p>
-</footer>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="js/thirdparty/L.Map.Sync.js"></script>
+<script src="js/vendor/leaflet.pattern.js"></script>
 <script src="lib/d3.js"></script>
 <script src="js/scroller.js"></script>
-<script src="js/sections.js"></script>
 <script src="js/data.js"></script>
-<script src="js/display.js"></script>
+<script src="js/thirdparty/perfect-scrollbar.js"></script>
+<script src="js/figures_new.js"></script>
+<script src="js/explore.js"></script>
+<!-- refactor in progress (to replace figures_new.js and explore.js
+<script src="js/storyfigures.js"></script>
+<script src="js/main.js"></script>
+-->
+<script src="js/thirdparty/leaflet-velocity.js"></script>
 
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
-    <!--<script src="js/popper.min.js"></script>-->
-    <script src="js/bootstrap.min.js"></script>
-    <!--<script>
-
-   onePageScroll(".container", {
-     sectionContainer: "section",
-     loop: true,
-     responsiveFallback: false
-   });
-    
-  </script>-->
-</body>
 </html>

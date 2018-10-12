@@ -75,13 +75,13 @@
   pointer-events: initial;
   font-family: "Montserrat";
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 200px;
   position:relative;
-  top:200px;
-  overflow: hidden;
+  top:0px;
+  overflow: auto;
   color: #FFFFFF;
   font-size: 14px;
-  height:450px;
+  height:250px;
   background: linear-gradient(#FFFFFF 50%, rgba(0, 0, 0, 0) 100%);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
@@ -124,6 +124,7 @@
  * production code, beware of the browser
  * prefixes.
  */
+
 a
 {
   text-decoration: none;
@@ -189,6 +190,7 @@ a:hover
               opacity 0.55s ease;
 }
 
+
 #menuToggle span:first-child
 {
   transform-origin: 0% 0%;
@@ -233,22 +235,31 @@ a:hover
  * at the top left of the screen
  */
 #menu
-{
+{ 
+  overflow: auto;
   position: absolute;
   width: 300px;
-  height: 1000px;
+  height: 100vh;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
   background: var(--background-light);
-  border-right: 5px solid var(--accent-light);
+  
+  box-shadow: 2px 10px 10px 5px #000000;
   list-style-type: square;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
   
   transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
+  transform: translate(-92%, 0);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu div
+{
+  font-family: Raleway;
+  padding: 10px 0;
+  font-size: 14px;
 }
 
 #menu li
@@ -257,6 +268,22 @@ a:hover
   padding: 10px 0;
   font-size: 22px;
 }
+
+#menu a {
+  text-decoration: none;
+  color: #232323;
+  transition: color 0.1s ease;
+  border-bottom:2px dotted #232323;
+  display: inline-block;
+  position: relative;
+}
+#menu a:hover
+{
+  color: #125D9B;
+  border-bottom:2px dotted #125D9B;
+ 
+}
+
 
 /*
  * And let's slide it in from the left
@@ -303,4 +330,9 @@ a:hover
     height: 25px; /* Slider handle height */
     background: var(accent-light); /* Green background */
     cursor: pointer; /* Cursor on hover */
+}
+
+.myDivIcon {
+  text-align: center; /* Horizontally center the text (icon) */
+  line-height: 20px; /* Vertically center the text (icon) */
 }

@@ -48,7 +48,7 @@ var protoSchematicRiverChart = function() {
 	//// Initialisation & general methods
     *///////////////////////////////////////////////////////////////
  	
-    Figure.setCanvas = function(name){
+    this.setCanvas = function(name){
     	canvas = name
     };
 

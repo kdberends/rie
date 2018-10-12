@@ -1,4 +1,39 @@
 /** ////////////////////////////////////////////////////////////
+ * UI toggles
+ * 
+ *
+ */////////////////////////////////////////////////////////////
+
+// Flags that remember which panel is out
+var AppMenuToggle = true;
+var AppToggles = [true, false, false, false];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionInfo", "#ComparePanel"];
+var ExploreToggle = true;
+
+var toggleAppMenu = function () {
+  if (AppMenuToggle){
+    $('#leftbar').css('transform','translate(-100%, 0%)');
+    $('#appnavigation').css('transform','translate(0%, -150%)');
+    AppMenuToggle = false;    
+  } else {
+    $('#leftbar').css('transform','translate(0%, 0%)');
+    $('#appnavigation').css('transform','translate(0%, 0%)');
+    AppMenuToggle = true;
+  };
+};
+
+var toggleApp = function (appindex) {
+  for (let i=0;i<AppToggles.length;i++){
+    if (i == appindex) {
+      $(AppIds[appindex]).css('transform','translate(0%, 0%)');
+    } else{
+      $(AppIds[i]).css('transform','translate(-120%, 0%)');
+  };
+  };
+};
+
+
+/** ////////////////////////////////////////////////////////////
  * Perfect scrollbar
  * 
  *
@@ -13,7 +48,7 @@ const ps = new PerfectScrollbar('#InterventionDescription', {
 });
 ps.update()
 
-const scroll_welcomemenu = new PerfectScrollbar('#menu', {
+const scroll_welcomemenu = new PerfectScrollbar('#AboutPanel', {
   wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,
@@ -34,7 +69,7 @@ scroll_welcomemenu.update()
  */////////////////////////////////////////////////////////////
 
 var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
-
+//var host = "https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}";
 // Attribution is now embedded in menu, no longer in map
 var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 

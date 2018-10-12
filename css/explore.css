@@ -11,14 +11,14 @@
 }
 
 .blur{
-  -moz-filter:blur(10px);
-  -o-filter:blur(10px);
-  -webkit-filter:blur(10px);
-  filter: blur(10px); 
+  -moz-filter:blur(6px);
+  -o-filter:blur(6px);
+  -webkit-filter:blur(6px);
+  filter: blur(6px); 
 }
 
 .glass{
-  background-color: rgba(231, 241, 255, 0.2);
+  background-color: rgba(231, 241, 255, 0.3);
   /*background-image: linear-gradient(to top right, 
     rgba(255, 255, 255, 0.0) 8%, 
     rgba(138, 140, 150, 0.4) 40%, 
@@ -64,7 +64,7 @@
 @media (max-width: 600px) {
 .container {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: grid;
   grid-gap: 0px;
   grid-template:
@@ -154,14 +154,15 @@ div.tooltip {
 
 footer {
    position:absolute;
-   right:10px;
+   
+   right:2%;
    bottom:10px;
    margin: auto;
-   width:300px;
+   max-width:300px;
    height:60px;   /* Height of the footer */
    overflow: all;
    border-radius: 2px;
-   transform: translate(-50%, 0%);
+   clear:right;
 }
 
 .LVelocityLegend {

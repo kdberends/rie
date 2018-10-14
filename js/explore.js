@@ -1,5 +1,12 @@
 /** ////////////////////////////////////////////////////////////
- * UI toggles
+ * todo: add meta info 
+ * 
+ * v. 0.xx
+ */////////////////////////////////////////////////////////////
+
+
+/** ////////////////////////////////////////////////////////////
+ * Navigation toggles
  * 
  *
  */////////////////////////////////////////////////////////////
@@ -10,6 +17,7 @@ var AppToggles = [true, false, false, false];
 var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionInfo", "#ComparePanel"];
 var ExploreToggle = true;
 
+// Function to toggle navigation menu
 var toggleAppMenu = function () {
   if (AppMenuToggle){
     $('#leftbar').css('transform','translate(-100%, 0%)');
@@ -22,6 +30,7 @@ var toggleAppMenu = function () {
   };
 };
 
+// Function to switch between apps
 var toggleApp = function (appindex) {
   for (let i=0;i<AppToggles.length;i++){
     if (i == appindex) {
@@ -34,8 +43,8 @@ var toggleApp = function (appindex) {
 
 
 /** ////////////////////////////////////////////////////////////
- * Perfect scrollbar
- * 
+ * Invisible scrollbar (perfectscrollbarjs)
+ * For 
  *
  */////////////////////////////////////////////////////////////
 
@@ -57,7 +66,7 @@ const scroll_welcomemenu = new PerfectScrollbar('#AboutPanel', {
 scroll_welcomemenu.update()
 
 /** ////////////////////////////////////////////////////////////
- * Background map
+ * Background map (Leaflet)
  *
  * Other servers: (light themes!)
  * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";

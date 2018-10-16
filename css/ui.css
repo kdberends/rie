@@ -148,18 +148,64 @@
 }
 
 /* ===========================================
+ * Compare app
+ * ===========================================
+ */
+
+#ComparePanel{
+  transform: translate(-150%, 0%);
+  position: absolute;
+  top:75px;
+  left: 20px;
+  width: 350px;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
+}
+
+/* ===========================================
  * Intervention Explorer
  * ===========================================
  */
 
-#InterventionInfo {
+
+#IntensitySwitchDiv{
+  position: relative;
+  top: 210px;
+}
+
+#IntensitySwitchDiv div{
+  text-align: center;
+}
+
+#IntensitySwitchDiv::before{
+  content: "intensity";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #3E3E3E;
+  font-family: Oswald;
+}
+
+#InterventionInfo{
+  transform: translate(-150%, 0%);
   position: relative;
   top:75px;
   left: 20px;
   width: 350px;
   overflow: hidden;
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  transform: translate(-150%, 0%);
+}
+
+#InterventionTable{
+  position: relative;
+  top: 220px;
+}
+
+#InterventionTable::before{
+  content: "summary";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #3E3E3E;
+  font-family: Oswald;
 }
 
 #InterventionUncertainty, #InterventionEffect {
@@ -170,25 +216,35 @@
   padding-left: 10px;
   margin-top: 2px;
   overflow: hidden;
-
-  position:relative;
-  top:200px;
 }
 
 #InterventionDescription {
   pointer-events: initial;
   font-family: "Montserrat";
-  padding: 10px;
-  margin-top: 200px;
-  position:relative;
-  top:0px;
+  padding: 10px; 
   overflow: auto;
   color: #FFFFFF;
   font-size: 14px;
-  height: 200px;
-
 }
 
+#Description{
+  position:relative;
+  margin-top: 230px;
+  height: 200px;
+}
+
+#Description::before{
+  content: "description";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #3E3E3E;
+  font-family: Oswald;
+}
+
+.textframe {
+  border-left: 1px solid #3E3E3E;
+  border-top: 1px solid #3E3E3E;
+}
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -253,6 +309,67 @@
 .dropdown {
     pointer-events: initial;
 }
+
+
+ /* The switch - the box around the slider */
+.intensityswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  top: 5px;
+}
+
+/* Hide default HTML checkbox */
+.intensityswitch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3D9FDD;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #149264;
+}
+
+input:focus + .slider {
+  box-shadow: 1 2 4px #077A35;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(40px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 5px;
+}
+
+.slider.round:before {
+  border-radius: 10%;
+} 
 
 
 /* ===========================================

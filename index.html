@@ -21,10 +21,14 @@
     <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/introjs.css"/>
+    
     <!-- LOCAL STYLE SHEETS-->
     <link rel="stylesheet" type="text/css" href="css/explore.css"/>
     <link rel="stylesheet" type="text/css" href="css/ui.css"/>
     <link rel="stylesheet" type="text/css" href="css/map.css"/>
+
     <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
     
     <!-- JAVASCRIPT -->
@@ -77,8 +81,8 @@
       <div id="map_clone" class="map blur"></div>
       <div class="glass footer">
         
-      <!-- Intervention explorer -->
-      <div id='InterventionInfo'>
+      <!-- Explore app -->
+      <div id="InterventionInfo" class='appcontainer'>
       	<div class="dropdown">
               <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</button>
               <div id="InterventionDropdown" class="dropdown-content">
@@ -91,13 +95,40 @@
                 <a href="#" onclick="showFLPLOW()">Uiterwaardvergraving</a>
               </div>
         </div>
-        <div id='InterventionCanvas'><svg id="canvas2" class='canvas02'></svg></div>
-        <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)<hr></div>
-        <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
-        <div id='InterventionDescription'></div>
+        <div id='InterventionCanvas'><svg id="ExploreCanvas" class='canvas02'></svg></div>
+        <div id="IntensitySwitchDiv" class='textframe'>
+        <div>
+          Low intensity
+          <label class="intensityswitch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+          </label>
+          High intensity
+        </div>
+        </div>
+        <div id="InterventionTable" class='textframe'>
+          <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
+          <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
+        </div>
+        <div id="Description" class='textframe'>
+          <div id='InterventionDescription'></div>
+        </div>
       </div> <!-- in'v info -->
 
-      <!-- About -->
+      <!-- Compare app -->
+      <div id="ComparePanel" class='appcontainer'>
+        
+        <div>
+          <svg id="CompareCanvas" class='canvas02'></svg>
+        </div>
+        <div class='textframe'>
+          <div>
+            Here will be the greatest of all
+          </div>
+        </div>
+      </div>
+
+      <!-- About app -->
       <div id='AboutPanel'>
         <div> Hi! <i style="font-size:24px;" class="far fa-grin-beam"></i><br/> <br/>
 
@@ -165,12 +196,8 @@
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>
 <script src="js/thirdparty/perfect-scrollbar.js"></script>
-<script src="js/figures_new.js"></script>
-<script src="js/explore.js"></script>
-<!-- refactor in progress (to replace figures_new.js and explore.js
 <script src="js/storyfigures.js"></script>
-<script src="js/main.js"></script>
--->
+<script src="js/explore.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
-
+<link rel="stylesheet" type="text/css" href="css/explore_app.css"/>
 </html>

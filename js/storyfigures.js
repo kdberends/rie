@@ -1,3 +1,4 @@
+
 var protoSchematicRiverChart = function() {
 	/* This chart will depict a one-dimensional figure of river flow
 	 * It contains functions to demonstrate the effect of interventions
@@ -43,7 +44,7 @@ var protoSchematicRiverChart = function() {
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
 
-    var pline= {}
+    var pline= {};
     /* /////////////////////////////////////////////////////////////
 	//// Initialisation & general methods
     *///////////////////////////////////////////////////////////////
@@ -98,9 +99,11 @@ var protoSchematicRiverChart = function() {
 	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
 		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
 		xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
+		
 		if (data.extent){
 	    	yScale.domain(data.extent);
-	    } else {d3.extent(data.data, function(d) { return d.y; })
+	    } else {
+	    	yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
 		};
 	};
 
@@ -129,21 +132,17 @@ var protoSchematicRiverChart = function() {
 		
     	// remove current bands, then change line
     	g.selectAll(".area")
-         .transition()
-         .duration(750)
-         .attr("opacity", 0)
          .remove()
-         .on("end", function () {    
-	    	d3.select(canvas).selectAll('.valueline')
-	    	.datum(data.data)
-	    	.transition()
-	    	.duration(500)
-	    	.attr("d", valueline)
-	    	.on("end", function () {
-	    		DB()
-	    		SB()
-	    	});
-    	});
+         .on("end", function () {
+	        console.log('kaaan')    
+			    d3.select(canvas).selectAll('.valueline')
+			    .datum(data.data)
+			    .transition()
+			    .duration(500)
+			    .attr("d", valueline)
+    		});
+         DB()
+         SB()
     };
 
 	/* /////////////////////////////////////////////////////////////
@@ -172,9 +171,9 @@ var protoSchematicRiverChart = function() {
 	    g.append("text")
 	      .attr("id", "XLabel")
 	      .attr("class", "Figurelabels")
-	      .attr("y", yScale(0.1))
+	      .attr("y", yScale(0.2))
 	      .attr("x", xScale(905))
-	      .style("text-anchor", "bottom")
+	      .style("text-anchor", "middle")
 	      .text("Rhine kilometer [km]"); 
 	    	   
 	      // Add the X Axis
@@ -260,8 +259,7 @@ var protoSchematicRiverChart = function() {
     	d3.select('#XAxis')
     	   .transition()
     	   .duration(400)
-    	   .attr("transform", "translate(0," + yScale(yScale.domain()[0]) + ")")
-    	   .call(xAxisConstructor(xScale).ticks(xticks).tickPadding(10))
+    	   .call(xAxisConstructor(xScale).ticks(xticks))
     };
 
     this.updateCrosshairX = function(mouseX){

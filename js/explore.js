@@ -350,8 +350,7 @@ function showReference() {
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
   $('#InterventionDescription').load('html/reference_NL.xml');
   /* Figure */
-  d3.json('data/reference_waterlevels_norm.json', function (d) 
-    {Figure.updateData(d)});
+  d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
 
   /* Map */
@@ -374,7 +373,7 @@ function showRelo() {
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/dikerelocation_NL.xml');
   /* Figure */
-  d3.json('data/relocation_int100.json', function(d){Figure.updateData(d)});
+  d3.json('data/relocation_int100.json', function(d){ExploreFigure.updateData(d)});
   removeVelocityLayerFromMap();
   addVelocityLayerToMap('data/waal_int07_0000.json', map);
   dike.setStyle(DashStyle);
@@ -399,7 +398,7 @@ function showSmooth() {
   $('#InterventionDescription').load('html/smoothing_NL.xml');
   
   /* Figure */
-  d3.json('data/smoothing_int99.json', function(d){Figure.updateData(d)})  
+  d3.json('data/smoothing_int99.json', function(d){ExploreFigure.updateData(d)})  
 
   /* Map */
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
@@ -427,7 +426,7 @@ function showGROYNLOW(){
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/groynelowering_NL.xml');
   /* Figure */
-  d3.json('data/groynelowering_int363.json', function(d){Figure.updateData(d)})  
+  d3.json('data/groynelowering_int363.json', function(d){ExploreFigure.updateData(d)})  
   
   /* Map */
   removeVelocityLayerFromMap()
@@ -451,7 +450,7 @@ function showMINEMBLOW(){
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('html/MINEMBLOW_NL.xml');
   /* Figure */
-  d3.json('data/minemblowering_int150.json', function(d){Figure.updateData(d)})  
+  d3.json('data/minemblowering_int150.json', function(d){ExploreFigure.updateData(d)})  
   dike.setStyle(LineStyle);
   /* Map */
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
@@ -474,7 +473,7 @@ function showFLPLOW(){
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/FLPLOW_NL.xml');
   /* Figure */
-  d3.json('data/lowering_int99.json', function(d){Figure.updateData(d)})  
+  d3.json('data/lowering_int99.json', function(d){ExploreFigure.updateData(d)})  
   
   /* Map */
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
@@ -500,7 +499,7 @@ function showSIDECHAN(){
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('html/SIDECHAN_NL.xml');
   /* Figure */
-  d3.json('data/sidechannel_int100.json', function(d){Figure.updateData(d)})  
+  d3.json('data/sidechannel_int100.json', function(d){ExploreFigure.updateData(d)})  
 
   /* Map */
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
@@ -521,25 +520,28 @@ function showSIDECHAN(){
 
 /** ////////////////////////////////////////////////////////////
  * Interaction
- */////////////////////////////////////////////////////////////
+ *//////////////////////////////////////////////////////////////
 
 /* Create initial shown data & initialise apps */
-var Figure = {};
-function display(error, dataset) {
+var ExploreFigure = {};
+var CompareFigure = {};
+
+function display(error, dataset, comparedata) {
   // === Background map ===
   addVelocityLayerToMap('data/waal_reference_0000.json', map);
   
   // === Explore App ===
-  protoSchematicRiverChart.apply(Figure);
-  Figure.setCanvas('#ExploreCanvas');
-  Figure.setData(dataset);
-  Figure.init();
-  Figure.moveAxis('x', 'zero')
-  Figure.drawMedian();
-  Figure.drawBands();
-  Figure.showBands();
+  protoSchematicRiverChart.apply(ExploreFigure);
+  ExploreFigure.setCanvas('#ExploreCanvas');
+  ExploreFigure.setData(dataset);
+  ExploreFigure.init();
+  ExploreFigure.moveAxis('x', 'zero')
+  ExploreFigure.drawMedian();
+  ExploreFigure.drawBands();
+  ExploreFigure.showBands();
+
   // Set callback between map and figure
-  Figure.setXaxisCallback(function (coor) {
+  ExploreFigure.setXaxisCallback(function (coor) {
     d3.json('shp/rivierkilometers.json', function (data) {
       riverkmFocus.clearLayers();
       let index = (coor - 854) 
@@ -547,27 +549,34 @@ function display(error, dataset) {
       });
     });
 
+  // === Compare App ===
+  protoCompareChart.apply(CompareFigure);
+  CompareFigure.setCanvas('#CompareCanvas');
+  CompareFigure.setData(comparedata);
+  CompareFigure.init();
+  CompareFigure.drawInterventionLine();
+  CompareFigure.drawDesiredEffect();
+
   // Make sure figure updates when window resizes
    d3.select(window)
       .on("resize.chart", function(){
-          Figure.resize()
-          Figure.setXaxisCallback(function (coor) {
-          d3.json('shp/rivierkilometers.json', function (data) {
-          riverkmFocus.clearLayers();
-          let index = (coor - 854) 
-          riverkmFocus.addData(data.features[index]);
+          ExploreFigure.resize();
+          CompareFigure.resize();
+          ExploreFigure.setXaxisCallback(function (coor) {
+            d3.json('shp/rivierkilometers.json', function (data) {
+            riverkmFocus.clearLayers();
+            let index = (coor - 854) 
+            riverkmFocus.addData(data.features[index]);
           });
         });
       });
-
-
 };
 
 
 // Kick off everything
 d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')
-  .defer(d3.json, 'data/smoothing_int99.json')
+  .defer(d3.json, 'data/exceedance_diagram_data.json')
   .await(display);
 
 

@@ -95,8 +95,10 @@
                 <a href="#" onclick="showFLPLOW()">Uiterwaardvergraving</a>
               </div>
         </div>
-        <div id='InterventionCanvas'><svg id="ExploreCanvas" class='canvas02'></svg></div>
-        <div id="IntensitySwitchDiv" class='textframe'>
+        <div id='InterventionCanvas'>
+          <svg id="ExploreCanvas" class='canvas02'></svg>
+        </div>
+        <div id="IntensitySwitchDiv" class='textframe frame-options'>
         <div>
           Low intensity
           <label class="intensityswitch">
@@ -106,24 +108,46 @@
           High intensity
         </div>
         </div>
-        <div id="InterventionTable" class='textframe'>
+        <div id="InterventionTable" class='textframe frame-summary'>
           <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
           <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
         </div>
-        <div id="Description" class='textframe'>
+        <div id="Description" class='textframe frame-description'>
           <div id='InterventionDescription'></div>
         </div>
       </div> <!-- in'v info -->
 
       <!-- Compare app -->
       <div id="ComparePanel" class='appcontainer'>
-        
         <div>
           <svg id="CompareCanvas" class='canvas02'></svg>
         </div>
-        <div class='textframe'>
+        <div id="CompareOptions" class='textframe frame-options'>
+        <div>
+          <div id="ELSliderContainer" class="CompSliderContainer">
+            <input type="range" min="1" max="99" value="50" class="CompSlider" id="ELSlider" onchange="CompareFigure.updateUncertainty(this.value - 1)">
+          </div>
+          <div id="DESliderContainer" class="CompSliderContainer">
+            <input type="range" min="1" max="100" value="25" class="CompSlider" id="DESlider" onchange="CompareFigure.updateDesiredEffect(this.value / 100)">
+          </div>
+        </div>
+      </div>
+      <div id="CompDescription" class='textframe frame-description'>
+         <div id='InterventionDescription'>
+           bladiebla
+         </div>
+       </div>
+
+      </div>
+
+      <!-- Story app -->
+      <div id="StoryPanel" class='appcontainer'>
+        <div>
+          <svg id="StoryCanvas" class='canvas02'></svg>
+        </div>
+        <div class='textframe frame-description'>
           <div>
-            Here will be the greatest of all
+              Under construction!
           </div>
         </div>
       </div>
@@ -197,6 +221,7 @@
 <script src="js/data.js"></script>
 <script src="js/thirdparty/perfect-scrollbar.js"></script>
 <script src="js/storyfigures.js"></script>
+<script src="js/comparefigure.js"></script>
 <script src="js/explore.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
 <link rel="stylesheet" type="text/css" href="css/explore_app.css"/>

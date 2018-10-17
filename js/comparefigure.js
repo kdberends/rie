@@ -1,4 +1,4 @@
-var protoSchematicRiverChart = function() {
+var protoCompareChart = function() {
 	/* This chart will depict a one-dimensional figure of river flow
 	 * It contains functions to demonstrate the effect of interventions
 	 * and explain uncertainty
@@ -21,23 +21,17 @@ var protoSchematicRiverChart = function() {
  	var yScale = {};
  	var zeroline = {};
  	var valueline = {};
+ 	var xlim = [0, 0.3];
+ 	var ylim = [0, 0.3];
+ 	var interventions = ['relocation', 'smoothing', 'sidechannel', 'lowering', 'groynelowering', 'minemblowering'];
+ 	var index_accepteduncertainty = 49;
+ 	var desiredeffect = 0.25;
  	var data = {};
  	var xAxisConstructor = d3.axisBottom;
  	var width = null;
  	var height = null;
  	var g = null 
-    var colormap = ["#440154ff", "#440558ff", "#450a5cff", "#450e60ff", "#451465ff", "#461969ff",
-                  "#461d6dff", "#462372ff", "#472775ff", "#472c7aff", "#46307cff", "#45337dff",
-                  "#433880ff", "#423c81ff", "#404184ff", "#3f4686ff", "#3d4a88ff", "#3c4f8aff",
-                  "#3b518bff", "#39558bff", "#37598cff", "#365c8cff", "#34608cff", "#33638dff",
-                  "#31678dff", "#2f6b8dff", "#2d6e8eff", "#2c718eff", "#2b748eff", "#29788eff",
-                  "#287c8eff", "#277f8eff", "#25848dff", "#24878dff", "#238b8dff", "#218f8dff",
-                  "#21918dff", "#22958bff", "#23988aff", "#239b89ff", "#249f87ff", "#25a186ff",
-                  "#25a584ff", "#26a883ff", "#27ab82ff", "#29ae80ff", "#2eb17dff", "#35b479ff",
-                  "#3cb875ff", "#42bb72ff", "#49be6eff", "#4ec16bff", "#55c467ff", "#5cc863ff",
-                  "#61c960ff", "#6bcc5aff", "#72ce55ff", "#7cd04fff", "#85d349ff", "#8dd544ff",
-                  "#97d73eff", "#9ed93aff", "#a8db34ff", "#b0dd31ff", "#b8de30ff", "#c3df2eff",
-                  "#cbe02dff", "#d6e22bff", "#e1e329ff", "#eae428ff", "#f5e626ff", "#fde725ff"];
+  var colormap = ["#FF9F1C", "#9CE2EA", "#D77B5A", "#B37FCF", "#828AB6", "#000103"];
     
     var line = d3.line()
 		      .x(function(d) { return xScale(d.x); })
@@ -62,15 +56,12 @@ var protoSchematicRiverChart = function() {
 	    this.updateScales()
 	    this.updatePaths()
 	    this.updateAxis()
-	    //this.init()
-	    //this.drawBands()
-	    //this.drawValueLineNoAnimation()
-	    //this.showBands()
     };
     
     this.init = function(){
-    	//this.setColor("#FFF")    	
+    	// initialises figure
     	this.updateScales()
+
     	d3.select(canvas).append('g');
 
 	    // other elements.
@@ -81,14 +72,10 @@ var protoSchematicRiverChart = function() {
 		var crosshair = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
+		
 		// Scale the range of the data
 		this.updateScales()
-	    //xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
-	    //yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
-	    this.drawAxis()
-	    
-		//this.drawBands()
-	    //this.drawZeroLine()     
+	  this.drawAxis()
 	};
 
 	this.updateScales = function(){
@@ -97,6 +84,12 @@ var protoSchematicRiverChart = function() {
 	 	
 	 	xScale = d3.scaleLinear().range([margin.left, width - margin.right]);
 		yScale = d3.scaleLinear().range([height-margin.bottom, margin.top]);
+		
+		// fixed limits (no dynamic resizing)
+		yScale.domain(ylim)
+		xScale.domain(xlim)
+
+		/*
 		xScale.domain(d3.extent(data.data, function(d) { return d.x; }));
 		
 		if (data.extent){
@@ -104,6 +97,7 @@ var protoSchematicRiverChart = function() {
 	    } else {
 	    	yScale.domain(d3.extent(data.data, function(d) { return d.y; }));
 		};
+		*/
 	};
 
 	/* /////////////////////////////////////////////////////////////
@@ -112,7 +106,8 @@ var protoSchematicRiverChart = function() {
     
     /* Call this before initialisation */
     this.setData = function(rawData){
-    	data = parseData(rawData);
+    	// This datafile is already suitably parsed..
+    	data = rawData;
     };
 
     /* Call this to dynamically change data after figure creation */
@@ -144,6 +139,33 @@ var protoSchematicRiverChart = function() {
          SB()
     };
 
+    /* Change exceedance frequency*/
+    this.updateUncertainty = function (newUncertainty) {
+    index_accepteduncertainty = newUncertainty;
+
+    	// redraw line
+    	
+    	this.drawInterventionLine()
+
+
+    };
+
+    /* Change Desired Effect*/
+    this.updateDesiredEffect = function (newEffect) {
+	    desiredeffect = newEffect;
+	    ylim = [0, newEffect * 2];
+	    xlim = [0, newEffect * 2];
+	    
+
+	   	// redraw line
+	   	this.updateScales()
+	   	this.drawInterventionLine()
+	   	this.drawDesiredEffect()
+	   	this.updateAxis()
+	   	//this.highlightInterventions()
+	   	
+    };
+
 	/* /////////////////////////////////////////////////////////////
 	//// Axis methods
     *///////////////////////////////////////////////////////////////
@@ -165,33 +187,34 @@ var protoSchematicRiverChart = function() {
 	      .attr("x",0 - (height / 2))
 	      .attr("dy", "1em")
 	      .style("text-anchor", "middle")
-	      .text("Flood level decrease [m]"); 
+	      .text("Desired effect [m]"); 
 
 	    g.append("text")
 	      .attr("id", "XLabel")
 	      .attr("class", "Figurelabels")
-	      .attr("y", yScale(0.2))
-	      .attr("x", xScale(905))
+	      .attr("y", yScale(-0.3))
+	      .attr("x", xScale(0.6))
 	      .style("text-anchor", "middle")
-	      .text("Rhine kilometer [km]"); 
+	      .text("Expected effect [km]"); 
 	    	   
 	      // Add the X Axis
 	      g.append("g")
-	          .attr('id', 'XAxis')
+	          .attr('id', 'CompXAxis')
 	          .attr("transform", "translate(0," + yScale(0) + ")")
 	          .attr("class", "FigureAxes")
-	          .call(d3.axisTop(xScale).ticks(xticks));
+	          .call(d3.axisBottom(xScale).ticks(xticks));
 
 	      // Add the Y Axis
 	      g.append("g")
-	      	 .attr("id", "YAxis")
+	      	 .attr("id", "CompYAxis")
 	         .attr("class", "FigureAxes")
-	         .attr("transform", "translate(" + xScale(868)+ ",0)")
+	         .attr("transform", "translate(" + xScale(0)+ ",0)")
 	         .call(d3.axisLeft(yScale).ticks(yticks));
 
 	      // transparent back-rectangle to capture mousemove events
 	      g.append("rect")
 	      	  .style("opacity", 0)
+	      	  .style("fill", 'red')
 		      .attr("x", 0)
 		      .attr("y", 0)
 		      .attr("width", width)
@@ -223,39 +246,17 @@ var protoSchematicRiverChart = function() {
 		  });
     };
 
-    this.moveAxis = function(ax, loc) {
-    	let xticks = Math.round(width / 60)
-    	let yticks = Math.round(height / 40)
-    	if (ax=='x'){
-    		if (loc=='zero'){
-	    		d3.select('#XAxis')
-		    	   .transition()
-		    	   .duration(400)
-		    	   .attr("transform", "translate(0," + yScale(0) + ")")
-		    	   .call(d3.axisTop(xScale).ticks(xticks));
-		    	xAxisConstructor = d3.axisTop;
-	    	} else if (loc=='bottom') {
-	    		d3.select('#XAxis')
-	    		   .transition()
-	    		   .duration(400)
-		    	   .attr("transform", "translate(0," + yScale(yScale.domain()[0]) + ")")
-		    	   .call(d3.axisBottom(xScale).ticks(xticks).tickPadding(10));
-		    	xAxisConstructor = d3.axisBottom;
-	    	};
-    	};
-    };
-
     this.updateAxis = function (){
     	// number of ticks
     	let xticks = Math.round(width / 60)
     	let yticks = Math.round(height / 40)
 
-    	d3.select('#YAxis')
+    	d3.select('#CompYAxis')
     	   .transition()
     	   .duration(400)
     	   .call(d3.axisLeft(yScale).ticks(yticks))
    		
-    	d3.select('#XAxis')
+    	d3.select('#CompXAxis')
     	   .transition()
     	   .duration(400)
     	   .call(xAxisConstructor(xScale).ticks(xticks))
@@ -302,89 +303,83 @@ var protoSchematicRiverChart = function() {
     };
 
     /* /////////////////////////////////////////////////////////////
-	//// Path (line) methods
-    *///////////////////////////////////////////////////////////////
-
-    this.drawZeroLine = function(){
-    	var zeroline = d3.line()
-		      .x(function(d) { return xScale(d.x); })
-		      .y(function(d) { return yScale(0); });
-
-    	d3.select(canvas).selectAll('.valueline')
-    	.transition()
-    	.duration(500)
-    	.attr("d", zeroline)
-    };
-    
-    this.drawMedian = function (){
-    	if (d3.select('#sf_median').empty()) {
-    	g.append("path")
-    		.data([data.data])
-    		.attr('id', 'sf_median')
-    		.attr('class', 'FigureLine')
-    		.style('stroke', 'blue')
-    		.style('stroke-width', "1")
-    		.style("fill", 'none')
-	    	.transition()
-	    	.duration(500)
-	    	.attr("d", line)
-	    } else {
-	    	// Median already plotted, update instead
-    		console.log('median already exists')
-    	} 
-	    
+		  //// Path (line) methods																	///
+    */////////////////////////////////////////////////////////////
+    this.highlightInterventions = function() {
+    	for (var i=0;i<6;i++) {
+    		linename = "exc_" + interventions[i]
+    		// check if line intersects with desired effect
+    		let linedata = data[interventions[i]][index_accepteduncertainty]
+    		if ((desiredeffect < linedata[1]['y']) & (desiredeffect > linedata[0]['y'])){
+    				console.log(linedata[0]['y'])
+    				d3.select('#'+linename)
+		    		  .transition()
+		    		  .duration(1000)
+		    		  .attr('opacity', 1)
+			   } else {
+			   	  d3.select('#'+linename)
+		    		  .transition()
+		    		  .duration(1000)
+		    		  .attr('opacity', 1)
+			   };
+    		};
     };
 
-    this.drawPercentile = function (pct){
-    	var pline = d3.line()
-		      .x(function(d) { return xScale(d.x); })
-		      .y(function(d) { return yScale(d.pcts[pct]); });
+    this.drawInterventionLine = function(){
+    	for (var i=0;i<6;i++) {
+    		linename = "exc_" + interventions[i];
+    		var opacity = 0;
+    		var linedata = data[interventions[i]][index_accepteduncertainty];
+    		if ((desiredeffect < linedata[1]['y']) & (desiredeffect > linedata[0]['y'])){
+    			opacity = 1.0} else {opacity = 0.0};
+	    	if (d3.select('#'+linename).empty()) {
+				    	g.append("path")
+				    		.data([linedata])
+				    		.attr('id', linename)
+				    		.attr('class', 'FigureLine')
+				    		.style('stroke', colormap[i])
+				    		.style('stroke-width', 3 * opacity)
+				    		.style("fill", 'none')
+					    	.transition()
+					    	.duration(500)
+					    	.attr("d", line)
+					} else {
+			    	// Line already plotted, update instead
+		    		d3.select('#'+linename)
+		    		  .data([data[interventions[i]][index_accepteduncertainty]])
+		    		  .transition()
+		    		  .duration(1000)
+		    		  .attr('d', line)
+		    		  .style('stroke-width', 3 * opacity)
+			    	};
+			   };
+		  };
 
-    	if (d3.select('#sf_percentile').empty()) {
-    	g.append("path")
-    		.data([data.data])
-    		.attr('id', 'sf_percentile')
-    		.attr('class', 'FigureLine')
-    		.style('stroke', 'red')
-    		.style('stroke-width', "1")
-    		.style("fill", 'none')
-	    	.transition()
-	    	.duration(500)
-	    	.attr("d", pline)
-	    } else {
-	    	// Median already plotted, update instead
-    		console.log('pct already exists')
-    	} 
-    };
+		 this.drawDesiredEffect = function(){
 
-    this.updatePercentile = function(pct) {
-    	console.log(pct)
-    	var pline = d3.line()
-		      .x(function(d) { return xScale(d.x); })
-		      .y(function(d) { return yScale(d.pcts[pct]); });
-		d3.selectAll("#sf_percentile")
-		   .attr("d", pline)
-		 console.log (d3.select('#sf_percentile'))
-    }
-    this.drawBedlevel = function (){
-    	g.append("path")
-    		.data([data.data])
-    		.attr('class', 'FigureLine')
-    		.style('stroke', 'blue')
-    		.style('stroke-width', "1")
-    		.style("fill", 'none')
-	    	.transition()
-	    	.duration(500)
-	    	.attr("d", line)
-    };
-
-    this.updatePaths = function() {
-       d3.selectAll('.FigureLine')
-          .data([data.data])
-	      .transition()
-	      .duration(500)
-	      .attr('d', line)
-    };
+  		var dedata = [{'x': xlim[0], 'y': desiredeffect}, {'x': xlim[1], 'y': desiredeffect}];
+    	if (d3.select('#DesiredEffect').empty()) {
+			    	g.append("path")
+			    		.datum(dedata)
+			    		.attr('id', "DesiredEffect")
+			    		.attr('class', 'FigureLine')
+			    		.style('stroke', 'black')
+			    		.style('stroke-width', "2")
+			    		.style("fill", 'none')
+				    	.transition()
+				    	.duration(500)
+				    	.attr("d", line)
+				} else {
+		    	// Line already plotted, update instead
+		    	
+	    		d3.select('#DesiredEffect')
+	    		  .datum(dedata)
+	    		  .transition()
+	    		  .duration(500)
+	    		  .attr('d', line)
+		    	};
+		   };
+		    
 
     /* /////////////////////////////////////////////////////////////
 	//// Areas and confidence bands
@@ -481,5 +476,5 @@ var protoSchematicRiverChart = function() {
          .remove();
     };
     
-}; // protoSchematicRiverChart
+}; // 
  

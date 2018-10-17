@@ -152,7 +152,91 @@
  * ===========================================
  */
 
-#ComparePanel{
+#ComparePanel {
+  font-family: Raleway;
+  color: var(--font-body-color);
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  width: 350px;
+  overflow: hidden;
+  height: calc(100% - 95px);
+  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
+  transform: translate(0%, 0%);
+}
+
+
+#CompareOptions{
+  position: relative;
+  top: 270px;
+}
+
+#CompareOptions div
+{
+  padding: 10px 0;
+  font-size: var(--font-body-size);
+  padding-left: 10px;
+}
+
+.CompSliderContainer {
+    width: 100%; /* Width of the outside container */
+}
+
+#ELSliderContainer::before {
+    content: "Exceedance likelihood";
+}
+
+#DESliderContainer::before {
+    content: "Desired Effect";
+}
+
+/* The slider itself */
+.CompSlider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 80%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: rgba(0, 0, 0, 0); /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.CompSlider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.CompSlider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.CompSlider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+#CompDescription{
+    position:relative;
+    margin-top: 300px;
+    height: 200px;
+}
+
+/* ===========================================
+ * Story app
+ * ===========================================
+ */
+
+#StoryPanel{
   transform: translate(-150%, 0%);
   position: absolute;
   top:75px;
@@ -161,6 +245,7 @@
   overflow: hidden;
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
 }
+
 
 /* ===========================================
  * Intervention Explorer
@@ -177,13 +262,6 @@
   text-align: center;
 }
 
-#IntensitySwitchDiv::before{
-  content: "intensity";
-  font-size: 10px;
-  margin-left: 2px;
-  color: #3E3E3E;
-  font-family: Oswald;
-}
 
 #InterventionInfo{
   transform: translate(-150%, 0%);
@@ -200,13 +278,7 @@
   top: 220px;
 }
 
-#InterventionTable::before{
-  content: "summary";
-  font-size: 10px;
-  margin-left: 2px;
-  color: #3E3E3E;
-  font-family: Oswald;
-}
+
 
 #InterventionUncertainty, #InterventionEffect {
   font-family: "Montserrat";
@@ -233,17 +305,33 @@
   height: 200px;
 }
 
-#Description::before{
-  content: "description";
-  font-size: 10px;
-  margin-left: 2px;
-  color: #3E3E3E;
-  font-family: Oswald;
-}
-
 .textframe {
   border-left: 1px solid #3E3E3E;
   border-top: 1px solid #3E3E3E;
+}
+
+.frame-summary::before{
+  content: "summary";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #282828;
+  font-family: Oswald;
+}
+
+.frame-description::before{
+  content: "description";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #282828;
+  font-family: Oswald;
+}
+
+.frame-options::before{
+  content: "options";
+  font-size: 10px;
+  margin-left: 2px;
+  color: #282828;
+  font-family: Oswald;
 }
 
 /* Dropdown Content (Hidden by Default) */

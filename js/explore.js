@@ -16,7 +16,7 @@ var AppMenuToggle = true;
 var AppToggles = [true, false, false, false];
 var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionInfo", "#ComparePanel"];
 var ExploreToggle = true;
-
+ 
 // Function to toggle navigation menu
 var toggleAppMenu = function () {
   if (AppMenuToggle){
@@ -43,6 +43,7 @@ var toggleApp = function (appindex) {
 
 // Default layout
 toggleApp(3)
+
 
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)
@@ -348,20 +349,19 @@ function showReference() {
   document.getElementById("InterventionTitle").innerHTML = "Referentiesituatie";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 0 cm (--)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
-  $('#InterventionDescription').load('html/reference_NL.xml');
+  $('#InterventionDescription').load('xml/reference_NL.xml');
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
 
   /* Map */
   removeVelocityLayerFromMap();
-  addVelocityLayerToMap('data/waal_reference_0000.json', map)
+  //addVelocityLayerToMap('data/waal_reference_0000.json', map)
 
   if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
   if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
   if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
   if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-
 
   dike.setStyle(LineStyle);
 }
@@ -371,7 +371,7 @@ function showRelo() {
   document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 108 cm (<span class='label_high'>hoog</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
-  $('#InterventionDescription').load('html/dikerelocation_NL.xml');
+  $('#InterventionDescription').load('xml/dikerelocation_NL.xml');
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){ExploreFigure.updateData(d)});
   removeVelocityLayerFromMap();
@@ -395,7 +395,7 @@ function showSmooth() {
   document.getElementById("InterventionTitle").innerHTML = "Maaien van de uiterwaard";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 28 cm (<span class='label_medium'>gemiddeld</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 82% (<span class='label_low'>hoog</span>)";
-  $('#InterventionDescription').load('html/smoothing_NL.xml');
+  $('#InterventionDescription').load('xml/smoothing_NL.xml');
   
   /* Figure */
   d3.json('data/smoothing_int99.json', function(d){ExploreFigure.updateData(d)})  
@@ -424,7 +424,7 @@ function showGROYNLOW(){
   document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 4 cm (<span class='label_low'>laag</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
-  $('#InterventionDescription').load('html/groynelowering_NL.xml');
+  $('#InterventionDescription').load('xml/groynelowering_NL.xml');
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){ExploreFigure.updateData(d)})  
   
@@ -448,7 +448,7 @@ function showMINEMBLOW(){
   document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
-  $('#InterventionDescription').load('html/MINEMBLOW_NL.xml');
+  $('#InterventionDescription').load('xml/MINEMBLOW_NL.xml');
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){ExploreFigure.updateData(d)})  
   dike.setStyle(LineStyle);
@@ -471,7 +471,7 @@ function showFLPLOW(){
   document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
-  $('#InterventionDescription').load('html/FLPLOW_NL.xml');
+  $('#InterventionDescription').load('xml/FLPLOW_NL.xml');
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){ExploreFigure.updateData(d)})  
   
@@ -497,7 +497,7 @@ function showSIDECHAN(){
   document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
   document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 36 cm (<span class='label_medium'>gemiddeld</span>)";
   document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
-  $('#InterventionDescription').load('html/SIDECHAN_NL.xml');
+  $('#InterventionDescription').load('xml/SIDECHAN_NL.xml');
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){ExploreFigure.updateData(d)})  
 
@@ -528,7 +528,7 @@ var CompareFigure = {};
 
 function display(error, dataset, comparedata) {
   // === Background map ===
-  addVelocityLayerToMap('data/waal_reference_0000.json', map);
+  //addVelocityLayerToMap('data/waal_reference_0000.json', map);
   
   // === Explore App ===
   protoSchematicRiverChart.apply(ExploreFigure);
@@ -550,13 +550,17 @@ function display(error, dataset, comparedata) {
     });
 
   // === Compare App ===
-  protoCompareChart.apply(CompareFigure);
+  //protoCompareChart.apply(CompareFigure);
+  //CompareFigure.setCanvas('#CompareCanvas');
+  //CompareFigure.setData(comparedata);
+  //CompareFigure.init();
+  //CompareFigure.drawInterventionLine();
+  //CompareFigure.drawDesiredEffect();
+  protoSteadyFlowApp.apply(CompareFigure)
   CompareFigure.setCanvas('#CompareCanvas');
-  CompareFigure.setData(comparedata);
   CompareFigure.init();
-  CompareFigure.drawInterventionLine();
-  CompareFigure.drawDesiredEffect();
-
+  
+  showReference()
   // Make sure figure updates when window resizes
    d3.select(window)
       .on("resize.chart", function(){
@@ -581,3 +585,69 @@ d3.queue()
 
 
 // === ~final
+$("#flat-slider")
+    .slider({
+        max: 50,
+        min: 0,
+        range: true,
+        values: [15, 35],
+        change: function(event, ui) {console.log(ui)}
+    })
+    .slider("pips", {
+        first: "pip",
+        last: "pip"
+    })
+
+                    
+$("#flat-slider-vertical-1")
+  .slider({
+        max: 450,
+        min: 150,
+        range: "min",
+        value: 300,
+        orientation: "vertical",
+        change: function(event, ui) {
+          CompareFigure.changeBoundary(ui.value/100)
+        }
+    })
+  .slider("pips", {
+        first: "pip",
+        last: "pip"
+    })
+    .slider("float");
+
+$("#flat-slider-vertical-2")
+  .slider({
+        max: 40,
+        min: 10,
+        range: "min",
+        value: 20,
+        orientation: "vertical",
+        change: function(event, ui) {
+          CompareFigure.changeDischarge(ui.value)
+        }
+    })
+  .slider("pips", {
+        first: "pip",
+        last: "pip"
+    })
+    .slider("float");
+
+$("#flat-slider-vertical-3")
+  .slider({
+        max: 4,
+        min: 3,
+        range: "min",
+        value: 3,
+        step: 0.25,
+        orientation: "vertical",
+        change: function(event, ui) {
+          CompareFigure.changeSlope(10**-ui.value)
+        }
+    })
+  .slider("pips", {
+        first: "pip",
+        last: "pip"
+    })
+    .slider("float");
+

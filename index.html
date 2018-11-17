@@ -19,23 +19,28 @@
           integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
           crossorigin=""/>
     <link rel="stylesheet" type="text/css" href="css/thirdparty/leaflet-velocity.css"/>
-    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
     
-    <link rel="stylesheet" type="text/css" href="css/thirdparty/introjs.css"/>
     
     <!-- LOCAL STYLE SHEETS-->
+    <link rel="stylesheet" type="text/css" href="css/thirdparty/jquery-ui-slider-pips.css"/>
     <link rel="stylesheet" type="text/css" href="css/explore.css"/>
+    <link rel="stylesheet" type="text/css" href="css/flatslider.css"/>
+    <link rel="stylesheet" type="text/css" href="css/steadyflow.css"/>
     <link rel="stylesheet" type="text/css" href="css/ui.css"/>
     <link rel="stylesheet" type="text/css" href="css/map.css"/>
-
     <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
-    
+
     <!-- JAVASCRIPT -->
     <!-- Jquery is needed on load to trigger the welcome menu to pop out. 
          All other javascript is loaded at the end of the document to 
          speed up page load -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+                
+    <!-- plus a jQuery UI theme, here I use "flick" -->
+    <script src="js/thirdparty/jquery-ui-slider-pips.js"></script>
   </head>
 
 
@@ -83,8 +88,13 @@
         
       <!-- Explore app -->
       <div id="InterventionInfo" class='appcontainer'>
-      	<div class="dropdown">
-              <button id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</button>
+        <div id='InterventionCanvas'>
+          <svg id="ExploreCanvas" class='canvas02'></svg>
+        </div>
+        <div id="IntensitySwitchDiv" class='textframe frame-options'>
+
+          <div class="dropdown">
+              <div id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</div>
               <div id="InterventionDropdown" class="dropdown-content">
                 <a href="#"" onclick="showReference()">Referentiesituatie</a>
                 <a href="#" onclick="showSmooth()">Maaien van de uiterwaarden</a>
@@ -94,12 +104,6 @@
                 <a href="#" onclick="showSIDECHAN()">Nevengeulen</a>
                 <a href="#" onclick="showFLPLOW()">Uiterwaardvergraving</a>
               </div>
-        </div>
-        <div id='InterventionCanvas'>
-          <svg id="ExploreCanvas" class='canvas02'></svg>
-        </div>
-        <div id="IntensitySwitchDiv" class='textframe frame-options'>
-        <div>
           Low intensity
           <label class="intensityswitch">
               <input type="checkbox">
@@ -123,14 +127,31 @@
           <svg id="CompareCanvas" class='canvas02'></svg>
         </div>
         <div id="CompareOptions" class='textframe frame-options'>
-        <div>
-          <div id="ELSliderContainer" class="CompSliderContainer">
-            <input type="range" min="1" max="99" value="50" class="CompSlider" id="ELSlider" onchange="CompareFigure.updateUncertainty(this.value - 1)">
+          
+          <div id="flat-slider"></div>
+          <div class="vertical">
+            <div id="flat-slider-vertical-1"></div>
+            <div id="flat-slider-vertical-2"></div>
+            <div id="flat-slider-vertical-3"></div>
           </div>
-          <div id="DESliderContainer" class="CompSliderContainer">
-            <input type="range" min="1" max="100" value="25" class="CompSlider" id="DESlider" onchange="CompareFigure.updateDesiredEffect(this.value / 100)">
-          </div>
-        </div>
+          <!--
+          <div class="vertical">
+            <input type="range" 
+                   min="20" max="40" value="30" 
+                   class="flat-slider" 
+                   id="flat-slider-1" 
+                   onchange="CompareFigure.changeBoundary(this.value/10)">
+            <input type="range" 
+                   min="40" max="100" value="50" 
+                   class="flat-slider" 
+                   id="flat-slider-2" 
+                   onchange="CompareFigure.changeWidth(this.value/10)">
+            <input type="range" 
+                   min="50" max="150" value="100" 
+                   class="flat-slider" 
+                   id="flat-slider-3" 
+                   onchange="CompareFigure.changeSlope(this.value/100000)">
+          </div>-->
       </div>
       <div id="CompDescription" class='textframe frame-description'>
          <div id='InterventionDescription'>
@@ -146,8 +167,12 @@
           <svg id="StoryCanvas" class='canvas02'></svg>
         </div>
         <div class='textframe frame-description'>
-          <div>
+          <div id="StoryText">
               Under construction!
+          </div>
+          <div id='story-buttons'>
+            <i style="font-size:24px;" class="fas fa-angle-left">
+            <i style="font-size:24px;" class="fas fa-angle-right">
           </div>
         </div>
       </div>
@@ -212,17 +237,18 @@
 </body>
 
 <!-- LOAD JS -->
-
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="js/thirdparty/leaflet-velocity.js"></script>
 <script src="js/thirdparty/L.Map.Sync.js"></script>
-<script src="js/vendor/leaflet.pattern.js"></script>
+<!--<script src="js/vendor/leaflet.pattern.js"></script>-->
 <script src="lib/d3.js"></script>
+<script src="https://d3js.org/d3-timer.v1.min.js"></script>
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>
 <script src="js/thirdparty/perfect-scrollbar.js"></script>
 <script src="js/storyfigures.js"></script>
+<script src="js/steadyflow.js"></script>
 <script src="js/comparefigure.js"></script>
 <script src="js/explore.js"></script>
-<script src="js/thirdparty/leaflet-velocity.js"></script>
-<link rel="stylesheet" type="text/css" href="css/explore_app.css"/>
+<!--<link rel="stylesheet" type="text/css" href="css/explore_app.css"/>-->
 </html>

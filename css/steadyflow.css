@@ -1,0 +1,15 @@
+#waterline {
+	stroke: blue;
+	stroke-width: 0.0;
+	stroke-dasharray: 4 2 ;
+}
+
+#bedline {
+	stroke: #614104;
+	stroke-width: 5;
+}
+
+.SteadyflowParticle {
+	fill: white;
+	opacity: 0.4;
+}

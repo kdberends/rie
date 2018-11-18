@@ -134,26 +134,8 @@
             <div id="flat-slider-vertical-2"></div>
             <div id="flat-slider-vertical-3"></div>
           </div>
-          <!--
-          <div class="vertical">
-            <input type="range" 
-                   min="20" max="40" value="30" 
-                   class="flat-slider" 
-                   id="flat-slider-1" 
-                   onchange="CompareFigure.changeBoundary(this.value/10)">
-            <input type="range" 
-                   min="40" max="100" value="50" 
-                   class="flat-slider" 
-                   id="flat-slider-2" 
-                   onchange="CompareFigure.changeWidth(this.value/10)">
-            <input type="range" 
-                   min="50" max="150" value="100" 
-                   class="flat-slider" 
-                   id="flat-slider-3" 
-                   onchange="CompareFigure.changeSlope(this.value/100000)">
-          </div>-->
-      </div>
-      <div id="CompDescription" class='textframe frame-description'>
+        </div>
+      <div id="CompareDescription" class='textframe frame-description'>
          <div id='InterventionDescription'>
            bladiebla
          </div>
@@ -166,14 +148,18 @@
         <div>
           <svg id="StoryCanvas" class='canvas02'></svg>
         </div>
-        <div class='textframe frame-description'>
-          <div id="StoryText">
-              Under construction!
+        <div id="StoryOptions" class='textframe frame-options'>
+            <div class="story-options-wrapper">
+              <button onclick="previousStory();" class="story-ui-left"><i class="fas fa-angle-left"></i></button>
+              <button onclick="resetStory();" class="story-ui-home"><i class="fas fa-home"></i></button>
+              <button onclick="nextStory();" class="story-ui-right"><i class="fas fa-angle-right"></i></button>
+            <div class="progress">63%</div>
           </div>
-          <div id='story-buttons'>
-            <i style="font-size:24px;" class="fas fa-angle-left">
-            <i style="font-size:24px;" class="fas fa-angle-right">
-          </div>
+        </div>
+        <div id="StoryFrame" class='textframe frame-description'>
+          <div id="StoryText" class='storytext'>
+        </div>
+          
         </div>
       </div>
 

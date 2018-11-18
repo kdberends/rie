@@ -147,6 +147,7 @@
   margin-bottom: -10px;
 }
 
+
 /* ===========================================
  * Compare app
  * ===========================================
@@ -243,6 +244,87 @@
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
 }
 
+#StoryFrame{
+  border: 2px solid black;
+  position:relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+#StoryCanvas{
+  border: 2px solid black;
+  position:relative;
+  width: 95%;
+}
+
+#StoryOptions{
+  border: 2px solid black;
+  position:relative;
+  width: 95%;
+}
+
+.story-options-wrapper {
+  margin: auto;
+  width: 80%;
+  padding: 5px;
+  background: #34495e;
+  border-radius: 7px;
+  color: #ecf0f1;
+  font-family: "Raleway";
+}
+
+.storytext {
+  font-family: Raleway;
+  font-size: 16px;
+}
+
+#StoryOptions button {
+  width: 50px;
+  height: 23px;
+  border: none;
+  border-radius: 5px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 18px;
+}
+
+.story-ui-left {
+  margin-left: 50px;
+  background: #2ecc71;
+}
+
+.story-ui-right {
+  background: #2ecc71;
+}
+
+.story-ui-home {
+  background: #147789;
+}
+
+.progress {
+  margin: 5px 0;
+  width: 100%;
+  
+}
+
+.progress-outside {
+  background: #bdc3c7;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.progress-inside {
+  background: #3498db;
+  border-radius: 3px;
+  height: 20px;
+  transition: width 1s ease-out;
+}
+
+.progress-inside .val {
+  padding: 5px;
+  position: relative;
+  bottom: 1px;
+}
 
 /* ===========================================
  * Intervention Explorer
@@ -284,7 +366,6 @@
 }
 
 
-
 #InterventionUncertainty, #InterventionEffect {
   font-family: "Montserrat";
   color: var(--font-body-color);
@@ -312,7 +393,7 @@
 
 .textframe {
   border-left: 1px solid #3E3E3E;
-  border-top: 1px solid #3E3E3E;
+  border-top: 1px solid #3E3E3E;  
 }
 
 .frame-summary::before{

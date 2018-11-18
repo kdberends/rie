@@ -35,14 +35,16 @@ var toggleApp = function (appindex) {
   for (let i=0;i<AppToggles.length;i++){
     if (i == appindex) {
       $(AppIds[appindex]).css('transform','translate(0%, 0%)');
+      $(AppIds[i]).children().css('transform','translate(0%, 0%)');
     } else{
       $(AppIds[i]).css('transform','translate(-120%, 0%)');
+      $(AppIds[i]).children().css('transform','translate(0%, 0%)');
   };
   };
 };
 
 // Default layout
-toggleApp(3)
+toggleApp(1)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -140,8 +142,8 @@ var PolyVisible = {
 
 /* === Maps ===
  */
-var map = new L.Map("map", {center: [51.845, 5.36], 
-                            zoom: 13,
+var map = new L.Map("map", {center: [52,5],  // [51.845, 5.36], 13 for st andries
+                            zoom: 7,
                             zoomControl: false,
                             attributionControl:false })
   .addLayer(new L.TileLayer(host, {
@@ -312,6 +314,7 @@ function addVelocityLayerToMap(file, thismap){
       
   });
 };
+
 
 
 /** ////////////////////////////////////////////////////////////
@@ -651,3 +654,128 @@ $("#flat-slider-vertical-3")
     })
     .slider("float");
 
+/** ////////////////////////////////////////////////////////////
+ * Storyline app
+ */////////////////////////////////////////////////////////////
+
+var StoryProgress = 0;
+var NumberOfStories = 12;
+
+function storyTest () {
+  console.log("StoryTestFunc fired")
+};
+
+function show_flowcanvas() {
+  $('#ComparePanel').css('transform','translate(0%, 0%)');
+  $('#CompareOptions').css('transform','translate(-120%, 0%)');
+  $('#CompareDescription').css('transform','translate(-120%, 0%)');
+}
+
+function map_zoom_NL() {
+  map.setView([52, 5], 7);
+};
+
+function map_zoom_Waal() {
+  map.setView([51.823, 5.3682], 9);
+};
+
+function map_zoom_StAndries() {
+  map.setView([51.823, 5.3682], 11);
+  story_show_uncertainty();
+};
+
+function hide_flowcanvas() {
+  $('#ComparePanel').css('transform','translate(-120%, 0%)');
+}
+
+function show_interventioncanvas() {
+  $('#InterventionInfo').css('transform','translate(0%, 0%)');
+  $('#IntensitySwitchDiv').css('transform','translate(-120%, 0%)');
+  $('#InterventionTable').css('transform','translate(-120%, 0%)');
+  $('#Description').css('transform','translate(-120%, 0%)');
+};
+
+function story_discharge_down() {
+  CompareFigure.changeDischarge(5);
+};
+
+function story_discharge_up() {
+  CompareFigure.changeDischarge(20);
+};
+
+function story_show_uncertainty() {
+  hide_flowcanvas();
+  show_interventioncanvas();
+};
+
+var StoryFunctions = [hide_flowcanvas, 
+                      show_flowcanvas, 
+                      story_discharge_down, 
+                      story_discharge_up, 
+                      storyTest,
+                      storyTest, 
+                      storyTest,
+                      map_zoom_Waal, 
+                      storyTest,
+                      map_zoom_StAndries,
+                      showSmooth,
+                      showSIDECHAN,
+                      storyTest,
+                      storyTest
+                      ]
+
+$('#StoryText').load('xml/story0.xml');
+
+$(".progress").each(function () {
+  var $outside = $("<div></div>").addClass("progress-outside");
+  var $inside = $("<div></div>").addClass("progress-inside").css('width', "0px");
+  var $label = $("<span></span>").addClass("val").text($(this).text()).css("color", "transparent");
+  $(this).text('');
+  $inside.append($label);
+  $outside.append($inside);  
+  $(this).append($outside);
+});
+
+function nextStory () {
+  
+  if (StoryProgress < NumberOfStories) {
+    StoryProgress += 1 
+    $('#StoryText').load('xml/stories.xml #'+StoryProgress);
+    StoryFunctions[StoryProgress]();
+    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
+  $(".progress .progress-inside").each(function () {
+    $(this).css("width", progresstext);
+    $(this).text(progresstext);
+    $(this).children(".val").css("color", "inherit");
+  });
+};
+};
+
+function previousStory () {
+  if (StoryProgress > 0) {
+    StoryProgress -= 1
+    $('#StoryText').load('xml/stories.xml #'+StoryProgress);
+    StoryFunctions[StoryProgress]();
+    $(".progress .progress-inside").each(function () {
+    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
+    $(this).css("width", progresstext);
+    $(this).text(progresstext);
+    $(this).children(".val").css("color", "inherit");
+  });
+};
+};
+
+function resetStory () {
+  StoryProgress = 0
+  $('#StoryText').load('xml/stories.xml #'+StoryProgress);
+  $(".progress .progress-inside").each(function () {
+    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
+    $(this).css("width", progresstext);
+    $(this).text(progresstext);
+    $(this).children(".val").css("color", "inherit");
+  });
+};
+
+$(document).ready(function () {
+  // renderProgress();
+});

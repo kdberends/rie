@@ -1,90 +1,9 @@
- body {
-  font-family: 'Helvetica Neue',Helvetica,sans-serif;
-  margin: 0;
-  background-color: #EEEEEE;
-  overflow: hidden;
-}
- 
-
-.griditem{
-  border-radius: 4px;
-}
-
-.blur{
-  -moz-filter:blur(6px);
-  -o-filter:blur(6px);
-  -webkit-filter:blur(6px);
-  filter: blur(6px); 
-}
-
-.glass{
-  background-color: rgba(231, 241, 255, 0.3);
-  /*background-image: linear-gradient(to top right, 
-    rgba(255, 255, 255, 0.0) 8%, 
-    rgba(138, 140, 150, 0.4) 40%, 
-    rgba(255, 255, 255, 0.15) 100%);
-*/
-  background-image: linear-gradient(to top right, 
-    rgba(246, 247, 249, .2)  0%,
-    rgba(229, 235, 238, .2) 50%,
-    rgba(215, 222, 227, .2) 52%,
-    rgba(245, 247, 249, .2) 100%
-    );
-  filter: blur(0px);
-}
-
-.footer {
-  border-radius: inherit;
-  width:100%;
-  height: 100%;
-  color: #FFFFFF;
-  font-family: Raleway;
-  font-size: 0.8em;
-  
-
-}
-
-@media (min-width: 600px) {
-.container {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-gap: 0px;
-  grid-template:
-    'fig2 fig2 . . . .'
-    'fig2 fig2 . . . .'
-    'fig2 fig2 . . . .'
-    'fig2 fig2 . . . .'
-    'fig2 fig2 . . . .'
-    'fig2 fig2 . . . .';
-}
-}
 
 
-@media (max-width: 600px) {
-.container {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-gap: 0px;
-  grid-template:
-    'fig2 fig2 '
-    'fig2 fig2 '
-    'fig2 fig2 ';
-}
-}
 
-.canvas{
-  width: 100%;
-  height: 100%;
-}
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+
+
 
 .diagram{
   background-color: rgba(224, 224, 224, .45);
@@ -92,13 +11,6 @@
   filter: blur(0px);
 }
 
-.griditem{
-  pointer-events: initial;
-  grid-area: fig2;
-  position:absolute; 
-  width:400px;
-  height:100%;
-}
 
 
 
@@ -145,18 +57,7 @@ div.tooltip {
     pointer-events: none; 
 }
 
-footer {
-   position:absolute;
-   
-   right:2%;
-   bottom:10px;
-   margin: auto;
-   max-width:300px;
-   height:60px;   /* Height of the footer */
-   overflow: all;
-   border-radius: 2px;
-   clear:right;
-}
+
 
 .LVelocityLegend {
   color: #FFFFFF;

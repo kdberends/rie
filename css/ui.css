@@ -1,3 +1,9 @@
+ /* All UI elements */
+
+/* ===========================================
+ * Globals
+ * ===========================================
+ */
  :root { 
     --background-light: #ededed;
     --accent-light: #76BFFB;
@@ -5,6 +11,7 @@
     --font-hyperlink-hover: #58A8E9;
     --font-body-color: white;
     --font-body-size: 14px;
+    --font-body-family: Raleway;
     --nav-color: white;
     --nav-size: 26px;
     --accent-1: #FF9F1C;
@@ -27,16 +34,252 @@
   color: #F31419;
 }
 
-#leftbar {
-  transform: translate(0%, 0%);
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+.canvas {
+  top: 0px;
+  pointer-events: initial;
+  grid-area: fig2;
+  position:absolute; 
+  width:100%;
+  height:200px;
 }
 
+/* ===========================================
+ * Layout
+ * ===========================================
+ */
+
+@media (min-width: 600px) {
+.container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 0px;
+  grid-template:
+    'fig2 fig2 . . . .';
+}}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+.container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 0px;
+  grid-template:
+    'fig2 fig2 ';
+}
+}
+
+/* ===========================================
+ * Body, foooter
+ * ===========================================
+ */
 .logo-footer {
   float: right;
   width: 100%; 
   margin-right: 55px;
 }
+
+footer {
+   position:absolute;
+   right:2%;
+   bottom:10px;
+   margin: auto;
+   max-width:300px;
+   height:60px;   /* Height of the footer */
+   overflow: all;
+   border-radius: 2px;
+   clear:right;
+}
+
+body {
+  font-family: 'Helvetica Neue',Helvetica,sans-serif;
+  margin: 0;
+  background-color: #EEEEEE;
+  overflow: hidden;
+}
+
+#version-number-box {
+  position: absolute;
+  color: var(--font-body-color);
+  right: 1%;
+  bottom: 2px;
+  font-family: Oswald;
+  font-size: 12px;
+  opacity: 1;
+  text-align: right;
+}
+
+#version-number-box img{
+  width: 50px;
+  margin: 0px 10px 0px 10px;
+}
+
+#version-number-box span{
+  margin-left: 5px;
+}
+
+
+/* ===========================================
+ * Flat dropdown menu (adapted from http://cssmenumaker.com/menu/flat-accordion-menu)
+ * ===========================================
+ */
+
+.cssmenu,
+.cssmenu ul,
+.cssmenu ul li,
+.cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.cssmenu {
+  width: 80%;
+  left: 45px;
+  border: 1px solid white;
+  font-family: var(--font-body-family);
+  color: var(--font-body-color);
+}
+
+/* Top level */
+.cssmenu > ul > li > a {
+  padding: 6px 20px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  background: var(--accent-1);
+  -webkit-transition: color .2s ease;
+       -o-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.cssmenu > ul > li > a:hover {
+  color: var(--accent-5);
+}
+.cssmenu ul > li.has-sub > a:after {
+  position: absolute;
+  right: 26px;
+  top: 10px;
+  z-index: 5;
+  display: block;
+  height: 10px;
+  width: 2px;
+  background: #ffffff;
+  content: "";
+  -webkit-transition: all 0.1s ease-out;
+     -moz-transition: all 0.1s ease-out;
+      -ms-transition: all 0.1s ease-out;
+       -o-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out;
+}
+.cssmenu ul > li.has-sub > a:before {
+  position: absolute;
+  right: 22px;
+  top: 14px;
+  display: block;
+  width: 10px;
+  height: 2px;
+  background: #ffffff;
+  content: "";
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+.cssmenu ul > li.has-sub.open > a:after,
+.cssmenu ul > li.has-sub.open > a:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.cssmenu ul ul li a {
+  padding: 7px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 14px;
+  text-decoration: none;
+  color: #dddddd;
+  background: #49505a;
+  -webkit-transition: color .2s ease;
+  -o-transition: color .2s ease;
+  transition: color .2s ease;
+}
+.cssmenu ul ul ul li a {
+  padding-left: 32px;
+}
+.cssmenu ul ul li a:hover {
+  color: var(--accent-1);
+}
+.cssmenu ul ul > li.has-sub > a:after {
+  top: 16px;
+  right: 26px;
+  background: #dddddd;
+}
+.cssmenu ul ul > li.has-sub > a:before {
+  top: 20px;
+  background: #dddddd;
+}
+
+
+/* ===========================================
+ * App panel master
+ * ===========================================
+ */
+
+#leftbar {
+  transform: translate(0%, 0%);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  border-radius: 0px;
+  box-shadow: 0px 0px 10px 10px #000000;
+  pointer-events: initial;
+  grid-area: fig2;
+  position:absolute; 
+  width:400px;
+  height:100%;
+}
+
+
+.blur{
+   -moz-filter: blur(6px);
+     -o-filter: blur(6px);
+-webkit-filter: blur(6px);
+        filter: blur(6px); 
+}
+
+.glass{
+  width:100%;
+  height: 100%;
+  background-color: rgba(231, 241, 255, 0.3);
+  background-image: linear-gradient(to top right, 
+                    rgba(246, 247, 249, .2)  0%,
+                    rgba(229, 235, 238, .2) 50%,
+                    rgba(215, 222, 227, .2) 52%,
+                    rgba(245, 247, 249, .2) 100%
+                    );
+  border-radius: inherit;  
+  color: var(--font-body-color);
+  font-family: var(--font-body-family);
+  font-size: var(--font-body-size);
+}
+
 
 /* ===========================================
  * App navigation
@@ -173,7 +416,60 @@
   margin-bottom: -10px;
 }
 
+/* ===========================================
+ * Paper
+ * ===========================================
+ */
 
+#PaperPanel{
+  transform: translate(-120%, 0%);
+  position: absolute;
+  top:80px;
+  left: 20px;
+  width: 350px;
+  overflow: hidden;
+  height: calc(100% - 200px);
+  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
+  z-index: 0;
+}
+
+#PaperContent
+{
+  font-size: 16px;
+}
+
+#PaperContent hr
+{
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+#PaperContent li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+#PaperContent a {
+  text-decoration: none;
+  color: var(--font-hyperlink);
+  transition: color 0.1s ease;
+  border-bottom:0px solid #92C6F0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+#PaperContent a:hover
+{
+  color: var(--font-hyperlink-hover);
+  border-bottom:0px solid #58A8E9; 
+}
+
+#PaperContent ul li{
+  font-size: 14px;
+  margin-bottom: -10px;
+}
 
 /* ===========================================
  * Compare app
@@ -372,14 +668,6 @@
  * ===========================================
  */
 
-.canvas02 {
-  top: 0px;
-  pointer-events: initial;
-  grid-area: fig2;
-  position:absolute; 
-  width:100%;
-  height:200px;
-}
 
 #InterventionPanel{
   transform: translate(-150%, 0%);
@@ -388,7 +676,7 @@
   left: 20px;
   width: 350px;
   overflow: hidden;
-  height: calc(100% - 200px);
+  height: calc(100% - 150px);
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
   z-index: 0;
 }
@@ -423,7 +711,7 @@
 #InterventionDescription {
   pointer-events: initial;
   font-family: "Montserrat";
-  height: 100%;
+  height: calc(100% - 40px);
   padding: 10px; 
   overflow: hidden;
   color: #FFFFFF;
@@ -433,7 +721,7 @@
 #Description{
   position:relative;
   margin-top: 230px;
-  height: calc(100% - 400px);
+  height: calc(100% - 300px);
 }
 
 .textframe {

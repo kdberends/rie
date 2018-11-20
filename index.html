@@ -45,12 +45,12 @@
 
 
 <body>
-  <!-- GitHub banner-->
+  <!-- GitHub banner
   <a href="https://github.com/kdberends">
     <img style="position: absolute; top: 0; right: 0; border: 0;" 
          src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" 
          alt="Fork me on GitHub">
-  </a>
+  </a>-->
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -77,10 +77,10 @@
       <span id="app-story" onclick="toggleApp(1)"><i class="fas fa-book-reader"></i></span>
       <span id="app-explore" onclick="toggleApp(2)"><i class="fas fa-compass"></i></span>
       <span id="app-compare" onclick="toggleApp(3)"><i class="fas fa-balance-scale"></i></span>
-      <span id="app-article"><i class="fas fa-graduation-cap"></i></span>
+      <span id="app-article" onclick="toggleApp(4)"><i class="fas fa-graduation-cap"></i></span>
     </div>
     <!-- Main UI elements -->
-    <div id='leftbar' class="glass griditem">
+    <div id='leftbar'>
 
       <!-- Glass/blur effect hack -->
       <div id="map_clone" class="map blur"></div>
@@ -88,8 +88,24 @@
         
       <!-- Explore app -->
       <div id="InterventionPanel" class='appcontainer'>
-        <div><svg id="ExploreCanvas" class='canvas02'></svg></div>
+        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
         <div id="IntensitySwitchDiv" class='textframe frame-options'>
+          <div class='cssmenu'>
+            <ul>
+               <li class='has-sub'><a href='#'>Choose intervention</a>
+                  <ul>
+                     <li class='no-sub'><a onclick='showReference()'>Reference</a></li>
+                     <li class='no-sub' ><a onclick="showSmooth()">Mowing floodplains</a></li>
+                     <li class='no-sub' ><a onclick="showRelo()">Dike relocation</a></li>
+                     <li class='no-sub' ><a onclick="showGROYNLOW()">Groyne lowering</a></li>
+                     <li class='no-sub' ><a onclick="showMINEMBLOW()">Embankment lowering</a></li>
+                     <li class='no-sub' ><a onclick="showSIDECHAN()">Side channels</a></li>
+                     <li class='no-sub' ><a onclick="showFLPLOW()">Floodplain lowering</a></li>
+                  </ul>
+               </li>
+            </ul>
+            </div>
+          <!--
           <div class="dropdown">
               <div id="InterventionTitle" onclick="dropDownFunction()" class="dropbtn">KIES MAATREGEL</div>
               <div id="InterventionDropdown" class="dropdown-content">
@@ -107,7 +123,7 @@
               <span class="slider round"></span>
           </label>
           High intensity
-        </div>
+        </div>-->
         </div>
         <div id="InterventionTable" class='textframe frame-summary'>
           <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
@@ -118,9 +134,9 @@
         </div>
       </div> <!-- in'v info -->
 
-      <!-- Compare app -->
+      <!-- Flow app -->
       <div id="ComparePanel" class='appcontainer'>
-        <div id='CompareCanvasDiv'><svg id="CompareCanvas" class='canvas02'></svg></div>
+        <div id='CompareCanvasDiv'><svg id="CompareCanvas" class='canvas'></svg></div>
         <div id="CompareOptions" class='textframe frame-options'>    
           <div class="vertical">
           <div id="flat-slider"></div>
@@ -142,7 +158,7 @@
 
       <!-- Story app -->
       <div id="StoryPanel" class='appcontainer'>
-        <div id="StoryCanvas" class='canvas02' style="font-size:144px; text-align:center;"> 🧐</div>
+        <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> 🧐</div>
         <div id="StoryOptions" class='textframe frame-options'>
             <div class="story-options-wrapper">
               <button onclick="previousStory();" class="story-ui-left"><i class="fas fa-angle-left"></i></button>
@@ -211,29 +227,52 @@
           </div>
       </div> <!-- about -->
 
+      <!-- Paper app -->
+      <div id="PaperPanel">
+        <div id="PaperContent">
+          <h2> <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Open_Access_logo_PLoS_transparent.svg"></img> Journal paper </h2>
+          While peer review is ongoing, our paper is available from the journal Natural Hazards and Earth system sciences Discussions: <a href="https://www.nat-hazards-earth-syst-sci-discuss.net/nhess-2018-325">Direct link</a>
+
+          <h2>Tools</h2>
+          We use a number of tools & software systems in our study:
+          <a href="https://github.com/kdberends/coral"><img style="width:100%" src="https://raw.githubusercontent.com/kdberends/coral/master/coralfig.svg?sanitize=true"></a>
+          <h3><img style="width: 20px" src="https://oss.deltares.nl/image/image_gallery?uuid=13baea0c-1a8c-44c4-b4fa-89c7d4d68f3c&groupId=183920&t=1352473709104"></img> Delft3D Flexible Mesh</h3></div>
+          <h3>RiverScape</h3>
+
+          </div>
+      </div> <!-- about -->
       </div> <!-- cont' background -->
+
     </div> <!-- grid -->
   </main>
 
   <!-- FOOTER -->
+  <div id='version-number-box'>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/CC-BY-SA_icon.svg/88px-CC-BY-SA_icon.svg.png'></img>
+    <span id="version-number-site"> Bladieblabla </span>
+    <span id="version-number-flow"> Bladieblabla </span>
+    <span id="version-number-explore"> Bladieblabla </span>
+    
+    <span> (tldr; Attribute & share alike)</span>
+  </div>
   <footer>
       <img src="img/footerlogo.svg" class="logo-footer"></img>
   </footer>
 </body>
 
-<!-- LOAD JS -->
+<!-- LOAD THIRDPARTY JS -->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
 <script src="js/thirdparty/leaflet-velocity.js"></script>
 <script src="js/thirdparty/L.Map.Sync.js"></script>
-<!--<script src="js/vendor/leaflet.pattern.js"></script>-->
-<script src="lib/d3.js"></script>
+<script src="js/thirdparty/d3.js"></script>
 <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+<script src="js/thirdparty/perfect-scrollbar.js"></script>
+
+<!-- LOAD JS -->
 <script src="js/scroller.js"></script>
 <script src="js/data.js"></script>
-<script src="js/thirdparty/perfect-scrollbar.js"></script>
-<script src="js/storyfigures.js"></script>
-<script src="js/steadyflow.js"></script>
-<script src="js/comparefigure.js"></script>
+<script src="js/protoSchematicRiverChart.js"></script>
+<script src="js/protoSteadyFlowApp.js"></script>
+<script src="js/protoCompareChart.js"></script>
 <script src="js/explore.js"></script>
-<!--<link rel="stylesheet" type="text/css" href="css/explore_app.css"/>-->
 </html>

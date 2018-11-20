@@ -1,9 +1,47 @@
 /** ////////////////////////////////////////////////////////////
  * todo: add meta info 
  * 
- * v. 0.xx
+ * 
+ */////////////////////////////////////////////////////////////
+const version = 0.1;
+
+/** ////////////////////////////////////////////////////////////
+ * Extend jquery
+ * 
+ *
  */////////////////////////////////////////////////////////////
 
+(function($){
+  $(document).ready(function(){
+    $('.cssmenu li.has-sub > ul').slideUp(200)
+    $('.cssmenu li.has-sub>a').on('click', function(){
+          //$(this).removeAttr('href');
+          var element = $(this).parent('li');
+          if (element.hasClass('open')) {
+            element.removeClass('open');
+            element.find('li').removeClass('open');
+            element.find('ul').slideUp(200);
+          }
+          else {
+            element.addClass('open');
+            element.children('ul').slideDown(200);
+            element.siblings('li').children('ul').slideUp(200);
+            element.siblings('li').removeClass('open');
+            element.siblings('li').find('li').removeClass('open');
+            element.siblings('li').find('ul').slideUp(200);
+          }
+        });
+    // after click, propagate collapse upstream
+    $('.cssmenu li.no-sub > a').on('click', function(){
+          var element = $(this).parent('li');
+          element.removeClass('open');
+          element.parent('li').removeClass('open');
+          element.parent('ul').slideUp(200);
+          element.parent('ul').parent('li').removeClass('open');
+          element.parent('ul').parent('li').children('a').text($(this).text());
+    });
+  });
+})(jQuery);
 
 /** ////////////////////////////////////////////////////////////
  * Navigation toggles
@@ -13,8 +51,8 @@
 
 // Flags that remember which panel is out
 var AppMenuToggle = true;
-var AppToggles = [true, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionPanel", "#ComparePanel"];
+var AppToggles = [true, false, false, false, false];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionPanel", "#ComparePanel", "#PaperPanel"];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -46,7 +84,7 @@ var toggleApp = function (appindex) {
 };
 
 // Default layout
-toggleApp(0)
+toggleApp(4)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -55,6 +93,14 @@ toggleApp(0)
  *
  */////////////////////////////////////////////////////////////
 
+
+const fs = new PerfectScrollbar('#CompareDescription', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+fs.update()
 
 const ps = new PerfectScrollbar('#InterventionDescription', {
   wheelSpeed: 1,
@@ -287,6 +333,7 @@ map.on('zoomend', function() {
 /* === Map Functions ===
  */
 
+var velocityLayer = {};
 
 function removeVelocityLayerFromMap(){
   map.eachLayer(function (l) {
@@ -298,7 +345,7 @@ function removeVelocityLayerFromMap(){
 
 function addVelocityLayerToMap(file, thismap){
      d3.json(file, function (data) {
-      var velocityLayer = L.velocityLayer({
+      velocityLayer = L.velocityLayer({
         displayValues: true, 
         displayOptions: {
           velocityType: 'Flow velocity',
@@ -351,9 +398,9 @@ window.onclick = function(event) {
 
 function showReference() {
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Referentiesituatie";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 0 cm (--)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
+  //document.getElementById("InterventionTitle").innerHTML = "Referentiesituatie";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 0 cm (--)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
   $('#InterventionDescription').load('xml/reference_NL.xml');
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
@@ -373,9 +420,9 @@ function showReference() {
 
 function showRelo() {
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 108 cm (<span class='label_high'>hoog</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 108 cm (<span class='label_high'>hoog</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/dikerelocation_NL.xml');
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){ExploreFigure.updateData(d)});
@@ -397,9 +444,9 @@ function showRelo() {
 
 function showSmooth() {
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Maaien van de uiterwaard";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 28 cm (<span class='label_medium'>gemiddeld</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 82% (<span class='label_low'>hoog</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Maaien van de uiterwaard";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 28 cm (<span class='label_medium'>gemiddeld</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 82% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('xml/smoothing_NL.xml');
   
   /* Figure */
@@ -426,9 +473,9 @@ function showSmooth() {
 
 function showGROYNLOW(){
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 4 cm (<span class='label_low'>laag</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 4 cm (<span class='label_low'>laag</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/groynelowering_NL.xml');
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){ExploreFigure.updateData(d)})  
@@ -450,9 +497,9 @@ function showGROYNLOW(){
 
 function showMINEMBLOW(){
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('xml/MINEMBLOW_NL.xml');
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){ExploreFigure.updateData(d)})  
@@ -473,9 +520,9 @@ function showMINEMBLOW(){
 
 function showFLPLOW(){
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/FLPLOW_NL.xml');
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){ExploreFigure.updateData(d)})  
@@ -499,9 +546,9 @@ function showFLPLOW(){
 
 function showSIDECHAN(){
   /* Titles and descriptions */
-  document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
-  document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 36 cm (<span class='label_medium'>gemiddeld</span>)";
-  document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
+  //document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
+  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 36 cm (<span class='label_medium'>gemiddeld</span>)";
+  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/SIDECHAN_NL.xml');
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){ExploreFigure.updateData(d)})  
@@ -544,6 +591,8 @@ function display(error, dataset, comparedata) {
   ExploreFigure.drawMedian();
   ExploreFigure.drawBands();
   ExploreFigure.showBands();
+  $('#version-number-explore').text('Explore app: v' + ExploreFigure.getVersion());
+  
 
   // Set callback between map and figure
   ExploreFigure.setXaxisCallback(function (coor) {
@@ -564,7 +613,7 @@ function display(error, dataset, comparedata) {
   protoSteadyFlowApp.apply(CompareFigure)
   CompareFigure.setCanvas('#CompareCanvas');
   CompareFigure.init();
-  
+  $('#version-number-flow').text('Flow app: v' + CompareFigure.getVersion());
   showReference()
   // Make sure figure updates when window resizes
    d3.select(window)
@@ -842,3 +891,6 @@ function resetStory () {
 $(document).ready(function () {
   // renderProgress();
 });
+
+$('#version-number-site').text('Website: v' + version);
+

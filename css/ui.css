@@ -1,11 +1,18 @@
- :root {
+ :root { 
     --background-light: #ededed;
     --accent-light: #76BFFB;
     --font-hyperlink: #92C7F3;
+    --font-hyperlink-hover: #58A8E9;
     --font-body-color: white;
     --font-body-size: 14px;
     --nav-color: white;
     --nav-size: 26px;
+    --accent-1: #FF9F1C;
+    --accent-2: #D5573B;
+    --accent-3: #3C787E;
+    --accent-4: #313B72;
+    --accent-5: #3F3047;
+    --accent-6: #191A21;
 }
  
 .label_high {
@@ -25,6 +32,12 @@
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
+.logo-footer {
+  float: right;
+  width: 100%; 
+  margin-right: 55px;
+}
+
 /* ===========================================
  * App navigation
  * ===========================================
@@ -42,51 +55,67 @@
   width: 300px;
   left: 60px;
   z-index: 3;
+  cursor: pointer;
   pointer-events: initial;
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-
+  
 }
 
 #appnavigation span {
   position: relative;
   margin-left: 25px;
+  border-bottom:2px solid #49F5FF22;
+  transition: 200ms ease-out;
 }
 
 #appnavigation span:hover {
-  border-bottom:2px solid #49F5FF;
-  padding-bottom:5px;
-  cursor: pointer;
+  border-bottom:3px solid #49F5FFFF;
+}
 
+#appnavigation span.app-active {
+  border-bottom:3px solid #49F5FFFF;
+}
+
+#appnavigation span.app-active::after{
+  opacity: 1;
+  color: #49F5FFFF;
 }
 
 #appnavigation span:hover::after{
+  opacity: 1;
+  color: #FFFFFFFF;
+}
+
+#appnavigation span::after{
   position: absolute;
-  width: 150px;
-  margin-left: -90px; /* -1/2width - iconwidth/2 */
+  width: 80px;
+  margin-left: -55px; /* -1/2width - iconwidth/2 */
   top: 40px;
   color: white;
   font-size: 12px;
   text-align: center;
+  opacity: 0.3;
+  transition: 250ms ease-out;
 }
 
-#app-info:hover::after{
+#app-info::after{
   content: "About";
+  left: 18px;
 }
 
-#app-story:hover::after{
+#app-story::after{
   content: "Storyline";
 }
 
-#app-explore:hover::after{
-  content: "Explore measures";
+#app-explore::after{
+  content: "Explore";
 }
 
-#app-compare:hover::after{
-  content: "Compare measures";
+#app-compare::after{
+  content: "Flow sim";
 }
 
-#app-article:hover::after{
-  content: "Journal paper";
+#app-article::after{
+  content: "Paper";
 }
 
 /* ===========================================
@@ -94,39 +123,36 @@
  * ===========================================
  */
 
-#AboutPanel {
-  font-family: Raleway;
-  color: var(--font-body-color);
+#AboutPanel{
+  transform: translate(0%, 0%);
   position: absolute;
   top:80px;
   left: 20px;
   width: 350px;
   overflow: hidden;
-  height: calc(100% - 95px);
+  height: calc(100% - 200px);
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  transform: translate(0%, 0%);
+  z-index: 0;
 }
 
-#AboutPanel div
+#AboutContent
 {
-  padding: 10px 0;
-  font-size: var(--font-body-size);
+  font-size: 16px;
 }
 
-#AboutPanel hr
+#AboutContent hr
 {
   border: 0;
   border-bottom: 1px dashed #ccc;
 }
 
-
-#AboutPanel li
+#AboutContent li
 {
   padding: 10px 0;
   font-size: 22px;
 }
 
-#AboutPanel a {
+#AboutContent a {
   text-decoration: none;
   color: var(--font-hyperlink);
   transition: color 0.1s ease;
@@ -136,16 +162,17 @@
   cursor: pointer;
 }
 
-#AboutPanel a:hover
+#AboutContent a:hover
 {
-  color: #58A8E9;
+  color: var(--font-hyperlink-hover);
   border-bottom:0px solid #58A8E9; 
 }
 
-#AboutPanel ul li{
+#AboutContent ul li{
   font-size: 14px;
   margin-bottom: -10px;
 }
+
 
 
 /* ===========================================
@@ -166,17 +193,20 @@
   transform: translate(0%, 0%);
 }
 
+#CompareCanvasDiv{
+  position: relative;
+  top: 0px;
+}
 
 #CompareOptions{
   position: relative;
-  top: 270px;
+  top: 220px;
+  height: 250px;
 }
 
-#CompareOptions div
-{
-  padding: 0px 0;
-  font-size: var(--font-body-size);
-  padding-left: 0px;
+#CompareDescription{
+  position: relative;
+  top: 250px;
 }
 
 .CompSliderContainer {
@@ -245,20 +275,20 @@
 }
 
 #StoryFrame{
-  border: 2px solid black;
+  margin-top: 10px;
   position:relative;
   height: 300px;
   overflow: hidden;
 }
 
 #StoryCanvas{
-  border: 2px solid black;
+  margin-top: 10px;
   position:relative;
   width: 95%;
 }
 
 #StoryOptions{
-  border: 2px solid black;
+  
   position:relative;
   width: 95%;
 }
@@ -267,8 +297,6 @@
   margin: auto;
   width: 80%;
   padding: 5px;
-  background: #34495e;
-  border-radius: 7px;
   color: #ecf0f1;
   font-family: "Raleway";
 }
@@ -276,45 +304,58 @@
 .storytext {
   font-family: Raleway;
   font-size: 16px;
+  margin: 5px;
+}
+
+.storytext a {
+  font-family: Raleway;
+  font-size: 16px;
+  color: var(--font-hyperlink);
+  cursor: pointer;
+}
+
+.storytext a:hover {
+  color: var(--font-hyperlink-hover);
 }
 
 #StoryOptions button {
   width: 50px;
   height: 23px;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
+  border: 1px solid white;
   color: inherit;
   font-family: inherit;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .story-ui-left {
   margin-left: 50px;
-  background: #2ecc71;
+  background: var(--accent-5);
 }
 
 .story-ui-right {
-  background: #2ecc71;
+  background: var(--accent-5);
 }
 
 .story-ui-home {
-  background: #147789;
+  background: var(--accent-4);
 }
 
 .progress {
   margin: 5px 0;
-  width: 100%;
-  
+  width: 100%;  
 }
 
 .progress-outside {
-  background: #bdc3c7;
+  background: #66666699;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .progress-inside {
-  background: #3498db;
+  background: var(--accent-4);;
   border-radius: 3px;
   height: 20px;
   transition: width 1s ease-out;
@@ -340,25 +381,28 @@
   height:200px;
 }
 
-#IntensitySwitchDiv{
-  position: relative;
-  top: 210px;
-}
-
-#IntensitySwitchDiv div{
-  text-align: center;
-}
-
-
-#InterventionInfo{
+#InterventionPanel{
   transform: translate(-150%, 0%);
   position: relative;
   top:75px;
   left: 20px;
   width: 350px;
   overflow: hidden;
+  height: calc(100% - 200px);
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
+  z-index: 0;
 }
+
+#IntensitySwitchDiv{
+  position: relative;
+  top: 210px;
+  z-index: 99;
+}
+
+#IntensitySwitchDiv div{
+  text-align: center;
+}
+
 
 #InterventionTable{
   position: relative;
@@ -379,8 +423,9 @@
 #InterventionDescription {
   pointer-events: initial;
   font-family: "Montserrat";
+  height: 100%;
   padding: 10px; 
-  overflow: auto;
+  overflow: hidden;
   color: #FFFFFF;
   font-size: 14px;
 }
@@ -388,7 +433,7 @@
 #Description{
   position:relative;
   margin-top: 230px;
-  height: 300px;
+  height: calc(100% - 400px);
 }
 
 .textframe {
@@ -423,12 +468,12 @@
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-    left: 5px;
+    left: 35px;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 200px;
+    min-width: 279px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 99;
 }
 
 /* Links inside the dropdown */

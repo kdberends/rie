@@ -4,13 +4,14 @@
   padding: 0px;
   width: 80%;
   left: 10%;
+  top: 25px;
   border-radius: 0; }
 
 .ui-widget-header {
   background: #5DB4D4;
 }
 
-               
+/* handles of horizontal slider */               
 #flat-slider.ui-slider .ui-slider-handle {
   width: 10px;
   height: 10px;
@@ -22,8 +23,10 @@
 #flat-slider.ui-slider .ui-slider-handle.ui-state-hover, 
 #flat-slider.ui-slider .ui-slider-handle.ui-state-focus, 
 #flat-slider.ui-slider .ui-slider-handle.ui-state-active {
-  border-color: #5DB4D4; }
-                    
+  border-color: #A8C9D5; 
+  }
+
+/* Pips (not active) */
 #flat-slider.ui-slider .ui-slider-pip .ui-slider-line {
   background: #372F30;
   transition: all 0.4s ease; }
@@ -34,23 +37,23 @@
 #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-handle {
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
-  top: -25px;
-  margin-left: -10px; }
+  top: -20px;
+  margin-left: -6px; }
                     
 #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip {
   top: 10px; }
                 
-  #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip .ui-slider-line {
-    width: 2px;
-    height: 10px;
-    margin-left: -1px; }
+#flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip .ui-slider-line {
+  width: 2px;
+  height: 8px;
+  margin-left: -1px; }
                 
-  #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line {
-    height: 20px; }
-                
-  #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-    height: 12px; }
-                
+#flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line {
+  height: 20px; }
+              
+#flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
+  height: 12px; }
+              
 
 #flat-slider .ui-slider-handle,
 #flat-slider .ui-slider-range,
@@ -61,17 +64,21 @@
 
 
 /* VERTICAL STYLES */
-
 .ui-slider.ui-slider-vertical {
   width: 6px;
-  height: 125px;
+  height: 120px;
   display: inline-block;
-  margin: 0 15%; }
+  top: 75px;
+  left: 10px;
+  margin: 0 10%; /*  Margin between verticals*/
+}
                   
 .ui-slider.ui-slider-vertical .ui-slider-handle {
   -webkit-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
-  left: -25px;
+  left: -35px;
+  width: 25px;
+  height: 25px;
   background: #EE1414FF;
   margin-bottom: -10px; }
                 
@@ -79,25 +86,27 @@
   left: 10px; }
                 
 .ui-slider.ui-slider-vertical .ui-slider-pip .ui-slider-line {
-    height: 2px;
-    width: 10px;
+    height: 3px;
+    width:  8px;
     margin-top: -1px; }
                 
 .ui-slider.ui-slider-vertical .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line {
     width: 20px; }
                 
 .ui-slider.ui-slider-vertical .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-    width: 12px; }
+    width: 10px; }
                 
 .ui-slider.ui-slider-vertical .ui-slider-handle .ui-slider-tip,
 .ui-slider.ui-slider-vertical .ui-slider-handle[class*=ui-state-] .ui-slider-tip {
     visibility: visible;
+    font-family: Oswald;
+    font-size: 12px;
     opacity: 1;
     border: none;
     background: transparent;
-    left: 50%;
+    left: 0%;
     width: 30px;
-    margin-left: -15px;
+    margin-left: -5px;
     text-align: center;
     color: white;
     font-weight: normal;
@@ -114,18 +123,64 @@
 #flat-slider-vertical-1 .ui-slider-range,
 #flat-slider-vertical-1 .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
 #flat-slider-vertical-1 .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-  background-color: #f27793; }
-                    
+  background-color: #3C787E; }
+
+#flat-slider-vertical-1::before{
+  content: "Downstream waterlevel [m]";
+  font-family: Oswald;
+  position: absolute;
+  margin-top: -45px;
+  width: 80px;
+  left: -20px;
+}                    
                     
 #flat-slider-vertical-2 .ui-slider-handle,
 #flat-slider-vertical-2 .ui-slider-range,
 #flat-slider-vertical-2 .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
 #flat-slider-vertical-2 .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-  background-color: #bd77f2; }
-                    
+  background-color: #FF9F1C; }
+#flat-slider-vertical-2::before{
+  content: "Discharge [cms]";
+  font-family: Oswald;
+  position: absolute;
+  margin-top: -45px;
+  width: 70px;
+  left: -15px;
+}                        
                     
 #flat-slider-vertical-3 .ui-slider-handle,
 #flat-slider-vertical-3 .ui-slider-range,
 #flat-slider-vertical-3 .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
 #flat-slider-vertical-3 .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
-  background-color: #67c3ec; }
+  background-color: #313B72; }
+  #flat-slider-vertical-3::before{
+  content: "Slope [m/10km]";
+  font-family: Oswald;
+  position: absolute;
+  width: 70px;
+  margin-top: -45px;
+  left: -10px;
+}    
+
+#flat-slider-vertical-4 .ui-slider-handle,
+#flat-slider-vertical-4 .ui-slider-range,
+#flat-slider-vertical-4 .ui-slider-pip[class*=ui-slider-pip-selected] .ui-slider-line,
+#flat-slider-vertical-4 .ui-slider-pip.ui-slider-pip-inrange .ui-slider-line {
+  background-color: #D5573B; }
+#flat-slider-vertical-4::before{
+  content: "Dredging depth [m]";
+  font-family: Oswald;
+  position: absolute;
+  width: 70px;
+  margin-top: -45px;
+  left: -10px;
+}    
+
+#flat-slider::after{
+  content: "Coordinates of intervention";
+  font-family: Oswald;
+  position: absolute;
+  width: 80%;
+  margin-top: -40px;
+  right: -20px;
+}    

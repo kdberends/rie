@@ -14,7 +14,7 @@
 // Flags that remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionInfo", "#ComparePanel"];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionPanel", "#ComparePanel"];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -36,15 +36,17 @@ var toggleApp = function (appindex) {
     if (i == appindex) {
       $(AppIds[appindex]).css('transform','translate(0%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
+      $($('#appnavigation span').get(i)).addClass('app-active');
     } else{
       $(AppIds[i]).css('transform','translate(-120%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
+      $($('#appnavigation span').get(i)).removeClass('app-active');
   };
   };
 };
 
 // Default layout
-toggleApp(1)
+toggleApp(0)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -588,29 +590,34 @@ d3.queue()
 
 
 // === ~final
+
+// Intervention width slider
 $("#flat-slider")
     .slider({
-        max: 50,
+        max: 10000,
         min: 0,
         range: true,
-        values: [15, 35],
-        change: function(event, ui) {console.log(ui)}
+        values: [4000, 6000],
+        change: function(event, ui) {
+          CompareFigure.changeInterventionExtent(ui.values)
+        }
     })
     .slider("pips", {
         first: "pip",
         last: "pip"
-    })
+    });
 
-                    
+// Downstream water level                    
 $("#flat-slider-vertical-1")
   .slider({
-        max: 450,
-        min: 150,
+        max: 7,
+        min: 3,
         range: "min",
-        value: 300,
+        value: 4,
+        step: 0.5,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeBoundary(ui.value/100)
+          CompareFigure.changeBoundary(ui.value)
         }
     })
   .slider("pips", {
@@ -619,12 +626,14 @@ $("#flat-slider-vertical-1")
     })
     .slider("float");
 
+// Discharge
 $("#flat-slider-vertical-2")
   .slider({
-        max: 40,
-        min: 10,
+        max: 3000,
+        min: 1000,
         range: "min",
-        value: 20,
+        value: 2000,
+        step: 200,
         orientation: "vertical",
         change: function(event, ui) {
           CompareFigure.changeDischarge(ui.value)
@@ -636,16 +645,36 @@ $("#flat-slider-vertical-2")
     })
     .slider("float");
 
+// Bed slope
 $("#flat-slider-vertical-3")
   .slider({
-        max: 4,
-        min: 3,
+        max: 6.5,
+        min: 3.5,
         range: "min",
-        value: 3,
+        value: 5,
         step: 0.25,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeSlope(10**-ui.value)
+          CompareFigure.changeSlope(ui.value/10000)
+        }
+    })
+  .slider("pips", {
+        first: "pip",
+        last: "pip"
+    })
+    .slider("float");
+
+// Dredging depth
+$("#flat-slider-vertical-4")
+  .slider({
+        max: 2,
+        min: 0,
+        range: "min",
+        value: 0,
+        step: 0.5,
+        orientation: "vertical",
+        change: function(event, ui) {
+          CompareFigure.changeInterventionDepth(-1*ui.value)
         }
     })
   .slider("pips", {
@@ -665,7 +694,16 @@ function storyTest () {
   console.log("StoryTestFunc fired")
 };
 
+function show_welcome() {
+  $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
+};
+
+function hide_welcome() {
+  $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
+};
+
 function show_flowcanvas() {
+  hide_welcome();
   $('#ComparePanel').css('transform','translate(0%, 0%)');
   $('#CompareOptions').css('transform','translate(-120%, 0%)');
   $('#CompareDescription').css('transform','translate(-120%, 0%)');
@@ -676,6 +714,7 @@ function map_zoom_NL() {
 };
 
 function map_zoom_Waal() {
+  hide_welcome()
   map.setView([51.823, 5.3682], 9);
 };
 
@@ -684,23 +723,27 @@ function map_zoom_StAndries() {
   story_show_uncertainty();
 };
 
-function hide_flowcanvas() {
+function hide_flowcanvas() {  
   $('#ComparePanel').css('transform','translate(-120%, 0%)');
 }
 
 function show_interventioncanvas() {
-  $('#InterventionInfo').css('transform','translate(0%, 0%)');
+  $('#InterventionPanel').css('transform','translate(0%, 0%)');
   $('#IntensitySwitchDiv').css('transform','translate(-120%, 0%)');
   $('#InterventionTable').css('transform','translate(-120%, 0%)');
   $('#Description').css('transform','translate(-120%, 0%)');
 };
 
+function hide_interventioncanvas() {
+  $('#InterventionPanel').css('transform','translate(-120%, 0%)');
+};
+
 function story_discharge_down() {
-  CompareFigure.changeDischarge(5);
+  CompareFigure.changeDischarge(1250);
 };
 
 function story_discharge_up() {
-  CompareFigure.changeDischarge(20);
+  CompareFigure.changeDischarge(2000);
 };
 
 function story_show_uncertainty() {
@@ -708,15 +751,34 @@ function story_show_uncertainty() {
   show_interventioncanvas();
 };
 
-var StoryFunctions = [hide_flowcanvas, 
+function story_lower_bed() {
+  CompareFigure.changeInterventionDepth(-1)
+};
+
+function reset_story(){
+  CompareFigure.changeInterventionDepth(0)
+  CompareFigure.changeDischarge(2000);
+  show_welcome();
+  showReference();
+  hide_flowcanvas();
+  hide_interventioncanvas();
+  map_zoom_NL();
+};
+
+function show_storycanvas_hide_flow(){
+  hide_flowcanvas();
+  show_welcome()
+};
+
+var StoryFunctions = [reset_story, 
                       show_flowcanvas, 
                       story_discharge_down, 
                       story_discharge_up, 
                       storyTest,
                       storyTest, 
-                      storyTest,
+                      show_storycanvas_hide_flow,
                       map_zoom_Waal, 
-                      storyTest,
+                      hide_interventioncanvas,
                       map_zoom_StAndries,
                       showSmooth,
                       showSIDECHAN,
@@ -766,7 +828,8 @@ function previousStory () {
 };
 
 function resetStory () {
-  StoryProgress = 0
+  StoryProgress = 0;
+  reset_story();
   $('#StoryText').load('xml/stories.xml #'+StoryProgress);
   $(".progress .progress-inside").each(function () {
     let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"

@@ -21,7 +21,7 @@ var protoSteadyFlowApp = function() {
  	var yScale = {};
  	var zeroline = {};
  	var valueline = {};
- 	var xlim = [0, 5000];
+ 	var xlim = [0, 10000];
  	var ylim = [-7.5, 5];
  	var interventions = ['relocation', 'smoothing', 'sidechannel', 'lowering', 'groynelowering', 'minemblowering'];
  	var index_accepteduncertainty = 49;
@@ -49,16 +49,18 @@ var protoSteadyFlowApp = function() {
     var pline= {};
 
     // Flow parameters
-    var bedslope = 0.001
-    var friction = 0.03 // manning
-    var riverlength = 5000  // m
-    var uniformwidth = 5  //m
-    var downstreamh =  3.5  // m
-    var discharge = 20  // m3/s
-    var nsteps =  100
-    var waterdepth = new Array(nsteps)  // == waterdepth
-    var waterlevel = new Array(nsteps)  // == waterdepth
-    var bedlevel = new Array(nsteps)  // == waterdepth
+    var bedslope = 0.0005;
+    var friction = 0.03; // manning
+    var riverlength = 10000;  // m
+    var uniformwidth = 200;  //m
+    var downstreamh =  4;  // m
+    var discharge = 2000;  // m3/s
+    var nsteps =  200;
+    var waterlevel = new Array(nsteps)  // == waterlevel
+    var bedlevel = new Array(nsteps)  // == waterlevel
+    var intervention_extent = [4000, 6000] // x_left - x_right
+    var intervention_depth = 0; // change w/r bedlevel
+
     /* /////////////////////////////////////////////////////////////
 	//// Initialisation & general methods
     *///////////////////////////////////////////////////////////////
@@ -123,30 +125,42 @@ var protoSteadyFlowApp = function() {
 	//// Data methods
     *///////////////////////////////////////////////////////////////
     this.get_bedlevel = function(x) {
-    	return -bedslope*x
+    	if ((x > intervention_extent[0]) && (x < intervention_extent[1])) {
+    		return -bedslope*x + intervention_depth;
+    	} else {
+    		return -bedslope*x;
+    	}
     };
 
     this.build_data = function(){
-    	data = [{x: 0, y:waterdepth[0], h:waterdepth[0], b:0}]
-    	let dx = riverlength / nsteps
-    	let tempx = 0
+    	data = [{x: 0, y:waterlevel[0], h:waterlevel[0], b:0}];
+    	let dx = riverlength / nsteps;
     	for (var i=1;i<nsteps;i++){
-    		localx = data[i-1].x + dx
+    		let localx = data[i-1].x + dx
     		data.push({x: localx, 
-    			       y: waterdepth[i] + this.get_bedlevel(localx),
-    			       h: waterdepth[i],
+    			       y: waterlevel[i],
+    			       h: waterlevel[i] - this.get_bedlevel(localx),
     			       b: this.get_bedlevel(localx)})
-    	}
-
+    	};
+    	//console.log(data)
     };
 
     /* backward euler of belanger */
     this.solve_flow = function() {
-    	waterdepth[nsteps-1] = downstreamh
-    	let dx = riverlength / nsteps
+    	// Boundary condition
+    	waterlevel[nsteps-1] = downstreamh + this.get_bedlevel(riverlength);
+
+    	// euler loop
+    	let dx = riverlength / nsteps;
     	for (var i=2; i<nsteps+1; i++) {
-    		let hprev = waterdepth[nsteps-i+1]
-    		waterdepth[nsteps-i] = hprev - dx * this.belanger(hprev)
+    		// coordinates at this and previous point
+    		let localx = riverlength - i *dx;
+    		let prevx = riverlength - (i-1) *dx;
+
+    		// waterlevel directly upstream
+    		let hprev = waterlevel[nsteps-i+1]; 
+    		
+    		waterlevel[nsteps-i] = hprev - dx * this.belanger(hprev - this.get_bedlevel(localx));
     	};
     	this.build_data()
     };
@@ -199,7 +213,7 @@ var protoSteadyFlowApp = function() {
 	      .transition()
 	      .duration(500)
 	      .attr("x1", xScale(0)).attr("y1", yScale(0))			
-		  .attr("x2", xScale(waterdepth[0]*bedslope*50000)).attr("y2", yScale(waterdepth[0]))	
+		  .attr("x2", xScale(waterlevel[0]*bedslope*50000)).attr("y2", yScale(waterlevel[0]))	
     };
 	/* /////////////////////////////////////////////////////////////
 	//// Axis methods
@@ -313,49 +327,68 @@ var protoSteadyFlowApp = function() {
     };
 
     this.drawParticles = function() {
-    	let nparticles = 100
-    	let particle_heights = this.get_rndvalues(0, waterdepth[0], nparticles)
+    	var funcblevel = this.get_bedlevel;
+		var funclogu = this.get_velocity_at_h;
+		var funcrnd = this.get_rndvalues;
+    	let nparticles = 200
+    	let htol = 0.1
+    	let particle_depths = this.get_rndvalues(htol, waterlevel[0] - this.get_bedlevel(0), nparticles)
     	let particle_locs = this.get_rndvalues(0, riverlength, nparticles)
-    	//let particle_heights = [0.1, 0.5, 1, 1.5, 2, 2.5, 3]
+    	//let particle_depths = [0.1, 0.5, 1, 1.5, 2, 2.5, 3]
     	//let particle_locs = [1, 1,1,1, 1,1, 1]
-    	for (var i=0;i<particle_heights.length;i++){
+    	for (var i=0;i<particle_depths.length;i++){
     		let px = particle_locs[i];
     		g.append("circle")
 	    	 .attr('class', 'SteadyflowParticle')
 	    	 .attr('cx', xScale(px))
-	    	 .attr('cy', yScale(particle_heights[i] + this.get_bedlevel(px)))
+	    	 .attr('cy', yScale(particle_depths[i] + funcblevel(px)))
 	    	 .attr('r', 1)
-    	}
+    	};
 
-    	var dt = 500
-		var funcblevel = this.get_bedlevel
-		var funclogu = this.get_velocity_at_h
+    	var dt = 500;
+    	var xnew = 2;
+		
 		var timer = d3.interval(function(elapsed) {
-			// some callback every second or so
-			// xnew = xold + u * elapsed * 1000
+			// Generate a x new particles 
+
+			particle_depths = funcrnd(htol, waterlevel[0] + funcblevel(0), nparticles - $(".SteadyflowParticle").length)
+
+			for (var i=0;i<particle_depths.length;i++){
+	    		let px = particle_locs[i];
+	    		g.append("circle")
+		    	 .attr('class', 'SteadyflowParticle')
+		    	 .attr('cx', xScale(0))
+		    	 .attr('cy', yScale(particle_depths[i]))
+		    	 .attr('r', 1)
+	    	};
+
+			// Update existing particles
 			let umean = 1  // in m/s
-			let uscale = 100
+			let uscale = 200
 
 			d3.selectAll(".SteadyflowParticle")
 			  .each(function (d, i) {
 			  	parx = xScale.invert(d3.select(this).attr('cx'))
 			  	pary = yScale.invert(d3.select(this).attr('cy'))
 			  	parh = pary - funcblevel(parx)
-			  	pari = Math.floor(parx / (riverlength / nsteps)) 
+			  	pari = Math.floor(parx / (riverlength / nsteps))  // particle index
 			  	
 			  	uz = funclogu(umean, 1, parh)
 				
 
-			  	if (parx > riverlength){
-			  		// reset particle to x=0
-			  		parx = 0;
-			  		new_x = dt / 1000 * uz * uscale + parx;
-			    	new_y = parh + funcblevel(0)
+			  	if ((parx > riverlength) || (pary < funcblevel(parx))){
+			  		// reset particle to x=0 at random depth
+			  		/*
+			  		new_x = 0;
+			    	new_y = funcrnd(htol, waterlevel[0]+funcblevel(0), 1);
 			    	d3.select(this)
 				      .attr('cx', xScale(new_x))
-				      .attr('cy', yScale(new_y))
+				      .attr('cy', yScale(new_y))*/
+				    // delete particle
+				    d3.select(this).remove()
 			    } else {
 			    	new_x = dt / 1000 * uz * uscale + parx;
+			    	// if y is higher than waterlevel, reduce to waterlevel
 				    new_y = Math.min(pary + (new_x - parx)*-bedslope, data[pari].y-0.2);
 				    d3.select(this)
 				      .transition()
@@ -432,6 +465,16 @@ var protoSteadyFlowApp = function() {
 
     this.changeDischarge = function(newValue) {
     	discharge = newValue;
+    	this.redraw();
+    };
+
+    this.changeInterventionExtent = function(newValues) {
+    	intervention_extent = newValues;
+    	this.redraw();
+    };
+
+    this.changeInterventionDepth = function(newValue) {
+    	intervention_depth = newValue;
     	this.redraw();
     };
 }; // 

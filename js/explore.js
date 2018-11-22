@@ -3,7 +3,7 @@
  * 
  * 
  */////////////////////////////////////////////////////////////
-const version = 0.1;
+const version = 0.2;
 
 /** ////////////////////////////////////////////////////////////
  * Extend jquery
@@ -52,7 +52,7 @@ const version = 0.1;
 // Flags that remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#InterventionPanel", "#ComparePanel", "#PaperPanel"];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#FlowPanel", "#PaperPanel"];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -84,7 +84,7 @@ var toggleApp = function (appindex) {
 };
 
 // Default layout
-toggleApp(4)
+toggleApp(3)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -94,7 +94,15 @@ toggleApp(4)
  */////////////////////////////////////////////////////////////
 
 
-const fs = new PerfectScrollbar('#CompareDescription', {
+const ss = new PerfectScrollbar('#StoryScroll', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+ss.update()
+
+const fs = new PerfectScrollbar('#FlowScroll', {
   wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,
@@ -102,21 +110,21 @@ const fs = new PerfectScrollbar('#CompareDescription', {
 });
 fs.update()
 
-const ps = new PerfectScrollbar('#InterventionDescription', {
+const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,
   swipeEasing: true
 });
-ps.update()
+es.update()
 
-const scroll_welcomemenu = new PerfectScrollbar('#AboutPanel', {
+const as = new PerfectScrollbar('#AboutPanel', {
   wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,
   swipeEasing: true
 });
-scroll_welcomemenu.update()
+as.update()
 
 /** ////////////////////////////////////////////////////////////
  * Background map (Leaflet)
@@ -611,7 +619,7 @@ function display(error, dataset, comparedata) {
   //CompareFigure.drawInterventionLine();
   //CompareFigure.drawDesiredEffect();
   protoSteadyFlowApp.apply(CompareFigure)
-  CompareFigure.setCanvas('#CompareCanvas');
+  CompareFigure.setCanvas('#FlowCanvas');
   CompareFigure.init();
   $('#version-number-flow').text('Flow app: v' + CompareFigure.getVersion());
   showReference()
@@ -753,10 +761,14 @@ function hide_welcome() {
 
 function show_flowcanvas() {
   hide_welcome();
-  $('#ComparePanel').css('transform','translate(0%, 0%)');
-  $('#CompareOptions').css('transform','translate(-120%, 0%)');
-  $('#CompareDescription').css('transform','translate(-120%, 0%)');
-}
+  $('#FlowPanel').css('transform','translate(0%, 0%)');
+  $('#FlowOptions').css('transform','translate(-120%, 0%)');
+  $('#FlowDescription').css('transform','translate(-120%, 0%)');
+};
+
+function hide_flowcanvas() {  
+  $('#FlowPanel').css('transform','translate(-120%, 0%)');
+};
 
 function map_zoom_NL() {
   map.setView([52, 5], 7);
@@ -772,19 +784,17 @@ function map_zoom_StAndries() {
   story_show_uncertainty();
 };
 
-function hide_flowcanvas() {  
-  $('#ComparePanel').css('transform','translate(-120%, 0%)');
-}
+
 
 function show_interventioncanvas() {
-  $('#InterventionPanel').css('transform','translate(0%, 0%)');
-  $('#IntensitySwitchDiv').css('transform','translate(-120%, 0%)');
+  $('#ExplorePanel').css('transform','translate(0%, 0%)');
+  $('#ExploreOptions').css('transform','translate(-120%, 0%)');
   $('#InterventionTable').css('transform','translate(-120%, 0%)');
   $('#Description').css('transform','translate(-120%, 0%)');
 };
 
 function hide_interventioncanvas() {
-  $('#InterventionPanel').css('transform','translate(-120%, 0%)');
+  $('#ExplorePanel').css('transform','translate(-120%, 0%)');
 };
 
 function story_discharge_down() {
@@ -835,7 +845,7 @@ var StoryFunctions = [reset_story,
                       storyTest
                       ]
 
-$('#StoryText').load('xml/story0.xml');
+$('#StoryText').load('xml/stories.xml #0' );
 
 $(".progress").each(function () {
   var $outside = $("<div></div>").addClass("progress-outside");
@@ -892,5 +902,5 @@ $(document).ready(function () {
   // renderProgress();
 });
 
-$('#version-number-site').text('Website: v' + version);
+$('#version-number-site').text('UI: v' + version);
 

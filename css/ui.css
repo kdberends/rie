@@ -34,13 +34,40 @@
   color: #F31419;
 }
 
+
+.panel {
+  position: absolute;
+  top:75px;
+  height: calc(100% - 100px);
+  left: 20px;
+  width: 90%;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
+}
+
 .canvas {
+  position:relative; 
   top: 0px;
   pointer-events: initial;
-  grid-area: fig2;
-  position:absolute; 
-  width:100%;
+  width:99%;
   height:200px;
+}
+
+
+.scroll {
+  position: relative;
+  top: 0px;
+  height: calc(100% - 200px);
+  overflow: hidden;
+}
+
+
+.map { 
+  z-index:-1;
+  position:absolute;
+  width:100%;
+  height:100%; 
+  pointer-events: visible; 
 }
 
 /* ===========================================
@@ -88,10 +115,10 @@
 
 footer {
    position:absolute;
-   right:2%;
-   bottom:10px;
+   right:0px;
+   bottom:-20px;
    margin: auto;
-   max-width:300px;
+   max-width:200px;
    height:60px;   /* Height of the footer */
    overflow: all;
    border-radius: 2px;
@@ -150,7 +177,6 @@ body {
 .cssmenu {
   width: 80%;
   left: 45px;
-  border: 1px solid white;
   font-family: var(--font-body-family);
   color: var(--font-body-color);
 }
@@ -163,7 +189,7 @@ body {
   font-size: 16px;
   text-decoration: none;
   color: white;
-  background: var(--accent-1);
+  background: var(--accent-6);
   -webkit-transition: color .2s ease;
        -o-transition: color .2s ease;
           transition: color .2s ease;
@@ -248,12 +274,13 @@ body {
   transform: translate(0%, 0%);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   border-radius: 0px;
-  box-shadow: 0px 0px 10px 10px #000000;
+  box-shadow: 0px 0px 15px 5px #000000;
   pointer-events: initial;
-  grid-area: fig2;
   position:absolute; 
-  width:400px;
+  width: 100%;
+  max-width:400px;
   height:100%;
+  z-index: 1;
 }
 
 
@@ -286,6 +313,9 @@ body {
  * ===========================================
  */
 
+nav {
+  z-index: 2
+}
 
 #appnavigation {
   font-family: "Montserrat";
@@ -295,13 +325,19 @@ body {
   padding-bottom: 15px;
   top: 13px;
   height: 45px;
-  width: 300px;
+  width: 80%;
+  max-width: 300px;
   left: 60px;
   z-index: 3;
   cursor: pointer;
   pointer-events: initial;
+  transition: 500ms ease-out;
   
 }
+
+@media (max-width: 400px){#appnavigation {left: 50px}}
+@media (max-width: 340px){#appnavigation {left: 40px}}
+
 
 #appnavigation span {
   position: relative;
@@ -309,6 +345,8 @@ body {
   border-bottom:2px solid #49F5FF22;
   transition: 200ms ease-out;
 }
+
+@media (max-width: 340px){#appnavigation span {margin-left: 17px}}
 
 #appnavigation span:hover {
   border-bottom:3px solid #49F5FFFF;
@@ -368,14 +406,6 @@ body {
 
 #AboutPanel{
   transform: translate(0%, 0%);
-  position: absolute;
-  top:80px;
-  left: 20px;
-  width: 350px;
-  overflow: hidden;
-  height: calc(100% - 200px);
-  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  z-index: 0;
 }
 
 #AboutContent
@@ -423,14 +453,6 @@ body {
 
 #PaperPanel{
   transform: translate(-120%, 0%);
-  position: absolute;
-  top:80px;
-  left: 20px;
-  width: 350px;
-  overflow: hidden;
-  height: calc(100% - 200px);
-  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  z-index: 0;
 }
 
 #PaperContent
@@ -472,37 +494,30 @@ body {
 }
 
 /* ===========================================
- * Compare app
+ * Flow app
  * ===========================================
  */
 
-#ComparePanel {
-  font-family: Raleway;
-  color: var(--font-body-color);
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  width: 350px;
-  overflow: hidden;
-  height: calc(100% - 95px);
-  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  transform: translate(0%, 0%);
+#FlowPanel{
+  transform: translate(-150%, 0%);
 }
 
-#CompareCanvasDiv{
+
+#FlowOptions{
+  position: relative;
+  top: 0px;
+  height: 250px;
+}
+
+#FlowDescription{
   position: relative;
   top: 0px;
 }
 
-#CompareOptions{
+#FlowDescription div{
   position: relative;
-  top: 220px;
-  height: 250px;
-}
-
-#CompareDescription{
-  position: relative;
-  top: 250px;
+  top: 0px;
+  margin: 5px;
 }
 
 .CompSliderContainer {
@@ -562,12 +577,14 @@ body {
 
 #StoryPanel{
   transform: translate(-150%, 0%);
-  position: absolute;
-  top:75px;
-  left: 20px;
-  width: 350px;
+}
+
+
+#StoryScroll{
+  position: relative;
+  top: 0px;
+  height: calc(100% - 200px);
   overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
 }
 
 #StoryFrame{
@@ -577,22 +594,17 @@ body {
   overflow: hidden;
 }
 
-#StoryCanvas{
-  margin-top: 10px;
+#StoryOptions{  
   position:relative;
   width: 95%;
 }
 
-#StoryOptions{
-  
-  position:relative;
-  width: 95%;
-}
-
-.story-options-wrapper {
+#story-options-wrapper {
   margin: auto;
+  position: relative;
   width: 80%;
-  padding: 5px;
+  padding: 0px;
+  height: 30px;
   color: #ecf0f1;
   font-family: "Raleway";
 }
@@ -615,50 +627,59 @@ body {
 }
 
 #StoryOptions button {
-  width: 50px;
-  height: 23px;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  border-radius: 0px;
   border: none;
-  border-radius: 3px;
-  border: 1px solid white;
   color: inherit;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
 }
 
 .story-ui-left {
-  margin-left: 50px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin-left: 0px;
   background: var(--accent-5);
 }
 
 .story-ui-right {
+  position: absolute;
+  right: 0px;
   background: var(--accent-5);
 }
 
 .story-ui-home {
+  position: absolute;
+  left: 30px;
   background: var(--accent-4);
 }
 
 .progress {
-  margin: 5px 0;
-  width: 100%;  
+  position: absolute;
+  left: 60px;
+  margin: 0px 0;
+  width: calc(100% - 90px);  
 }
 
 .progress-outside {
-  background: #66666699;
+  background: #666666FF;
   padding: 5px;
   border-radius: 2px;
 }
 
 .progress-inside {
   background: var(--accent-4);;
-  border-radius: 3px;
+  border-radius: 0px;
   height: 20px;
   transition: width 1s ease-out;
 }
 
 .progress-inside .val {
-  padding: 5px;
+  padding: 0px;
   position: relative;
   bottom: 1px;
 }
@@ -669,34 +690,25 @@ body {
  */
 
 
-#InterventionPanel{
+#ExplorePanel{
   transform: translate(-150%, 0%);
-  position: relative;
-  top:75px;
-  left: 20px;
-  width: 350px;
-  overflow: hidden;
-  height: calc(100% - 150px);
-  transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
-  z-index: 0;
 }
 
-#IntensitySwitchDiv{
+
+#ExploreOptions{
   position: relative;
-  top: 210px;
+  top: 0px;
   z-index: 99;
 }
 
-#IntensitySwitchDiv div{
+#ExploreOptions div{
   text-align: center;
 }
 
-
 #InterventionTable{
   position: relative;
-  top: 220px;
+  margin-top: 10px;
 }
-
 
 #InterventionUncertainty, #InterventionEffect {
   font-family: "Montserrat";
@@ -720,8 +732,8 @@ body {
 
 #Description{
   position:relative;
-  margin-top: 230px;
-  height: calc(100% - 300px);
+  margin-top: 0px;
+  height: 500px;
 }
 
 .textframe {
@@ -753,69 +765,6 @@ body {
   font-family: Oswald;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    left: 35px;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 279px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 99;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;} 
-
-
-/* Dropdown Button */
-.dropbtn {
-    background-color: rgba(230, 230, 230, 0.9);
-    font-family: "Oswald";
-    color: #3B3B3B;
-    position: relative;
-    margin-left: 10%;
-    padding: 0px;
-    width: 80%;
-    text-align: center;
-    font-size: 24px;
-    font-weight: regular;
-    border: none;
-    cursor: pointer;
-    pointer-events: initial;
-}
-
-.dropbtn:hover {
-  border: 1px solid var(--accent-light);
-  }
-
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    pointer-events: initial;
-
-}
-
-
- /* The switch - the box around the slider */
-.intensityswitch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 20px;
-  top: 5px;
-}
 
 /* Hide default HTML checkbox */
 .intensityswitch input {display:none;}

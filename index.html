@@ -1,6 +1,6 @@
 <!doctype html> 
 <html lang="en">
-  <head>
+  <head> 
     <!-- META -->
     <link rel="shortcut icon" href="img/favico.ico">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -84,6 +84,7 @@
         <div><svg id="ExploreCanvas" class='canvas'></svg></div>
         <div id="ExploreScroll" class='scroll'>
           <div id="ExploreOptions" class='textframe frame-options'>
+            <div class='zoombutton' id='zoomin' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
             <div class='cssmenu'>
               <ul>
                  <li class='has-sub'><a href='#'>Choose intervention</a>
@@ -100,10 +101,10 @@
               </ul>
             </div>
           </div>
-          <div id="InterventionTable" class='textframe frame-summary'>
+          <!--<div id="InterventionTable" class='textframe frame-summary'>
             <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
             <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
-          </div>
+          </div>-->
           <div id="Description" class='textframe frame-description'>
             <div id='InterventionDescription'></div>
           </div>
@@ -141,7 +142,7 @@
               <div id="story-options-wrapper">
                 <button onclick="previousStory();" class="story-ui-left"><i class="fas fa-step-backward"></i></button>
                 <button onclick="resetStory();" class="story-ui-home"><i class="fas fa-fast-backward"></i></button>
-                <div class="progress">63%</div>
+                <div class="progress"><div class='progress-inside'><div class='val'>0%</div></div></div>
                 <button onclick="nextStory();" class="story-ui-right"><i class="fas fa-step-forward"></i></button>
             </div>
           </div>
@@ -211,12 +212,6 @@
           <h2> <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Open_Access_logo_PLoS_transparent.svg"></img> Journal paper </h2>
           While peer review is ongoing, our paper is available from the journal Natural Hazards and Earth system sciences Discussions: <a href="https://www.nat-hazards-earth-syst-sci-discuss.net/nhess-2018-325">Direct link</a>
 
-          <h2>Tools</h2>
-          We use a number of tools & software systems in our study:
-          <a href="https://github.com/kdberends/coral"><img style="width:100%" src="https://raw.githubusercontent.com/kdberends/coral/master/coralfig.svg?sanitize=true"></a>
-          <h3><img style="width: 20px" src="https://oss.deltares.nl/image/image_gallery?uuid=13baea0c-1a8c-44c4-b4fa-89c7d4d68f3c&groupId=183920&t=1352473709104"></img> Delft3D Flexible Mesh</h3></div>
-          <h3>RiverScape</h3>
-
           </div>
       </div> <!-- about -->
       </div> <!-- cont' background -->
@@ -226,16 +221,19 @@
 
   <!-- FOOTER -->
   <div id='version-number-box'>
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/CC-BY-SA_icon.svg/88px-CC-BY-SA_icon.svg.png'></img>
-    <span id="version-number-site"> Bladieblabla </span>
+    <span id="version-number-ui"> Bladieblabla </span>
+    <span id="version-number-map"> Bladieblabla </span>
     <span id="version-number-flow"> Bladieblabla </span>
     <span id="version-number-explore"> Bladieblabla </span>
-    <span> (tldr; Attribute & share alike)</span>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/CC-BY-SA_icon.svg/88px-CC-BY-SA_icon.svg.png'></img>
   </div>
   <footer>
       <img src="img/footerlogo.svg" class="logo-footer"></img>
   </footer>
 </body>
+
+
+<!-- TMP-->
 
 <!-- LOAD THIRDPARTY JS -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -254,5 +252,8 @@
 <script src="js/protoSchematicRiverChart.js"></script>
 <script src="js/protoSteadyFlowApp.js"></script>
 <script src="js/protoCompareChart.js"></script>
+<script src="js/map.js"></script>
 <script src="js/explore.js"></script>
+
+
 </html>

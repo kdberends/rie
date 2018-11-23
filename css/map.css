@@ -1,7 +1,29 @@
 .kmtooltip {
   font-family: Raleway, Helvetica, sans-serif;
-  background-color: rgba(255, 255, 255, .85);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 0px;
+  transition: opacity 1s ease-out;
   border: 0px solid rgba(255, 255, 255, 1);
 }
 
+.map-tooltip{
+	font-family: Montserrat;
+	font-size: 14px;
+	border: 0px solid orange;
+	width: 200px; 	
+	height: 100px;
+	color: #2B2B2B;
+	background-color: white;
+	white-space: normal;
+}
+
+.map-tooltip-special{
+	font-family: Montserrat;
+	font-size: 14px;
+	border: 2px solid orange;
+	width: 200px; 	
+	height: 100px;
+	color: #2B2B2B;
+	background-color: #B1D8AB;
+	white-space: normal;
+}

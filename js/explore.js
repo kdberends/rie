@@ -84,7 +84,7 @@ var toggleApp = function (appindex) {
 };
 
 // Default layout
-toggleApp(3)
+toggleApp(2)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -126,256 +126,11 @@ const as = new PerfectScrollbar('#AboutPanel', {
 });
 as.update()
 
-/** ////////////////////////////////////////////////////////////
- * Background map (Leaflet)
- *
- * Other servers: (light themes!)
- * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
- * var host = "https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}";
- * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}{r}.png";
- * var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png";
- * var host = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
- *
- */////////////////////////////////////////////////////////////
-
-
-/* === Styles ===
- */
-
-var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
-
-// Attribution is now embedded in menu, no longer in map
-var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-
-var LineStyle = {
-    "stroke": true,
-    "color": "#6C716C",
-    "weight": 5,
-    "dashArray": "1 0",
-    "dashOffset": "1"
-  };
-
-var MinorEmbankmentStyle = {
-    "stroke": true,
-    "color": "#0E8E0E",
-    "weight": 1,
-    "dashArray": "1 0",
-    "dashOffset": "1"
-  };
-
-var DashStyle = {
-    "stroke": true,
-    "color": "#6C716C",
-    "weight": 2,
-    "dashArray": "10 5",
-    "dashOffset": "1"
-  };
-
-var InactiveRiverKmStyle = {
-    radius: 2,
-    fillColor: "#FFFFFF",
-    color: "#FFFFFF",
-    weight: 0,
-    opacity: 1,
-    fillOpacity: 0.6
-};
-
-var ActiveRiverKmStyle = {
-    radius: 4,
-    fillColor: "#FFFFFF",
-    color: "#FFFFFF",
-    weight: 0,
-    opacity: 1,
-    fillOpacity: 1
-};
-
-var PolyVisible = {
-          "stroke": true,
-          "weight": 1,
-          "color": "#00C09E",
-          "opacity": 0.5 
-      };
-
-/* === Maps ===
- */
-var map = new L.Map("map", {center: [52,5],  // [51.845, 5.36], 13 for st andries
-                            zoom: 7,
-                            zoomControl: false,
-                            attributionControl:false })
-  .addLayer(new L.TileLayer(host, {
-      maxzoom: 19,
-      attribution: attr}
-    )
-  );
-
-// Clone of map for 'glass blur' effect
-var map2 = new L.Map("map_clone", {center: [51.84, 5.46], 
-                              zoom: 13,
-                              zoomControl: false,
-                              attributionControl:false})
-  .addLayer(new L.TileLayer(host));
-
-// sync so that they overlap
-xc = map2.getContainer().parentElement.offsetLeft / map.getSize().x
-yc = map2.getContainer().parentElement.offsetTop / map.getSize().y
-map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
-
-
-/* === Map elements ===
- */
-
-// Reference dikes
-var dike =  new L.geoJson(null, {
-      style: LineStyle,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-dike.addTo(map);
-
-d3.json('shp/banddijken.json', function (data) {
-    dike.addData(data)
-  });
-
-// All rhinekilometers
-var riverkm = new L.geoJson(null, {
-  style: InactiveRiverKmStyle,
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, InactiveRiverKmStyle)
-  }
-});
-
-riverkm.addTo(map)
-
-// When hovering over the backwater chart, the river km corresponding to the 
-// x coordinate is highlighted
-var riverkmFocus = new L.geoJson(null, {
-  style: ActiveRiverKmStyle,
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, ActiveRiverKmStyle)
-  }
-});
-
-riverkmFocus.addTo(map)
-
-d3.json('shp/rivierkilometers.json', function (data) {
-    for (var i=0;i<100;i++){
-        L.geoJson(null, 
-          {style: InactiveRiverKmStyle,
-           pointToLayer: function (feature, latlng) {
-                          return L.circleMarker(latlng, InactiveRiverKmStyle)
-                         }
-          })
-         .addData(data.features[i])
-         .addTo(map)
-         .bindTooltip('Rhine kilometer: '+data.features[i].properties.MODELKILOM.substring(0, 3),
-                      {direction: 'top',
-                       className: 'kmtooltip'}
-                      )
-       }
-});
-
-// Relocated dike
-var dikeNew =  new L.geoJson(null, {
-      style: LineStyle,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-// minor embankments
-var embankments =  new L.geoJson(null, {
-      style: MinorEmbankmentStyle,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-// Lowered groynes
-var groynes =  new L.geoJson(null, {
-      style: MinorEmbankmentStyle,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-// Constructed side channels
-var sidechannels =  new L.geoJson(null, {
-      style: PolyVisible,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-// Lowered floodplain
-var lowering =  new L.geoJson(null, {
-      style: PolyVisible,
-      pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {});
-      }
-  });
-
-
-/* === Map events ===
- */
-
-map.on('zoomend', function() {
-  if (map.getZoom() < 11){
-      if (map.hasLayer(dike)) {
-          map.removeLayer(dike);
-      } else {
-          console.log("no point layer active");
-      }
-  }
-  if (map.getZoom() >= 11){
-      if (map.hasLayer(dike)){
-          console.log("dike_ref already added");
-      } else {
-          map.addLayer(dike);
-      }
-    }
-  }
-);
-
-/* === Map Functions ===
- */
-
-var velocityLayer = {};
-
-function removeVelocityLayerFromMap(){
-  map.eachLayer(function (l) {
-    if (l.id == 'velos'){
-      map.removeLayer(l)
-    }
-  })
-};
-
-function addVelocityLayerToMap(file, thismap){
-     d3.json(file, function (data) {
-      velocityLayer = L.velocityLayer({
-        displayValues: true, 
-        displayOptions: {
-          velocityType: 'Flow velocity',
-          displayPosition: 'bottomleft',
-          displayEmptyString: 'No wind data',
-          speedUnit: 'm/s'
-        },
-        data: data,
-        maxVelocity: 4,
-        velocityScale: 0.01
-
-        });
-      velocityLayer.id = 'velos'
-      thismap.addLayer(velocityLayer)
-      
-  });
-};
 
 
 
 /** ////////////////////////////////////////////////////////////
- * Exploreation app
+ * Exploration app
  */////////////////////////////////////////////////////////////
 
 /* === UI ===
@@ -406,175 +161,205 @@ window.onclick = function(event) {
 
 function showReference() {
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Referentiesituatie";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 0 cm (--)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: --% (--)";
   $('#InterventionDescription').load('xml/reference_NL.xml');
+  
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
-
-  /* Map */
+  /* map */
+  // Velocity visualisation  
   removeVelocityLayerFromMap();
-  //addVelocityLayerToMap('data/waal_reference_0000.json', map)
+  addVelocityLayerToMap('data/waal_reference_0000.json', map);
 
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-
-  dike.setStyle(LineStyle);
-}
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+};
 
 function showRelo() {
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Dijkverlegging";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 108 cm (<span class='label_high'>hoog</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 15% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/dikerelocation_NL.xml');
+  
   /* Figure */
-  d3.json('data/relocation_int100.json', function(d){ExploreFigure.updateData(d)});
-  removeVelocityLayerFromMap();
-  addVelocityLayerToMap('data/waal_int07_0000.json', map);
-  dike.setStyle(DashStyle);
+  d3.json('data/relocation_int100.json', function(d){
+          ExploreFigure.updateData(d, function(){
+              addMaximumEffectTooltip();
+              addDownstreamPeak();
+          })});
   
   /* map */
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
+  // Velocity visualisation  
+  removeVelocityLayerFromMap();
+  addVelocityLayerToMap('data/waal_int07_0000.json', map);
 
-  dikeNew.addTo(map);
-  d3.json('shp/banddijken_relocation_int100.json', function (data) {
-      dikeNew.addData(data)
-    });
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(dikeNew, 'shp/banddijken_relocation_int100.json');
+  dike.setStyle(DashStyle);
 
-}
+  // add 'legend'
+  addTooltipToMap([[51.81, 5.31], [51.80, 5.30]], 
+                 {file:'tooltip_relocation_en.xml', 
+                  id: 'relotooltip0',
+                  div: '#0',
+                  align: 'left'});
+
+  addTooltipToMap([[51.841, 5.37], [51.87, 5.37]], 
+                 {file:'tooltip_relocation_en.xml', 
+                  id: 'relotooltip1',
+                  div: '#1',
+                  align: 'left'});
+
+  addTooltipToMap([[51.854, 5.40], [51.86, 5.43]], 
+                 {file:'tooltip_relocation_en.xml', 
+                  id: 'relotooltip2',
+                  div: '#2',
+                  align: 'right'});
+};
+
 
 function showSmooth() {
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Maaien van de uiterwaard";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 28 cm (<span class='label_medium'>gemiddeld</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 82% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('xml/smoothing_NL.xml');
   
-  /* Figure */
-  d3.json('data/smoothing_int99.json', function(d){ExploreFigure.updateData(d)})  
+  /* Explore figure */
+  d3.json('data/smoothing_int99.json', function(d){
+    ExploreFigure.updateData(d, function () {
+      addMaximumEffectTooltip();
+      addDownstreamPeak();
+    })
+  })  
 
   /* Map */
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-  dike.setStyle(LineStyle);
-
+  // Velocity visualisation
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int11_0000.json', map);
 
-  sidechannels.addTo(map);
-  sidechannels.clearLayers();
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(mowing, 'shp/flplowering_int99.json');
 
-  d3.json('shp/flplowering_int99.json', function (data) {
-      sidechannels.addData(data)
-    });
+  // add marker to explain what's going on
+  addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
+                {file: 'tooltip_smoothing_en.xml', 
+                 id: 'smoothtooltip',
+                 div: '#0',
+                 align: 'right'});
 
+  
 };
 
 function showGROYNLOW(){
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Kribverlaging";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 4 cm (<span class='label_low'>laag</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 23% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/groynelowering_NL.xml');
+  
   /* Figure */
-  d3.json('data/groynelowering_int363.json', function(d){ExploreFigure.updateData(d)})  
+  d3.json('data/groynelowering_int363.json', function(d){
+           ExploreFigure.updateData(d, function() {
+            addMaximumEffectTooltip();
+           })});
   
   /* Map */
-  removeVelocityLayerFromMap()
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-  dike.setStyle(LineStyle);
-  groynes.addTo(map)
-  d3.json('shp/groynlow.json', function (data) {
-      groynes.addData(data)
-    });
-
+  // Velocity visualisation
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int01_0000.json', map);
+  
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(groynes, 'shp/groynlow.json');
+
+  // add marker to explain what's going on
+  addTooltipToMap([[51.8135, 5.3745], [51.80, 5.40]], 
+                {file: 'tooltip_groynes_en.xml', 
+                 id: 'smoothtooltip',
+                 div: '#0',
+                 align: 'right'});
+  
 };
 
 function showMINEMBLOW(){
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Kadeverlaging";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 3 cm (<span class='label_low'>laag</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 52% (<span class='label_low'>hoog</span>)";
   $('#InterventionDescription').load('xml/MINEMBLOW_NL.xml');
   /* Figure */
-  d3.json('data/minemblowering_int150.json', function(d){ExploreFigure.updateData(d)})  
-  dike.setStyle(LineStyle);
+  d3.json('data/minemblowering_int150.json', function(d){
+           ExploreFigure.updateData(d, function() {
+              addMaximumEffectTooltip();
+              addMaximumEffectTooltip();
+              addDownstreamPeak();
+           })}); 
+  
   /* Map */
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-
-  embankments.addTo(map);
-  d3.json('shp/minemblow.json', function (data) {
-      embankments.addData(data)
-    });
-
+  // Velocity visualisation
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int04_0000.json', map);
+  
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(groynes, 'shp/minemblow.json');
+
+  // add marker to explain what's going on
+  addTooltipToMap([[51.8279, 5.3931], [51.81, 5.41]], 
+                {file: 'tooltip_minemb_en.xml', 
+                 id: 'smoothtooltip',
+                 div: '#0',
+                 align: 'right'});
+
 };
 
 function showFLPLOW(){
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Uiterwaardvergraving";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 80 cm (<span class='label_high'>hoog</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/FLPLOW_NL.xml');
+  
   /* Figure */
-  d3.json('data/lowering_int99.json', function(d){ExploreFigure.updateData(d)})  
+  d3.json('data/lowering_int99.json', function(d){
+           ExploreFigure.updateData(d, function() {
+            addMaximumEffectTooltip();
+            addDownstreamPeak();
+           })}) ; 
   
   /* Map */
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-  dike.setStyle(LineStyle);
-  sidechannels.addTo(map);
-  d3.json('shp/flplowering_int99.json', function (data) {
-      sidechannels.addData(data)
-    });
-
-  removeVelocityLayerFromMap();
-  sidechannels.clearLayers();
+  // Velocity visualisation
+  removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int03_0000.json', map);
+  
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(lowering, 'shp/flplowering_int99.json');
 
+  // add marker to explain what's going on
+  addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
+                {file: 'tooltip_lowering_en.xml', 
+                 id: 'smoothtooltip',
+                 div: '#0',
+                 align: 'right'});
 };
 
 function showSIDECHAN(){
   /* Titles and descriptions */
-  //document.getElementById("InterventionTitle").innerHTML = "Nevengeulen";
-  //document.getElementById("InterventionEffect").innerHTML = "Maximaal verwacht effect: 36 cm (<span class='label_medium'>gemiddeld</span>)";
-  //document.getElementById("InterventionUncertainty").innerHTML = "Relatieve onzekerheid: 28% (<span class='label_high'>laag</span>)";
   $('#InterventionDescription').load('xml/SIDECHAN_NL.xml');
+  
   /* Figure */
-  d3.json('data/sidechannel_int100.json', function(d){ExploreFigure.updateData(d)})  
+  d3.json('data/sidechannel_int100.json', function(d){
+            ExploreFigure.updateData(d, function() {
+              addMaximumEffectTooltip();
+              addDownstreamPeak();
+            })});  
 
   /* Map */
-  if (map.hasLayer(dikeNew)) {map.removeLayer(dikeNew)};
-  if (map.hasLayer(embankments)) {map.removeLayer(embankments)};
-  if (map.hasLayer(groynes)) {map.removeLayer(groynes)};
-  if (map.hasLayer(sidechannels)) {map.removeLayer(sidechannels)};
-  dike.setStyle(LineStyle);
-  sidechannels.addTo(map);
-  sidechannels.clearLayers();
-  d3.json('shp/sidechannel_int100.json', function (data) {
-      sidechannels.addData(data)
-    });
-
+  // Velocity visualisation
   removeVelocityLayerFromMap()
   addVelocityLayerToMap('data/waal_int09_0000.json', map);
+  
+  // Add visual elements for this intervention
+  resetElementsOnMap();
+  addElementToMap(sidechannels, 'shp/sidechannel_int100.json');
+
+  // add marker to explain what's going on
+  addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
+                {file: 'tooltip_sidechannels_en.xml', 
+                 id: 'smoothtooltip',
+                 div: '#0',
+                 align: 'right'});
+
 };
 
 
@@ -622,7 +407,13 @@ function display(error, dataset, comparedata) {
   CompareFigure.setCanvas('#FlowCanvas');
   CompareFigure.init();
   $('#version-number-flow').text('Flow app: v' + CompareFigure.getVersion());
-  showReference()
+  
+  //showReference()
+  //showSmooth()
+  //showRelo()
+  //showGROYNLOW()
+  //showMINEMBLOW()
+  showFLPLOW()
   // Make sure figure updates when window resizes
    d3.select(window)
       .on("resize.chart", function(){
@@ -780,7 +571,7 @@ function map_zoom_Waal() {
 };
 
 function map_zoom_StAndries() {
-  map.setView([51.823, 5.3682], 11);
+  map.setView([51.823, 5.3682], 13);
   story_show_uncertainty();
 };
 
@@ -846,17 +637,17 @@ var StoryFunctions = [reset_story,
                       ]
 
 $('#StoryText').load('xml/stories.xml #0' );
-
+/*
 $(".progress").each(function () {
-  var $outside = $("<div></div>").addClass("progress-outside");
-  var $inside = $("<div></div>").addClass("progress-inside").css('width', "0px");
-  var $label = $("<span></span>").addClass("val").text($(this).text()).css("color", "transparent");
-  $(this).text('');
-  $inside.append($label);
-  $outside.append($inside);  
-  $(this).append($outside);
+  //var $outside = $("<div></div>").addClass("progress-outside");
+  //var $inside = $("<div></div>").addClass("progress-inside").css('width', "0px");
+  //var $label = $("<span></span>").addClass("val").text($(this).text());
+  //$(this).text('');
+  //$inside.append($label);
+  //$outside.append($inside);  
+  //$(this).append($inside);
 });
-
+*/
 function nextStory () {
   
   if (StoryProgress < NumberOfStories) {
@@ -864,12 +655,14 @@ function nextStory () {
     $('#StoryText').load('xml/stories.xml #'+StoryProgress);
     StoryFunctions[StoryProgress]();
     let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
-  $(".progress .progress-inside").each(function () {
+    $(".progress .progress-inside").each(function () {
     $(this).css("width", progresstext);
-    $(this).text(progresstext);
-    $(this).children(".val").css("color", "inherit");
+    $(this).children("div").text(progresstext);
+    if (StoryProgress == NumberOfStories){
+      $(".progress .progress-inside").css('background-color', 'var(--accent-3)')
+    };
   });
-};
+ };
 };
 
 function previousStory () {
@@ -889,12 +682,12 @@ function previousStory () {
 function resetStory () {
   StoryProgress = 0;
   reset_story();
+  $(".progress .progress-inside").css('background-color', 'var(--accent-4)')
   $('#StoryText').load('xml/stories.xml #'+StoryProgress);
   $(".progress .progress-inside").each(function () {
     let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
     $(this).css("width", progresstext);
-    $(this).text(progresstext);
-    $(this).children(".val").css("color", "inherit");
+    $(this).children("div").text(progresstext);
   });
 };
 
@@ -902,5 +695,5 @@ $(document).ready(function () {
   // renderProgress();
 });
 
-$('#version-number-site').text('UI: v' + version);
-
+$('#version-number-ui').text('UI: v' + version);
+$('#version-number-map').text('Map: v' + map_version);

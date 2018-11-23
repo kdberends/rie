@@ -164,14 +164,11 @@ body {
 .cssmenu ul li a {
   margin: 0;
   padding: 0;
-  border: 0;
   list-style: none;
   line-height: 1;
+  top: -7px;
   display: block;
   position: relative;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
 }
 
 .cssmenu {
@@ -223,10 +220,10 @@ body {
   background: #ffffff;
   content: "";
   -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
+     -moz-transition: all 0.1s ease-out;
+      -ms-transition: all 0.1s ease-out;
+       -o-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out;
 }
 .cssmenu ul > li.has-sub.open > a:after,
 .cssmenu ul > li.has-sub.open > a:before {
@@ -238,6 +235,7 @@ body {
 }
 .cssmenu ul ul li a {
   padding: 7px;
+  top: 7px;
   cursor: pointer;
   z-index: 2;
   font-size: 14px;
@@ -264,7 +262,17 @@ body {
   background: #dddddd;
 }
 
-
+.zoombutton {
+  cursor: pointer;
+  position: relative;
+  border-right: 1px solid orange;
+  top: 0px;
+  padding: 5px;
+  left: 14px;
+  width: 20px;
+  height: 18px;
+  background-color: var(--accent-6);
+}
 /* ===========================================
  * App panel master
  * ===========================================
@@ -643,13 +651,13 @@ nav {
   left: 0px;
   top: 0px;
   margin-left: 0px;
-  background: var(--accent-5);
+  background: var(--accent-6);
 }
 
 .story-ui-right {
   position: absolute;
   right: 0px;
-  background: var(--accent-5);
+  background: var(--accent-6);
 }
 
 .story-ui-home {
@@ -665,23 +673,25 @@ nav {
   width: calc(100% - 90px);  
 }
 
-.progress-outside {
-  background: #666666FF;
-  padding: 5px;
-  border-radius: 2px;
-}
 
 .progress-inside {
   background: var(--accent-4);;
   border-radius: 0px;
-  height: 20px;
+  width: 0px;
+  height: 30px;
+  padding: 0px 0px 0px 0px;  
   transition: width 1s ease-out;
 }
 
-.progress-inside .val {
-  padding: 0px;
+.progress-inside div {
   position: relative;
-  bottom: 1px;
+  text-align: right;
+  top: 5px;
+  right: 5px;
+  height: 20px;
+  width: 100%;
+  vertical-align: middle;
+  color: white;
 }
 
 /* ===========================================
@@ -699,10 +709,7 @@ nav {
   position: relative;
   top: 0px;
   z-index: 99;
-}
-
-#ExploreOptions div{
-  text-align: center;
+  margin-bottom: 5px;
 }
 
 #InterventionTable{

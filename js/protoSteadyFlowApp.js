@@ -52,7 +52,7 @@ var protoSteadyFlowApp = function() {
 
     // Flow parameters
     var bedslope = 0.0005;
-    var friction = 0.03; // manning
+    var friction = 0.04; // manning
     var riverlength = 10000;  // m
     var uniformwidth = 200;  //m
     var downstreamh =  4;  // m
@@ -150,7 +150,7 @@ var protoSteadyFlowApp = function() {
     	//console.log(data)
     };
 
-    /* backward euler of belanger */
+    /* */
     this.solve_flow = function() {
     	// Boundary condition
     	waterlevel[nsteps-1] = downstreamh + this.get_bedlevel(riverlength);
@@ -165,7 +165,10 @@ var protoSteadyFlowApp = function() {
     		// waterlevel directly upstream
     		let hprev = waterlevel[nsteps-i+1]; 
     		
-    		waterlevel[nsteps-i] = hprev - dx * this.belanger(hprev - this.get_bedlevel(localx));
+            // first-order euler
+            dzdx = Math.min(0, dx * this.belanger(hprev - this.get_bedlevel(localx)))
+
+    		waterlevel[nsteps-i] = hprev - dzdx;
     	};
     	this.build_data()
     };

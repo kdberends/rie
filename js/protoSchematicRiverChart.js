@@ -13,7 +13,7 @@ var protoSchematicRiverChart = function() {
 	 * All done. Now call specific functions to show elements
 	 */
 
-	const version = 0.1;
+	const version = 0.2;
 
     var id = 0;
  	var canvas = 'body';
@@ -115,14 +115,32 @@ var protoSchematicRiverChart = function() {
 	/* /////////////////////////////////////////////////////////////
 	//// Data methods
     *///////////////////////////////////////////////////////////////
-    
+    /* returns location of maximum effect + maximum effect */
+    this.getLocationOfMaximumEffect = function (sign=1) {
+    	let maxloc = 0;
+    	let maxeff = 0;
+    	if (sign == 1) {
+    		var operator = function(a, b) {return a < b};
+    	} else {
+    		var operator = function(a, b) {return a > b};
+    	};
+    	for (var i=0;i < data.data.length;i++) {
+    		if (operator(data.data[i].y, maxeff)){
+    			maxeff = data.data[i].y;
+    			maxloc = data.data[i].x;
+    		}
+    	};
+    	return [maxloc, maxeff]
+    };
+
     /* Call this before initialisation */
     this.setData = function(rawData){
     	data = parseData(rawData);
     };
 
+    this.dummy = function() {{}};
     /* Call this to dynamically change data after figure creation */
-    this.updateData = function(rawData){    	
+    this.updateData = function(rawData, callback=this.dummy){    	
     	// parse raw data from json
     	data = parseData(rawData)
     	
@@ -146,8 +164,9 @@ var protoSchematicRiverChart = function() {
 			    .duration(500)
 			    .attr("d", valueline)
     		});
-         DB()
-         SB()
+         DB();
+         SB();
+         callback();
     };
 
 	/* /////////////////////////////////////////////////////////////
@@ -158,9 +177,7 @@ var protoSchematicRiverChart = function() {
 		let xticks = Math.round(width / 60)
     	let yticks = Math.round(height / 40)
 
-	    var div = d3.select("body").append("div") 
-	                .attr("class", "tooltip")       
-	                .style("opacity", 0);
+
     
 	    // text labels
 	    g.append("text")
@@ -417,9 +434,10 @@ var protoSchematicRiverChart = function() {
 	         .y1(function(d) {return yScale(d.p[i][0])})
 	      areas.push(area)
 	    }
-	    var div = d3.select("body").append("div") 
-              .attr("class", "tooltip")       
-              .style("opacity", 0);
+
+	    var div = d3.select('body').append("div") 
+              .attr("class", "floatingToolTip")       
+              .style("opacity", 0)    
 
 
     	for (var i = 0; i < 4; i ++){
@@ -434,7 +452,7 @@ var protoSchematicRiverChart = function() {
 	       .on("mouseover", function(d) {
 	        if (d3.select(this).attr("opacity") != 0){
 	            d3.select(this).attr("class", "highlightedArea")
-	            // On hover, make other lines invisible
+	            // On hover, make other lines less visible
 	            var curId = d3.select(this).attr("index")
 	            d3.select(canvas).selectAll("path").each(function(){
 	                if (curId != d3.select(this).attr("index")){
@@ -442,11 +460,12 @@ var protoSchematicRiverChart = function() {
 	                  }
 	                }
 	            )
-	            // Tooltip
+	            // On hover, display tooltip
 	            div.html(d3.select(this).attr("tooltip"))
 	               .style("left", (d3.event.pageX) + "px")    
 	               .style("top", (d3.event.pageY - 28) + "px")
-	               .transition().duration(400).style("opacity", 1);  
+	               .style('opacity', 1)
+	               //.transition().duration(400).style("opacity", 1);  
 	         }
 	      }
 	        )
@@ -458,7 +477,7 @@ var protoSchematicRiverChart = function() {
 	        d3.select(canvas).selectAll("path").each(function(){
 	          d3.select(this).attr('opacity', 1)
 	        })
-	        div.transition().duration(500).style("opacity", 0)
+	        div.style("opacity", 0)
 	      }});
 	    }
     };

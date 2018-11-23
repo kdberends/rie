@@ -1,8 +1,9 @@
+/* styles for explore app*/
 
-
-
-
-
+.crosshair{
+  stroke: var(--accent-5);
+  stroke-dasharray: 5;
+}
 
 
 .diagram{
@@ -44,20 +45,18 @@ header {
   stroke: black;
 }
 
-div.tooltip { 
-    position: absolute;     
-    text-align: center;     
-    max-width: 150px;          
-    padding: 2px;       
-    font: 14px sans-serif; 
-    font-family: "Raleway";
-    background: rgba(255, 255, 255, 0.7); 
-    border: 1px;    
-    border-radius: 1px;     
-    pointer-events: none; 
+
+.floatingToolTip{
+  font-family: "Raleway";
+  font-size: 14px;
+  position: absolute;
+  max-width: 150px;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.7); 
+  pointer-events: none;
+  padding: 2px;
+  transition: all 200ms ease-out;
 }
-
-
 
 .LVelocityLegend {
   color: #FFFFFF;

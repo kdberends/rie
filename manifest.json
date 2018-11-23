@@ -5,6 +5,6 @@
         "src": "img/logo-rivercare.png",
         "sizes": "192x192",
       }],
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "landscape"
 }

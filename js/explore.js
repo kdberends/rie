@@ -3,7 +3,7 @@
  * 
  * 
  */////////////////////////////////////////////////////////////
-const version = "0.2.3";
+const version = "0.2.4";
 
 
 /*
@@ -71,7 +71,7 @@ this.setState({ showInstallMessage: true });
 // Flags that remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#FlowPanel", "#PaperPanel"];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#LanguagePanel"];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -202,7 +202,7 @@ function showRelo() {
   d3.json('data/relocation_int100.json', function(d){
           ExploreFigure.updateData(d, function(){
               addMaximumEffectTooltip();
-              addDownstreamPeak();
+              //addDownstreamPeak();
           })});
   
   /* map */
@@ -244,7 +244,7 @@ function showSmooth() {
   d3.json('data/smoothing_int99.json', function(d){
     ExploreFigure.updateData(d, function () {
       addMaximumEffectTooltip();
-      addDownstreamPeak();
+      //addDownstreamPeak();
     })
   })  
 
@@ -303,7 +303,7 @@ function showMINEMBLOW(){
            ExploreFigure.updateData(d, function() {
               addMaximumEffectTooltip();
               addMaximumEffectTooltip();
-              addDownstreamPeak();
+              //addDownstreamPeak();
            })}); 
   
   /* Map */
@@ -332,7 +332,7 @@ function showFLPLOW(){
   d3.json('data/lowering_int99.json', function(d){
            ExploreFigure.updateData(d, function() {
             addMaximumEffectTooltip();
-            addDownstreamPeak();
+            //addDownstreamPeak();
            })}) ; 
   
   /* Map */
@@ -360,7 +360,7 @@ function showSIDECHAN(){
   d3.json('data/sidechannel_int100.json', function(d){
             ExploreFigure.updateData(d, function() {
               addMaximumEffectTooltip();
-              addDownstreamPeak();
+              //addDownstreamPeak();
             })});  
 
   /* Map */
@@ -554,8 +554,10 @@ $("#flat-slider-vertical-4")
  * Storyline app
  */////////////////////////////////////////////////////////////
 
-var StoryProgress = 0;
-var NumberOfStories = 12;
+var StoryProgress = 1;
+var NumberOfStories = 13;
+
+
 
 function storyTest () {
   console.log("StoryTestFunc fired")
@@ -572,8 +574,7 @@ function hide_welcome() {
 function show_flowcanvas() {
   hide_welcome();
   $('#FlowPanel').css('transform','translate(0%, 0%)');
-  $('#FlowOptions').css('transform','translate(-120%, 0%)');
-  $('#FlowDescription').css('transform','translate(-120%, 0%)');
+  $('#FlowScroll').css('transform','translate(-120%, 0%)');
 };
 
 function hide_flowcanvas() {  
@@ -598,9 +599,7 @@ function map_zoom_StAndries() {
 
 function show_interventioncanvas() {
   $('#ExplorePanel').css('transform','translate(0%, 0%)');
-  $('#ExploreOptions').css('transform','translate(-120%, 0%)');
-  $('#InterventionTable').css('transform','translate(-120%, 0%)');
-  $('#Description').css('transform','translate(-120%, 0%)');
+  $('#ExploreScroll').css('transform','translate(-120%, 0%)');
 };
 
 function hide_interventioncanvas() {
@@ -654,52 +653,45 @@ var StoryFunctions = [reset_story,
                       storyTest,
                       storyTest
                       ]
-
+// initialise story
 $('#StoryText').load('xml/stories.xml #0' );
-/*
-$(".progress").each(function () {
-  //var $outside = $("<div></div>").addClass("progress-outside");
-  //var $inside = $("<div></div>").addClass("progress-inside").css('width', "0px");
-  //var $label = $("<span></span>").addClass("val").text($(this).text());
-  //$(this).text('');
-  //$inside.append($label);
-  //$outside.append($inside);  
-  //$(this).append($inside);
-});
-*/
+let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
+$(".progress .progress-inside").each(function () {
+      $(this).css("width", progresstext);
+      $(this).children("div").text(progresstext)});
+
 function nextStory () {
-  
   if (StoryProgress < NumberOfStories) {
-    StoryProgress += 1 
+    StoryProgress += 1;
     $('#StoryText').load('xml/stories.xml #'+StoryProgress);
     StoryFunctions[StoryProgress]();
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
+    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
     $(".progress .progress-inside").each(function () {
-    $(this).css("width", progresstext);
-    $(this).children("div").text(progresstext);
-    if (StoryProgress == NumberOfStories){
-      $(".progress .progress-inside").css('background-color', 'var(--accent-3)')
-    };
+      $(this).css("width", progresstext);
+      $(this).children("div").text(progresstext);
+      /* special color if completed! */
+      if (StoryProgress == NumberOfStories){
+        $(".progress .progress-inside").css('background-color', 'var(--accent-3)')
+      };
   });
  };
 };
 
 function previousStory () {
-  if (StoryProgress > 0) {
-    StoryProgress -= 1
+  if (StoryProgress > 1) {
+    StoryProgress -= 1;
     $('#StoryText').load('xml/stories.xml #'+StoryProgress);
     StoryFunctions[StoryProgress]();
     $(".progress .progress-inside").each(function () {
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
-    $(this).css("width", progresstext);
-    $(this).text(progresstext);
-    $(this).children(".val").css("color", "inherit");
-  });
+    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
+      $(this).css("width", progresstext);
+      $(this).children("div").text(progresstext);
+    });
 };
 };
 
 function resetStory () {
-  StoryProgress = 0;
+  StoryProgress = 1;
   reset_story();
   $(".progress .progress-inside").css('background-color', 'var(--accent-4)')
   $('#StoryText').load('xml/stories.xml #'+StoryProgress);

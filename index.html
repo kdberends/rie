@@ -5,22 +5,22 @@
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- iPhone(first generation or 2G), iPhone 3G, iPhone 3GS -->
-	<link rel="apple-touch-icon" sizes="57x57" href="img/touch-icon-iphone.png">
-	<!-- iPad and iPad mini @1x -->
-	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
-	<!-- iPhone 4, iPhone 4s, iPhone 5, iPhone 5c, iPhone 5s, iPhone 6, iPhone 6s, iPhone 7, iPhone 7s, iPhone8 -->
-	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
-	<!-- iPad and iPad mini @2x -->
-	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
-	<!-- iPad Pro -->
-	<link rel="apple-touch-icon" sizes="167x167" href="img/touch-icon-ipad-pro.png">
-	<!-- iPhone X, iPhone 8 Plus, iPhone 7 Plus, iPhone 6s Plus, iPhone 6 Plus -->
-	<link rel="apple-touch-icon" sizes="180x180" href="img/touch-icon-iphone-6-plus.png">
-	<!-- Android Devices High Resolution -->
-	<link rel="icon" sizes="192x192" href="img/icon-hd.png">
-	<!-- Android Devices Normal Resolution -->
-	<link rel="icon" sizes="128x128" href="img/icon.png">
-	<!-- Favicon for browsers -->
+  	<link rel="apple-touch-icon" sizes="57x57" href="img/touch-icon-iphone.png">
+  	<!-- iPad and iPad mini @1x -->
+  	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
+  	<!-- iPhone 4, iPhone 4s, iPhone 5, iPhone 5c, iPhone 5s, iPhone 6, iPhone 6s, iPhone 7, iPhone 7s, iPhone8 -->
+  	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
+  	<!-- iPad and iPad mini @2x -->
+  	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
+  	<!-- iPad Pro -->
+  	<link rel="apple-touch-icon" sizes="167x167" href="img/touch-icon-ipad-pro.png">
+  	<!-- iPhone X, iPhone 8 Plus, iPhone 7 Plus, iPhone 6s Plus, iPhone 6 Plus -->
+  	<link rel="apple-touch-icon" sizes="180x180" href="img/touch-icon-iphone-6-plus.png">
+  	<!-- Android Devices High Resolution -->
+  	<link rel="icon" sizes="192x192" href="img/  ">
+  	<!-- Android Devices Normal Resolution -->
+  	<link rel="icon" sizes="128x128" href="img/icon.png">
+  	<!-- Favicon for browsers -->
     <link rel="shortcut icon" href="img/favico.ico">
     <!-- Splashscreen -->
     <link href="img/splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
@@ -57,12 +57,6 @@
     <link rel="stylesheet" type="text/css" href="css/ui.css"/>
     <link rel="stylesheet" type="text/css" href="css/map.css"/>
     <link rel="stylesheet" type="text/css" href="css/thirdparty/perfect-scrollbar.css"/>
-
-    <!-- JAVASCRIPT -->
-    <!-- Jquery is needed on load to trigger the welcome menu to pop out. 
-         All other javascript is loaded at the end of the document to 
-         speed up page load -->
-    
   </head>
 
 
@@ -92,8 +86,9 @@
       <span id="app-info" class='app-active' onclick="toggleApp(0)"><i class="fas fa-info"></i></span>
       <span id="app-story" onclick="toggleApp(1)"><i class="fas fa-book-reader"></i></span>
       <span id="app-explore" onclick="toggleApp(2)"><i class="fas fa-compass"></i></span>
-      <span id="app-compare" onclick="toggleApp(3)"><i class="fas fa-balance-scale"></i></span>
-      <span id="app-article" onclick="toggleApp(4)"><i class="fas fa-graduation-cap"></i></span>
+      <!--<span id="app-compare" onclick="toggleApp(3)"><i class="fas fa-balance-scale"></i></span>-->
+      <span id="app-article" onclick="toggleApp(3)"><i class="fas fa-graduation-cap"></i></span>
+      <span id="app-language" onclick="console.log('switch lang')"><i class="fas fa-language"></i></i></span>
     </div>
     <!-- Main UI elements -->
     <div id='leftbar'>

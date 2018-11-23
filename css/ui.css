@@ -404,7 +404,11 @@ nav {
 }
 
 #app-article::after{
-  content: "Paper";
+  content: "Learn";
+}
+
+#app-language::after{
+  content: "Language";
 }
 
 /* ===========================================

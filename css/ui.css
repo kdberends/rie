@@ -407,10 +407,27 @@ nav {
   content: "Learn";
 }
 
-#app-language::after{
-  content: "Language";
+#app-settings::after{
+  content: "Settings";
 }
 
+/* ===========================================
+ * Settings
+ * ===========================================
+ */
+#SettingsPanel p{
+  font-size: 20px;
+}
+#SettingsPanel span{
+  cursor: pointer;
+  margin-left: 20px;
+  line-height: 1.5em;
+  white-space:nowrap;
+}
+
+#SettingsPanel span.notimplemented{
+  color: #7A7A7A;
+}
 /* ===========================================
  * About
  * ===========================================

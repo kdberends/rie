@@ -13,11 +13,11 @@
   	<!-- iPad and iPad mini @2x -->
   	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
   	<!-- iPad Pro -->
-  	<link rel="apple-touch-icon" sizes="167x167" href="img/touch-icon-ipad-pro.png">
+  	<link rel="apple-touch-icon" sizes="167x167" href="img/  touch-icon-ipad-pro.png">
   	<!-- iPhone X, iPhone 8 Plus, iPhone 7 Plus, iPhone 6s Plus, iPhone 6 Plus -->
   	<link rel="apple-touch-icon" sizes="180x180" href="img/touch-icon-iphone-6-plus.png">
   	<!-- Android Devices High Resolution -->
-  	<link rel="icon" sizes="192x192" href="img/  ">
+  	<link rel="icon" sizes="192x192" href="img/icon-hd.png">
   	<!-- Android Devices Normal Resolution -->
   	<link rel="icon" sizes="128x128" href="img/icon.png">
   	<!-- Favicon for browsers -->
@@ -88,7 +88,7 @@
       <span id="app-explore" onclick="toggleApp(2)"><i class="fas fa-compass"></i></span>
       <!--<span id="app-compare" onclick="toggleApp(3)"><i class="fas fa-balance-scale"></i></span>-->
       <span id="app-article" onclick="toggleApp(3)"><i class="fas fa-graduation-cap"></i></span>
-      <span id="app-language" onclick="console.log('switch lang')"><i class="fas fa-language"></i></i></span>
+      <span id="app-settings" onclick="toggleApp(4)"><i class="fas fa-cog"></i></i></span>
     </div>
     <!-- Main UI elements -->
     <div id='leftbar'>
@@ -120,10 +120,6 @@
               </ul>
             </div>
           </div>
-          <!--<div id="InterventionTable" class='textframe frame-summary'>
-            <div id="InterventionEffect">Maximaal verwacht effect: 0 cm (--)</div>
-            <div id="InterventionUncertainty">Relatieve onzekerheid: --% (--)</div>
-          </div>-->
           <div id="Description" class='textframe frame-description'>
             <div id='InterventionDescription'></div>
           </div>
@@ -152,6 +148,22 @@
 	         </div>
 	    </div>
       </div> 
+      
+      <!-- Settings -->
+      <div id="SettingsPanel", class='panel'>
+        <h2>Language</h2>
+        <p>
+          <span><a>🇬🇧  English </a></span>
+          <span class='notimplemented'><a>🇳🇱 Nederlands</a></span>
+          <span class='notimplemented'><a>🇩🇪 Deutsch</a></span>
+          
+        </p>
+        <h2>Theme</h2>
+        <p>
+          <span><a>🇬🇧  Dark </a></span>
+          <span class='notimplemented'><a>🇳🇱 Light</a></span>
+        </p>
+      </div>
 
       <!-- Story app -->
       <div id="StoryPanel" class='panel'>

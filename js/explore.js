@@ -71,7 +71,7 @@ this.setState({ showInstallMessage: true });
 // Flags that remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#LanguagePanel"];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel"];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu

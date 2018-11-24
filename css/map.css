@@ -12,6 +12,7 @@
 	border: 0px solid orange;
 	width: 200px; 	
 	height: 100px;
+	border-radius: 1px;
 	color: #2B2B2B;
 	background-color: white;
 	white-space: normal;
@@ -20,10 +21,11 @@
 .map-tooltip-special{
 	font-family: Montserrat;
 	font-size: 14px;
-	border: 2px solid orange;
+	border: 0px solid orange;
 	width: 200px; 	
 	height: 100px;
 	color: #2B2B2B;
+	border-radius: 1px;
 	background-color: #B1D8AB;
 	white-space: normal;
 }

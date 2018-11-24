@@ -1,10 +1,47 @@
 {
   "name": "RiverCare F1: model based design",
   "short_name": "RiverCareF1",
-  "icons": [{
-        "src": "img/logo-rivercare.png",
-        "sizes": "192x192",
-      }],
+  "start_url": "index.html",
+  "background_color": "#2D2D2D",
   "display": "standalone",
-  "orientation": "landscape"
+  "icons": [{
+      "src": "/img/touch-icon-iphone.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "/img/touch-icon-ipad.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+	{
+      "src": "/img/touch-icon-iphone-retina.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+	{
+      "src": "/img/touch-icon-ipad-retina.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+	{
+      "src": "/img/touch-icon-ipad-pro.png",
+      "type": "image/png",
+      "sizes": "167x167"
+    },
+	{
+      "src": "img/touch-icon-iphone-6-plus.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+	{
+      "src": "img/icon-hd.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+	{
+      "src": "img/icon.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }]
 }

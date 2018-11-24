@@ -4,9 +4,10 @@ const map_version = 0.2;
 var velocityLayer = {};
 /* STYLES */
 
+/* Dike */
 var LineStyle = {
     "stroke": true,
-    "color": "#565DE4",
+    "color": "#E4E4E4",
     "weight": 4,
     "dashArray": "1 0",
     "dashOffset": "1",
@@ -193,7 +194,7 @@ var mapZoomGroup = new L.layerGroup();  // shows only on very high levels of zoo
 /* Add to Map */
 function addRiverkilometerToMap() {
   d3.json('shp/rivierkilometers.json', function (data) {
-    for (var i=0;i<100;i++){
+    for (var i=1;i<100;i+=5){
         mapZoomGroup.addLayer(new L.geoJson(null, 
           {style: InactiveRiverKmStyle,
            pointToLayer: function (feature, latlng) {

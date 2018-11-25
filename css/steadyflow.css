@@ -1,6 +1,6 @@
 #waterline {
 	stroke: blue;
-	stroke-width: 0.0;
+	stroke-width: 0;
 	stroke-dasharray: 4 2 ;
 }
 
@@ -9,7 +9,21 @@
 	stroke-width: 5;
 }
 
+.archiveline{
+	stroke: red;
+	stroke-width: 2;
+	stroke-dasharray: 10 1 ;
+}
+
+.SteadyFlowAreas{
+	transition: all 200ms ease-out;
+}
+
+.differenceline{
+	stroke: orange;
+	stroke-width: 2	;
+}
+
 .SteadyflowParticle {
 	fill: white;
-	opacity: 0.4;
 }

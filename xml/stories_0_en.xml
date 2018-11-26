@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml> 
 <div id="1">
-	<h2>I<br/>So how do we do river engineering?</h2>
+	<h2>I<br/>How do we know what works?</h2>
 </div>
 <div id="2">
 	Rivers are a force of nature, and vital to human society. Just like roads, buildings and your teeth, rivers need to be regularly checked and fixed. 
@@ -29,15 +29,23 @@
 </div>
 
 <div id="6">
-	Now that we understand how rivers work, we can figure out how to lower water levels! Let's mark the current water level with a red line.
+	If we know how riviers work, we can figure out how to lower water levels as well! 
+	<br/>
+	<br/>
+	Let's mark the current water level with a red line.
 </div>
 <div id="7">
 	If we locally lower the bed level, we make more 'room for the river'. This lowers the water level. 
+<br/>
+<br/>
+<em>Making 'Room for the River' is the title of a large Dutch policy programme (<a href='https://www.ruimtevoorderivier.nl/english'>link</a>). The idea is straightforward: if water can go somewhere else besides 'up', it will go down. This is an alternative to raising the dikes/levees. </em> 
 </div>
 <div id="8">
 	We now have a line of the expected water level decrease, due to our flood mitigation measure!
 	<br/><br/>
-	This is the end of this story. 
+	This seems simple enough. But there is an important caveat: we assumed that we knew the friction value to determine the effect! In reality, we don't really know this. This introduces 'uncertainty'.
+	<br/><br/>
+	In the next chapter, we explore the effect of uncertainty. 
 </div>
 <!--
 <div id="6">

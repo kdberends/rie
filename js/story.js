@@ -88,13 +88,13 @@ function story_decreaseFriction(reverse=false) {
   if (reverse) {
     FlowFigure.changeFriction(0.04);
   } else {
-    FlowFigure.changeFriction(0.03);
+    FlowFigure.changeFriction(0.02);
   };
 };
 
 function story_increaseFriction(reverse=false) {
   if (reverse) {
-    FlowFigure.changeFriction(0.03);
+    FlowFigure.changeFriction(0.02);
   } else {
     FlowFigure.changeFriction(0.04);
   };
@@ -264,6 +264,7 @@ $(".progress-inside").each(function () {
 /* advances story by one increment */
 function nextStory () {
   var xmlPath = get_storyXML();
+  console.log(xmlPath)
   if (StoryProgress < NumberOfStories + 1) {
     // advance story
     StoryProgress += 1;

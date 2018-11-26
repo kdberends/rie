@@ -608,15 +608,14 @@ nav {
 
 #StoryScroll{
   position: relative;
-  top: 0px;
-  height: calc(100% - 240px);
+  top: 20px;
+  height: calc(100% - 260px);
   overflow: hidden;
 }
 
 #StoryFrame{
   position:relative;
-  margin-top: 30px;
-  height: 100%;
+  height: 98%;
   overflow: hidden;
 }
 
@@ -635,6 +634,9 @@ nav {
   color: var(--accent-6);
 }
 
+#StoryText {
+  transform: translate 1s ease-out;
+}
 #StoryText a {
   font-size: 17px;
   cursor: pointer;
@@ -679,7 +681,7 @@ nav {
   background: none;
 }
 
-@media (max-width: 400px){#StoryOptions button {margin-left: 30px}}
+@media (max-width: 400px){#StoryOptions button {margin-left: 20px}}
 @media (max-width: 350px){#StoryOptions button {margin-left: 20px}}
 
 #StoryOptions button i{

@@ -3,7 +3,7 @@
  */////////////////////////////////////////////////////////////
 
 
-const story_version = 0.2;
+const story_version = 0.21;
 
 var StoryProgress = 1;
 var NumberOfStories = 7;
@@ -332,7 +332,7 @@ function addSwipeDetect(el, callback){
         startY,
         distX,
         distY,
-        threshold = 150, //required min distance traveled to be considered swipe
+        threshold = 50, //required min distance traveled to be considered swipe
         restraint = 100, // maximum distance allowed at the same time in perpendicular direction
         allowedTime = 300, // maximum time allowed to travel that distance
         elapsedTime,
@@ -350,17 +350,24 @@ function addSwipeDetect(el, callback){
             //e.preventDefault()
             }}, false)
   
-        /*touchsurface.addEventListener('touchmove', function(e){
+        touchsurface.addEventListener('touchmove', function(e){
+            if (flagSwipeActive){
+            var touchobj = e.changedTouches[0],
+                distX = touchobj.pageX - startX
+            $('#StoryText').css('transition', 'transform 0s ease-out' )
+            $('#StoryText').css('transform', 'translate('+distX+'px , 0%)')
             //e.preventDefault() // prevent scrolling when inside DIV
-        }, false)*/
+        }}, false);
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
+            $('#StoryText').css('transition', 'transform 0.2s ease-out' )
+            $('#StoryText').css('transform', 'translate(0%, 0%)');
             var touchobj = e.changedTouches[0]
                 distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
                 distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
                 elapsedTime = new Date().getTime() - startTime // get time elapsed
-            if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (true){//(elapsedTime <= allowedTime){ // first condition for awipe met
                 if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
                     swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
                 }

@@ -4,7 +4,7 @@
  * 
  */////////////////////////////////////////////////////////////
 
-const version = "0.3";
+const version = "0.31";
 
 /* dummy func, to be overwritten later  by story.js*/
 function openStoryOverview() {

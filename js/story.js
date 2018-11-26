@@ -3,7 +3,7 @@
  */////////////////////////////////////////////////////////////
 
 
-const story_version = 0.21;
+const story_version = 0.22;
 
 var StoryProgress = 1;
 var NumberOfStories = 7;
@@ -332,7 +332,7 @@ function addSwipeDetect(el, callback){
         startY,
         distX,
         distY,
-        threshold = 50, //required min distance traveled to be considered swipe
+        threshold = 75, //required min distance traveled to be considered swipe
         restraint = 100, // maximum distance allowed at the same time in perpendicular direction
         allowedTime = 300, // maximum time allowed to travel that distance
         elapsedTime,
@@ -361,7 +361,7 @@ function addSwipeDetect(el, callback){
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
-            $('#StoryText').css('transition', 'transform 0.2s ease-out' )
+            $('#StoryText').css('transition', 'transform 0.4s ease-out' )
             $('#StoryText').css('transform', 'translate(0%, 0%)');
             var touchobj = e.changedTouches[0]
                 distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface

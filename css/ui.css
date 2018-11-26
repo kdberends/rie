@@ -634,9 +634,6 @@ nav {
   color: var(--accent-6);
 }
 
-#StoryText {
-  transform: translate 1s ease-out;
-}
 #StoryText a {
   font-size: 17px;
   cursor: pointer;

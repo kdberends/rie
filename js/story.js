@@ -3,7 +3,7 @@
  */////////////////////////////////////////////////////////////
 
 
-const story_version = 0.2;
+const story_version = 0.21;
 
 var StoryProgress = 1;
 var NumberOfStories = 7;
@@ -351,14 +351,17 @@ function addSwipeDetect(el, callback){
             }}, false)
   
         touchsurface.addEventListener('touchmove', function(e){
+            if (flagSwipeActive){
             var touchobj = e.changedTouches[0],
                 distX = touchobj.pageX - startX
+            $('#StoryText').css('transition', 'transform 0s ease-out' )
             $('#StoryText').css('transform', 'translate('+distX+'px , 0%)')
             //e.preventDefault() // prevent scrolling when inside DIV
-        }, false)
+        }}, false);
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
+            $('#StoryText').css('transition', 'transform 0.2s ease-out' )
             $('#StoryText').css('transform', 'translate(0%, 0%)');
             var touchobj = e.changedTouches[0]
                 distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface

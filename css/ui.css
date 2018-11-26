@@ -679,6 +679,9 @@ nav {
   background: none;
 }
 
+@media (max-width: 400px){#StoryOptions button {margin-left: 30px}}
+@media (max-width: 350px){#StoryOptions button {margin-left: 20px}}
+
 #StoryOptions button i{
   color: var(--font-body-color);
 }

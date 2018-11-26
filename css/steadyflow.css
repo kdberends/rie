@@ -9,8 +9,8 @@
 	stroke-width: 5;
 }
 
-.archiveline{
-	stroke: red;
+#FlowCanvas .archiveline{
+	stroke: var(--accent-2);
 	stroke-width: 2;
 	stroke-dasharray: 10 1 ;
 }
@@ -19,11 +19,27 @@
 	transition: all 200ms ease-out;
 }
 
-.differenceline{
-	stroke: orange;
+#FlowCanvas .differenceline{
+	stroke: var(--accent-2);
 	stroke-width: 2	;
 }
 
-.SteadyflowParticle {
+#FlowCanvas .SteadyflowParticle {
 	fill: white;
+	opacity: 0.4;
+}
+
+#ExploreCanvas .Figurelabels{
+	fill: var(--font-body-color);
+}
+
+#ExploreCanvas .domain{
+	stroke: var(--font-body-color);
+}
+
+#ExploreCanvas .tick line{
+	stroke: var(--font-body-color);
+}
+#ExploreCanvas .tick text{
+	fill: var(--font-body-color);
 }

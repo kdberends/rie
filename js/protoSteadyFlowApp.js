@@ -500,6 +500,7 @@ var protoSteadyFlowApp = function() {
 
     /* draws difference between two saved lines */
     this.drawEffect = function(a, b, lineid='differenceline') {
+        difference_data = [];
         for (var i=0;i<data.length;i++){
             difference_data.push({
                 x: data_archive[a][i].x,

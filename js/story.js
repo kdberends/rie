@@ -6,7 +6,7 @@
 const story_version = 0.1;
 
 var StoryProgress = 1;
-var NumberOfStories = 8;
+var NumberOfStories = 7;
 var currentStory = 0;
 var currentLang = 'en';
 
@@ -19,29 +19,41 @@ function get_storyXML(){
 
 
 function openStory (storynum) {
-  $('#StoryOptions').css('transform', 'translate(0%, 0%)');  
+  $('#StoryOptions').css('opacity', '1');  
   currentStory = storynum;
   // load story
   var xmlPath = get_storyXML();
   $('#StoryText').load(xmlPath+1);
+  showStoryNavigation();
 
-  // register controls
-   $('#StoryText').bind('DOMMouseScroll', function(e){
-        console.log('koen')
-        if(e.originalEvent.wheelDelta /120 > 0) {
-            console.log('scrolling up !');
-        }
-        else{
-            console.log('scrolling down !');
-        };
-      });
+  // register keypresses
+  /*
+  $('#StoryPanel').addEventListener('keydown', (event) => {
+    console.log('oh boy a key')
+  if (event.key=='ArrowRight'){
+    nextStory();
+  } else if (event.key=='ArrowLeft') {
+    previousStory();
+  };
+
+  });
+  */
 };
 
 function openStoryOverview() {
   resetStory();
   $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
-  $('#StoryOptions').css('transform', 'translate(-150%, 0%)');  
+  hideStoryNavigation();
 };
+
+function hideStoryNavigation() {
+  $('#StoryOptions').css('opacity', '0');  
+};
+
+function showStoryNavigation() {
+  $('#StoryOptions').css('opacity', '1');  
+};
+
 /* STORY  1 FUNCTIONS
 
 These functions are called at various points alongn the story to progress
@@ -52,7 +64,7 @@ the figures & map.
 function storyTest () {
   console.log("StoryTestFunc fired")
 };
-
+ 
 function show_welcome() {
   $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
 };
@@ -111,11 +123,11 @@ function story_lowerBed(reverse=false) {
 function story_markDifference(reverse=false){
   if (reverse) {
     FlowFigure.drawLatestFromArchive('differenceline', 'archiveline_1')
+    $('.archiveline').css('opacity', '1')
     FlowFigure.showFlow();
   } else {
-    
     FlowFigure.drawEffect(1, 0, 'archiveline_1')
-    FlowFigure.emptyArchive();
+    $('.archiveline').css('opacity', '0')
     FlowFigure.hideFlow();
   };
 };
@@ -185,7 +197,7 @@ function reset_story(){
   showReference();
   hide_flowcanvas();
   hide_interventioncanvas();
-  map_zoom_NL();
+  //map_zoom_NL();
   FlowFigure.showFlow();
   FlowFigure.removeEffect();
 };
@@ -244,7 +256,7 @@ var StoryFunctions = [reset_story,
 // initialise story
 
 
-let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
+let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
 $(".progress-inside").each(function () {
       $(this).css("width", progresstext);
       $(this).children("div").text(progresstext)});
@@ -252,7 +264,7 @@ $(".progress-inside").each(function () {
 /* advances story by one increment */
 function nextStory () {
   var xmlPath = get_storyXML();
-  if (StoryProgress < NumberOfStories) {
+  if (StoryProgress < NumberOfStories + 1) {
     // advance story
     StoryProgress += 1;
 
@@ -263,18 +275,14 @@ function nextStory () {
     StoryFunctions[StoryProgress]();
 
     // update progressbar
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
+    let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
     $(".progress-inside").each(function () {
       $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext);
-      /* special color if completed! */
-      if (StoryProgress == NumberOfStories){
-        $(".progress-inside").css(' ', 'var(--accent-3)')
-      };
-  });
+    });
  };
 };
 
+/* retards story by one increment */
 function previousStory () {
   var xmlPath = get_storyXML();
   if (StoryProgress > 1) {
@@ -288,10 +296,9 @@ function previousStory () {
     StoryFunctions[StoryProgress+1](true);
 
     // update progressbar
-    $(".progress .progress-inside").each(function () {
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
+    $(".progress-inside").each(function () {
+    let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
       $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext);
     });
 };
 };
@@ -300,10 +307,9 @@ function resetStory () {
   StoryProgress = 1;
   var xmlPath = get_storyXML();
   reset_story();
-  $(".progress .progress-inside").css('background-color', 'var(--accent-4)')
   $('#StoryText').load(xmlPath+StoryProgress);
-  $(".progress .progress-inside").each(function () {
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
+  $(".progress-inside").each(function () {
+    let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%"
     $(this).css("width", progresstext);
     $(this).children("div").text(progresstext);
   });

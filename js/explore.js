@@ -71,8 +71,8 @@ this.setState({ showInstallMessage: true });
 
 // Flags that remember which panel is out
 var AppMenuToggle = true;
-var AppToggles = [true, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel"];
+var AppToggles = [true, false, false, false, false, false];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel", '#FlowPanel'];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -91,11 +91,14 @@ var toggleAppMenu = function () {
 // Function to switch between apps
 var toggleApp = function (appindex) {
   for (let i=0;i<AppToggles.length;i++){
-    if (i == appindex) {
-      $(AppIds[appindex]).css('transform','translate(0%, 0%)');
+    if (i == appindex) { 
+      // show requested app and its children
+      $(AppIds[i]).css('transform','translate(0%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
+      // highlight current app in navigator
       $($('#appnavigation span').get(i)).addClass('app-active');
     } else{
+      // hide other apps and their children 
       $(AppIds[i]).css('transform','translate(-120%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
       $($('#appnavigation span').get(i)).removeClass('app-active');
@@ -104,7 +107,7 @@ var toggleApp = function (appindex) {
 };
 
 // Default layout
-toggleApp(1)
+toggleApp(0)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -122,13 +125,13 @@ const ss = new PerfectScrollbar('#StoryScroll', {
 });
 ss.update()
 
-const fs = new PerfectScrollbar('#FlowScroll', {
-  wheelSpeed: 1,
-  wheelPropagation: false,
-  minScrollbarLength: 20,
-  swipeEasing: true
-});
-fs.update()
+//const fs = new PerfectScrollbar('#FlowScroll', {
+//  wheelSpeed: 1,
+//  wheelPropagation: false,
+//  minScrollbarLength: 20,
+//  swipeEasing: true
+//});
+//fs.update()
 
 const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,

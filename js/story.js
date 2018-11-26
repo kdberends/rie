@@ -3,12 +3,14 @@
  */////////////////////////////////////////////////////////////
 
 
-const story_version = 0.1;
+const story_version = 0.2;
 
 var StoryProgress = 1;
 var NumberOfStories = 7;
 var currentStory = 0;
 var currentLang = 'en';
+var flagSwipeActive = false; // if true, swiping will advance story
+
 
 // initialise story
 $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
@@ -25,7 +27,7 @@ function openStory (storynum) {
   var xmlPath = get_storyXML();
   $('#StoryText').load(xmlPath+1);
   showStoryNavigation();
-
+  flagSwipeActive = true;
   // register keypresses
   /*
   $('#StoryPanel').addEventListener('keydown', (event) => {
@@ -44,6 +46,7 @@ function openStoryOverview() {
   resetStory();
   $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
   hideStoryNavigation();
+  flagSwipeActive = false;
 };
 
 function hideStoryNavigation() {
@@ -315,3 +318,70 @@ function resetStory () {
     $(this).children("div").text(progresstext);
   });
 };
+
+
+/* original credit: http://www.javascriptkit.com/javatutors/touchevents2.shtml
+problem here is that touch taps/clicks are not properly propagated
+*/
+
+function addSwipeDetect(el, callback){
+  
+    var touchsurface = el,
+        swipedir,
+        startX,
+        startY,
+        distX,
+        distY,
+        threshold = 150, //required min distance traveled to be considered swipe
+        restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+        allowedTime = 300, // maximum time allowed to travel that distance
+        elapsedTime,
+        startTime,
+        handleswipe = callback || function(swipedir){}
+  
+        touchsurface.addEventListener('touchstart', function(e){
+          if (flagSwipeActive){
+        var touchobj = e.changedTouches[0]
+            swipedir = 'none'
+            dist = 0
+            startX = touchobj.pageX
+            startY = touchobj.pageY
+            startTime = new Date().getTime() // record time when finger first makes contact with surface
+            //e.preventDefault()
+            }}, false)
+  
+        /*touchsurface.addEventListener('touchmove', function(e){
+            //e.preventDefault() // prevent scrolling when inside DIV
+        }, false)*/
+  
+        touchsurface.addEventListener('touchend', function(e){
+            if (flagSwipeActive){
+            var touchobj = e.changedTouches[0]
+                distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+                distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+                elapsedTime = new Date().getTime() - startTime // get time elapsed
+            if (elapsedTime <= allowedTime){ // first condition for awipe met
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                    swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+                }
+                else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                    swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+                }
+            }
+            handleswipe(swipedir)
+            //e.preventDefault()
+        }}, false)
+};
+  
+//USAGE:
+
+var el = document.getElementById('StoryFrame');
+
+
+addSwipeDetect(el, function(swipedir){
+    // swipedir contains either "none", "left", "right", "top", or "down"
+    console.log(swipedir)
+    if (swipedir=='right'){previousStory()} 
+    else if (swipedir=='left'){nextStory()}
+});
+

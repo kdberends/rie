@@ -4,8 +4,12 @@
  * 
  */////////////////////////////////////////////////////////////
 
-const version = "0.3";
+const version = "0.31";
 
+/* dummy func, to be overwritten later  by story.js*/
+function openStoryOverview() {
+  {};
+};
 
 /*
 https://stackoverflow.com/questions/50543163/can-i-detect-if-my-pwa-is-launched-as-an-app-or-visited-as-a-website
@@ -24,6 +28,9 @@ if (isIos() && !isInStandaloneMode()) {
 
 this.setState({ showInstallMessage: true });
 */
+
+
+
 
 /** ////////////////////////////////////////////////////////////
  * Extend jquery
@@ -97,6 +104,8 @@ var toggleApp = function (appindex) {
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
       // highlight current app in navigator
       $($('#appnavigation span').get(i)).addClass('app-active');
+      // if click on story, reset and go to overview
+      if (i==1){openStoryOverview()}
     } else{
       // hide other apps and their children 
       $(AppIds[i]).css('transform','translate(-120%, 0%)');

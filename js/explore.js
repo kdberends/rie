@@ -3,7 +3,8 @@
  * 
  * 
  */////////////////////////////////////////////////////////////
-const version = "0.2.4";
+
+const version = "0.3";
 
 
 /*
@@ -70,8 +71,8 @@ this.setState({ showInstallMessage: true });
 
 // Flags that remember which panel is out
 var AppMenuToggle = true;
-var AppToggles = [true, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel"];
+var AppToggles = [true, false, false, false, false, false];
+var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel", '#FlowPanel'];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -90,11 +91,14 @@ var toggleAppMenu = function () {
 // Function to switch between apps
 var toggleApp = function (appindex) {
   for (let i=0;i<AppToggles.length;i++){
-    if (i == appindex) {
-      $(AppIds[appindex]).css('transform','translate(0%, 0%)');
+    if (i == appindex) { 
+      // show requested app and its children
+      $(AppIds[i]).css('transform','translate(0%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
+      // highlight current app in navigator
       $($('#appnavigation span').get(i)).addClass('app-active');
     } else{
+      // hide other apps and their children 
       $(AppIds[i]).css('transform','translate(-120%, 0%)');
       $(AppIds[i]).children().css('transform','translate(0%, 0%)');
       $($('#appnavigation span').get(i)).removeClass('app-active');
@@ -103,7 +107,7 @@ var toggleApp = function (appindex) {
 };
 
 // Default layout
-toggleApp(2)
+toggleApp(0)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -121,13 +125,13 @@ const ss = new PerfectScrollbar('#StoryScroll', {
 });
 ss.update()
 
-const fs = new PerfectScrollbar('#FlowScroll', {
-  wheelSpeed: 1,
-  wheelPropagation: false,
-  minScrollbarLength: 20,
-  swipeEasing: true
-});
-fs.update()
+//const fs = new PerfectScrollbar('#FlowScroll', {
+//  wheelSpeed: 1,
+//  wheelPropagation: false,
+//  minScrollbarLength: 20,
+//  swipeEasing: true
+//});
+//fs.update()
 
 const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,
@@ -388,7 +392,7 @@ function showSIDECHAN(){
 
 /* Create initial shown data & initialise apps */
 var ExploreFigure = {};
-var CompareFigure = {};
+var FlowFigure = {};
 
 function display(error, dataset, comparedata) {
   // === Background map ===
@@ -403,7 +407,7 @@ function display(error, dataset, comparedata) {
   ExploreFigure.drawMedian();
   ExploreFigure.drawBands();
   ExploreFigure.showBands();
-  $('#version-number-explore').text('Explore app: v' + ExploreFigure.getVersion());
+  $('#version-number-explore').text('Explore: v' + ExploreFigure.getVersion());
   
 
   // Set callback between map and figure
@@ -416,28 +420,24 @@ function display(error, dataset, comparedata) {
     });
 
   // === Compare App ===
-  //protoCompareChart.apply(CompareFigure);
+  //protoCompareChart.apply(CompareFigure );
   //CompareFigure.setCanvas('#CompareCanvas');
   //CompareFigure.setData(comparedata);
   //CompareFigure.init();
   //CompareFigure.drawInterventionLine();
   //CompareFigure.drawDesiredEffect();
-  protoSteadyFlowApp.apply(CompareFigure)
-  CompareFigure.setCanvas('#FlowCanvas');
-  CompareFigure.init();
-  $('#version-number-flow').text('Flow app: v' + CompareFigure.getVersion());
+  protoSteadyFlowApp.apply(FlowFigure)
+  FlowFigure.setCanvas('#FlowCanvas');
+  FlowFigure.init();
+  $('#version-number-flow').text('Flow: v' + FlowFigure.getVersion());
   
-  //showReference()
-  //showSmooth()
-  //showRelo()
-  //showGROYNLOW()
-  //showMINEMBLOW()
-  showFLPLOW()
+  showReference()
+  
   // Make sure figure updates when window resizes
    d3.select(window)
       .on("resize.chart", function(){
           ExploreFigure.resize();
-          CompareFigure.resize();
+          FlowFigure.resize();
           ExploreFigure.setXaxisCallback(function (coor) {
             d3.json('shp/rivierkilometers.json', function (data) {
             riverkmFocus.clearLayers();
@@ -466,7 +466,7 @@ $("#flat-slider")
         range: true,
         values: [4000, 6000],
         change: function(event, ui) {
-          CompareFigure.changeInterventionExtent(ui.values)
+          FlowFigure.changeInterventionExtent(ui.values)
         }
     })
     .slider("pips", {
@@ -484,7 +484,7 @@ $("#flat-slider-vertical-1")
         step: 0.5,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeBoundary(ui.value)
+          FlowFigure.changeBoundary(ui.value)
         }
     })
   .slider("pips", {
@@ -503,7 +503,7 @@ $("#flat-slider-vertical-2")
         step: 200,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeDischarge(ui.value)
+          FlowFigure.changeDischarge(ui.value)
         }
     })
   .slider("pips", {
@@ -522,7 +522,7 @@ $("#flat-slider-vertical-3")
         step: 0.25,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeSlope(ui.value/10000)
+          FlowFigure.changeSlope(ui.value/10000)
         }
     })
   .slider("pips", {
@@ -541,7 +541,7 @@ $("#flat-slider-vertical-4")
         step: 0.5,
         orientation: "vertical",
         change: function(event, ui) {
-          CompareFigure.changeInterventionDepth(-1*ui.value)
+          FlowFigure.changeInterventionDepth(-1*ui.value)
         }
     })
   .slider("pips", {
@@ -550,161 +550,11 @@ $("#flat-slider-vertical-4")
     })
     .slider("float");
 
-/** ////////////////////////////////////////////////////////////
- * Storyline app
- */////////////////////////////////////////////////////////////
 
-var StoryProgress = 1;
-var NumberOfStories = 13;
-
-
-
-function storyTest () {
-  console.log("StoryTestFunc fired")
-};
-
-function show_welcome() {
-  $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
-};
-
-function hide_welcome() {
-  $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
-};
-
-function show_flowcanvas() {
-  hide_welcome();
-  $('#FlowPanel').css('transform','translate(0%, 0%)');
-  $('#FlowScroll').css('transform','translate(-120%, 0%)');
-};
-
-function hide_flowcanvas() {  
-  $('#FlowPanel').css('transform','translate(-120%, 0%)');
-};
-
-function map_zoom_NL() {
-  map.setView([52, 5], 7);
-};
-
-function map_zoom_Waal() {
-  hide_welcome()
-  map.setView([51.823, 5.3682], 9);
-};
-
-function map_zoom_StAndries() {
-  map.setView([51.823, 5.3682], 13);
-  story_show_uncertainty();
-};
-
-
-
-function show_interventioncanvas() {
-  $('#ExplorePanel').css('transform','translate(0%, 0%)');
-  $('#ExploreScroll').css('transform','translate(-120%, 0%)');
-};
-
-function hide_interventioncanvas() {
-  $('#ExplorePanel').css('transform','translate(-120%, 0%)');
-};
-
-function story_discharge_down() {
-  CompareFigure.changeDischarge(1250);
-};
-
-function story_discharge_up() {
-  CompareFigure.changeDischarge(2000);
-};
-
-function story_show_uncertainty() {
-  hide_flowcanvas();
-  show_interventioncanvas();
-};
-
-function story_lower_bed() {
-  CompareFigure.changeInterventionDepth(-1)
-};
-
-function reset_story(){
-  CompareFigure.changeInterventionDepth(0)
-  CompareFigure.changeDischarge(2000);
-  show_welcome();
-  showReference();
-  hide_flowcanvas();
-  hide_interventioncanvas();
-  map_zoom_NL();
-};
-
-function show_storycanvas_hide_flow(){
-  hide_flowcanvas();
-  show_welcome()
-};
-
-var StoryFunctions = [reset_story, 
-                      show_flowcanvas, 
-                      story_discharge_down, 
-                      story_discharge_up, 
-                      storyTest,
-                      storyTest, 
-                      show_storycanvas_hide_flow,
-                      map_zoom_Waal, 
-                      hide_interventioncanvas,
-                      map_zoom_StAndries,
-                      showSmooth,
-                      showSIDECHAN,
-                      storyTest,
-                      storyTest
-                      ]
-// initialise story
-$('#StoryText').load('xml/stories.xml #0' );
-let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
-$(".progress .progress-inside").each(function () {
-      $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext)});
-
-function nextStory () {
-  if (StoryProgress < NumberOfStories) {
-    StoryProgress += 1;
-    $('#StoryText').load('xml/stories.xml #'+StoryProgress);
-    StoryFunctions[StoryProgress]();
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
-    $(".progress .progress-inside").each(function () {
-      $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext);
-      /* special color if completed! */
-      if (StoryProgress == NumberOfStories){
-        $(".progress .progress-inside").css('background-color', 'var(--accent-3)')
-      };
-  });
- };
-};
-
-function previousStory () {
-  if (StoryProgress > 1) {
-    StoryProgress -= 1;
-    $('#StoryText').load('xml/stories.xml #'+StoryProgress);
-    StoryFunctions[StoryProgress]();
-    $(".progress .progress-inside").each(function () {
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%";
-      $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext);
-    });
-};
-};
-
-function resetStory () {
-  StoryProgress = 1;
-  reset_story();
-  $(".progress .progress-inside").css('background-color', 'var(--accent-4)')
-  $('#StoryText').load('xml/stories.xml #'+StoryProgress);
-  $(".progress .progress-inside").each(function () {
-    let progresstext = Math.round(StoryProgress / NumberOfStories * 100) + "%"
-    $(this).css("width", progresstext);
-    $(this).children("div").text(progresstext);
-  });
-};
 
 $(document).ready(function () {
   // renderProgress();
 });
 
-$('#version-number-ui').text('UI: v' + version);
+$('#version-number-ui').text('App: v' + version);
 $('#version-number-map').text('Map: v' + map_version);

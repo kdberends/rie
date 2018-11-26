@@ -29,7 +29,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="utf-8" http-equiv="encoding">
     <meta name="Koen D. Berends" contents">
-    
+    <!-- disable caching. replace with service workr later -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     
 
     <title>RiverCare F1: uncertainty</title>
@@ -38,7 +41,8 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
     <!-- EXTERNAL STYLE SHEETS-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
           integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -124,11 +128,12 @@
             <div id='InterventionDescription'></div>
           </div>
         </div>
-      </div> <!-- in'v info -->
+      </div> <!-- /explorepanel -->
 
       <!-- Flow app -->
       <div id="FlowPanel" class='panel'>
         <div><svg id="FlowCanvas" class='canvas'></svg></div>
+        <!--
         <div id="FlowScroll" class='scroll'>
 	        <div id="FlowOptions" class='textframe frame-options'>    
 	          <div class="vertical">
@@ -145,9 +150,9 @@
 	             <br/><br/>
 	             (Some background: The water level and mean flow velocity are solved through the <a href='https://en.wikipedia.org/wiki/Jean-Baptiste-Charles-Joseph_B%C3%A9langer'>Bélanger</a> equation, while the vertical flow velocity is computed from the mean velocity following a turbulent flow profile.  )
 	           </div>
-	         </div>
+	         </div>-->
 	    </div>
-      </div> 
+      </div> <!-- Flow panel -->
       
       <!-- Settings -->
       <div id="SettingsPanel", class='panel'>
@@ -168,17 +173,20 @@
       <!-- Story app -->
       <div id="StoryPanel" class='panel'>
         <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> 🧐</div>
-        <div id="StoryScroll">
-          <div id="StoryOptions" class='textframe frame-options'>
-              <div id="story-options-wrapper">
-                <button onclick="previousStory();" class="story-ui-left"><i class="fas fa-step-backward"></i></button>
-                <button onclick="resetStory();" class="story-ui-home"><i class="fas fa-fast-backward"></i></button>
-                <div class="progress"><div class='progress-inside'><div class='val'>0%</div></div></div>
-                <button onclick="nextStory();" class="story-ui-right"><i class="fas fa-step-forward"></i></button>
-            </div>
+        <div id="StoryProgress">
+          <div class='progress-inside'></div>
+        </div>
+        <div id="StoryOptions">
+          <div id="story-options-wrapper">
+            <button onclick="previousStory();" class="story-ui-left"><i class="fas fa-step-backward"></i></button>
+            <button onclick="resetStory();" class="story-ui-begin"><i class="fas fa-fast-backward"></i></button>
+            <button onclick="openStoryOverview();" class="story-ui-home"><i class="fas fa-home"></i></button>
+            <button onclick="nextStory();" class="story-ui-right"><i class="fas fa-step-forward"></i></button>
           </div>
-          <div id="StoryFrame" class='textframe frame-description'>
-            <div id="StoryText" class='storytext'></div>
+        </div>
+        <div id="StoryScroll">
+          <div id="StoryFrame">
+            <div id="StoryText" class='storytext'>  </div>
           </div> 
         </div>
       </div>
@@ -285,6 +293,7 @@
 <script src="js/protoCompareChart.js"></script>
 <script src="js/map.js"></script>
 <script src="js/explore.js"></script>
+<script src="js/story.js"></script>
 
 
 </html>

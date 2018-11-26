@@ -12,7 +12,7 @@ var protoSteadyFlowApp = function() {
 	 * >> LocalChart.init()
 	 * All done. Now call specific functions to show elements
 	 */
-    const version = 0.1;
+    const version = 0.2;
 
     var id = 0;
  	var canvas = 'body';
@@ -34,7 +34,9 @@ var protoSteadyFlowApp = function() {
  	var height = null;
  	var g = null 
     var colormap = ["#FF9F1C", "#9CE2EA", "#D77B5A", "#B37FCF", "#828AB6", "#000103"];
-    
+    var data_archive = [];
+    var difference_data = [];
+
     var line = d3.line()
 		      .x(function(d) { return xScale(d.x); })
 		      .y(function(d) { return yScale(d.y); });
@@ -49,8 +51,10 @@ var protoSteadyFlowApp = function() {
 		    .y1(function(d) { return yScale(d.y); });
 
     var pline= {};
+    var timer = {};
 
     // Flow parameters
+    var particleOpacity = 0.4;
     var bedslope = 0.0005;
     var friction = 0.04; // manning
     var riverlength = 10000;  // m
@@ -60,7 +64,7 @@ var protoSteadyFlowApp = function() {
     var nsteps =  200;
     var waterlevel = new Array(nsteps)  // == waterlevel
     var bedlevel = new Array(nsteps)  // == waterlevel
-    var intervention_extent = [4000, 6000] // x_left - x_right
+    var intervention_extent = [5000, 6000] // x_left - x_right
     var intervention_depth = 0; // change w/r bedlevel
 
     /* /////////////////////////////////////////////////////////////
@@ -108,8 +112,8 @@ var protoSteadyFlowApp = function() {
 	  	// Solve initial situation
 	  	this.solve_flow()
 	  	this.drawWater()
-	  	this.drawLine('waterline', '.waterline', line)
-	  	this.drawLine('bedline', '.bedline', bedline)
+	  	this.drawLine('waterline', 'SteadyFlowLines waterline', line)
+	  	this.drawLine('bedline', 'SteadyFlowLines bedline', bedline)
 	  	this.drawParticles()
 	};
 
@@ -223,6 +227,21 @@ var protoSteadyFlowApp = function() {
 	      .attr("x1", xScale(0)).attr("y1", yScale(0))			
 		  .attr("x2", xScale(waterlevel[0]*bedslope*50000)).attr("y2", yScale(waterlevel[0]))	
     };
+
+    this.hideFlow = function() {
+        d3.select('.SteadyFlowAreas').style('opacity', 0);
+        d3.selectAll('.SteadyflowParticle').style('opacity', 0);
+        d3.selectAll('.SteadyFlowLines').style('opacity', 0);
+        particleOpacity = 0;
+    };
+
+    this.showFlow = function() {
+        d3.select('.SteadyFlowAreas').style('opacity', 1)
+        d3.selectAll('.SteadyflowParticle').style('opacity', 1)
+        d3.selectAll('.SteadyFlowLines').style('opacity', 1)
+        particleOpacity = 0.4;
+    };
+
 	/* /////////////////////////////////////////////////////////////
 	//// Axis methods
     *///////////////////////////////////////////////////////////////
@@ -348,6 +367,7 @@ var protoSteadyFlowApp = function() {
     		let px = particle_locs[i];
     		g.append("circle")
 	    	 .attr('class', 'SteadyflowParticle')
+             .style('opacity', particleOpacity)
 	    	 .attr('cx', xScale(px))
 	    	 .attr('cy', yScale(particle_depths[i] + funcblevel(px)))
 	    	 .attr('r', 1)
@@ -356,7 +376,7 @@ var protoSteadyFlowApp = function() {
     	var dt = 500;
     	var xnew = 2;
 		
-		var timer = d3.interval(function(elapsed) {
+		timer = d3.interval(function(elapsed) {
 			// Generate a x new particles 
 
 			particle_depths = funcrnd(htol, waterlevel[0] + funcblevel(0), nparticles - $(".SteadyflowParticle").length)
@@ -365,14 +385,15 @@ var protoSteadyFlowApp = function() {
 	    		let px = particle_locs[i];
 	    		g.append("circle")
 		    	 .attr('class', 'SteadyflowParticle')
+                 .style('opacity', particleOpacity)
 		    	 .attr('cx', xScale(0))
 		    	 .attr('cy', yScale(particle_depths[i]))
 		    	 .attr('r', 1)
 	    	};
 
 			// Update existing particles
-			let umean = 1  // in m/s
-			let uscale = 200
+			let umean = 1;  // in m/s
+			let uscale = 200;
 
 			d3.selectAll(".SteadyflowParticle")
 			  .each(function (d, i) {
@@ -404,9 +425,7 @@ var protoSteadyFlowApp = function() {
 				      .duration(1000)
 				      .attr('cx', xScale(new_x))
 				      .attr('cy', yScale(new_y))
-			     }
-			  	
-			  	
+			     };
 			  });
 			
 		}, dt);
@@ -417,12 +436,19 @@ var protoSteadyFlowApp = function() {
     	  .remove()
     };
 
-    this.drawLine = function(lineid, lineclass, linefunction){
+    this.drawLine = function(lineid, lineclass, linefunction, otherData){
+        if (typeof otherData == 'undefined'){
+            var drawdata = data;
+
+        } else {
+            var drawdata = otherData;
+
+        };
     	if (d3.select("#"+lineid).empty()) {
 	    	g.append("path")
-	    		.data([data])
+	    		.data([drawdata])
 	    		.attr('id', lineid)
-	    		.attr('class', 'SteadyFlowLines')
+	    		.attr('class', lineclass)
 	    		.style("fill", 'none')
 		    	.transition()
 		    	.duration(500)
@@ -430,15 +456,69 @@ var protoSteadyFlowApp = function() {
 		} else {
     	// Line already plotted, update instead
 			d3.select("#"+lineid)
-			  .data([data])
+			  .data([drawdata])
 			  .transition()
 			  .duration(500)
 			  .attr('d', linefunction)
     	};
     };
 
-  
+    /* Saves current water-level line to array */
+    this.saveLineToArchive = function(){
+        data_archive.push(data);
+    };
 
+    /* deletes all saves lines from cache and figure*/
+    this.emptyArchive = function() {
+        data_archive = [];
+        d3.selectAll('.archiveline').remove();
+    };
+
+    /* deletes last entry from archive */
+    this.deleteFromArchive = function(i) {
+        data_archive.splice(i, 1)
+        d3.selectAll('#archiveline_'+i).remove();
+        console.log(data_archive.length)
+    };
+
+    this.drawArchive = function() {
+        for (var i=0;i<data_archive.length;i++){
+            this.drawLine('archiveline_'+i, 
+                          'archiveline', 
+                          line, 
+                          data_archive[i]);
+        };
+    };
+
+    this.drawLatestFromArchive = function(lineclass='archiveline', lineid) {
+        if (typeof lineid == 'undefined') {var lineid='archiveline_'+(data_archive.length-1)};
+        this.drawLine(lineid, 
+                      lineclass, 
+                      line, 
+                      data_archive[data_archive.length-1]);
+    };
+
+    /* draws difference between two saved lines */
+    this.drawEffect = function(a, b, lineid='differenceline') {
+        difference_data = [];
+        for (var i=0;i<data.length;i++){
+            difference_data.push({
+                x: data_archive[a][i].x,
+                b: data_archive[a][i].b,
+                h: data_archive[a][i].h - data_archive[b][i].h,
+                y: (data_archive[a][i].y - data_archive[b][i].y) * 10   
+            });
+        };
+        this.drawLine(lineid, 
+                      'differenceline', 
+                      line, 
+                      difference_data);
+    };
+
+    this.removeEffect = function() {
+        difference_data = [];
+        d3.selectAll('.differenceline').remove();
+    };
     /* /////////////////////////////////////////////////////////////
 	//// Areas 
     *///////////////////////////////////////////////////////////////
@@ -484,6 +564,11 @@ var protoSteadyFlowApp = function() {
     this.changeInterventionDepth = function(newValue) {
     	intervention_depth = newValue;
     	this.redraw();
+    };
+
+    this.changeFriction = function(newValue) {
+        friction = newValue;
+        this.redraw();
     };
 }; // 
  

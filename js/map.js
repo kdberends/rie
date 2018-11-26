@@ -84,7 +84,8 @@ var PolyLowering = {
 /* === Styles ===
  */
 
-var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
+//var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
+var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png";
 // Attribution is now embedded in menu, no longer in map
 var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 
@@ -220,7 +221,7 @@ mapElementsGroup.addTo(map);
 
 /* on zoomlevels smaller than 11, remove all elements from map */
 map.on('zoomend', function() {
-  console.log(map.getZoom())
+  
   if (map.getZoom() < 11){
       map.removeLayer(mapElementsGroup)
   }
@@ -306,7 +307,6 @@ function addTooltipToMap(coordinates, options) {
               url: 'xml/'+options.file,
               datatype: 'xml',
               success: function(xml) {
-                    console.log(xml)
                        endPoint.setTooltipContent($(xml).find(options.div).text());
                        }
               });

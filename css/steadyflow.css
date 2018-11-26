@@ -1,6 +1,6 @@
 #waterline {
 	stroke: blue;
-	stroke-width: 0.0;
+	stroke-width: 0;
 	stroke-dasharray: 4 2 ;
 }
 
@@ -9,7 +9,37 @@
 	stroke-width: 5;
 }
 
-.SteadyflowParticle {
+#FlowCanvas .archiveline{
+	stroke: var(--accent-2);
+	stroke-width: 2;
+	stroke-dasharray: 10 1 ;
+}
+
+.SteadyFlowAreas{
+	transition: all 200ms ease-out;
+}
+
+#FlowCanvas .differenceline{
+	stroke: var(--accent-2);
+	stroke-width: 2	;
+}
+
+#FlowCanvas .SteadyflowParticle {
 	fill: white;
 	opacity: 0.4;
+}
+
+#ExploreCanvas .Figurelabels{
+	fill: var(--font-body-color);
+}
+
+#ExploreCanvas .domain{
+	stroke: var(--font-body-color);
+}
+
+#ExploreCanvas .tick line{
+	stroke: var(--font-body-color);
+}
+#ExploreCanvas .tick text{
+	fill: var(--font-body-color);
 }

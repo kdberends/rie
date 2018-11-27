@@ -51,7 +51,7 @@ body {
   height: calc(100% - 80px);
   left: 20px;
   width: 90%;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.5s cubic-bezier(0.27,0.2,0.05,1.0);
 }
 
@@ -625,9 +625,8 @@ nav {
 #StoryFrame{
   position:relative;
   height: 98%;
-  overflow: hidden;
+  overflow: inherit;
 }
-
 
 
 #story-options-wrapper {
@@ -643,21 +642,44 @@ nav {
   color: var(--accent-6);
 }
 
+
+
+#StoryCarousel{  
+  position: absolute;
+  display: flex;
+  align-items: top;
+  width: 700%;  
+  height: 100px;
+  transition: all 0.4s ease-out;
+  pointer-events: none;
+}
+
+.story-in-carousel{
+  position: relative;
+  opacity: 1;
+  width: 100%;
+  transition: opacity 0.2s ease-out;
+}
+
+#StoryText{
+  position: absolute;
+}
+
 #StoryText a {
   font-size: 17px;
   cursor: pointer;
-  color: var(--accent-1);
+  color: var(--font-hyperlink-hover);
 }
 
 #StoryText .notavailable {
   color: #9D9D9D;
 }
 
-.storytext {
+.story-in-carousel {
   margin: 5px;
 }
 
-.storytext h2{
+.story-in-carousel h2{
   text-align: center;
 }
 
@@ -676,7 +698,7 @@ nav {
 
 #StoryOptions button {
   height: 20px;
-  margin-left: 30px;
+  margin-left: 20px;
   border-radius: 0px;
   border: none;
   color: inherit;

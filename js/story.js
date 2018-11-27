@@ -10,10 +10,9 @@ var NumberOfStories = 7;
 var currentStory = 0;
 var currentLang = 'en';
 var flagSwipeActive = false; // if true, swiping will advance story
+var flagSwipetextLoaded = false;
 
 
-// initialise story
-openStoryOverview()
 
 
 function get_storyXML(){
@@ -21,30 +20,36 @@ function get_storyXML(){
 };
 
 function openStory (storynum) {
+  // show story navigation buttons
   $('#StoryOptions').css('opacity', '1');  
+
+  // set current story
   currentStory = storynum;
+  
+  // set carousel width
+  $('#StoryCarousel').css('width', NumberOfStories*100+'%');  
   // load story
   var xmlPath = get_storyXML();
-  $('#StoryText').load(xmlPath+1);
+  //$('#StoryText').load(xmlPath+1);
+  $('#StoryText').css('opacity', 0)
   showStoryNavigation();
   flagSwipeActive = true;
-  // register keypresses
-  /*
-  $('#StoryPanel').addEventListener('keydown', (event) => {
-    console.log('oh boy a key')
-  if (event.key=='ArrowRight'){
-    nextStory();
-  } else if (event.key=='ArrowLeft') {
-    previousStory();
+
+  // create story carousel
+  for (var i=0;i<NumberOfStories;i++){
+    $("<div class='story-in-carousel'></div>")
+    .load(xmlPath+(i+1))
+    .appendTo($('#StoryCarousel'))
   };
 
-  });
-  */
 };
 
 function openStoryOverview() {
   resetStory();
   $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
+  $('#StoryText').css('opacity', 1)
+  // delete stories in carousel
+  $(".story-in-carousel").remove()
   hideStoryNavigation();
   flagSwipeActive = false;
 };
@@ -267,13 +272,16 @@ $(".progress-inside").each(function () {
 /* advances story by one increment */
 function nextStory () {
   var xmlPath = get_storyXML();
-  console.log(xmlPath)
   if (StoryProgress < NumberOfStories + 1) {
     // advance story
     StoryProgress += 1;
 
     // load text
-    $('#StoryText').load(xmlPath + StoryProgress);
+    //$('#StoryText').load(xmlPath + StoryProgress);
+    $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
+    // load next story
+    $('#StoryTextPreviewLeft').load(xmlPath + (StoryProgress - 1));
+    $('#StoryTextPreviewRight').load(xmlPath + (StoryProgress + 1));
 
     // call function
     StoryFunctions[StoryProgress]();
@@ -294,7 +302,8 @@ function previousStory () {
     StoryProgress -= 1;
 
     // load text
-    $('#StoryText').load(xmlPath+StoryProgress);
+    //$('#StoryText').load(xmlPath+StoryProgress);
+    $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
 
     // call reverse function
     StoryFunctions[StoryProgress+1](true);
@@ -311,7 +320,8 @@ function resetStory () {
   StoryProgress = 1;
   var xmlPath = get_storyXML();
   reset_story();
-  $('#StoryText').load(xmlPath+StoryProgress);
+  //$('#StoryText').load(xmlPath+StoryProgress);
+  $('#StoryCarousel').css('transform', 'translate(0%)')
   $(".progress-inside").each(function () {
     let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%"
     $(this).css("width", progresstext);
@@ -338,7 +348,7 @@ function addSwipeDetect(el, callback){
         elapsedTime,
         startTime,
         handleswipe = callback || function(swipedir){}
-  
+        
         touchsurface.addEventListener('touchstart', function(e){
           if (flagSwipeActive){
         var touchobj = e.changedTouches[0]
@@ -354,18 +364,21 @@ function addSwipeDetect(el, callback){
             if (flagSwipeActive){
             var touchobj = e.changedTouches[0],
                 distX = touchobj.pageX - startX
-            $('#StoryText').css('transition', 'all 0s ease-out' )
-            $('#StoryText').css('transform', 'translate('+distX+'px , 0%)')
-            $('#StoryText').css('opacity', Math.max(0, 1-distX/threshold) + '')
+
+            // Move div to direction
+            $('#StoryCarousel').css('transition', 'all 0s ease-out' )
+            $('#StoryCarousel').css('transform', 'translate(calc('+(StoryProgress-1)/NumberOfStories*-100+'% + '+distX+'px))')
+            //$('#StoryText').css('opacity', Math.max(0, 1-Math.abs(distX)/threshold) + '')
             
+             // load next story in other div
+            
+
             //e.preventDefault() // prevent scrolling when inside DIV
         }}, false);
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
-            $('#StoryText').css('transition', 'all 0.4s ease-out' )
-            $('#StoryText').css('transform', 'translate(0%, 0%)');
-            $('#StoryText').css('opacity', '1');
+
             var touchobj = e.changedTouches[0]
                 distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
                 distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
@@ -373,13 +386,32 @@ function addSwipeDetect(el, callback){
             if (true){//(elapsedTime <= allowedTime){ // first condition for awipe met
                 if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
                     swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+                    // do nothing, ease back animation
+                    $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+                    //$('.storypreview').css('transition', 'opacity 0s ease-out' )
                 }
                 else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
                     swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+                    // do nothing, ease back animation
+                    $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+                    $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
+                }
+                else {
+                  // 'none', ease back animation
+                  $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+                  $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
                 }
             }
             handleswipe(swipedir)
-            //e.preventDefault()
+
+            // swoop back text with now-changed text
+            /*
+            $('#StoryText').css('transform', 'translate(0%, 0%)');
+            $('#StoryText').css('opacity', '1');
+            // hide preview
+            $('#StoryTextPreviewLeft').css('opacity', '0');
+            $('#StoryTextPreviewRight').css('opacity', '0');
+            */
         }}, false)
 };
   
@@ -391,7 +423,11 @@ var el = document.getElementById('StoryFrame');
 addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"
     console.log(swipedir)
-    if (swipedir=='right'){previousStory()} 
-    else if (swipedir=='left'){nextStory()}
+    if (swipedir=='right'){
+      previousStory()
+    } else if (swipedir=='left'){
+
+      nextStory()
+    };
 });
 

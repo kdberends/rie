@@ -98,7 +98,7 @@
     <div id='leftbar'>
 
       <!-- The map clone -->
-      <div id="map_clone" class="map blur"></div>
+      <div id="map_clone" class="clonemap blur"></div>
       <!-- Glass effect -->
       <div class="glass">
         
@@ -171,6 +171,7 @@
       </div>
 
       <!-- Story app -->
+      
       <div id="StoryPanel" class='panel'>
         <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> 🧐</div>
         <div id="StoryProgress">
@@ -184,9 +185,17 @@
             <button onclick="nextStory();" class="story-ui-right"><i class="fas fa-step-forward"></i></button>
           </div>
         </div>
+        
         <div id="StoryScroll">
           <div id="StoryFrame">
-            <div id="StoryText" class='storytext'>  </div>
+            <div id="StoryText" class='storytext'></div>  
+            <div id="StoryCarousel"></div> 
+            <!-- 
+            
+            hidden div for preview during swipe event
+            <div id="StoryTextPreviewLeft" class='storytext storypreview'></div>
+            <div id="StoryTextPreviewRight" class='storytext storypreview'></div>
+            -->
           </div> 
         </div>
       </div>
@@ -295,5 +304,5 @@
 <script src="js/explore.js"></script>
 <script src="js/story.js"></script>
 
-
+<script>"openStoryOverview()"</script>
 </html>

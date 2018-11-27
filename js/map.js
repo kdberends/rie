@@ -110,9 +110,9 @@ var map2 = new L.Map("map_clone", {center: [51.84, 5.46],
                               attributionControl:false})
   .addLayer(new L.TileLayer(host));
 
-// sync so that they overlap
-xc = map2.getContainer().parentElement.offsetLeft / map.getSize().x
-yc = map2.getContainer().parentElement.offsetTop / map.getSize().y
+// sync so that they overlap (the numbers are to correct for the margin of mapclone css)
+xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x
+yc = (map2.getContainer().parentElement.offsetTop-20) / map.getSize().y
 map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
 

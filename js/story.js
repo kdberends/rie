@@ -13,12 +13,12 @@ var flagSwipeActive = false; // if true, swiping will advance story
 
 
 // initialise story
-$('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
+openStoryOverview()
+
 
 function get_storyXML(){
    return 'xml/stories_'+currentStory+'_'+currentLang+'.xml #'
 };
-
 
 function openStory (storynum) {
   $('#StoryOptions').css('opacity', '1');  
@@ -354,15 +354,18 @@ function addSwipeDetect(el, callback){
             if (flagSwipeActive){
             var touchobj = e.changedTouches[0],
                 distX = touchobj.pageX - startX
-            $('#StoryText').css('transition', 'transform 0s ease-out' )
+            $('#StoryText').css('transition', 'all 0s ease-out' )
             $('#StoryText').css('transform', 'translate('+distX+'px , 0%)')
+            $('#StoryText').css('opacity', Math.max(0, 1-distX/threshold) + '')
+            
             //e.preventDefault() // prevent scrolling when inside DIV
         }}, false);
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
-            $('#StoryText').css('transition', 'transform 0.4s ease-out' )
+            $('#StoryText').css('transition', 'all 0.4s ease-out' )
             $('#StoryText').css('transform', 'translate(0%, 0%)');
+            $('#StoryText').css('opacity', '1');
             var touchobj = e.changedTouches[0]
                 distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
                 distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface

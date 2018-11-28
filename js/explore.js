@@ -6,10 +6,8 @@
 
 const version = "0.33";
 
-/* dummy func, to be overwritten later  by story.js*/
-function openStoryOverview() {
-  {};
-};
+// load about
+$('#AboutContent').load('xml/about_en.xml');
 
 /*
 https://stackoverflow.com/questions/50543163/can-i-detect-if-my-pwa-is-launched-as-an-app-or-visited-as-a-website

@@ -683,13 +683,13 @@ nav {
   position:relative;
   color: var(--font-body-color);
   font-size: 24px;
-  border: 1px solid orange;
   opacity: 0;
   top: 0px;
   width: 100%;
   transition: all 0.2s ease-out;
   text-align: center;
 }
+
 #StoryOptions i{
   margin: 5px;
 }

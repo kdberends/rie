@@ -1,7 +1,8 @@
 /* styles for explore app*/
 
 .crosshair{
-  stroke: var(--accent-5);
+  stroke: var(--font-body-color);
+  stroke-width: 1px;
   stroke-dasharray: 5;
 }
 
@@ -11,8 +12,6 @@
   border: 5px solid rgba(86, 61, 124, .2);
   filter: blur(0px);
 }
-
-
 
 
 
@@ -47,10 +46,9 @@ header {
 
 
 .floatingToolTip{
-  font-family: "Raleway";
-  font-size: 14px;
+  color: var(--accent-6);
   position: absolute;
-  max-width: 150px;
+  max-width: 200px;
   z-index: 99;
   background: rgba(255, 255, 255, 0.7); 
   pointer-events: none;

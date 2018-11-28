@@ -32,6 +32,15 @@ body {
   overflow: hidden;
 }
 
+body a{
+  color: var(--font-hyperlink);
+  cursor: pointer;
+}
+
+body a:hover{
+  color: var(--font-hyperlink-hover);
+}
+
 .label_high {
   color: #09C900;
 }
@@ -165,14 +174,13 @@ footer {
   padding: 0;
   list-style: none;
   line-height: 1;
-  top: -7px;
   display: block;
   position: relative;
 }
 
 .cssmenu {
-  width: 80%;
-  left: 45px;
+  width: 100%;
+  left: 0px;
   font-family: var(--font-body-family);
   color: var(--font-body-color);
 }
@@ -234,7 +242,7 @@ footer {
 }
 .cssmenu ul ul li a {
   padding: 7px;
-  top: 7px;
+  top: 0px;
   cursor: pointer;
   z-index: 2;
   font-size: 14px;
@@ -261,17 +269,7 @@ footer {
   background: #dddddd;
 }
 
-.zoombutton {
-  cursor: pointer;
-  position: relative;
-  border-right: 1px solid orange;
-  top: 0px;
-  padding: 5px;
-  left: 14px;
-  width: 20px;
-  height: 18px;
-  background-color: var(--accent-6);
-}
+
 /* ===========================================
  * App panel master
  * ===========================================
@@ -299,13 +297,17 @@ footer {
   pointer-events: visible; 
 }
 
-.clonemap { 
-  z-index:-1;
-  position:absolute;
-  width: 500px;
+#map_clone {
+    width: 500px;
   height:900px;
   margin-top: -20px;
   margin-left:-20px;
+}
+
+.clonemap { 
+  z-index:-1;
+  position:absolute;
+
   pointer-events: visible; 
    -moz-filter: blur(6px);
      -o-filter: blur(6px);
@@ -632,7 +634,9 @@ nav {
 #story-options-wrapper {
   margin: auto;
   position: relative;
-  width: 100%;
+  width: 200px;
+  display: flex;
+  align-items: top;
   padding: 0px;
   height: 30px;
   color: #ecf0f1;
@@ -648,7 +652,7 @@ nav {
   position: absolute;
   display: flex;
   align-items: top;
-  width: 700%;  
+  width: 900%;  
   height: 100px;
   transition: all 0.4s ease-out;
   pointer-events: none;
@@ -663,6 +667,7 @@ nav {
 
 #StoryText{
   position: absolute;
+  transform: translate(0%, 0%);
 }
 
 #StoryText a {
@@ -691,14 +696,14 @@ nav {
   position:relative;
   opacity: 0;
   top: 0px;
-  width: 90%;
+  width: 100%;
   transition: all 0.2s ease-out;
   text-align: center;
 }
 
 #StoryOptions button {
   height: 20px;
-  margin-left: 20px;
+  margin-left: 15px;
   border-radius: 0px;
   border: none;
   color: inherit;
@@ -709,9 +714,9 @@ nav {
   background: none;
 }
 
-@media (max-width: 400px){#StoryOptions button {margin-left: 30px}}
+/*@media (max-width: 400px){#StoryOptions button {margin-left: 30px}}
 @media (max-width: 350px){#StoryOptions button {margin-left: 20px}}
-
+*/
 #StoryOptions button i{
   color: var(--font-body-color);
 }
@@ -750,7 +755,7 @@ nav {
 }
 
 .progress-inside {
-  background: var(--accent-1);
+  background: var(--font-body-color);
   border-radius: 0px;
   width: 0px;
   height: 2px;
@@ -771,27 +776,22 @@ nav {
 
 #ExploreOptions{
   position: relative;
-  top: 0px;
+  margin-top: 0px;
+  padding: 5px;
   z-index: 99;
-  margin-bottom: 5px;
-}
-
-#InterventionTable{
-  position: relative;
-  margin-top: 10px;
 }
 
 #InterventionDescription {
   pointer-events: initial;
-  height: calc(100% - 40px);
-  padding: 10px; 
+  height: calc(100%);
   overflow: hidden;
 }
 
 #Description{
+  padding: 5px;
   position:relative;
   margin-top: 0px;
-  height: 500px;
+  height: calc(100% - 85px);
 }
 
 .textframe {

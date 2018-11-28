@@ -29,3 +29,41 @@
 	background-color: #B1D8AB;
 	white-space: normal;
 }
+
+.map-controls{
+	position: absolute;	
+	top: 45px;
+	height: 80px;
+	width: 400px;
+	left: calc(50% - 200px);
+}
+
+#MapCloneControls{
+	border-radius: 5px;
+}
+
+#MapInterventionTitle{
+	font-size: 32px;
+	max-width: 100%;
+}
+
+
+#MapInterventionTitle{
+	font-size: 32px;
+	max-width: 100%;
+	text-align: center;
+}
+
+#MapButtons{
+	display: flex;
+	align-items: top;
+	justify-content: center;
+}
+
+.map-ui-button {
+  position: relative;
+  margin: 5px;
+  cursor: pointer;
+  pointer-events: initial;
+  font-size: 24px;
+}

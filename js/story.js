@@ -3,10 +3,10 @@
  */////////////////////////////////////////////////////////////
 
 
-const story_version = 0.22;
+const story_version = 0.25;
 
 var StoryProgress = 1;
-var NumberOfStories = 7;
+var NumberOfStories = 8;
 var currentStory = 0;
 var currentLang = 'en';
 var flagSwipeActive = false; // if true, swiping will advance story
@@ -23,22 +23,25 @@ function openStory (storynum) {
   // show story navigation buttons
   $('#StoryOptions').css('opacity', '1');  
 
+  // hide overview
+  $('#StoryText').css('transform', 'translate(-120%, 0%)')
+  
   // set current story
   currentStory = storynum;
   
   // set carousel width
   $('#StoryCarousel').css('width', NumberOfStories*100+'%');  
+  
   // load story
   var xmlPath = get_storyXML();
-  //$('#StoryText').load(xmlPath+1);
-  $('#StoryText').css('opacity', 0)
+  
   showStoryNavigation();
   flagSwipeActive = true;
 
   // create story carousel
-  for (var i=0;i<NumberOfStories;i++){
+  for (var i=1;i<NumberOfStories+1;i++){
     $("<div class='story-in-carousel'></div>")
-    .load(xmlPath+(i+1))
+    .load(xmlPath+i)
     .appendTo($('#StoryCarousel'))
   };
 
@@ -47,7 +50,7 @@ function openStory (storynum) {
 function openStoryOverview() {
   resetStory();
   $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
-  $('#StoryText').css('opacity', 1)
+  $('#StoryText').css('transform', 'translate(0%, 0%)')
   // delete stories in carousel
   $(".story-in-carousel").remove()
   hideStoryNavigation();
@@ -272,18 +275,14 @@ $(".progress-inside").each(function () {
 /* advances story by one increment */
 function nextStory () {
   var xmlPath = get_storyXML();
-  if (StoryProgress < NumberOfStories + 1) {
+  if (StoryProgress < NumberOfStories) {
     // advance story
     StoryProgress += 1;
 
-    // load text
-    //$('#StoryText').load(xmlPath + StoryProgress);
+    // turn the carousel
     $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
-    // load next story
-    $('#StoryTextPreviewLeft').load(xmlPath + (StoryProgress - 1));
-    $('#StoryTextPreviewRight').load(xmlPath + (StoryProgress + 1));
-
-    // call function
+    
+    // call function of step in the story
     StoryFunctions[StoryProgress]();
 
     // update progressbar
@@ -368,10 +367,6 @@ function addSwipeDetect(el, callback){
             // Move div to direction
             $('#StoryCarousel').css('transition', 'all 0s ease-out' )
             $('#StoryCarousel').css('transform', 'translate(calc('+(StoryProgress-1)/NumberOfStories*-100+'% + '+distX+'px))')
-            //$('#StoryText').css('opacity', Math.max(0, 1-Math.abs(distX)/threshold) + '')
-            
-             // load next story in other div
-            
 
             //e.preventDefault() // prevent scrolling when inside DIV
         }}, false);

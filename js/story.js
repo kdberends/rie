@@ -383,7 +383,6 @@ function addSwipeDetect(el, callback){
                     swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
                     // do nothing, ease back animation
                     $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
-                    //$('.storypreview').css('transition', 'opacity 0s ease-out' )
                 }
                 else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
                     swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
@@ -397,16 +396,8 @@ function addSwipeDetect(el, callback){
                   $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
                 }
             }
+            // do callback
             handleswipe(swipedir)
-
-            // swoop back text with now-changed text
-            /*
-            $('#StoryText').css('transform', 'translate(0%, 0%)');
-            $('#StoryText').css('opacity', '1');
-            // hide preview
-            $('#StoryTextPreviewLeft').css('opacity', '0');
-            $('#StoryTextPreviewRight').css('opacity', '0');
-            */
         }}, false)
 };
   
@@ -419,10 +410,16 @@ addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"
     console.log(swipedir)
     if (swipedir=='right'){
-      previousStory()
+      if (StoryProgress!=1){previousStory()}
+        else {
+          $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+          $('#StoryCarousel').css('transform', 'translate(0%)')
+        }
     } else if (swipedir=='left'){
+      if (StoryProgress!=NumberOfStories){nextStory()}
+      else {$('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')}
 
-      nextStory()
+      
     };
 });
 

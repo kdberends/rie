@@ -4,7 +4,7 @@
  * 
  */////////////////////////////////////////////////////////////
 
-const version = "0.32";
+const version = "0.33";
 
 /* dummy func, to be overwritten later  by story.js*/
 function openStoryOverview() {
@@ -42,14 +42,15 @@ this.setState({ showInstallMessage: true });
   $(document).ready(function(){
     $('.cssmenu li.has-sub > ul').slideUp(200)
     $('.cssmenu li.has-sub>a').on('click', function(){
-          //$(this).removeAttr('href');
           var element = $(this).parent('li');
           if (element.hasClass('open')) {
+            // when already open, close
             element.removeClass('open');
             element.find('li').removeClass('open');
             element.find('ul').slideUp(200);
           }
           else {
+            // when closed, open
             element.addClass('open');
             element.children('ul').slideDown(200);
             element.siblings('li').children('ul').slideUp(200);
@@ -58,7 +59,7 @@ this.setState({ showInstallMessage: true });
             element.siblings('li').find('ul').slideUp(200);
           }
         });
-    // after click, propagate collapse upstream
+    // after click, propagate collapse upstream and set text
     $('.cssmenu li.no-sub > a').on('click', function(){
           var element = $(this).parent('li');
           element.removeClass('open');
@@ -66,6 +67,7 @@ this.setState({ showInstallMessage: true });
           element.parent('ul').slideUp(200);
           element.parent('ul').parent('li').removeClass('open');
           element.parent('ul').parent('li').children('a').text($(this).text());
+          $('#MapInterventionTitle').text($(this).text())
     });
   });
 })(jQuery);

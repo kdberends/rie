@@ -103,8 +103,16 @@ var map = new L.Map("map", {center: [51.845, 5.36],  // [51.845, 5.36], 13 for s
     )
   );
 
-// Clone of map for 'glass blur' effect
+// Clone of map for 'glass blur' effect of #LeftBart
 var map2 = new L.Map("map_clone", {center: [51.84, 5.46], 
+                              zoom: 13,
+                              zoomControl: false,
+                              attributionControl:false})
+  .addLayer(new L.TileLayer(host));
+
+
+// Clone of map for 'glass blur' effect
+var map3 = new L.Map("MapCloneControls", {center: [51.84, 5.46], 
                               zoom: 13,
                               zoomControl: false,
                               attributionControl:false})
@@ -114,6 +122,10 @@ var map2 = new L.Map("map_clone", {center: [51.84, 5.46],
 xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x
 yc = (map2.getContainer().parentElement.offsetTop-20) / map.getSize().y
 map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
+
+xc = (map3.getContainer().parentElement.offsetLeft+150) / map.getSize().x
+yc = (map3.getContainer().parentElement.offsetTop+40) / map.getSize().y
+map.sync(map3, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
 
 /* === Map elements ===

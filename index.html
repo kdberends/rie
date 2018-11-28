@@ -35,7 +35,7 @@
     <meta http-equiv="Expires" content="0" />
     
 
-    <title>RiverCare F1: uncertainty</title>
+    <title>RiverCare F1</title>
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
@@ -94,11 +94,22 @@
       <span id="app-article" onclick="toggleApp(3)"><i class="fas fa-graduation-cap"></i></span>
       <span id="app-settings" onclick="toggleApp(4)"><i class="fas fa-cog"></i></i></span>
     </div>
+
+    <!-- Map Controls -->
+    <div id='MapCloneControls' class="clonemap map-controls "></div>
+    <div class="map-controls glass"></div>
+    <div class="map-controls">
+      <div id="MapInterventionTitle">Reference situation</div>
+      <div id="MapButtons">
+      <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
+      <div class='map-ui-button' id='MapZoom' onclick='$("#menuToggle input").trigger("click");toggleApp(2)'><i class="fas fa-question"></i></div>
+    </div>
+    </div>
     <!-- Main UI elements -->
     <div id='leftbar'>
 
       <!-- The map clone -->
-      <div id="map_clone" class="clonemap blur"></div>
+      <div id="map_clone" class="clonemap"></div>
       <!-- Glass effect -->
       <div class="glass">
         
@@ -106,8 +117,7 @@
       <div id="ExplorePanel" class='panel'>
         <div><svg id="ExploreCanvas" class='canvas'></svg></div>
         <div id="ExploreScroll" class='scroll'>
-          <div id="ExploreOptions" class='textframe frame-options'>
-            <div class='zoombutton' id='zoomin' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
+          <div id="ExploreOptions"  >
             <div class='cssmenu'>
               <ul>
                  <li class='has-sub'><a href='#'>Choose intervention</a>
@@ -124,7 +134,7 @@
               </ul>
             </div>
           </div>
-          <div id="Description" class='textframe frame-description'>
+          <div id="Description">
             <div id='InterventionDescription'></div>
           </div>
         </div>

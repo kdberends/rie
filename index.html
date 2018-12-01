@@ -70,7 +70,7 @@
     <img style="position: absolute; top: 0; right: 0; border: 0;" 
          src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" 
          alt="Fork me on GitHub">
-  </a>-->
+  </a>--> 
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -96,28 +96,9 @@
     </div>
 
     <!-- Map Controls -->
-    <div id='MapCloneControls' class="clonemap map-controls "></div>
-    <div class="map-controls glass"></div>
-    <div class="map-controls">
-      <div id="MapInterventionTitle">Reference situation</div>
-      <div id="MapButtons">
-      <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
-      <div class='map-ui-button' id='MapZoom' onclick='$("#menuToggle input").trigger("click");toggleApp(2)'><i class="fas fa-question"></i></div>
-    </div>
-    </div>
-    <!-- Main UI elements -->
-    <div id='leftbar'>
-
-      <!-- The map clone -->
-      <div id="map_clone" class="clonemap"></div>
-      <!-- Glass effect -->
-      <div class="glass">
-        
-      <!-- Explore app -->
-      <div id="ExplorePanel" class='panel'>
-        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
-        <div id="ExploreScroll" class='scroll'>
-          <div id="ExploreOptions"  >
+    <!--<div class="map-controls glass"></div> -->
+    <div id="MapTopbar">
+      <div id="Scenarioselector">
             <div class='cssmenu'>
               <ul>
                  <li class='has-sub'><a href='#'>Choose intervention</a>
@@ -133,10 +114,25 @@
                  </li>
               </ul>
             </div>
-          </div>
-          <div id="Description">
+      </div> <!-- scenarioselector-->
+    </div>
+    <div id="MapButtons">
+        <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
+  </div>
+    </div><!--map control buttons -->
+    <!-- Main UI elements -->
+    <div id='leftbar'>
+
+      <!-- The map clone -->
+      <div id="map_clone" class="clonemap"></div>
+      <!-- Glass effect -->
+      <div class="glass">
+        
+      <!-- Explore app -->
+      <div id="ExplorePanel" class='panel'>
+        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
+        <div id="ExploreScroll" class='scroll textframe'>
             <div id='InterventionDescription'></div>
-          </div>
         </div>
       </div> <!-- /explorepanel -->
 
@@ -169,14 +165,14 @@
         <h2>Language</h2>
         <p>
           <span><a>🇬🇧  English </a></span>
-          <span class='notimplemented'><a>🇳🇱 Nederlands</a></span>
-          <span class='notimplemented'><a>🇩🇪 Deutsch</a></span>
+          <span class='notimplemented'>🇳🇱 Nederlands</span>
+          <span class='notimplemented'>🇩🇪 Deutsch</span>
           
         </p>
         <h2>Theme</h2>
         <p>
           <span><a>🇬🇧  Dark </a></span>
-          <span class='notimplemented'><a>🇳🇱 Light</a></span>
+          <span class='notimplemented'>🇳🇱 Light</span>
         </p>
       </div>
 
@@ -184,10 +180,11 @@
       
       <div id="StoryPanel" class='panel'>
         <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> 🧐</div>
-        <div id="StoryProgress">
+        
+        <div id="StoryOptions">
+          <div id="StoryProgress">
           <div class='progress-inside'></div>
         </div>
-        <div id="StoryOptions">
             <i onclick='previousStory();' class="fas fa-step-backward"></i>
             <i onclick="resetStory();" class="fas fa-fast-backward"></i>
             <i onclick="openStoryOverview();" class="fas fa-home"></i>
@@ -196,14 +193,8 @@
         
         <div id="StoryScroll">
           <div id="StoryFrame">
-            <div id="StoryText" class='storytext'></div>  
+            <div id="StoryText" class='storytext'></div>
             <div id="StoryCarousel"></div> 
-            <!-- 
-            
-            hidden div for preview during swipe event
-            <div id="StoryTextPreviewLeft" class='storytext storypreview'></div>
-            <div id="StoryTextPreviewRight" class='storytext storypreview'></div>
-            -->
           </div> 
         </div>
       </div>
@@ -217,17 +208,15 @@
       <!-- Paper app -->
       <div id="PaperPanel" class='panel'>
         <div id="PaperContent">
-          <h2> <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Open_Access_logo_PLoS_transparent.svg"></img> Journal paper </h2>
-          While peer review is ongoing, our paper is available from the journal Natural Hazards and Earth system sciences Discussions: <a href="https://www.nat-hazards-earth-syst-sci-discuss.net/nhess-2018-325">Direct link</a>
-
-          </div>
+        </div>
       </div> <!-- about -->
       </div> <!-- cont' background -->
 
     </div> <!-- grid -->
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER 
+
   <div id='version-number-box'>
     <span id="version-number-ui"> Bladieblabla </span>
     <span id="version-number-map"> Bladieblabla </span>
@@ -237,7 +226,7 @@
   </div>
   <footer>
       <img src="img/footerlogo.svg" class="logo-footer"></img>
-  </footer>
+  </footer>-->
 </body>
 
 

@@ -30,40 +30,61 @@
 	white-space: normal;
 }
 
-.map-controls{
+/* ui buttons on the map */
+
+#MapTopbar{
+	pointer-events: initial;
 	position: absolute;	
-	top: 45px;
-	height: 80px;
-	width: 400px;
-	left: calc(50% - 200px);
-}
-
-#MapCloneControls{
-	border-radius: 5px;
-}
-
-#MapInterventionTitle{
-	font-size: 32px;
-	max-width: 100%;
+	background: var(--accent-6);
+	top: 0px;
+	height: 50px;
+	padding-left: 60px;
+	padding-top: 10px;
+	z-index: 1;
+	width: calc(100% - 60px);
 }
 
 
-#MapInterventionTitle{
-	font-size: 32px;
-	max-width: 100%;
-	text-align: center;
+#Scenarioselector{
+	--left: 5px;
+	width: calc(100% - var(--left));
+	overflow: hidden;
+	transform: translate(350px, 0);
+	transition: transform 0.5s ease;
 }
 
 #MapButtons{
-	display: flex;
-	align-items: top;
-	justify-content: center;
+	position: absolute;
+	top: 55px;
+	margin: 5px;
+	transform: translate(380px, 0);
+	transition: transform 0.5s ease;
 }
+
 
 .map-ui-button {
   position: relative;
-  margin: 5px;
   cursor: pointer;
   pointer-events: initial;
+  margin: 10px;
+  left: 15px;
+  color: white;
   font-size: 24px;
+  transition: color .3s ease;
+}
+
+.map-ui-button:hover {
+	color: var(--accent-1);
+}
+
+.map-ui-button::after {
+	font-size: 14px;
+	color: white;
+	opacity: 0;
+	content: "zoom to intervention";
+	transition: opacity .3s ease;
+}
+
+.map-ui-button:hover::after {
+	opacity: 1;
 }

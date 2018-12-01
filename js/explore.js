@@ -4,12 +4,16 @@
  * 
  */////////////////////////////////////////////////////////////
 
-const version = "0.33";
+const version = "0.40";
 
-/* dummy func, to be overwritten later  by story.js*/
-function openStoryOverview() {
-  {};
-};
+// find out info about user
+console.log('Hi there!')
+console.log("You are running version v"+version)
+console.log('According to your browser, your preferred language is: '+navigator.language)
+
+// load about
+$('#AboutContent').load('xml/about_en.xml');
+$('#PaperContent').load('xml/learn_en.xml');
 
 /*
 https://stackoverflow.com/questions/50543163/can-i-detect-if-my-pwa-is-launched-as-an-app-or-visited-as-a-website
@@ -47,16 +51,16 @@ this.setState({ showInstallMessage: true });
             // when already open, close
             element.removeClass('open');
             element.find('li').removeClass('open');
-            element.find('ul').slideUp(200);
+            element.find('ul').slideUp(300);
           }
           else {
             // when closed, open
             element.addClass('open');
-            element.children('ul').slideDown(200);
-            element.siblings('li').children('ul').slideUp(200);
+            element.children('ul').slideDown(300);
+            element.siblings('li').children('ul').slideUp(300);
             element.siblings('li').removeClass('open');
             element.siblings('li').find('li').removeClass('open');
-            element.siblings('li').find('ul').slideUp(200);
+            element.siblings('li').find('ul').slideUp(300);
           }
         });
     // after click, propagate collapse upstream and set text
@@ -89,10 +93,16 @@ var toggleAppMenu = function () {
   if (AppMenuToggle){
     $('#leftbar').css('transform','translate(-100%, 0%)');
     $('#appnavigation').css('transform','translate(0%, -150%)');
+    $('#Scenarioselector').css('transform','translate(0px, 0%)');
+    $('#MapButtons').css('transform','translate(0px, 0%)');
+    $('#Scenarioselector').get(0).style.setProperty('--left', '5px');
     AppMenuToggle = false;    
   } else {
     $('#leftbar').css('transform','translate(0%, 0%)');
     $('#appnavigation').css('transform','translate(0%, 0%)');
+    $('#Scenarioselector').css('transform','translate(350px, 0%)');
+    $('#MapButtons').css('transform','translate(380px, 0%)');
+    $('#Scenarioselector').get(0).style.setProperty('--left', '355px');
     AppMenuToggle = true;
   };
 };
@@ -160,7 +170,13 @@ const as = new PerfectScrollbar('#AboutPanel', {
 });
 as.update()
 
-
+const ps = new PerfectScrollbar('#PaperContent', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+ps.update()
 
 
 /** ////////////////////////////////////////////////////////////

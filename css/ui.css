@@ -144,7 +144,7 @@ footer {
   position: absolute;
   color: var(--font-body-color);
   right: 1%;
-  bottom: 2px;
+  bottom: 4px;
   font-family: Oswald;
   font-size: 12px;
   opacity: 1;
@@ -178,19 +178,22 @@ footer {
   position: relative;
 }
 
+/* Top level */
 .cssmenu {
-  width: 100%;
   left: 0px;
+  width: 300px;  
   font-family: var(--font-body-family);
   color: var(--font-body-color);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-/* Top level */
+
 .cssmenu > ul > li > a {
-  padding: 6px 20px;
+  padding: 6px 0px;
+  height: 38px;
   cursor: pointer;
-  z-index: 2;
-  font-size: 16px;
+  z-index: inherit;
+  font-size: 26px;
   text-decoration: none;
   color: white;
   background: var(--accent-6);
@@ -199,13 +202,14 @@ footer {
           transition: color .2s ease;
 }
 .cssmenu > ul > li > a:hover {
-  color: var(--accent-5);
+  color: var(--accent-1);
 }
+/* Cross animation */
 .cssmenu ul > li.has-sub > a:after {
   position: absolute;
   right: 26px;
-  top: 10px;
-  z-index: 5;
+  top: 16px;
+  z-index: inherit;
   display: block;
   height: 10px;
   width: 2px;
@@ -220,7 +224,7 @@ footer {
 .cssmenu ul > li.has-sub > a:before {
   position: absolute;
   right: 22px;
-  top: 14px;
+  top: 20px;
   display: block;
   width: 10px;
   height: 2px;
@@ -240,12 +244,14 @@ footer {
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* lower levels */
 .cssmenu ul ul li a {
   padding: 7px;
   top: 0px;
   cursor: pointer;
-  z-index: 2;
-  font-size: 14px;
+  z-index: inherit;
+  font-size: 16px;
   text-decoration: none;
   color: #dddddd;
   background: #49505a;
@@ -277,7 +283,7 @@ footer {
 
 #leftbar {
   transform: translate(0%, 0%);
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  transition: transform 0.5s ease;
   border-radius: 0px;
   box-shadow: 0px 0px 15px 5px #000000;
   pointer-events: initial;
@@ -298,8 +304,8 @@ footer {
 }
 
 #map_clone {
-    width: 500px;
-  height:900px;
+  width: 500px;
+  height: calc(100% + 40px);
   margin-top: -20px;
   margin-left:-20px;
 }
@@ -307,7 +313,6 @@ footer {
 .clonemap { 
   z-index:-1;
   position:absolute;
-
   pointer-events: visible; 
    -moz-filter: blur(6px);
      -o-filter: blur(6px);
@@ -417,7 +422,7 @@ nav {
 }
 
 #app-article::after{
-  content: "Learn";
+  content: "More";
 }
 
 #app-settings::after{
@@ -432,7 +437,6 @@ nav {
   font-size: 16px;
 }
 #SettingsPanel span{
-  cursor: pointer;
   margin-left: 20px;
   line-height: 1.5em;
   white-space:nowrap;
@@ -493,7 +497,8 @@ nav {
 }
 
 #PaperContent
-{
+{ 
+  height: 100%;
   font-size: 16px;
 }
 
@@ -528,6 +533,12 @@ nav {
 #PaperContent ul li{
   font-size: 14px;
   margin-bottom: -10px;
+}
+
+.reference{
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 /* ===========================================
@@ -683,60 +694,30 @@ nav {
   position:relative;
   color: var(--font-body-color);
   font-size: 24px;
-  border: 1px solid orange;
   opacity: 0;
   top: 0px;
   width: 100%;
-  transition: all 0.2s ease-out;
   text-align: center;
+  cursor: pointer;
 }
+
 #StoryOptions i{
-  margin: 5px;
+  margin: 10px;
+  transition: all 0.2s ease-out;
 }
 
 #StoryOptions i:hover{
   color: var(--font-hyperlink-hover);
 }  
 
-/*
-
-#story-options-wrapper {
-  border: 1px dashed magenta;
-  margin: auto;
-  position: relative;
-  width: 200px;
-  display: flex;
-  align-items: top;
-  padding: 0px;
-  height: 30px;
-  color: #ecf0f1;
-  font-family: var(--font-ui);
-}
-
-#StoryOptions button {
-  height: 20px;
-  margin-left: 15px;
-  border-radius: 0px;
-  border: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: 20px;
-  cursor: pointer;
-  position: relative;
-  background: none;
-}
-*/
-/*@media (max-width: 400px){#StoryOptions button {margin-left: 30px}}
-@media (max-width: 350px){#StoryOptions button {margin-left: 20px}}
-*/
-
 
 #StoryProgress{
   position: absolute;
-  top: 180px;
-  width: 100%;
+  background: #626262;
+  top: 0px;
+  width: 90%;
   left: 5px;
-  height: 5px;
+  height: 2px;
   position: absolute;
 }
 
@@ -760,29 +741,23 @@ nav {
 }
 
 
-#ExploreOptions{
-  position: relative;
-  margin-top: 0px;
-  padding: 5px;
-  z-index: 99;
+#ExploreScroll{
+  padding: 10px;
+  position:relative;
+  margin-top: 10px;
+  height: calc(100% - 250px);
+  overflow: hidden;
 }
 
 #InterventionDescription {
   pointer-events: initial;
   height: calc(100%);
-  overflow: hidden;
-}
-
-#Description{
-  padding: 5px;
-  position:relative;
-  margin-top: 0px;
-  height: calc(100% - 85px);
+  
 }
 
 .textframe {
-  border-left: 1px solid #3E3E3E;
-  border-top: 1px solid #3E3E3E;  
+  border-left: 0px solid var(--font-body-color);
+  border-top: 0px solid var(--font-body-color);  
 }
 
 .frame-summary::before{

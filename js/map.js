@@ -1,6 +1,6 @@
 /* Leaflet elements */
 
-const map_version = 0.2;
+const map_version = 0.3;
 var velocityLayer = {};
 /* STYLES */
 
@@ -112,20 +112,20 @@ var map2 = new L.Map("map_clone", {center: [51.84, 5.46],
 
 
 // Clone of map for 'glass blur' effect
-var map3 = new L.Map("MapCloneControls", {center: [51.84, 5.46], 
-                              zoom: 13,
-                              zoomControl: false,
-                              attributionControl:false})
-  .addLayer(new L.TileLayer(host));
+//var map3 = new L.Map("MapCloneControls", {center: [51.84, 5.46], 
+//                              zoom: 13,
+//                              zoomControl: false,
+//                              attributionControl:false})
+//  .addLayer(new L.TileLayer(host));
 
 // sync so that they overlap (the numbers are to correct for the margin of mapclone css)
 xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x
 yc = (map2.getContainer().parentElement.offsetTop-20) / map.getSize().y
 map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
-xc = (map3.getContainer().parentElement.offsetLeft+150) / map.getSize().x
-yc = (map3.getContainer().parentElement.offsetTop+40) / map.getSize().y
-map.sync(map3, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
+//xc = (map3.getContainer().parentElement.offsetLeft+150) / map.getSize().x
+//yc = (map3.getContainer().parentElement.offsetTop+40) / map.getSize().y
+//map.sync(map3, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
 
 /* === Map elements ===

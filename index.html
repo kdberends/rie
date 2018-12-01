@@ -70,7 +70,7 @@
     <img style="position: absolute; top: 0; right: 0; border: 0;" 
          src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" 
          alt="Fork me on GitHub">
-  </a>-->
+  </a>--> 
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -96,28 +96,9 @@
     </div>
 
     <!-- Map Controls -->
-    <div id='MapCloneControls' class="clonemap map-controls "></div>
-    <div class="map-controls glass"></div>
-    <div class="map-controls">
-      <div id="MapInterventionTitle">Reference situation</div>
-      <div id="MapButtons">
-      <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
-      <div class='map-ui-button' id='MapZoom' onclick='$("#menuToggle input").trigger("click");toggleApp(2)'><i class="fas fa-question"></i></div>
-    </div>
-    </div>
-    <!-- Main UI elements -->
-    <div id='leftbar'>
-
-      <!-- The map clone -->
-      <div id="map_clone" class="clonemap"></div>
-      <!-- Glass effect -->
-      <div class="glass">
-        
-      <!-- Explore app -->
-      <div id="ExplorePanel" class='panel'>
-        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
-        <div id="ExploreScroll" class='scroll'>
-          <div id="ExploreOptions"  >
+    <!--<div class="map-controls glass"></div> -->
+    <div id="MapTopbar">
+      <div id="Scenarioselector">
             <div class='cssmenu'>
               <ul>
                  <li class='has-sub'><a href='#'>Choose intervention</a>
@@ -133,10 +114,25 @@
                  </li>
               </ul>
             </div>
-          </div>
-          <div id="Description">
+      </div> <!-- scenarioselector-->
+    </div>
+    <div id="MapButtons">
+        <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
+  </div>
+    </div><!--map control buttons -->
+    <!-- Main UI elements -->
+    <div id='leftbar'>
+
+      <!-- The map clone -->
+      <div id="map_clone" class="clonemap"></div>
+      <!-- Glass effect -->
+      <div class="glass">
+        
+      <!-- Explore app -->
+      <div id="ExplorePanel" class='panel'>
+        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
+        <div id="ExploreScroll" class='scroll textframe'>
             <div id='InterventionDescription'></div>
-          </div>
         </div>
       </div> <!-- /explorepanel -->
 
@@ -169,14 +165,14 @@
         <h2>Language</h2>
         <p>
           <span><a>🇬🇧  English </a></span>
-          <span class='notimplemented'><a>🇳🇱 Nederlands</a></span>
-          <span class='notimplemented'><a>🇩🇪 Deutsch</a></span>
+          <span class='notimplemented'>🇳🇱 Nederlands</span>
+          <span class='notimplemented'>🇩🇪 Deutsch</span>
           
         </p>
         <h2>Theme</h2>
         <p>
           <span><a>🇬🇧  Dark </a></span>
-          <span class='notimplemented'><a>🇳🇱 Light</a></span>
+          <span class='notimplemented'>🇳🇱 Light</span>
         </p>
       </div>
 
@@ -184,10 +180,11 @@
       
       <div id="StoryPanel" class='panel'>
         <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> 🧐</div>
-        <div id="StoryProgress">
+        
+        <div id="StoryOptions">
+          <div id="StoryProgress">
           <div class='progress-inside'></div>
         </div>
-        <div id="StoryOptions">
             <i onclick='previousStory();' class="fas fa-step-backward"></i>
             <i onclick="resetStory();" class="fas fa-fast-backward"></i>
             <i onclick="openStoryOverview();" class="fas fa-home"></i>
@@ -196,14 +193,8 @@
         
         <div id="StoryScroll">
           <div id="StoryFrame">
-            <div id="StoryText" class='storytext'></div>  
+            <div id="StoryText" class='storytext'></div>
             <div id="StoryCarousel"></div> 
-            <!-- 
-            
-            hidden div for preview during swipe event
-            <div id="StoryTextPreviewLeft" class='storytext storypreview'></div>
-            <div id="StoryTextPreviewRight" class='storytext storypreview'></div>
-            -->
           </div> 
         </div>
       </div>
@@ -211,71 +202,21 @@
       <!-- About app -->
       <div id='AboutPanel' class='panel'>
       	<div id="AboutContent">
-         Hi! <i style="font-size:24px;" class="far fa-grin-beam"></i><br/> <br/>
-
-              This website is about preventing river flooding. Or better about how <a>computer models</a> help river engineers to decrease <a>flood water levels</a> and prevent damage and loss of life. 
-
-              <br/><br/>
-              Our models (and common sense) tell us that <a target= "_blank" href='https://www.ruimtevoorderivier.nl/english/'>giving land (back) to the river</a> is very effective. 
-              <br/><br/>
-              The thing is, we don't precisely know what the water levels will be during a flood (·.·). This like predicting future weather: we can do it, but there is <a>uncertainty</a>. 
-
-              <br/><br/>
-              So what happens if we factor in uncertainty? Check out our results at your own pace:
-              <ul>
-                <li><a onclick="toggleApp(1)"><span><i style="color:white;font-size:24px;" class="fas fa-book-reader"></i></span> Story mode</a>. <br/>Brief tour past the most important findings.</li>
-               <li><a onclick="toggleApp(2)"><span><i style="color:white;font-size:24px;" class="fas fa-compass"></i></span> Explore mode</a>. <br/>Explore all simulation results by yourself.</li>
-               <li><a onclick="toggleApp(3)"><span><i style="color:white;font-size:24px;" class="fas fa-balance-scale"></i></span> Compare mode</a>. <br/>See how uncertainy may change your choice.</li>
-               <li><a><span><i style="color:white;font-size:24px;" class="fas fa-graduation-cap"></i></span> Academic mode</a>. <br/>Read our full paper and join the discussion.</li>
-              </ul>
-
-              <br/>All the best,<br/>
-              <a target="_blank" href="https://people.utwente.nl/k.d.berends?tab=about-me" class='external-link'>Koen</a>
-              <br/><br/>
-              <hr>
-              <span style="font-size: 12px;">PS. This website is part of my (ongoing) <a>PhD research</a>. Check out the links below to learn more about my research and that of my fellow researchers. </span>
-            
-            
-            
-              <hr>
-              More information: <br/>
-              <a href="">The academic publication</a> <br/>
-              <a href="">The 'cora' Python package</a> <br/>
-              <a href="">RiverScape</a> <br/>
-            
-            
-            Map attribution: <br/><br/>
-              &copy; <a href="https://leafletjs.com/">LeafletJS</a> <br/>
-              &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <br/>
-              &copy; <a href="http://cartodb.com/attributions">CartoDB</a>
-              <hr>
-              Affiliations of researchers:
-              <div></div>
-              <hr>
-              We are grateful for the support of:
-              
-              <div>
-                <img src="img/rivercarelogo_black.svg" style="max-width: 300px;margin-top:10px"></img>
-                <img src="img/ncrlogo_text.svg" style="max-width: 300px;margin-top:10px"></img>
-              </div>
-              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
           </div>
       </div> <!-- about -->
 
       <!-- Paper app -->
       <div id="PaperPanel" class='panel'>
         <div id="PaperContent">
-          <h2> <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Open_Access_logo_PLoS_transparent.svg"></img> Journal paper </h2>
-          While peer review is ongoing, our paper is available from the journal Natural Hazards and Earth system sciences Discussions: <a href="https://www.nat-hazards-earth-syst-sci-discuss.net/nhess-2018-325">Direct link</a>
-
-          </div>
+        </div>
       </div> <!-- about -->
       </div> <!-- cont' background -->
 
     </div> <!-- grid -->
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER 
+
   <div id='version-number-box'>
     <span id="version-number-ui"> Bladieblabla </span>
     <span id="version-number-map"> Bladieblabla </span>
@@ -285,7 +226,7 @@
   </div>
   <footer>
       <img src="img/footerlogo.svg" class="logo-footer"></img>
-  </footer>
+  </footer>-->
 </body>
 
 

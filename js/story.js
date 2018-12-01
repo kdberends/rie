@@ -73,7 +73,7 @@ the figures & map.
 
 /* Dummy function */
 function storyTest () {
-  console.log("StoryTestFunc fired")
+  {}
 };
  
 function show_welcome() {
@@ -286,7 +286,7 @@ function nextStory () {
     StoryFunctions[StoryProgress]();
 
     // update progressbar
-    let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
+    let progresstext = Math.round((StoryProgress-1) / (NumberOfStories-1) * 100) + "%";
     $(".progress-inside").each(function () {
       $(this).css("width", progresstext);
     });
@@ -408,7 +408,6 @@ var el = document.getElementById('StoryFrame');
 
 addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"
-    console.log(swipedir)
     if (swipedir=='right'){
       if (StoryProgress!=1){previousStory()}
         else {

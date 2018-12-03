@@ -11,7 +11,8 @@
     --font-hyperlink-hover: #58A8E9;
     --font-body-color: #D9D9D9;
     --font-body-size: 18px;
-    --font-body-family: 'Source Sans Pro', Karla, sans-serif;
+    --font-body-family: 'Source Sans Pro', 'Karla', sans-serif;
+    --font-body-header: 'Raleway', 'Montserrat', sans-serif;
     --font-ui: 'Raleway', sans-serif;
     --nav-color: white;
     --nav-size: 26px;
@@ -22,7 +23,20 @@
     --accent-5: #3F3047;
     --accent-6: #191A21;
 }
- 
+
+a:not([href*='github.io']):not([href^='#']):not([href^='/']):after {
+  content: url(https://upload.wikimedia.org/wikipedia/commons/4/44/Icon_External_Link.svg);
+}
+/*  content: "";
+  display: inline-block;
+  height:16px;
+  width:13px;
+  background-size: 13px 13px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/8/86/External_small.svg);
+  background-repeat: no-repeat;
+}*/
+
+
 body {
   font-family: var(--font-body-family);
   font-size: var(--font-body-size);
@@ -32,14 +46,37 @@ body {
   overflow: hidden;
 }
 
+body h1{
+  font-family: var(--font-body-header);
+}
+
+body h2{
+  font-family: var(--font-body-header);
+  font-size: 20px;
+  line-height: 1;
+}
+
+body h3{
+  font-family: var(--font-body-header);
+}
+
 body a{
   color: var(--font-hyperlink);
   cursor: pointer;
+  text-decoration: none;
+  transition: color 0.1s ease;
+  border-bottom:0px solid #92C6F0;
+  display: inline-block;
+  position: relative;
 }
 
-body a:hover{
+body a:hover
+{
   color: var(--font-hyperlink-hover);
+  border-bottom:0px solid #58A8E9; 
 }
+
+
 
 .label_high {
   color: #09C900;
@@ -185,6 +222,7 @@ footer {
   font-family: var(--font-body-family);
   color: var(--font-body-color);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  z-index: 2;
 }
 
 
@@ -355,10 +393,9 @@ nav {
   max-width: 300px;
   left: 60px;
   z-index: 3;
-  cursor: pointer;
-  pointer-events: initial;
+  user-select: none;/* to prevent blue flickering in chrome*/
+  pointer-events: none;
   transition: 500ms ease-out;
-  
 }
 
 @media (max-width: 400px){#appnavigation {left: 50px}}
@@ -366,6 +403,9 @@ nav {
 
 
 #appnavigation span {
+  pointer-events: initial;
+  cursor: pointer;
+  user-select: none;/* to prevent blue flickering in chrome*/
   position: relative;
   margin-left: 25px;
   border-bottom:2px solid #49F5FF22;
@@ -395,7 +435,7 @@ nav {
 #appnavigation span::after{
   position: absolute;
   width: 80px;
-  margin-left: -55px; /* -1/2width - iconwidth/2 */
+  margin-left: -50px; /* -1/2width - iconwidth/2 */
   top: 40px;
   color: white;
   font-size: 12px;
@@ -414,7 +454,7 @@ nav {
 }
 
 #app-explore::after{
-  content: "Explore";
+  content: "Map";
 }
 
 #app-compare::after{
@@ -423,16 +463,24 @@ nav {
 
 #app-article::after{
   content: "More";
+  left: 25px;
 }
 
 #app-settings::after{
   content: "Settings";
+  left: 25px;
 }
 
 /* ===========================================
  * Settings
  * ===========================================
  */
+
+#SettingsPanel{
+  transform: translate(-150%, 0%);
+}
+
+
 #SettingsPanel p{
   font-size: 16px;
 }
@@ -451,7 +499,7 @@ nav {
  */
 
 #AboutPanel{
-  transform: translate(0%, 0%);
+  transform: translate(-150%, 0%);
   font-size: inherit;
 }
 
@@ -467,21 +515,6 @@ nav {
   padding: 10px 0;
 }
 
-#AboutContent a {
-  text-decoration: none;
-  color: var(--font-hyperlink);
-  transition: color 0.1s ease;
-  border-bottom:0px solid #92C6F0;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-#AboutContent a:hover
-{
-  color: var(--font-hyperlink-hover);
-  border-bottom:0px solid #58A8E9; 
-}
 
 #AboutContent ul li{
   margin-bottom: -10px;
@@ -624,14 +657,14 @@ nav {
  */
 
 #StoryPanel{
-  transform: translate(-150%, 0%);
+  transform: translate(0%, 0%);
 }
 
 
 #StoryScroll{
   position: relative;
   top: 20px;
-  height: calc(100% - 260px);
+  height: calc(100% - 261px);
   overflow: hidden;
 }
 
@@ -640,11 +673,6 @@ nav {
   height: 98%;
   overflow: inherit;
 }
-
-
-
-
-
 
 #StoryCarousel{  
   position: absolute;
@@ -663,18 +691,17 @@ nav {
   transition: opacity 0.2s ease-out;
 }
 
-#StoryText{
+#StoryOverview{
   position: absolute;
+  width: 100%;
+  top: 180px;
+  z-index: 9;
+  pointer-events: initial;
+  text-align: center;
   transform: translate(0%, 0%);
 }
 
-#StoryText a {
-  font-size: 17px;
-  cursor: pointer;
-  color: var(--font-hyperlink-hover);
-}
-
-#StoryText .notavailable {
+#StoryOverview .notavailable {
   color: #9D9D9D;
 }
 

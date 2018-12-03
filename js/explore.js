@@ -12,8 +12,8 @@ console.log("You are running version v"+version)
 console.log('According to your browser, your preferred language is: '+navigator.language)
 
 // load about
-$('#AboutContent').load('xml/about_en.xml');
-$('#PaperContent').load('xml/learn_en.xml');
+$('#AboutContent').load('xml/en/about.xml');
+$('#PaperContent').load('xml/en/learn.xml');
 
 /*
 https://stackoverflow.com/questions/50543163/can-i-detect-if-my-pwa-is-launched-as-an-app-or-visited-as-a-website
@@ -85,7 +85,7 @@ this.setState({ showInstallMessage: true });
 // Flags that remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false, false, false];
-var AppIds = ["#AboutPanel", "#StoryPanel", "#ExplorePanel", "#PaperPanel", "#SettingsPanel", '#FlowPanel'];
+var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel'];
 var ExploreToggle = true;
  
 // Function to toggle navigation menu
@@ -93,14 +93,14 @@ var toggleAppMenu = function () {
   if (AppMenuToggle){
     $('#leftbar').css('transform','translate(-100%, 0%)');
     $('#appnavigation').css('transform','translate(0%, -150%)');
-    $('#Scenarioselector').css('transform','translate(0px, 0%)');
+    //$('#Scenarioselector').css('transform','translate(0px, 0%)');
     $('#MapButtons').css('transform','translate(0px, 0%)');
     $('#Scenarioselector').get(0).style.setProperty('--left', '5px');
     AppMenuToggle = false;    
   } else {
     $('#leftbar').css('transform','translate(0%, 0%)');
     $('#appnavigation').css('transform','translate(0%, 0%)');
-    $('#Scenarioselector').css('transform','translate(350px, 0%)');
+    //$('#Scenarioselector').css('transform','translate(350px, 0%)');
     $('#MapButtons').css('transform','translate(380px, 0%)');
     $('#Scenarioselector').get(0).style.setProperty('--left', '355px');
     AppMenuToggle = true;
@@ -109,6 +109,7 @@ var toggleAppMenu = function () {
 
 // Function to switch between apps
 var toggleApp = function (appindex) {
+  console.log("Go to app "+appindex)
   for (let i=0;i<AppToggles.length;i++){
     if (i == appindex) { 
       // show requested app and its children
@@ -117,7 +118,7 @@ var toggleApp = function (appindex) {
       // highlight current app in navigator
       $($('#appnavigation span').get(i)).addClass('app-active');
       // if click on story, reset and go to overview
-      if (i==1){openStoryOverview()}
+      if (i==0){openStoryOverview()}
     } else{
       // hide other apps and their children 
       $(AppIds[i]).css('transform','translate(-120%, 0%)');
@@ -126,9 +127,6 @@ var toggleApp = function (appindex) {
   };
   };
 };
-
-// Default layout
-toggleApp(0)
 
 
 /** ////////////////////////////////////////////////////////////
@@ -248,19 +246,19 @@ function showRelo() {
 
   // add 'legend'
   addTooltipToMap([[51.81, 5.31], [51.80, 5.30]], 
-                 {file:'tooltip_relocation_en.xml', 
+                 {file:'tooltip_relocation.xml', 
                   id: 'relotooltip0',
                   div: '#0',
                   align: 'left'});
 
   addTooltipToMap([[51.841, 5.37], [51.87, 5.37]], 
-                 {file:'tooltip_relocation_en.xml', 
+                 {file:'tooltip_relocation.xml', 
                   id: 'relotooltip1',
                   div: '#1',
                   align: 'left'});
 
   addTooltipToMap([[51.854, 5.40], [51.86, 5.43]], 
-                 {file:'tooltip_relocation_en.xml', 
+                 {file:'tooltip_relocation.xml', 
                   id: 'relotooltip2',
                   div: '#2',
                   align: 'right'});
@@ -290,7 +288,7 @@ function showSmooth() {
 
   // add marker to explain what's going on
   addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
-                {file: 'tooltip_smoothing_en.xml', 
+                {file: 'tooltip_smoothing.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -319,7 +317,7 @@ function showGROYNLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.8135, 5.3745], [51.80, 5.40]], 
-                {file: 'tooltip_groynes_en.xml', 
+                {file: 'tooltip_groynes.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -348,7 +346,7 @@ function showMINEMBLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.8279, 5.3931], [51.81, 5.41]], 
-                {file: 'tooltip_minemb_en.xml', 
+                {file: 'tooltip_minemb.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -377,7 +375,7 @@ function showFLPLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
-                {file: 'tooltip_lowering_en.xml', 
+                {file: 'tooltip_lowering.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -405,7 +403,7 @@ function showSIDECHAN(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
-                {file: 'tooltip_sidechannels_en.xml', 
+                {file: 'tooltip_sidechannels.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});

@@ -316,7 +316,7 @@ function addTooltipToMap(coordinates, options) {
         endPoint.setTooltipContent(options.text);
     } else {
       $.ajax({type: "GET",
-              url: 'xml/'+options.file,
+              url: 'xml/'+currentLang+'/'+options.file,
               datatype: 'xml',
               success: function(xml) {
                        endPoint.setTooltipContent($(xml).find(options.div).text());

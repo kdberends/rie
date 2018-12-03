@@ -16,7 +16,7 @@ var flagSwipetextLoaded = false;
 
 
 function get_storyXML(){
-   return 'xml/stories_'+currentStory+'_'+currentLang+'.xml #'
+   return 'xml/'+currentLang+'/stories_'+currentStory+'.xml #'
 };
 
 function openStory (storynum) {
@@ -24,7 +24,7 @@ function openStory (storynum) {
   $('#StoryOptions').css('opacity', '1');  
 
   // hide overview
-  $('#StoryText').css('transform', 'translate(-120%, 0%)')
+  $('#StoryOverview').css('transform', 'translate(-120%, 0%)')
   
   // set current story
   currentStory = storynum;
@@ -49,8 +49,8 @@ function openStory (storynum) {
 
 function openStoryOverview() {
   resetStory();
-  $('#StoryText').load('xml/stories_index_'+currentLang+'.xml');
-  $('#StoryText').css('transform', 'translate(0%, 0%)')
+  $('#StoryOverview').load('xml/'+currentLang+'/stories_index.xml');
+  $('#StoryOverview').css('transform', 'translate(0%, 0%)')
   // delete stories in carousel
   $(".story-in-carousel").remove()
   hideStoryNavigation();

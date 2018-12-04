@@ -1,7 +1,7 @@
 /* Leaflet elements */
 
 const map_version = 0.3;
-var velocityLayer = {};
+var velocityLayerID = {};
 /* STYLES */
 
 /* Dike */
@@ -223,6 +223,7 @@ function addRiverkilometerToMap() {
     )};
   });
 };
+
 addRiverkilometerToMap()
 mapElementsGroup.addLayer(dike);
 mapElementsGroup.addLayer(riverkmFocus);
@@ -260,6 +261,9 @@ function mapZoomToStudyArea() {
   map.setView([51.85, 5.35], 12);
 };
 
+function mapZoomToStAndries() {
+  map.setView([51.804, 5.3546], 15);
+};
 
 function resetElementsOnMap(){
   mapElementsGroup.clearLayers();
@@ -355,13 +359,15 @@ function addDownstreamPeak() {
   });
 };
 
+/* removes velocity layer from layer group mapZoomGroup */
 function removeVelocityLayerFromMap(){
-  mapZoomGroup.removeLayer(velocityLayer)
+  mapZoomGroup.eachLayer(function (l){
+    if (l.options.maxVelocity > 0) {mapZoomGroup.removeLayer(l)}});
 };
 
 function addVelocityLayerToMap(file, thismap){
      d3.json(file, function (data) {
-      velocityLayer = new L.velocityLayer({
+      mapZoomGroup.addLayer(new L.velocityLayer({
         displayValues: true, 
         displayOptions: {
           velocityType: 'Flow velocity',
@@ -374,8 +380,6 @@ function addVelocityLayerToMap(file, thismap){
         maxVelocity: 4,
         velocityScale: 0.01,
         //colorScale: ['#FFFFFF','#0C00FF']
-        });
-      velocityLayer.id = 'velos'
-      mapZoomGroup.addLayer(velocityLayer)
+        }));
   });
 };

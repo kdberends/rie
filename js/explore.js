@@ -128,13 +128,11 @@ var toggleApp = function (appindex) {
   };
 };
 
-
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)
  * For overflowing divs 
  *
  */////////////////////////////////////////////////////////////
-
 
 const ss = new PerfectScrollbar('#StoryScroll', {
   wheelSpeed: 1,
@@ -143,14 +141,6 @@ const ss = new PerfectScrollbar('#StoryScroll', {
   swipeEasing: true
 });
 ss.update()
-
-//const fs = new PerfectScrollbar('#FlowScroll', {
-//  wheelSpeed: 1,
-//  wheelPropagation: false,
-//  minScrollbarLength: 20,
-//  swipeEasing: true
-//});
-//fs.update()
 
 const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,
@@ -209,7 +199,7 @@ window.onclick = function(event) {
 
 function showReference() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/reference_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_reference.xml');
   
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
@@ -225,7 +215,7 @@ function showReference() {
 
 function showRelo() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/dikerelocation_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_relocation.xml');
   
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){
@@ -267,7 +257,7 @@ function showRelo() {
 
 function showSmooth() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/smoothing_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_smoothing.xml');
   
   /* Explore figure */
   d3.json('data/smoothing_int99.json', function(d){
@@ -298,7 +288,7 @@ function showSmooth() {
 
 function showGROYNLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/groynelowering_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_groynes.xml');
   
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){
@@ -326,7 +316,7 @@ function showGROYNLOW(){
 
 function showMINEMBLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/MINEMBLOW_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_minemb.xml');
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -355,7 +345,7 @@ function showMINEMBLOW(){
 
 function showFLPLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/FLPLOW_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_lowering.xml');
   
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){
@@ -383,7 +373,7 @@ function showFLPLOW(){
 
 function showSIDECHAN(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/SIDECHAN_NL.xml');
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_sidechannels.xml');
   
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){
@@ -421,9 +411,9 @@ var FlowFigure = {};
 
 function display(error, dataset, comparedata) {
   // === Background map ===
-  //addVelocityLayerToMap('data/waal_reference_0000.json', map);
   
   // === Explore App ===
+  console.log("Loading explore app...")
   protoSchematicRiverChart.apply(ExploreFigure);
   ExploreFigure.setCanvas('#ExploreCanvas');
   ExploreFigure.setData(dataset);
@@ -445,6 +435,7 @@ function display(error, dataset, comparedata) {
     });
 
   // === Compare App ===
+  console.log("Loading flow app...")
   //protoCompareChart.apply(CompareFigure );
   //CompareFigure.setCanvas('#CompareCanvas');
   //CompareFigure.setData(comparedata);
@@ -456,7 +447,7 @@ function display(error, dataset, comparedata) {
   FlowFigure.init();
   $('#version-number-flow').text('Flow: v' + FlowFigure.getVersion());
   
-  showReference()
+  //showReference()
   
   // Make sure figure updates when window resizes
    d3.select(window)
@@ -479,7 +470,6 @@ d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')
   .defer(d3.json, 'data/exceedance_diagram_data.json')
   .await(display);
-
 
 // === ~final
 
@@ -574,8 +564,6 @@ $("#flat-slider-vertical-4")
         last: "pip"
     })
     .slider("float");
-
-
 
 $(document).ready(function () {
   // renderProgress();

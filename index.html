@@ -103,13 +103,13 @@
               <ul>
                  <li class='has-sub'><a href='#'>Choose intervention</a>
                     <ul>
-                       <li class='no-sub'><a href='#' onclick='showReference()'>Reference</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showSmooth()">Mowing floodplains</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showRelo()">Dike relocation</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showGROYNLOW()">Groyne lowering</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showMINEMBLOW()">Embankment lowering</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showSIDECHAN()">Side channels</a></li>
-                       <li class='no-sub' ><a href='#' onclick="showFLPLOW()">Floodplain lowering</a></li>
+                       <li class='no-sub'><a href='#' onclick='showReference();toggleApp(1);'>Reference</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showSmooth();toggleApp(1);">Mowing floodplains</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showRelo();toggleApp(1);">Dike relocation</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showGROYNLOW();toggleApp(1);">Groyne lowering</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showMINEMBLOW();toggleApp(1);">Embankment lowering</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showSIDECHAN();toggleApp(1);">Side channels</a></li>
+                       <li class='no-sub' ><a href='#' onclick="showFLPLOW();toggleApp(1);">Floodplain lowering</a></li>
                     </ul>
                  </li>
               </ul>
@@ -246,6 +246,9 @@
 <script src="js/thirdparty/d3.js"></script>
 <script src="https://d3js.org/d3-timer.v1.min.js"></script>
 <script src="js/thirdparty/perfect-scrollbar.js"></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+
 
 <!-- LOAD JS -->
 <script src="js/data.js"></script>

@@ -1,5 +1,0 @@
-{	
-	"meta": [], // meta info?
-	"x": [], // locations on x axis
-	"percentiles": [] // for each location (and time?), uncertainty percentiles
-}

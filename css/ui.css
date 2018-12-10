@@ -55,8 +55,9 @@ body h1{
 }
 
 body h2{
-  font-family: var(--font-body-header);
-  font-size: 20px;
+  font-family: Oswald;
+  font-size: 28px;
+  font-weight: normal;
   line-height: 1;
 }
 
@@ -131,6 +132,7 @@ body a:hover
     width: 100%;
     height: 100%;
     z-index: 1000;
+    pointer-events: none;
 } 
 
 #loader-wrapper img {
@@ -141,8 +143,9 @@ body a:hover
   z-index: 1002;
   position: absolute;
   transition: opacity 0.5s 1s ease;
-}
 
+}
+/* spinny thing */
 #loader {
     display: block;
     position: relative;
@@ -161,113 +164,104 @@ body a:hover
     z-index: 1001;
 }
 
-    #loader:before {
-        content: "";
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
-        border-radius: 50%;
-        border: 6px solid transparent;
-        border-top-color: #1E855F;
-        -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-        animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-    }
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: #1E855F;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
 
-    #loader:after {
-        content: "";
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-        border-radius: 50%;
-        border: 6px solid transparent;
-        border-top-color: #1C587A;
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: #1C587A;
 
-        -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-          animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-    }
+    -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
 
-    @-webkit-keyframes spin {
-        0%   { 
-            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: rotate(0deg);  /* IE 9 */
-            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-        }
-        100% {
-            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: rotate(360deg);  /* IE 9 */
-            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-        }
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
     }
-    @keyframes spin {
-        0%   { 
-            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: rotate(0deg);  /* IE 9 */
-            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-        }
-        100% {
-            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: rotate(360deg);  /* IE 9 */
-            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-        }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
     }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
 
-    #loader-wrapper .loader-section {
-        position: fixed;
-        top: 0;
-        width: 51%;
-        height: 100%;
-        background: #222222;
-        z-index: 1000;
-        -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateX(0);  /* IE 9 */
-        transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
-    }
+/* Curtains*/
+.loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    background: #222222;
+    z-index: 1000;
+}
 
-    #loader-wrapper .loader-section.section-left {
-        left: 0;
-    }
+.loader-section.section-left {
+    left: 0;
+}
 
-    #loader-wrapper .loader-section.section-right {
-        right: 0;
-    }
+.loader-section.section-right {
+    right: 0;
+}
 
-    /* Loaded */
-    .loaded img{
-      opacity: 0;
-    }
+/* when loaded, hide the bunch */
+.loaded #loadlogo{
+  opacity: 0;
+}
 
-    .loaded #loader-wrapper .loader-section.section-left {
-        -webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: translateX(-100%);  /* IE 9 */
-                transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
+.loaded #loader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;  
+            transition: all 0.3s ease-out;
+}
+.loaded #loader-wrapper {
+    visibility: hidden;
+    transform: translateY(-200%);
+    transition: all 0.3s 2s ease-out;
+}
 
-        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
-                transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    }
+.loaded>div {
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+.loaded>div.section-right {
+  transform: translate(100%, 0%);
+}
 
-    .loaded #loader-wrapper .loader-section.section-right {
-        -webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: translateX(100%);  /* IE 9 */
-                transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
-
--webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
-        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    }
-    
-    .loaded #loader {
-        opacity: 0;
-        -webkit-transition: all 0.3s ease-out;  
-                transition: all 0.3s ease-out;
-    }
-    .loaded #loader-wrapper {
-        visibility: hidden;
-        transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-        transition: all 0.3s 2s ease-out;
-    }
+.loaded>div.section-left {
+  transform: translate(-100%, 0%);
+}
 
 /* ===========================================
  * Layout
@@ -367,8 +361,8 @@ footer {
 /* Top level */
 .cssmenu {
   left: 0px;
-  width: 300px;  
-  font-family: var(--font-body-family);
+  width: 300px;
+  font-family: var(--font-body-family)  
   color: var(--font-body-color);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   z-index: 2;
@@ -381,6 +375,7 @@ footer {
   cursor: pointer;
   z-index: inherit;
   font-size: 26px;
+  font-family: Oswald;
   text-decoration: none;
   color: white;
   background: var(--accent-6);
@@ -599,7 +594,7 @@ nav {
 }
 
 #app-story::after{
-  content: "Storyline";
+  content: "Storylines";
 }
 
 #app-explore::after{
@@ -830,7 +825,7 @@ nav {
   width: 900%;  
   height: 100px;
   transition: all 0.4s ease-out;
-  pointer-events: none;
+  pointer-events: initial;
 }
 
 .story-in-carousel{
@@ -914,6 +909,7 @@ nav {
 
 #ExplorePanel{
   transform: translate(-150%, 0%);
+  z-index: 4;
 }
 
 
@@ -1252,4 +1248,41 @@ p.bold {
     top: calc(50% - 5px);
     margin-left: 0;
     margin-right: 0;
+}
+
+/* Beta banner */
+#beta-bar {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  text-align: center;
+  padding: 0px;
+  line-height: 30px;
+  background: #19771D;
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  z-index: 500;
+  transition: all .8s ease;
+  pointer-events: initial;
+}
+
+
+.close-bb {
+  border: none;
+  color: white;
+  position: relative;
+  display: inline-block;
+  right: 00px;
+  top: 0;
+  cursor: pointer;
+  line-height: 30px;
+  height: 30px;
+  width: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.closed-bb{
+  transform: translate(0px, -100px);
 }

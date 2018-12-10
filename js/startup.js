@@ -4,7 +4,7 @@ $(window).on('load', function() {
     console.log('Opening story overview')
     openStoryOverview();
 	toggleApp(0);
-	$('body').addClass('loaded');
+	$('#loader-wrapper').addClass('loaded');
 
 	/*
 	var maptip = new Tooltip($("#menuToggle"), {

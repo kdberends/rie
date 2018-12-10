@@ -1,19 +1,30 @@
 /** ////////////////////////////////////////////////////////////
- * Storyline app
+ * Storylines app
  */////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////
+// Variables
+/////////////////////////////////////////////////////////////
 
-const story_version = 0.25;
-
+const story_version = 0.3;
 var StoryProgress = 1;
 var NumberOfStories = 8;
 var currentStory = 0;
 var currentLang = 'en';
 var flagSwipeActive = false; // if true, swiping will advance story
 var flagSwipetextLoaded = false;
+var StoryFunctions = []; // array with function called at each step in the story
+
+/* Variable to set width of progressbar */
+let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
+$(".progress-inside").each(function () {
+      $(this).css("width", progresstext);
+      $(this).children("div").text(progresstext)});
 
 
-
+/////////////////////////////////////////////////////////////
+// General functions
+/////////////////////////////////////////////////////////////
 
 function get_storyXML(){
    return 'xml/'+currentLang+'/stories_'+currentStory+'.xml #'
@@ -44,7 +55,6 @@ function openStory (storynum) {
     .load(xmlPath+i)
     .appendTo($('#StoryCarousel'))
   };
-
 };
 
 function openStoryOverview() {
@@ -65,17 +75,11 @@ function showStoryNavigation() {
   $('#StoryOptions').css('opacity', '1');  
 };
 
-/* STORY  1 FUNCTIONS
-
-These functions are called at various points alongn the story to progress
-the figures & map.
-*/
-
 /* Dummy function */
 function storyTest () {
   {}
 };
- 
+
 function show_welcome() {
   $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
 };
@@ -84,6 +88,85 @@ function hide_welcome() {
   $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
 };
 
+/////////////////////////////////////////////////////////////
+//  SFunct
+/////////////////////////////////////////////////////////////
+
+
+
+
+function show_flowcanvas() {
+  
+};
+
+function hide_flowcanvas() {  
+  $('#FlowPanel').css('transform','translate(-120%, 0%)');
+};
+
+function map_zoom_NL() {
+  map.setView([52, 5], 7);
+};
+
+function map_zoom_Waal() {
+  hide_welcome()
+  map.setView([51.823, 5.3682], 9);
+};
+
+function map_zoom_StAndries() {
+  map.setView([51.823, 5.3682], 12);
+};
+
+
+function show_interventioncanvas() {
+  $('#ExplorePanel').css('transform','translate(0%, 0%)');
+  $('#ExplorePanel').css('pointer-events', 'none')
+  $('#ExploreScroll').css('transform','translate(-120%, 0%)');
+};
+
+function hide_interventioncanvas() {
+  $('#ExplorePanel').css('transform','translate(-120%, 0%)');
+  $('#ExplorePanel').css('pointer-events', 'initial')
+};
+
+function story_discharge_down() {
+  FlowFigure.changeDischarge(1250);
+};
+
+function story_discharge_up() {
+  FlowFigure.changeDischarge(2000);
+};
+
+function story_lower_bed() {
+  FlowFigure.changeInterventionDepth(-1)
+};
+
+function show_storycanvas(){
+  show_welcome();
+};
+
+function show_storycanvas_hide_flow(){
+  hide_flowcanvas();
+  show_welcome();
+};
+
+function explorecanvas_show_waterlevels(){
+  d3.json("data/reference_waterlevels.json", 
+  	       function (d) {ExploreFigure.updateData(d)});
+}
+
+function explorecanvas_show_normalised_waterlevels(){
+  d3.json("data/reference_waterlevels_norm.json", function (d) {ExploreFigure.updateData(d)})
+};
+
+function explorecanvas_show_smoothing(){
+   d3.json("data/smoothing_int99.json", function (d) {ExploreFigure.updateData(d)})
+};
+
+function explorecanvas_show_sidechannels(){
+  d3.json("data/sidechannel_int100.json", function (d) {ExploreFigure.updateData(d)})
+};
+
+/* story 0*/
 function story_showFlow(reverse=false) {
   if (reverse) {
     $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
@@ -143,64 +226,8 @@ function story_markDifference(reverse=false){
   };
 };
 
-
-/* STORY  2 FUNCTIONS
-
-These functions are called at various points alongn the story to progress
-the figures & map.
-*/
-
-function show_flowcanvas() {
-  
-};
-
-function hide_flowcanvas() {  
-  $('#FlowPanel').css('transform','translate(-120%, 0%)');
-};
-
-function map_zoom_NL() {
-  map.setView([52, 5], 7);
-};
-
-function map_zoom_Waal() {
-  hide_welcome()
-  map.setView([51.823, 5.3682], 9);
-};
-
-function map_zoom_StAndries() {
-  map.setView([51.823, 5.3682], 13);
-  story_show_uncertainty();
-};
-
-
-
-function show_interventioncanvas() {
-  $('#ExplorePanel').css('transform','translate(0%, 0%)');
-  $('#ExploreScroll').css('transform','translate(-120%, 0%)');
-};
-
-function hide_interventioncanvas() {
-  $('#ExplorePanel').css('transform','translate(-120%, 0%)');
-};
-
-function story_discharge_down() {
-  FlowFigure.changeDischarge(1250);
-};
-
-function story_discharge_up() {
-  FlowFigure.changeDischarge(2000);
-};
-
-function story_show_uncertainty() {
-  hide_flowcanvas();
-  show_interventioncanvas();
-};
-
-function story_lower_bed() {
-  FlowFigure.changeInterventionDepth(-1)
-};
-
-function reset_story(){
+/* Resets the story to first step */
+function reset_story_0(){
   FlowFigure.emptyArchive();
   FlowFigure.changeInterventionDepth(0)
   FlowFigure.changeDischarge(2000);
@@ -208,69 +235,101 @@ function reset_story(){
   showReference();
   hide_flowcanvas();
   hide_interventioncanvas();
-  //map_zoom_NL();
   FlowFigure.showFlow();
   FlowFigure.removeEffect();
 };
 
-function show_storycanvas_hide_flow(){
-  hide_flowcanvas();
-  show_welcome()
+/* story 2*/
+function story_showWaal(reverse=false) {
+  map_zoom_Waal();
 };
 
-function testa1() {
-  FlowFigure.saveLineToArchive();
-  FlowFigure.drawLatestFromArchive('archiveline')
-  FlowFigure.changeInterventionDepth(-1)
-  FlowFigure.saveLineToArchive();
-  FlowFigure.drawLatestFromArchive('differenceline')
-};
-
-function testa2() {
-
-  FlowFigure.drawEffect(1, 0, 'archiveline_1')
-  FlowFigure.emptyArchive();
-  FlowFigure.hideFlow();
+function story_showStAndries(reverse=false){
+  if (reverse){
+    map_zoom_Waal();
+  } else {
+    map_zoom_StAndries();
+  };
 };
 
 
-/* order in which function shoul dbe called
-var StoryFunctions = [storyTest,
-                      reset_story, 
-                      story_showFlow, 
-                      story_discharge_down, 
-                      story_discharge_up, 
-                      testa1,
-                      testa2, 
-                      show_storycanvas_hide_flow,
-                      map_zoom_Waal, 
-                      hide_interventioncanvas,
-                      map_zoom_StAndries,
-                      showSmooth,
-                      showSIDECHAN,
-                      storyTest,
-                      storyTest
-                      ]
-*/
+function story_show_uncertainty_waterlevels(reverse=false){
+  if (reverse) {
+    hide_interventioncanvas();
+  } else {
+    show_interventioncanvas();  
+    explorecanvas_show_waterlevels();
+  };
+};
 
-var StoryFunctions = [reset_story, 
-                      storyTest,
-                      story_showFlow,
-                      storyTest,
-                      story_decreaseFriction,
-                      story_increaseFriction,
-                      story_markWaterLevel,
-                      story_lowerBed,
-                      story_markDifference,
-                      ]
+function story_show_normalised_uncertainty(reverse=false){
+  if (reverse) {
+    explorecanvas_show_waterlevels();
+  } else {
+    explorecanvas_show_normalised_waterlevels();
+  };
+};
 
-// initialise story
+function story_show_floodplain_smoothing(reverse=false){
+  if (reverse) {
+    explorecanvas_show_normalised_waterlevels();
+  } else {
+    explorecanvas_show_smoothing();
+  };
+};
 
+function story_show_sidechannels(reverse=false){
+  if (reverse){
+    explorecanvas_show_smoothing();
+  } else {
+    explorecanvas_show_sidechannels();
+  }
+};
 
-let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
-$(".progress-inside").each(function () {
-      $(this).css("width", progresstext);
-      $(this).children("div").text(progresstext)});
+function reset_story_2(){
+  map_zoom_Waal();
+  hide_interventioncanvas();
+  show_storycanvas();
+};
+
+/////////////////////////////////////////////////////////////
+//  Story 0 functions
+/////////////////////////////////////////////////////////////
+
+/* */
+StoryFunctions = [[reset_story_0, 
+                  storyTest,
+                  story_showFlow,
+                  storyTest,
+                  story_decreaseFriction,
+                  story_increaseFriction,
+                  story_markWaterLevel,
+                  story_lowerBed,
+                  story_markDifference,
+                  ],[storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest,
+                  storyTest
+                  ],[reset_story_2,
+                  storyTest,
+                  story_showWaal,
+                  story_showStAndries,
+                  story_show_uncertainty_waterlevels,
+                  story_show_normalised_uncertainty,
+                  story_show_floodplain_smoothing,
+                  story_show_sidechannels,
+                  storyTest,
+                  storyTest]];
+
+/////////////////////////////////////////////////////////////
+//  General functions to advance story
+/////////////////////////////////////////////////////////////
+
 
 /* advances story by one increment */
 function nextStory () {
@@ -283,7 +342,7 @@ function nextStory () {
     $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
     
     // call function of step in the story
-    StoryFunctions[StoryProgress]();
+    StoryFunctions[currentStory][StoryProgress]();
 
     // update progressbar
     let progresstext = Math.round((StoryProgress-1) / (NumberOfStories-1) * 100) + "%";
@@ -305,7 +364,7 @@ function previousStory () {
     $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
 
     // call reverse function
-    StoryFunctions[StoryProgress+1](true);
+    StoryFunctions[currentStory][StoryProgress + 1](true);
 
     // update progressbar
     $(".progress-inside").each(function () {
@@ -315,10 +374,11 @@ function previousStory () {
 };
 };
 
+/* Called when user clicks 'home' button */
 function resetStory () {
   StoryProgress = 1;
   var xmlPath = get_storyXML();
-  reset_story();
+  StoryFunctions[currentStory][0]();
   //$('#StoryText').load(xmlPath+StoryProgress);
   $('#StoryCarousel').css('transform', 'translate(0%)')
   $(".progress-inside").each(function () {
@@ -328,10 +388,11 @@ function resetStory () {
   });
 };
 
+/////////////////////////////////////////////////////////////
+//  Add Swipe functionality
+// modified from http://www.javascriptkit.com/javatutors/touchevents2.shtml
+/////////////////////////////////////////////////////////////
 
-/* original credit: http://www.javascriptkit.com/javatutors/touchevents2.shtml
-problem here is that touch taps/clicks are not properly propagated
-*/
 
 function addSwipeDetect(el, callback){
   
@@ -401,10 +462,7 @@ function addSwipeDetect(el, callback){
         }}, false)
 };
   
-//USAGE:
-
 var el = document.getElementById('StoryFrame');
-
 
 addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"

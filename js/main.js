@@ -1,53 +1,30 @@
 /** ////////////////////////////////////////////////////////////
- * todo: add meta info 
- * 
- 
-  _______      _                           ______                        
+_                           ______                        
 |_   __ \    (_)                        .' ___  |                       
   | |__) |   __  _   __  .---.  _ .--. / .'   \_| ,--.   _ .--.  .---.  
   |  __ /   [  |[ \ [  ]/ /__\\[ `/'`\]| |       `'_\ : [ `/'`\]/ /__\\ 
  _| |  \ \_  | | \ \/ / | \__., | |    \ `.___.'\// | |, | |    | \__., 
 |____| |___|[___] \__/   '.__.'[___]    `.____ .'\'-;__/[___]    '.__.' 
                                                                         
+contact: k.d.berends@utwente.nl | koen.berends@deltares.nl
+*/////////////////////////////////////////////////////////////
 
- */////////////////////////////////////////////////////////////
 
-const version = "0.40";
+const version = "0.5";
+var ExploreFigure = {}; // figure that has uncertainty bands
+var FlowFigure = {}; // figure that has 1D steady flow simulation running
 
-// find out info about user
+// Print welcome
 console.log('Hi there!')
 console.log("You are running version v"+version)
 console.log('According to your browser, your preferred language is: '+navigator.language)
 
-// load about
+// Load content
 $('#AboutContent').load('xml/en/about.xml');
 $('#PaperContent').load('xml/en/learn.xml');
 
-/*
-https://stackoverflow.com/questions/50543163/can-i-detect-if-my-pwa-is-launched-as-an-app-or-visited-as-a-website
-// Detects if device is on iOS 
-const isIos = () => {
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  return /iphone|ipad|ipod/.test( userAgent );
-};
-// Detects if device is in standalone mode
-const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-// Checks if should display install popup notification:
-if (isIos() && !isInStandaloneMode()) {
-  this.setState({ showInstallMessage: true });
-};
-
-this.setState({ showInstallMessage: true });
-*/
-
-
-
-
 /** ////////////////////////////////////////////////////////////
- * Extend jquery
- * 
- *
+ * Extend jquery for css menu (intervention selector)
  */////////////////////////////////////////////////////////////
 
 (function($){
@@ -138,7 +115,7 @@ var toggleApp = function (appindex) {
 
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)
- * For overflowing divs 
+ * Scrollbars are hidden until hovered above (by mouse)
  *
  */////////////////////////////////////////////////////////////
 
@@ -174,13 +151,11 @@ const ps = new PerfectScrollbar('#PaperContent', {
 });
 ps.update()
 
-
 /** ////////////////////////////////////////////////////////////
  * Exploration app
  */////////////////////////////////////////////////////////////
 
-/* === UI ===
- */
+/* === UI === */
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -262,7 +237,6 @@ function showRelo() {
                   align: 'right'});
 };
 
-
 function showSmooth() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_smoothing.xml');
@@ -289,9 +263,7 @@ function showSmooth() {
                 {file: 'tooltip_smoothing.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
-                 align: 'right'});
-
-  
+                 align: 'right'}); 
 };
 
 function showGROYNLOW(){
@@ -319,7 +291,6 @@ function showGROYNLOW(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
-  
 };
 
 function showMINEMBLOW(){
@@ -348,7 +319,6 @@ function showMINEMBLOW(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
-
 };
 
 function showFLPLOW(){
@@ -405,18 +375,13 @@ function showSIDECHAN(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
-
 };
-
 
 /** ////////////////////////////////////////////////////////////
  * Interaction
  *//////////////////////////////////////////////////////////////
 
-/* Create initial shown data & initialise apps */
-var ExploreFigure = {};
-var FlowFigure = {};
-
+/* Execute this function on startup */
 function display(error, dataset, comparedata) {
   // === Background map ===
   
@@ -471,13 +436,6 @@ function display(error, dataset, comparedata) {
         });
       });
 };
-
-
-// Kick off everything
-d3.queue()
-  .defer(d3.json, 'data/relocation_int100.json')
-  .defer(d3.json, 'data/exceedance_diagram_data.json')
-  .await(display);
 
 // === ~final
 
@@ -579,3 +537,10 @@ $(document).ready(function () {
 
 $('#version-number-ui').text('App: v' + version);
 $('#version-number-map').text('Map: v' + map_version);
+
+
+// Kick off everything
+d3.queue()
+  .defer(d3.json, 'data/relocation_int100.json')
+  .defer(d3.json, 'data/exceedance_diagram_data.json')
+  .await(display);

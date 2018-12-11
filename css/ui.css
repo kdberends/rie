@@ -823,7 +823,8 @@ nav {
   display: flex;
   align-items: top;
   width: 900%;  
-  height: 100px;
+  height: 100%;
+  overflow: hidden;
   transition: all 0.4s ease-out;
   pointer-events: initial;
 }

@@ -119,7 +119,7 @@ var toggleApp = function (appindex) {
  *
  */////////////////////////////////////////////////////////////
 
-const ss = new PerfectScrollbar('#StoryScroll', {
+const ss = new PerfectScrollbar('#StoryCarousel', {
   wheelSpeed: 1,
   wheelPropagation: false,
   minScrollbarLength: 20,

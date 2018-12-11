@@ -183,7 +183,7 @@ window.onclick = function(event) {
 function showReference() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_reference.xml');
-  
+  $('#MenuCurrentIntervention').text('Reference')
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
@@ -199,7 +199,7 @@ function showReference() {
 function showRelo() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_relocation.xml');
-  
+  $('#MenuCurrentIntervention').text('Dike relocation')
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){
           ExploreFigure.updateData(d, function(){
@@ -240,7 +240,7 @@ function showRelo() {
 function showSmooth() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_smoothing.xml');
-  
+  $('#MenuCurrentIntervention').text('Mowing floodplains')
   /* Explore figure */
   d3.json('data/smoothing_int99.json', function(d){
     ExploreFigure.updateData(d, function () {
@@ -269,7 +269,7 @@ function showSmooth() {
 function showGROYNLOW(){
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_groynes.xml');
-  
+  $('#MenuCurrentIntervention').text('Groyne lowering')
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -296,6 +296,8 @@ function showGROYNLOW(){
 function showMINEMBLOW(){
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_minemb.xml');
+  $('#MenuCurrentIntervention').text('Embankment lowering')
+
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -324,7 +326,7 @@ function showMINEMBLOW(){
 function showFLPLOW(){
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_lowering.xml');
-  
+  $('#MenuCurrentIntervention').text('Floodplain lowering')
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -352,7 +354,7 @@ function showFLPLOW(){
 function showSIDECHAN(){
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_sidechannels.xml');
-  
+  $('#MenuCurrentIntervention').text('Side channels')
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){
             ExploreFigure.updateData(d, function() {

@@ -2,6 +2,11 @@
 
 const map_version = 0.3;
 var velocityLayerID = {};
+
+/* Layer groups */
+var mapElementsGroup = new L.layerGroup(); 
+var mapZoomGroup = new L.layerGroup();  // shows only on very high levels of zoom
+
 /* STYLES */
 
 /* Dike */
@@ -20,6 +25,14 @@ var MinorEmbankmentStyle = {
   };
 
 var DashStyle = {
+    "stroke": true,
+    "color": "#6C716C",
+    "weight": 2,
+    "dashArray": "10 5",
+    "dashOffset": "1"
+  };
+
+var StudyAreaStyle = {
     "stroke": true,
     "color": "#6C716C",
     "weight": 2,
@@ -59,6 +72,14 @@ var PolySideChannels = {
           "color": "#0CBCD1", // color of fill
           "opacity": 0,  // opacity of stroke
           "fillOpacity": 0.4
+};
+
+var WaalOutlineStyle = {
+          "stroke": true,
+          "weight": 1,
+          "color": "#0CBCD1", // color of fill
+          "opacity": 0,  // opacity of stroke
+          "fillOpacity": 0.2
 };
 
 var PolyLowering = {
@@ -131,6 +152,20 @@ map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 /* === Map elements ===
  */
 
+// Waal river outline
+var waal_outline = new L.geoJson(null, {
+  style: WaalOutlineStyle,
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {});
+  }
+});
+
+d3.json('data/waal_bed.json', function(d) {
+  waal_outline.addData(d)});
+
+// study area rect.
+var studyarea_rect =  L.rectangle([[51.79, 5.267], [51.889, 5.507]], StudyAreaStyle);
+
 // Reference dikes
 var dike =  new L.geoJson(null, {
       style: LineStyle,
@@ -200,9 +235,6 @@ var mowing =  new L.geoJson(null, {
       }
   });
 
-/* Add groups */
-var mapElementsGroup = new L.layerGroup(); 
-var mapZoomGroup = new L.layerGroup();  // shows only on very high levels of zoom
 
 /* Add to Map */
 function addRiverkilometerToMap() {
@@ -225,8 +257,9 @@ function addRiverkilometerToMap() {
 };
 
 addRiverkilometerToMap()
-mapElementsGroup.addLayer(dike);
-mapElementsGroup.addLayer(riverkmFocus);
+//mapElementsGroup.addLayer(dike);
+//mapElementsGroup.addLayer(waal_outline);
+//mapElementsGroup.addLayer(riverkmFocus);
 mapElementsGroup.addTo(map);
 
 /* === Map events ===
@@ -235,13 +268,13 @@ mapElementsGroup.addTo(map);
 /* on zoomlevels smaller than 11, remove all elements from map */
 map.on('zoomend', function() {
   
-  if (map.getZoom() < 11){
+  if (map.getZoom() < 10){
       map.removeLayer(mapElementsGroup)
   }
   if (map.getZoom() < 13){
       map.removeLayer(mapZoomGroup)
   }
-  if (map.getZoom() >= 11){
+  if (map.getZoom() >= 10){
       map.addLayer(mapElementsGroup)
     }
   if (map.getZoom() >= 13){
@@ -268,7 +301,9 @@ function mapZoomToStAndries() {
 function resetElementsOnMap(){
   mapElementsGroup.clearLayers();
   mapElementsGroup.addLayer(dike);
+  mapElementsGroup.addLayer(waal_outline);
   mapElementsGroup.addLayer(riverkmFocus);
+  mapElementsGroup.addLayer(studyarea_rect);
   dike.setStyle(LineStyle);
 };
 

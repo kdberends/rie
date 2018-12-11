@@ -88,6 +88,10 @@ function hide_welcome() {
   $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
 };
 
+function draw_studyarea_rectangle() {
+  
+};
+
 /////////////////////////////////////////////////////////////
 //  SFunct
 /////////////////////////////////////////////////////////////
@@ -109,7 +113,7 @@ function map_zoom_NL() {
 
 function map_zoom_Waal() {
   hide_welcome()
-  map.setView([51.823, 5.3682], 9);
+  map.setView([51.823, 5.3682], 10);
 };
 
 function map_zoom_StAndries() {
@@ -249,9 +253,9 @@ function story_showStAndries(reverse=false){
     map_zoom_Waal();
   } else {
     map_zoom_StAndries();
+    draw_studyarea_rectangle();
   };
 };
-
 
 function story_show_uncertainty_waterlevels(reverse=false){
   if (reverse) {
@@ -273,16 +277,20 @@ function story_show_normalised_uncertainty(reverse=false){
 function story_show_floodplain_smoothing(reverse=false){
   if (reverse) {
     explorecanvas_show_normalised_waterlevels();
+    showReference();
   } else {
     explorecanvas_show_smoothing();
+    showSmooth();
   };
 };
 
 function story_show_sidechannels(reverse=false){
   if (reverse){
     explorecanvas_show_smoothing();
+    showSmooth();
   } else {
     explorecanvas_show_sidechannels();
+    showSIDECHAN();
   }
 };
 
@@ -290,6 +298,7 @@ function reset_story_2(){
   map_zoom_Waal();
   hide_interventioncanvas();
   show_storycanvas();
+  showReference();
 };
 
 /////////////////////////////////////////////////////////////

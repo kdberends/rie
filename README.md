@@ -1,6 +1,8 @@
-# Model-based design
+# River Intervention Explorer
 
-This repository tracks a website that visualises & storytells the study found here: https://www.nat-hazards-earth-syst-sci-discuss.net/nhess-2018-325/
+## What this is
+This repository tracks a progressive web app (PWA) that is developed to communicate my PhD research. For more information about my research see [University profile](https://people.utwente.nl/k.d.berends), the [RiverCare knowledge base](https://kbase.ncr-web.org/rivercare)
+
 
 It is made with Leaflet & friends (plugins), OpenStreetMap, CartoDB and magic. 
 

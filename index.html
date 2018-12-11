@@ -35,7 +35,7 @@
     <meta http-equiv="Expires" content="0" />
     
 
-    <title>RiverCare F1</title>
+    <title>River intervention explorer</title>
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
@@ -72,6 +72,12 @@
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
   </div>
+  <!-- Beta bart -->
+  <div id="beta-bar">
+    Hi there! This website is currently under review. Something not working well for you? <a href="https://github.com/kdberends/rie"> please let me know :) </a>
+    <label class="close-bb" onclick="$('#beta-bar').toggleClass('closed-bb')">x</label>
+  </div>
+
   <!-- GitHub banner
   <a href="https://github.com/kdberends">
     <img style="position: absolute; top: 0; right: 0; border: 0;" 
@@ -104,11 +110,12 @@
 
     <!-- Map Controls -->
     <div id="MapTopbar">
+      <div id="AppTitle">RIVER INTERVENTION EXPLORER</div>
       <div id="MapTopBarBackground"></div>
       <div id="Scenarioselector">
             <div class='cssmenu'>
               <ul>
-                 <li class='has-sub'><a href='#'>Choose intervention</a>
+                 <li class='has-sub'><a id="MenuCurrentIntervention" href='#'>Choose intervention</a>
                     <ul>
                        <li class='no-sub'><a href='#' onclick='showReference();toggleApp(1);'>Reference</a></li>
                        <li class='no-sub' ><a href='#' onclick="showSmooth();toggleApp(1);">Mowing floodplains</a></li>
@@ -263,7 +270,7 @@
 <script src="js/protoSteadyFlowApp.js"></script>
 <script src="js/protoCompareChart.js"></script>
 <script src="js/map.js"></script>
-<script src="js/explore.js"></script>
+<script src="js/main.js"></script>
 <script src="js/story.js"></script>
 <script src="js/startup.js"></script>
 </html>

@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml> 
 <div id="1">
-	<h2>I<br/>How uncertainty changes the equation</h2>
-	<em>This story introduces the scientific concept of 'uncertainty' in the context of river engineering.</em>
+	<h2>II<br/>Uncertainty</h2>
+	<em>This story introduces the scientific concept of 'uncertainty' in the context of river engineering. This story covers the basic findings of our first journal paper. </em>
 </div>
 <div id="2">
-	
+	Above is a schematic river, seen from the side. In the previous story how, if we if we know the river geometry and roughness we can compute the water levels and effect of river engineering.  
+	<br/>
+	<br/>
+	Many times we do not know enough to precisely model the river. For example, we often don't exactly know how high the resistance to flow is*. This introduces something we call uncertainty.
+	<br/>
+	<br/>
+	<em>*Flow resistance is a difficult, but very important concept. Higher resistance causes slower flow velocity and higher water levels. One important thing that increases resistance are plants and trees. For example, water flows slower through trees than it does over sand. </em>
+</div>
+<div id="3">
+	Uncertainty is a difficult concept, even in science. We'll explain what we mean when we say with an example*. 
+	<br/>
+	<br/>
+	<em>*there are very many different interpretations of uncertainty. We address some of them at the end of this story, but </em>
+</div>
+<div id="4">
+	The resistance against flow is measured with a unit called the Manning coefficient. For many reasons, we cannot directly measure this. However, based on earlier research we can make an educated guess. For example, one researcher found a value of 0.04...
+</div>
+<div id="5">
+	and other researchers found other values. By combining all these values we can describe the Manning coefficient with a probability density function. This function describes our uncertainty mathematically. 
+</div>
+<div id="6">
+	The next step is to find out what this uncertainty does to our water levels. We do this by randomly picking a number from the earlier probability density function and calculating the water level...
+</div>
+<div id="7">
+	and doing this many times. These results can be summarised with a probability density function as well, creating an uncertainty band. 
 </div>
 <!--
 <div id="6">

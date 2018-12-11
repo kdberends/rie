@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml> 
+<div id="1">
+	<h2>III<br/>Uncertainty of large-scale interventions</h2>
+	<em>This story briefly explains the main results of our paper "Uncertainty quantification of flood mitigation predictions and implications for decision making"</em>
+</div>
+<div id="2">
+	Let's have a look at the River Waal in The Netherlands. This river is the largest distributary of the River Rhine. 
+	<br/>
+	<br/>
+	Mobile users: click <i class="fas fa-arrow-left"></i> in the top menu to view the map!
+
+</div>
+<div id="3">
+	Our study area is the "St. Andries" river bend, named after a former <a href="https://nl.wikipedia.org/wiki/Fort_Sint-Andries_(Heerewaarden)">bastion fortress</a>. Our objective is to lower the water levels around the city of Tiel during a design flood*.
+	<br/>
+	<br/>
+	<em>* Jere, a 'design' flood means a discharge with a return period of approximately once every 1250 years. This is the same definition used in the <a href='https://www.ruimtevoorderivier.nl/english'> "Room for the River" programme.</a> Note that these conditions are not expected to lead to actual flooding: the dikes are designed to withstand these conditions. </em>
+</div>
+<div id="4">
+	With a sophisticated computer model, we calculated the water levels in the Waal during the design flood. In the figure above, you see that this is not a single line, but bands. 
+	<br/>
+	<br/>
+	There are 'uncertainty bands'. There is uncertainty because we do not exactly know how much resistance the river bed and existing vegetation gives to flow. However, we can make a good guess. 
+</div>
+<div id="5">
+	If we correct for the slope of the river, we have a better view of how large the uncertainty is. If you hover over the bands you see how confident we are that the water levels are within these ranges. 90% of the model simulations were within the largest confidence interval ("very high confidence"). 
+	<br/>
+	<br/>
+	What does this mean for the uncertainty of large-scale river interventions? Is the uncertainty as large, or smaller?
+</div>
+<div id="6">
+	"Floodplain smoothing" refers to the removal of vegetation that offers high resistance to flow, and to replace it with grass. Since grass offers little resistance to flow, the water levels will go down. 
+	<br/>
+	<br/>
+	That's what we see in the figure above. The water levels go down. The uncertainty is pretty large compared to the effect, but smaller than the water levels from the previous step. 
+</div>
+<div id="7">
+	Let's now take a look at building side-channels. Side channels reduce water levels because they (1) are deeper than the floodplain they replace and (2) they offer less resistance to flow. 
+	<br/>
+	<br/>
+	The uncertainty, relative to the expected effect, is now much smaller.
+</div>
+<div id="8">
+	We studied a number of other interventions and discovered that, generally larger decrease in flood levels are accompanied by greater uncertainty. 
+	<br/>
+	However, there can be large differences between intervention designs. In the examples given previously, we saw that building side-channels resulted in a larger flood level decrease, with smaller uncertainty. 
+	<br/>
+	<br/>
+	Want to know more? Explore different interventions yourself, read our <a href="#" onclick="toggleApp(2)"> journal paper</a> or continue on to the next storyline. 
+</div>
+</xml>

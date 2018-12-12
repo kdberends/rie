@@ -4,14 +4,5 @@ $(window).on('load', function() {
     console.log('Opening story overview')
     openStoryOverview();
 	toggleApp(0);
-	$('#loader-wrapper').addClass('loaded');
-
-	/*
-	var maptip = new Tooltip($("#menuToggle"), {
-	  title: "Click here to explore all datasets!",
-	  placement: 'bottom',
-	  trigger: 'manual'
-	});
-	maptip.show()*/
-	//maptip.dispose()
+	$('#loader-wrapper').toggleClass('loaded');
 });

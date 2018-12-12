@@ -188,10 +188,10 @@ function explorecanvas_show_sidechannels(){
 /* story 0*/
 function story_showFlow(reverse=false) {
   if (reverse) {
-    $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
+    show_storycanvas();
     $('#FlowPanel').css('transform','translate(-120%, 0%)');
   } else {
-    $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
+    hide_storycanvas();
     $('#FlowPanel').css('transform','translate(0%, 0%)');
     $('#FlowScroll').css('transform','translate(-120%, 0%)');
   };

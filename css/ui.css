@@ -566,13 +566,13 @@ nav {
   color: var(--accent-2);
   font-size: 12px;
   text-align: center;
-  opacity: 0.3;
+  opacity: 1;
   transition: 250ms ease-out;
 }
 
 #app-info::after{
   content: "About";
-  left: 18px;
+  left: 15px;
 }
 
 #app-story::after{
@@ -581,6 +581,7 @@ nav {
 
 #app-explore::after{
   content: "Map";
+  left: 23px;
 }
 
 #app-compare::after{

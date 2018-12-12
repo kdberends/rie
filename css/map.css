@@ -104,7 +104,7 @@
   margin: 10px;
   width: 100%;
   left: 15px;
-  color: white;
+  color: var(--accent-2);
   font-size: 24px;
   transition: color .3s ease;
 }
@@ -115,7 +115,7 @@
 
 .map-ui-button::after {
 	font-size: 14px;
-	color: white;
+	color: var(--accent-2);
 	opacity: 0;
 	content: "zoom to intervention";
 	transition: opacity .3s ease;

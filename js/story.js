@@ -262,7 +262,6 @@ function reset_story_0(){
 function story_showWaal(reverse=false) {
   if (reverse){
     map_zoom_NL();
-    $("#StoryCanvas").html("<i class='fas fa-book-reader'></i>");
     show_storycanvas();
   } else {
     map_zoom_Waal();

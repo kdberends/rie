@@ -54,7 +54,7 @@
     
     
     <!-- LOCAL STYLE SHEETS-->
-    <link rel="stylesheet" type="text/css" href="css/thirdparty/jquery-ui-slider-pips.css"/>
+    <link rel="stylesheet" type="text/css" href="css/dark-theme.css" id="theme_css"/>
     <link rel="stylesheet" type="text/css" href="css/explore.css"/>
     <link rel="stylesheet" type="text/css" href="css/flatslider.css"/>
     <link rel="stylesheet" type="text/css" href="css/steadyflow.css"/>
@@ -166,15 +166,17 @@
         </p>
         <h2>Theme</h2>
         <p>
-          <span><a href='#' >🇬🇧  Dark </a></span>
-          <span class='notimplemented'>🇳🇱 Light</span>
+          <span><a href='#'  onclick="toggleTheme('dark')">Dark </a></span>
+          <span><a href='#' onclick="toggleTheme('light')">Light </a></span>
         </p>
       </div>
 
       <!-- Story app -->
       
       <div id="StoryPanel" class='panel'>
-        <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;"> <i class="fas fa-book-reader"></i></div>
+        <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;">
+          <img class='storycanvasimage' src="img/waal_outline_withandries.svg"/>
+        </div>
         
         <div id="StoryOptions">
           <div id="StoryProgress">

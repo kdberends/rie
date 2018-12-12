@@ -2,7 +2,8 @@
 
 const map_version = 0.3;
 var velocityLayerID = {};
-
+var map = {}; 
+var map2 = {}; 
 /* Layer groups */
 var mapElementsGroup = new L.layerGroup(); 
 var mapZoomGroup = new L.layerGroup();  // shows only on very high levels of zoom
@@ -36,6 +37,7 @@ var StudyAreaStyle = {
     "stroke": true,
     "color": "#6C716C",
     "weight": 2,
+    "fillOpacity": 0,
     "dashArray": "10 5",
     "dashOffset": "1"
   };
@@ -107,37 +109,46 @@ var PolyLowering = {
 
 //var host = "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png";
 var host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png";
-// Attribution is now embedded in menu, no longer in map
 var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+var tilelayer1 = {};
+var tilelayer2 = {};
 
+var setTileLayerHost = function(theme='dark') {
+  if (theme == 'dark') {
+    host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png";
+    attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+  } else if (theme == "light"){
+    host = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+    attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  };
+};
 
+var addTileLayers = function(){
+  tilelayer1 = new L.TileLayer(host);
+  tilelayer2 = new L.TileLayer(host);
+  map.addLayer(tilelayer1);
+  map2.addLayer(tilelayer2);
+};
 
-/* === Maps ===
- */
-var map = new L.Map("map", {center: [51.845, 5.36],  // [51.845, 5.36], 13 for st andries, [52, 5], 7 for waal
+var removeTileLayers = function() {
+  map.removeLayer(tilelayer1)
+  map.removeLayer(tilelayer2)
+};
+
+// add maps
+map = new L.Map("map", {center: [51.845, 5.36],  // [51.845, 5.36], 13 for st andries, [52, 5], 7 for waal
                             zoom: 13,
                             zoomControl: false,
                             attributionControl:false })
-  .addLayer(new L.TileLayer(host, {
-      maxzoom: 19,
-      attribution: attr}
-    )
-  );
 
-// Clone of map for 'glass blur' effect of #LeftBart
-var map2 = new L.Map("map_clone", {center: [51.84, 5.46], 
+map2 = new L.Map("map_clone", {center: [51.84, 5.46], 
                               zoom: 13,
                               zoomControl: false,
                               attributionControl:false})
-  .addLayer(new L.TileLayer(host));
+addTileLayers();
 
-
-// Clone of map for 'glass blur' effect
-//var map3 = new L.Map("MapCloneControls", {center: [51.84, 5.46], 
-//                              zoom: 13,
-//                              zoomControl: false,
-//                              attributionControl:false})
-//  .addLayer(new L.TileLayer(host));
+/* === Maps ===
+ */
 
 // sync so that they overlap (the numbers are to correct for the margin of mapclone css)
 xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x

@@ -1,0 +1,27 @@
+:root { 
+    --background-light: #ededed;
+    
+    --font-body-size: 18px;
+    --font-body-family: 'Source Sans Pro', 'Karla', sans-serif;
+    --font-body-header: 'Raleway', 'Montserrat', sans-serif;
+    --font-ui: 'Raleway', sans-serif;
+    --nav-color: white;
+    --nav-size: 26px;
+
+    --accent-1: #191C25; /* used for highlights.  contrast with accent 2*/
+    --accent-2: #DCDCDC; /* main text/ light color */
+    --accent-3: #BCD3F2; /* hover 2*/
+    --accent-4: #56CBF9; /* app menu */
+    --accent-5: #7FBEEB;/* hover 4*/
+
+    
+    --glass-background: rgba(231, 241, 255, 0);
+    --glass-accent-1: rgba(246, 247, 249, .3);
+    --glass-accent-2: rgba(229, 235, 238, .2);
+    --glass-accent-3: rgba(215, 222, 227, .24);
+    --glass-accent-4: rgba(245, 247, 249, .1);
+
+    --font-hyperlink: var(--accent-5);
+    --font-hyperlink-hover: var(--accent-4);
+    --font-body-color: var(--accent-2);
+}

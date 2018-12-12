@@ -66,8 +66,8 @@
 
 #MapTopBarBackground{
 	position: absolute;
-	background-color: var(--accent-6);
-	border-bottom: 1px solid #FFFFFF99;
+	background-color: var(--accent-1);
+	border-bottom: 1px solid var(--accent-3);
 	width: 100%;
 	height: 60px;
 	z-index: 0;

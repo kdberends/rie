@@ -4,25 +4,7 @@
  * Globals
  * ===========================================
  */
- :root { 
-    --background-light: #ededed;
-    --accent-light: #76BFFB;
-    --font-hyperlink: #92C7F3;
-    --font-hyperlink-hover: #58A8E9;
-    --font-body-color: #D9D9D9;
-    --font-body-size: 18px;
-    --font-body-family: 'Source Sans Pro', 'Karla', sans-serif;
-    --font-body-header: 'Raleway', 'Montserrat', sans-serif;
-    --font-ui: 'Raleway', sans-serif;
-    --nav-color: white;
-    --nav-size: 26px;
-    --accent-1: #FF9F1C;
-    --accent-2: #D5573B;
-    --accent-3: #3C787E;
-    --accent-4: #313B72;
-    --accent-5: #3F3047;
-    --accent-6: #191A21;
-}
+
 
 a:not([href*='github.io']):not([href^='#']):not([href^='/']):after {
   content: url(https://upload.wikimedia.org/wikipedia/commons/4/44/Icon_External_Link.svg);
@@ -363,7 +345,7 @@ footer {
   left: 0px;
   width: 300px;
   font-family: var(--font-body-family)  
-  color: var(--font-body-color);
+  color: var(--accent-2);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   z-index: 2;
 }
@@ -377,14 +359,14 @@ footer {
   font-size: 26px;
   font-family: Oswald;
   text-decoration: none;
-  color: white;
-  background: var(--accent-6);
+  color: var(--accent-2);
+  background: var(--accent-1);
   -webkit-transition: color .2s ease;
        -o-transition: color .2s ease;
           transition: color .2s ease;
 }
 .cssmenu > ul > li > a:hover {
-  color: var(--accent-1);
+  color: var(--accent-3);
 }
 /* Cross animation */
 .cssmenu ul > li.has-sub > a:after {
@@ -445,7 +427,7 @@ footer {
   padding-left: 32px;
 }
 .cssmenu ul ul li a:hover {
-  color: var(--accent-1);
+  color: var(--accent-3);
 }
 .cssmenu ul ul > li.has-sub > a:after {
   top: 16px;
@@ -505,12 +487,12 @@ footer {
 .glass{
   width:100%;
   height: 100%;
-  background-color: rgba(231, 241, 255, 0);
+  background-color: var(--glass-background);
   background-image: linear-gradient(to top right, 
-                    rgba(246, 247, 249, .3)  0%,
-                    rgba(229, 235, 238, .2) 50%,
-                    rgba(215, 222, 227, .24) 52%,
-                    rgba(245, 247, 249, .1) 100%
+                    var(--glass-accent-1)  0%,
+                    var(--glass-accent-2) 50%,
+                    var(--glass-accent-3) 52%,
+                    var(--glass-accent-4) 100%
                     );
   border-radius: inherit;  
 }
@@ -527,7 +509,6 @@ nav {
 
 #appnavigation {
   font-family: var(--font-ui);
-  color: var(--nav-color);
   font-size: var(--nav-size);
   position: absolute;
   padding-bottom: 15px;
@@ -552,28 +533,29 @@ nav {
   user-select: none;/* to prevent blue flickering in chrome*/
   position: relative;
   margin-left: 25px;
-  border-bottom:2px solid #49F5FF22;
+  border-bottom:2px solid var(--accent-4);
   transition: 200ms ease-out;
+  color: var(--accent-2);
 }
 
 @media (max-width: 340px){#appnavigation span {margin-left: 17px}}
 
 #appnavigation span:hover {
-  border-bottom:3px solid #49F5FFFF;
+  border-bottom:3px solid var(--accent-5);
 }
 
 #appnavigation span.app-active {
-  border-bottom:3px solid #49F5FFFF;
+  border-bottom:3px solid var(--accent-4);
 }
 
 #appnavigation span.app-active::after{
   opacity: 1;
-  color: #49F5FFFF;
+  color: var(--accent-4);
 }
 
 #appnavigation span:hover::after{
   opacity: 1;
-  color: #FFFFFFFF;
+  color: var(--accent-5);
 }
 
 #appnavigation span::after{
@@ -581,7 +563,7 @@ nav {
   width: 80px;
   margin-left: -50px; /* -1/2width - iconwidth/2 */
   top: 40px;
-  color: white;
+  color: var(--accent-2);
   font-size: 12px;
   text-align: center;
   opacity: 0.3;
@@ -1059,7 +1041,7 @@ input:checked + .slider:before {
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: var(--nav-color);
+  background: var(--accent-2);
   border-radius: 3px;
   z-index: 1;
   transform-origin: 0px 0px;

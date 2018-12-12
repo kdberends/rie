@@ -5,7 +5,7 @@ That's me trying to explain my research to my dog. As I found out, communicating
 <br/>
 <br/>
 
-This website (or 'app') is built to make the most interesting aspects of my <a href="https://people.utwente.nl/k.d.berends">PhD research</a> accessible beyond the scientific papers. I hope you like it :)
+This website (or 'app') is built to make the most interesting aspects of my <a href="https://people.utwente.nl/k.d.berends">PhD research</a> accessible beyond the <a href='#' onclick="toggleApp(2);">scientific papers</a>. 
 <br/>
 <br/>
 Cheers,<br/>

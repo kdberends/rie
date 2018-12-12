@@ -113,6 +113,20 @@ var toggleApp = function (appindex) {
   };
 };
 
+var toggleTheme = function (themename) {
+  if (themename=='dark'){ 
+    document.getElementById('theme_css').href = 'css/dark-theme.css';
+    setTileLayerHost('dark');
+    removeTileLayers();
+    addTileLayers();
+  } else {
+    document.getElementById('theme_css').href = 'css/light-theme.css';
+    setTileLayerHost('light');
+    removeTileLayers();
+    addTileLayers();
+  };
+};
+
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)
  * Scrollbars are hidden until hovered above (by mouse)

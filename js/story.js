@@ -278,7 +278,7 @@ function story_showStAndries(reverse=false){
   } else {
     map_zoom_StAndries();
     draw_studyarea_rectangle();
-    $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline_withAndries.svg'></img>");
+    $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline_withandries.svg'></img>");
     show_storycanvas();
   };
 };

@@ -4,5 +4,5 @@ $(window).on('load', function() {
     console.log('Opening story overview')
     openStoryOverview();
 	toggleApp(0);
-	$('#loader-wrapper').toggleClass('loaded');
+	$('#loader-wrapper').addClass('loaded');
 });

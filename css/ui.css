@@ -115,7 +115,8 @@ body a:hover
     height: 100%;
     z-index: 1000;
     pointer-events: none;
-} 
+    overflow: hidden;
+}
 
 #loader-wrapper img {
   left: 50%;
@@ -125,8 +126,10 @@ body a:hover
   z-index: 1002;
   position: absolute;
   transition: opacity 0.5s 1s ease;
-
+  pointer-events: initial;
 }
+
+
 /* spinny thing */
 #loader {
     display: block;
@@ -221,6 +224,7 @@ body a:hover
 /* when loaded, hide the bunch */
 .loaded #loadlogo{
   opacity: 0;
+  pointer-events: none;
 }
 
 .loaded #loader {

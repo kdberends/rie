@@ -829,6 +829,10 @@ nav {
   pointer-events: initial;
 }
 
+.storycanvasimage{
+  width: 100%;
+}
+
 .story-in-carousel{
   position: relative;
   opacity: 1;

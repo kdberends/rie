@@ -119,14 +119,6 @@ var toggleApp = function (appindex) {
  *
  */////////////////////////////////////////////////////////////
 
-const ss = new PerfectScrollbar('#StoryCarousel', {
-  wheelSpeed: 1,
-  wheelPropagation: false,
-  minScrollbarLength: 20,
-  swipeEasing: true
-});
-ss.update()
-
 const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,
   wheelPropagation: false,
@@ -439,99 +431,6 @@ function display(error, dataset, comparedata) {
       });
 };
 
-// === ~final
-
-// Intervention width slider
-$("#flat-slider")
-    .slider({
-        max: 10000,
-        min: 0,
-        range: true,
-        values: [4000, 6000],
-        change: function(event, ui) {
-          FlowFigure.changeInterventionExtent(ui.values)
-        }
-    })
-    .slider("pips", {
-        first: "pip",
-        last: "pip"
-    });
-
-// Downstream water level                    
-$("#flat-slider-vertical-1")
-  .slider({
-        max: 7,
-        min: 3,
-        range: "min",
-        value: 4,
-        step: 0.5,
-        orientation: "vertical",
-        change: function(event, ui) {
-          FlowFigure.changeBoundary(ui.value)
-        }
-    })
-  .slider("pips", {
-        first: "pip",
-        last: "pip"
-    })
-    .slider("float");
-
-// Discharge
-$("#flat-slider-vertical-2")
-  .slider({
-        max: 3000,
-        min: 1000,
-        range: "min",
-        value: 2000,
-        step: 200,
-        orientation: "vertical",
-        change: function(event, ui) {
-          FlowFigure.changeDischarge(ui.value)
-        }
-    })
-  .slider("pips", {
-        first: "pip",
-        last: "pip"
-    })
-    .slider("float");
-
-// Bed slope
-$("#flat-slider-vertical-3")
-  .slider({
-        max: 6.5,
-        min: 3.5,
-        range: "min",
-        value: 5,
-        step: 0.25,
-        orientation: "vertical",
-        change: function(event, ui) {
-          FlowFigure.changeSlope(ui.value/10000)
-        }
-    })
-  .slider("pips", {
-        first: "pip",
-        last: "pip"
-    })
-    .slider("float");
-
-// Dredging depth
-$("#flat-slider-vertical-4")
-  .slider({
-        max: 2,
-        min: 0,
-        range: "min",
-        value: 0,
-        step: 0.5,
-        orientation: "vertical",
-        change: function(event, ui) {
-          FlowFigure.changeInterventionDepth(-1*ui.value)
-        }
-    })
-  .slider("pips", {
-        first: "pip",
-        last: "pip"
-    })
-    .slider("float");
 
 $(document).ready(function () {
   // renderProgress();
@@ -540,9 +439,10 @@ $(document).ready(function () {
 $('#version-number-ui').text('App: v' + version);
 $('#version-number-map').text('Map: v' + map_version);
 
-
 // Kick off everything
 d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')
   .defer(d3.json, 'data/exceedance_diagram_data.json')
   .await(display);
+
+// === ~final

@@ -14,6 +14,11 @@ var currentLang = 'en';
 var flagSwipeActive = false; // if true, swiping will advance story
 var flagSwipetextLoaded = false;
 var StoryFunctions = []; // array with function called at each step in the story
+var StoryCarouselScrollers = []; // array which holds perfectscrollbar objects
+var scrolloptions = {wheelSpeed: 1,
+                     wheelPropagation: false,
+                     minScrollbarLength: 20,
+                     swipeEasing: true}
 
 /* Variable to set width of progressbar */
 let progresstext = Math.round((StoryProgress-1) / NumberOfStories * 100) + "%";
@@ -50,10 +55,16 @@ function openStory (storynum) {
   flagSwipeActive = true;
 
   // create story carousel
+
   for (var i=1;i<NumberOfStories+1;i++){
-    $("<div class='story-in-carousel'></div>")
+    let id = 'sic_' + i;
+
+    $("<div class='story-in-carousel' id="+id+"></div>")
     .load(xmlPath+i)
     .appendTo($('#StoryCarousel'))
+
+    // make story scrollable when needed
+    StoryCarouselScrollers.push(new PerfectScrollbar('#'+id, scrolloptions).update());
   };
 };
 
@@ -61,8 +72,11 @@ function openStoryOverview() {
   resetStory();
   $('#StoryOverview').load('xml/'+currentLang+'/stories_index.xml');
   $('#StoryOverview').css('transform', 'translate(0%, 0%)')
+  
   // delete stories in carousel
   $(".story-in-carousel").remove()
+  for (var i=1;i<NumberOfStories+1;i++){try {StoryCarouselScrollers[i].destroy()} catch (err){}}
+  
   hideStoryNavigation();
   flagSwipeActive = false;
 };
@@ -84,9 +98,6 @@ function show_welcome() {
   $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
 };
 
-function hide_welcome() {
-  $("#StoryCanvas").css('transform', 'translate(-100%, 0%)');
-};
 
 function draw_studyarea_rectangle() {
   
@@ -112,14 +123,12 @@ function map_zoom_NL() {
 };
 
 function map_zoom_Waal() {
-  hide_welcome()
   map.setView([51.823, 5.3682], 10);
 };
 
 function map_zoom_StAndries() {
   map.setView([51.823, 5.3682], 12);
 };
-
 
 function show_interventioncanvas() {
   $('#ExplorePanel').css('transform','translate(0%, 0%)');
@@ -148,22 +157,28 @@ function show_storycanvas(){
   show_welcome();
 };
 
+function hide_storycanvas(){
+  $("#StoryCanvas").css('transform', 'translate(-120%, 0%)');
+};
+
 function show_storycanvas_hide_flow(){
   hide_flowcanvas();
   show_welcome();
 };
 
 function explorecanvas_show_waterlevels(){
-  d3.json("data/reference_waterlevels.json", 
-  	       function (d) {ExploreFigure.updateData(d)});
+  d3.json("data/reference_waterlevels.json", function (d) {ExploreFigure.updateData(d)});
+  ExploreFigure.setYLabel("Water level [m+NAP]")
 }
 
 function explorecanvas_show_normalised_waterlevels(){
   d3.json("data/reference_waterlevels_norm.json", function (d) {ExploreFigure.updateData(d)})
+  ExploreFigure.setYLabel("Normalised\n water level ")
 };
 
 function explorecanvas_show_smoothing(){
    d3.json("data/smoothing_int99.json", function (d) {ExploreFigure.updateData(d)})
+   ExploreFigure.setYLabel("Water level decrease [m]")
 };
 
 function explorecanvas_show_sidechannels(){
@@ -245,22 +260,36 @@ function reset_story_0(){
 
 /* story 2*/
 function story_showWaal(reverse=false) {
-  map_zoom_Waal();
+  if (reverse){
+    map_zoom_NL();
+    $("#StoryCanvas").html("<i class='fas fa-book-reader'></i>");
+    show_storycanvas();
+  } else {
+    map_zoom_Waal();
+    $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline.svg'></img>");
+    show_storycanvas();
+  }
 };
 
 function story_showStAndries(reverse=false){
   if (reverse){
     map_zoom_Waal();
+    $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline.svg'></img>");
+    show_storycanvas();
   } else {
     map_zoom_StAndries();
     draw_studyarea_rectangle();
+    $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline_withAndries.svg'></img>");
+    show_storycanvas();
   };
 };
 
 function story_show_uncertainty_waterlevels(reverse=false){
   if (reverse) {
     hide_interventioncanvas();
+    show_storycanvas();
   } else {
+    hide_storycanvas();
     show_interventioncanvas();  
     explorecanvas_show_waterlevels();
   };
@@ -428,47 +457,55 @@ function addSwipeDetect(el, callback){
             startTime = new Date().getTime() // record time when finger first makes contact with surface
             //e.preventDefault()
             }}, false)
-  
+        
+        // On touchy move lefty or righty but not scrolly
+        // ie: when scroll is enabled on swipeable div, user can move div
+        // in any direction. This is confusing... so when moving left
+        // or right, disable scrolling inside div
         touchsurface.addEventListener('touchmove', function(e){
             if (flagSwipeActive){
             var touchobj = e.changedTouches[0],
                 distX = touchobj.pageX - startX
+                distY = touchobj.pageY - startY 
 
-            // Move div to direction
+            // Move div to direction along x axis but only iff..
             $('#StoryCarousel').css('transition', 'all 0s ease-out' )
-            $('#StoryCarousel').css('transform', 'translate(calc('+(StoryProgress-1)/NumberOfStories*-100+'% + '+distX+'px))')
+            
+            if ((Math.abs(distY) < 10) ||(Math.abs(distX) > 10)) {
+              $('#StoryCarousel').css('transform', 'translate(calc('+(StoryProgress-1)/NumberOfStories*-100+'% + '+distX+'px))')
+            };
 
-            //e.preventDefault() // prevent scrolling when inside DIV
+            //e.preventDefault() // prevent scrolling when inside DIV (doesn't seem to work properly here)
         }}, false);
   
         touchsurface.addEventListener('touchend', function(e){
             if (flagSwipeActive){
+              var touchobj = e.changedTouches[0]
+                  distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+                  distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+                  elapsedTime = new Date().getTime() - startTime // get time elapsed
 
-            var touchobj = e.changedTouches[0]
-                distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
-                distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
-                elapsedTime = new Date().getTime() - startTime // get time elapsed
-            if (true){//(elapsedTime <= allowedTime){ // first condition for awipe met
-                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
-                    swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
-                    // do nothing, ease back animation
-                    $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
-                }
-                else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
-                    swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
-                    // do nothing, ease back animation
-                    $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
-                    $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
-                }
-                else {
-                  // 'none', ease back animation
+              if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // condition for horizontal swipe met
+                  swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe, otherwise right
+                  // do nothing, ease back animation
+                  console.log(swipedir)
+                  $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+              }
+              else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                  swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+                  // do nothing, ease back animation
+                  console.log(swipedir)
                   $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
                   $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
-                }
-            }
+              }
+              else {
+                // 'none', ease back animation
+                $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
+                $('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')
+              }
             // do callback
             handleswipe(swipedir)
-        }}, false)
+        }}, false);
 };
   
 var el = document.getElementById('StoryFrame');
@@ -489,3 +526,4 @@ addSwipeDetect(el, function(swipedir){
     };
 });
 
+//

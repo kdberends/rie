@@ -79,7 +79,7 @@
     Hi there! This website is currently under review. Something not working well for you? <a href="https://github.com/kdberends/rie"> please let me know :) </a>
     <label class="close-bb" onclick="$('#beta-bar').toggleClass('closed-bb')">x</label>
   </div>
-  
+
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -139,39 +139,21 @@
       <!-- The map clone -->
       <div id="map_clone" class="clonemap"></div>
       <!-- Glass effect -->
-      <div class="glass">
+      <div class="glass"> </div>
         
-      <!-- Explore app -->
-      <div id="ExplorePanel" class='panel'>
-        <div><svg id="ExploreCanvas" class='canvas'></svg></div>
-        <div id="ExploreScroll" class='scroll textframe'>
-            <div id='InterventionDescription'></div>
-        </div>
-      </div> <!-- /explorepanel -->
+        <!-- Explore app -->
+        <div id="ExplorePanel" class='panel'>
+          <div><svg id="ExploreCanvas" class='canvas'></svg></div>
+          <div id="ExploreScroll" class='scroll textframe'>
+              <div id='InterventionDescription'></div>
+          </div>
+        </div> <!-- /explorepanel -->
 
-      <!-- Flow app -->
-      <div id="FlowPanel" class='panel'>
-        <div><svg id="FlowCanvas" class='canvas'></svg></div>
-        <!--
-        <div id="FlowScroll" class='scroll'>
-	        <div id="FlowOptions" class='textframe frame-options'>    
-	          <div class="vertical">
-	          <div id="flat-slider"></div>
-	            <div id="flat-slider-vertical-1"></div>
-	            <div id="flat-slider-vertical-2"></div>
-	            <div id="flat-slider-vertical-3"></div>
-	            <div id="flat-slider-vertical-4"></div>
-	          </div>
-	        </div>
-	        <div id="FlowDescription" class='textframe frame-description'>
-	           <div>
-	             Change the values to see how river flow reacts! 
-	             <br/><br/>
-	             (Some background: The water level and mean flow velocity are solved through the <a href='https://en.wikipedia.org/wiki/Jean-Baptiste-Charles-Joseph_B%C3%A9langer'>Bélanger</a> equation, while the vertical flow velocity is computed from the mean velocity following a turbulent flow profile.  )
-	           </div>
-	         </div>-->
-	    </div>
-      </div> <!-- Flow panel -->
+        <!-- Flow app -->
+        <div id="FlowPanel" class='panel'>
+          <div><svg id="FlowCanvas" class='canvas'></svg></div>
+  	    </div>
+      <!-- Flow panel -->
       
       <!-- Settings -->
       <div id="SettingsPanel", class='panel'>

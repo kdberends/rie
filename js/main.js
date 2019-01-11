@@ -13,6 +13,8 @@ contact: k.d.berends@utwente.nl | koen.berends@deltares.nl
 const version = "0.5";
 var ExploreFigure = {}; // figure that has uncertainty bands
 var FlowFigure = {}; // figure that has 1D steady flow simulation running
+var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
+
 
 // Print welcome
 console.log('Hi there!')
@@ -116,14 +118,31 @@ var toggleApp = function (appindex) {
 var toggleTheme = function (themename) {
   if (themename=='dark'){ 
     document.getElementById('theme_css').href = 'css/dark-theme.css';
+    
+    // Background map
     setTileLayerHost('dark');
     removeTileLayers();
     addTileLayers();
+    
+    // Flow velocity visualisation
+    velocityColorScale = ["rgb(36,104, 180)", "rgb(60,157, 194)", "rgb(128,205,193 )", "rgb(151,218,168 )", "rgb(198,231,181)", "rgb(238,247,217)", "rgb(255,238,159)", "rgb(252,217,125)", "rgb(255,182,100)", "rgb(252,150,75)", "rgb(250,112,52)", "rgb(245,64,32)", "rgb(237,45,28)", "rgb(220,24,32)", "rgb(180,0,35)"];
+    removeVelocityLayerFromMap();
+    addVelocityLayerToMap(currentFlowData);
+    
   } else {
     document.getElementById('theme_css').href = 'css/light-theme.css';
+    
+    // Background map
     setTileLayerHost('light');
     removeTileLayers();
-    addTileLayers();
+    addTileLayers(); 
+
+    // Flow velocity visualisation
+    velocityColorScale = ['#000000','#1C191B','#362C38','#3E3854','#3E5371','#3E8D8D','#38A965','#4CC62C','#BCE62C','#FF9600'];
+    removeVelocityLayerFromMap();
+    addVelocityLayerToMap(currentFlowData);
+
+    
   };
 };
 
@@ -195,8 +214,9 @@ function showReference() {
   
   /* map */
   // Velocity visualisation  
+  currentFlowData = 'data/waal_reference_0000.json';
   removeVelocityLayerFromMap();
-  addVelocityLayerToMap('data/waal_reference_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
 
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -215,8 +235,9 @@ function showRelo() {
   
   /* map */
   // Velocity visualisation  
+  currentFlowData = 'data/waal_int07_0000.json';
   removeVelocityLayerFromMap();
-  addVelocityLayerToMap('data/waal_int07_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
 
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -257,8 +278,9 @@ function showSmooth() {
 
   /* Map */
   // Velocity visualisation
+  currentFlowData = 'data/waal_int11_0000.json';
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int11_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
 
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -284,8 +306,9 @@ function showGROYNLOW(){
   
   /* Map */
   // Velocity visualisation
+  currentFlowData = 'data/waal_int01_0000.json';
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int01_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
   
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -314,8 +337,9 @@ function showMINEMBLOW(){
   
   /* Map */
   // Velocity visualisation
+  currentFlowData = 'data/waal_int04_0000.json';
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int04_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
   
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -342,8 +366,9 @@ function showFLPLOW(){
   
   /* Map */
   // Velocity visualisation
+  currentFlowData = 'data/waal_int03_0000.json';
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int03_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
   
   // Add visual elements for this intervention
   resetElementsOnMap();
@@ -370,8 +395,9 @@ function showSIDECHAN(){
 
   /* Map */
   // Velocity visualisation
+  currentFlowData = 'data/waal_int09_0000.json';
   removeVelocityLayerFromMap()
-  addVelocityLayerToMap('data/waal_int09_0000.json', map);
+  addVelocityLayerToMap(currentFlowData, map);
   
   // Add visual elements for this intervention
   resetElementsOnMap();

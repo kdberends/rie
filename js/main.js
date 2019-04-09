@@ -1,5 +1,5 @@
 /** ////////////////////////////////////////////////////////////
-_                           ______                        
+ _______                                  ______                        
 |_   __ \    (_)                        .' ___  |                       
   | |__) |   __  _   __  .---.  _ .--. / .'   \_| ,--.   _ .--.  .---.  
   |  __ /   [  |[ \ [  ]/ /__\\[ `/'`\]| |       `'_\ : [ `/'`\]/ /__\\ 
@@ -10,7 +10,7 @@ contact: k.d.berends@utwente.nl | koen.berends@deltares.nl
 */////////////////////////////////////////////////////////////
 
 
-const version = "0.5";
+const version = "0.51";
 var ExploreFigure = {}; // figure that has uncertainty bands
 var FlowFigure = {}; // figure that has 1D steady flow simulation running
 var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
@@ -26,7 +26,7 @@ $('#AboutContent').load('xml/en/about.xml');
 $('#PaperContent').load('xml/en/learn.xml');
 
 /** ////////////////////////////////////////////////////////////
- * Extend jquery for css menu (intervention selector)
+ * Intervention selector
  */////////////////////////////////////////////////////////////
 
 (function($){
@@ -63,13 +63,24 @@ $('#PaperContent').load('xml/en/learn.xml');
   });
 })(jQuery);
 
+/*If user clicks outside selector, close selector */
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.cssmenu')) {
+    console.log('yes')
+    var element = $('.cssmenu li');
+    // when already open, close
+    element.removeClass('open');
+    element.find('li').removeClass('open');
+    element.find('ul').slideUp(300);
+  }}, false);
+
 /** ////////////////////////////////////////////////////////////
  * Navigation toggles
  * 
  *
  */////////////////////////////////////////////////////////////
 
-// Flags that remember which panel is out
+// Flags to remember which panel is out
 var AppMenuToggle = true;
 var AppToggles = [true, false, false, false, false, false];
 var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel'];
@@ -179,28 +190,6 @@ ps.update()
 /** ////////////////////////////////////////////////////////////
  * Exploration app
  */////////////////////////////////////////////////////////////
-
-/* === UI === */
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropDownFunction() { 
-    document.getElementById("InterventionDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      };
-    };
-  };
-}; 
 
 /* === IO ===
  */

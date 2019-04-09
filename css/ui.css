@@ -876,7 +876,7 @@ nav {
 
 #StoryProgress{
   position: absolute;
-  background: #626262;
+  background: var(--accent-1);
   top: 0px;
   width: 90%;
   left: 5px;
@@ -885,7 +885,7 @@ nav {
 }
 
 .progress-inside {
-  background: var(--font-body-color);
+  background: var(--accent-2);
   border-radius: 0px;
   width: 0px;
   height: 2px;

@@ -33,7 +33,7 @@
 	If we know how riviers work, we can figure out how to lower water levels as well! 
 	<br/>
 	<br/>
-	Let's mark the current water level with a red line.
+	Let's mark the current water level with a line.
 </div>
 <div id="7">
 	If we locally lower the bed level, we make more 'room for the river'. This lowers the water level. 

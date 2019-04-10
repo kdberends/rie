@@ -175,8 +175,9 @@ body a:hover
     border-top-color: #1C587A;
 
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
 }
+
 
 @-webkit-keyframes spin {
     0%   { 
@@ -190,6 +191,7 @@ body a:hover
         transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
     }
 }
+
 @keyframes spin {
     0%   { 
         -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */

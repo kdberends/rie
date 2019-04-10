@@ -108,10 +108,34 @@
 #MapButtons{
 	position: relative;
 	width: 100px;
-	height: 50px;
 	z-index: 0;
-	transition: transform 0.5s ease;
+	transition: all 0.5s ease;
 	display: flex;
+}
+
+@media (max-width: 400px) {
+	#MapButtons{
+		background-color: var(--accent-1);
+		top: 80px;
+		display: inline;
+		position: absolute;
+		left: -65px;
+		padding-left: 20px;
+		width: 50px;
+		max-height: 200px;
+	}
+
+	#MapButtons div:after{
+		top:0px;
+		left: 50px;
+	}
+
+	#MapButtons > .map-ui-button{
+		font-size: 24px;
+		width: 30px;
+	}
+
+
 }
 
 #MapZoom:after {

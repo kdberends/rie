@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml> 
+<div id="1">
+	<h2>I<br/>River engineering 101</h2>
+	<em>This story takes you through the basics of open channel flow, without going into the equations. It introduces a few important concepts: friction, backwater curves and how to read a graph of river engineering effects. </em>
+</div>
+<div id="2">
+	Rivers are a force of nature, and vital to human society. Just like roads, buildings and your teeth, rivers need to be regularly checked and fixed. 
+	<br/>
+	<br/>
+	But how do we 'fix' rivers?... 
+	<br/>
+	<br/>
+	Let's take a look at one important fix: preventing river flooding.
+</div>
+
+<div id="3">
+	A flooding occurs when water level exceeds the level of protective barriers. The river water level 
+	depends on three things: the amount of water, the shape of the river and the resistance against flow. 
+</div>
+<div id="4">
+	For example, if flow resistance decreases, the water level goes down...
+</div>
+
+<div id="5">
+	And if resistance to flow increases, the water level goes up. 
+<br/>
+<br/>
+	<em>Flow resistance is a difficult, but very important concept. Higher resistance causes slower flow velocity and higher water levels. One important thing that increases resistance are plants and trees. For example, water flows slower through trees than it does over sand. </em> 
+</div>
+
+<div id="6">
+	If we know how riviers work, we can figure out how to lower water levels as well! 
+	<br/>
+	<br/>
+	Let's mark the current water level with a line.
+</div>
+<div id="7">
+	If we locally lower the bed level, we make more 'room for the river'. This lowers the water level. 
+<br/>
+<br/>
+<em>Making 'Room for the River' is the title of a large Dutch policy programme (<a href='https://www.ruimtevoorderivier.nl/english'>link</a>). The idea is straightforward: if water can go somewhere else besides 'up', it will go down. This is an alternative to raising the dikes/levees. </em> 
+</div>
+<div id="8">
+	We now have a line of the expected water level decrease, due to our flood mitigation measure!
+	<br/><br/>
+	This seems simple enough. But there is an important caveat: we assumed that we knew the friction value to determine the effect! In reality, we don't really know this. This introduces 'uncertainty'.
+	<br/><br/>
+	In the next chapter, we explore the effect of uncertainty. 
+</div>
+<!--
+<div id="6">
+...we can't measure everything. At least, not precisely. But what we can do is to make a good guess. This is a bit like predicting whether it is going to rain next week: it may be 'likely', but it is not 100% certain. 
+<br/>
+<br/>
+The calculation of these chances involves many complicated computations. In science, this is called 'uncertainty quantification'. 
+</div>
+
+<div id="7">
+So predictions of the effect of river engineering are uncertain... But how much? 
+<br/>
+<br/>
+This was the central question of our study. We designed various interventions aimed at lowering flood water levels on a real life study case:
+</div>
+
+<div id="8">
+This is the River Waal, the most important river in The Netherlands. It connects the Port of Rotterdam to Germany and is the largest distributary of the River Rhine. 
+<br/>
+<br/>
+(Mobile users: to view the map, collapse this panel in the menu on top!)
+</div>
+<div id="9">
+We used a sophisticated computer model to calculate flow velocities and water levels during high flow: approximately 10 <a href="https://en.wikipedia.org/wiki/Olympic-size_swimming_pool">olympic swimming pools</a> per second!
+<br/>
+<br/>
+</div>
+<div id="10">
+For any point along the river, we have calculated the uncertainty of model output. The figure above shows the histogram of water levels near the City of Tiel, which shows the range of possible water levels. 
+<br/>
+<br/>
+Downstream from this point is a known bottleneck. We designed twelve different interventions to lower water levels.
+</div>
+<div id="11">
+Let's take a look at one possible solution: removing all trees and plants so that we only have grass. We see that on average the water level will decrease with a maximum of 30 cm. However, there is a lot of uncertainty. In fact, it is likely that the water level will only be decrease by xx cm!
+</div>
+<div id="12">
+Alternatively, we can dig side channels. This option is much less uncertain, and has a higher effect. A simple rule of thumb: the more you change a river, the larger the uncertainty of the effect. 
+<br/>
+<br/>
+This may influence the choice for one of the options. For example, compare this to choosing to bring an umbrella. Would you bring one if the chance for rain is 50%? What about 30%...?
+<br/>
+<br/>
+This is a difficult question. In our paper, we give several suggestion on how to deal with uncertainty, once it is quantified. 
+</div>
+<div id="13">
+You have reached the end of this short story, but there is more to discover. You can check the results of all other interventions in the <a>Exploration app</a>, or play with the <a>river model</a>. Or, check out the <a> journal paper </a>.
+<br/>
+<br/>
+Thanks for visiting!
+</div>
+-->
+</xml>

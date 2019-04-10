@@ -16,7 +16,7 @@ var FlowFigure = {}; // figure that has 1D steady flow simulation running
 var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
 var currentTheme = 'dark';
 var currentLang = 'nl';
-
+var currentIntervention = 'reference'
 
 
 // Print welcome
@@ -28,10 +28,11 @@ console.log('According to your browser, your preferred language is: '+navigator.
 function loadContent() {
   $('#AboutContent').load('xml/'+currentLang+'/about.xml');
   $('#PaperContent').load('xml/'+currentLang+'/learn.xml');
-
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
+  $('#StoryOverview').load('xml/'+currentLang+'/stories_index.xml');
   d3.json('xml/'+currentLang+'/titles.json', function(langString) {
       $('#AppTitle').text(langString.apptitle);
-      $('#MenuCurrentIntervention').text(langString.reference);
+      $('#MenuCurrentIntervention').text(langString[currentIntervention]);
       $('.str_ref').text(langString.reference);
       $('.str_smooth').text(langString.smooth);
       $('.str_relo').text(langString.relo);
@@ -235,8 +236,9 @@ ps.update()
 
 function showReference() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_reference.xml');
-  //$('#MenuCurrentIntervention').text('No Intervention')
+  currentIntervention = 'reference';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
+  
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
@@ -252,8 +254,9 @@ function showReference() {
 
 function showRelo() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_relocation.xml');
-  //$('#MenuCurrentIntervention').text('Dike relocation')
+  currentIntervention = 'relo';
+
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){
           ExploreFigure.updateData(d, function(){
@@ -274,19 +277,19 @@ function showRelo() {
 
   // add 'legend'
   addTooltipToMap([[51.81, 5.31], [51.80, 5.30]], 
-                 {file:'tooltip_relocation.xml', 
+                 {file:'tooltip_relo.xml', 
                   id: 'relotooltip0',
                   div: '#0',
                   align: 'left'});
 
   addTooltipToMap([[51.841, 5.37], [51.87, 5.37]], 
-                 {file:'tooltip_relocation.xml', 
+                 {file:'tooltip_relo.xml', 
                   id: 'relotooltip1',
                   div: '#1',
                   align: 'left'});
 
   addTooltipToMap([[51.854, 5.40], [51.86, 5.43]], 
-                 {file:'tooltip_relocation.xml', 
+                 {file:'tooltip_relo.xml', 
                   id: 'relotooltip2',
                   div: '#2',
                   align: 'right'});
@@ -294,8 +297,8 @@ function showRelo() {
 
 function showSmooth() {
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_smoothing.xml');
-  $('#MenuCurrentIntervention').text('Mowing floodplains')
+  currentIntervention = 'smooth';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
   /* Explore figure */
   d3.json('data/smoothing_int99.json', function(d){
     ExploreFigure.updateData(d, function () {
@@ -316,7 +319,7 @@ function showSmooth() {
 
   // add marker to explain what's going on
   addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
-                {file: 'tooltip_smoothing.xml', 
+                {file: 'tooltip_smooth.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'}); 
@@ -324,8 +327,8 @@ function showSmooth() {
 
 function showGROYNLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_groynes.xml');
-  $('#MenuCurrentIntervention').text('Groyne lowering')
+  currentIntervention = 'groynlow';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
   /* Figure */
   d3.json('data/groynelowering_int363.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -344,7 +347,7 @@ function showGROYNLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.8135, 5.3745], [51.80, 5.40]], 
-                {file: 'tooltip_groynes.xml', 
+                {file: 'tooltip_groynlow.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -352,8 +355,8 @@ function showGROYNLOW(){
 
 function showMINEMBLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_minemb.xml');
-  $('#MenuCurrentIntervention').text('Embankment lowering')
+  currentIntervention = 'minemblow';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
 
   /* Figure */
   d3.json('data/minemblowering_int150.json', function(d){
@@ -375,7 +378,7 @@ function showMINEMBLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.8279, 5.3931], [51.81, 5.41]], 
-                {file: 'tooltip_minemb.xml', 
+                {file: 'tooltip_minemblow.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -383,8 +386,8 @@ function showMINEMBLOW(){
 
 function showFLPLOW(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_lowering.xml');
-  $('#MenuCurrentIntervention').text('Floodplain lowering')
+  currentIntervention = 'flplow';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
   /* Figure */
   d3.json('data/lowering_int99.json', function(d){
            ExploreFigure.updateData(d, function() {
@@ -404,7 +407,7 @@ function showFLPLOW(){
 
   // add marker to explain what's going on
   addTooltipToMap([[51.830, 5.396], [51.810, 5.42]], 
-                {file: 'tooltip_lowering.xml', 
+                {file: 'tooltip_flplow.xml', 
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
@@ -412,8 +415,9 @@ function showFLPLOW(){
 
 function showSIDECHAN(){
   /* Titles and descriptions */
-  $('#InterventionDescription').load('xml/'+currentLang+'/explore_sidechannels.xml');
-  $('#MenuCurrentIntervention').text('Side channels')
+  currentIntervention = 'sidechan';
+  $('#InterventionDescription').load('xml/'+currentLang+'/explore_'+currentIntervention+'.xml');
+
   /* Figure */
   d3.json('data/sidechannel_int100.json', function(d){
             ExploreFigure.updateData(d, function() {

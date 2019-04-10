@@ -197,7 +197,7 @@ ps.update()
 function showReference() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_reference.xml');
-  $('#MenuCurrentIntervention').text('Reference')
+  $('#MenuCurrentIntervention').text('No Intervention')
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   

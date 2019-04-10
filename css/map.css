@@ -76,6 +76,7 @@
 }
 
 #Scenarioselector{
+	--left: 355px; /* this variable makes sure selector moves with side menu and is visible on first load. Is modified by JS*/
 	pointer-events: initial;
 	max-width: 300px;
 	z-index: 1;

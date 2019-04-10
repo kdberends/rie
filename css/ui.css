@@ -344,19 +344,17 @@ footer {
   position: relative;
 }
 
-/* Top level */
 .cssmenu {
   left: 0px;
   width: 300px;
-  font-family: var(--font-body-family)  
-  color: var(--accent-2);
+  font-family: var(--font-body-family);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   z-index: 2;
 }
 
-
+/* this is title text */
 .cssmenu > ul > li > a {
-  padding: 5px 0px;
+  padding: 10px 0px 0px 0px;
   height: 38px;
   cursor: pointer;
   z-index: inherit;
@@ -397,13 +395,7 @@ footer {
   border-bottom: 2px solid var(--accent-5);
 }
 
-/*
-.cssmenu > ul:before {
-  content: "currently showing";
-  font-size: 10px;
-  font-family: var(--font-family)
-}
-*/
+
 
 /* Cross animation */
 .cssmenu ul > li.has-sub > a:after {

@@ -14,7 +14,7 @@ const version = "0.51";
 var ExploreFigure = {}; // figure that has uncertainty bands
 var FlowFigure = {}; // figure that has 1D steady flow simulation running
 var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
-
+var currentTheme = 'dark';
 
 // Print welcome
 console.log('Hi there!')
@@ -92,15 +92,15 @@ var toggleAppMenu = function () {
     $('#leftbar').css('transform','translate(-100%, 0%)');
     $('#appnavigation').css('transform','translate(0%, -150%)');
     //$('#Scenarioselector').css('transform','translate(0px, 0%)');
-    $('#MapButtons').css('transform','translate(0px, 0%)');
-    $('#Scenarioselector').get(0).style.setProperty('--left', '5px');
+    //$('#MapButtons').css('transform','translate(0px, 0%)');
+    $('#MapTopFlexUI').get(0).style.setProperty('--left', '5px');
     AppMenuToggle = false;    
   } else {
     $('#leftbar').css('transform','translate(0%, 0%)');
     $('#appnavigation').css('transform','translate(0%, 0%)');
     //$('#Scenarioselector').css('transform','translate(350px, 0%)');
-    $('#MapButtons').css('transform','translate(380px, 0%)');
-    $('#Scenarioselector').get(0).style.setProperty('--left', '355px');
+    //$('#MapButtons').css('transform','translate(350px, 0%)');
+    $('#MapTopFlexUI').get(0).style.setProperty('--left', '355px');
     AppMenuToggle = true;
   };
 };
@@ -127,7 +127,7 @@ var toggleApp = function (appindex) {
 };
 
 var toggleTheme = function (themename) {
-  if (themename=='dark'){ 
+  if (currentTheme=='light'){ 
     document.getElementById('theme_css').href = 'css/dark-theme.css';
     
     // Background map
@@ -139,6 +139,9 @@ var toggleTheme = function (themename) {
     velocityColorScale = ["rgb(36,104, 180)", "rgb(60,157, 194)", "rgb(128,205,193 )", "rgb(151,218,168 )", "rgb(198,231,181)", "rgb(238,247,217)", "rgb(255,238,159)", "rgb(252,217,125)", "rgb(255,182,100)", "rgb(252,150,75)", "rgb(250,112,52)", "rgb(245,64,32)", "rgb(237,45,28)", "rgb(220,24,32)", "rgb(180,0,35)"];
     removeVelocityLayerFromMap();
     addVelocityLayerToMap(currentFlowData);
+
+    // update flag
+    currentTheme = 'dark';
     
   } else {
     document.getElementById('theme_css').href = 'css/light-theme.css';
@@ -152,6 +155,9 @@ var toggleTheme = function (themename) {
     velocityColorScale = ['#000000','#1C191B','#362C38','#3E3854','#3E5371','#3E8D8D','#38A965','#4CC62C','#BCE62C','#FF9600'];
     removeVelocityLayerFromMap();
     addVelocityLayerToMap(currentFlowData);
+
+    // update flag
+    currentTheme = 'light';
 
     
   };

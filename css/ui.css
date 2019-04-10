@@ -346,7 +346,7 @@ footer {
 
 .cssmenu {
   left: 0px;
-  width: 300px;
+  width: 250px;
   font-family: var(--font-body-family);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   z-index: 2;
@@ -401,7 +401,7 @@ footer {
 .cssmenu ul > li.has-sub > a:after {
   position: absolute;
   right: 26px;
-  top: 16px;
+  top: 20px;
   z-index: inherit;
   display: block;
   height: 0px;
@@ -531,7 +531,7 @@ nav {
   cursor: pointer;
   user-select: none;/* to prevent blue flickering in chrome*/
   position: relative;
-  margin-left: 25px;
+  margin-left: 35px;
   border-bottom:2px solid var(--accent-4);
   transition: 200ms ease-out;
   color: var(--accent-2);

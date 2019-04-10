@@ -10,7 +10,6 @@ const story_version = 0.3;
 var StoryProgress = 1;
 var NumberOfStories = 8;
 var currentStory = 0;
-var currentLang = 'en';
 var flagSwipeActive = false; // if true, swiping will advance story
 var flagSwipetextLoaded = false;
 var StoryFunctions = []; // array with function called at each step in the story

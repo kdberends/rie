@@ -148,6 +148,26 @@
 	opacity: 1;
 }
 
+#MapLang{
+	color: var(--accent-2);
+}
+
+#MapLang:after {
+	content: "Toggle English/Nederlands";
+	position: absolute;
+	font-size: 16px;
+	color: var(--accent-2);
+	font-family: Oswald;
+	opacity: 0;
+	transition: opacity .3s ease;
+	width: 200px;
+	left: 0px;
+	top: 40px;
+}
+
+#MapLang:hover::after {
+	opacity: 1;
+}
 
 .map-ui-button {
   position: relative;

@@ -74,12 +74,12 @@
     <div class="loader-section section-right"></div>
   </div>
 
-  <!-- Beta bart -->
+  <!-- Beta bart 
   <div id="beta-bar">
     Hi there! This website is currently under review. Something not working well for you? <a href="https://github.com/kdberends/rie"> please let me know :) </a>
     <label class="close-bb" onclick="$('#beta-bar').toggleClass('closed-bb')">x</label>
   </div>
-
+-->
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -116,13 +116,13 @@
                 <ul>
                    <li class='has-sub'><a id="MenuCurrentIntervention" href='#'>Choose intervention</a>
                       <ul>
-                         <li class='no-sub'><a href='#' onclick='showReference();toggleApp(1);'>No Intervention</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showSmooth();toggleApp(1);">Mowing floodplains</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showRelo();toggleApp(1);">Dike relocation</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showGROYNLOW();toggleApp(1);">Groyne lowering</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showMINEMBLOW();toggleApp(1);">Embankment lowering</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showSIDECHAN();toggleApp(1);">Side channels</a></li>
-                         <li class='no-sub' ><a href='#' onclick="showFLPLOW();toggleApp(1);">Floodplain lowering</a></li>
+                         <li class='no-sub'><a class="str_ref" href='#' onclick='showReference();toggleApp(1);'>No Intervention</a></li>
+                         <li class='no-sub'><a class="str_smooth" href='#' onclick="showSmooth();toggleApp(1);">Mowing floodplains</a></li>
+                         <li class='no-sub'><a class="str_relo" href='#' onclick="showRelo();toggleApp(1);">Dike relocation</a></li>
+                         <li class='no-sub'><a class="str_groynlow" href='#' onclick="showGROYNLOW();toggleApp(1);">Groyne lowering</a></li>
+                         <li class='no-sub'><a class="str_minemblow" href='#' onclick="showMINEMBLOW();toggleApp(1);">Embankment lowering</a></li>
+                         <li class='no-sub'><a class="str_sidechan" href='#' onclick="showSIDECHAN();toggleApp(1);">Side channels</a></li>
+                         <li class='no-sub'><a class="str_flplow" href='#' onclick="showFLPLOW();toggleApp(1);">Floodplain lowering</a></li>
                       </ul>
                    </li>
                 </ul>
@@ -131,6 +131,7 @@
         <div id="MapButtons">
           <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
           <div class='map-ui-button' id='MapTheme' onclick="toggleTheme()"><i class="fas fa-adjust"></i></div>
+          <div class='map-ui-button' id='MapLang' onclick="toggleLanguage()"><i class="fas fa-language"></i></div>
           </div>
         </div>
       </div>

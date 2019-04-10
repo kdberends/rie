@@ -15,6 +15,9 @@ var ExploreFigure = {}; // figure that has uncertainty bands
 var FlowFigure = {}; // figure that has 1D steady flow simulation running
 var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
 var currentTheme = 'dark';
+var currentLang = 'nl';
+
+
 
 // Print welcome
 console.log('Hi there!')
@@ -22,8 +25,23 @@ console.log("You are running version v"+version)
 console.log('According to your browser, your preferred language is: '+navigator.language)
 
 // Load content
-$('#AboutContent').load('xml/en/about.xml');
-$('#PaperContent').load('xml/en/learn.xml');
+function loadContent() {
+  $('#AboutContent').load('xml/'+currentLang+'/about.xml');
+  $('#PaperContent').load('xml/'+currentLang+'/learn.xml');
+
+  d3.json('xml/'+currentLang+'/titles.json', function(langString) {
+      $('#AppTitle').text(langString.apptitle);
+      $('#MenuCurrentIntervention').text(langString.reference);
+      $('.str_ref').text(langString.reference);
+      $('.str_smooth').text(langString.smooth);
+      $('.str_relo').text(langString.relo);
+      $('.str_groynlow').text(langString.groynlow);
+      $('.str_minemblow').text(langString.minemblow);
+      $('.str_sidechan').text(langString.sidechan);
+      $('.str_flplow').text(langString.flplow);
+    });
+}
+
 
 /** ////////////////////////////////////////////////////////////
  * Intervention selector
@@ -126,7 +144,7 @@ var toggleApp = function (appindex) {
   };
 };
 
-var toggleTheme = function (themename) {
+var toggleTheme = function () {
   if (currentTheme=='light'){ 
     document.getElementById('theme_css').href = 'css/dark-theme.css';
     
@@ -162,6 +180,21 @@ var toggleTheme = function (themename) {
     
   };
 };
+
+var setLanguage = function(lan) {
+    let color = 'white';
+    if (lan=='nl'){color='orange'}else{color='blue'}
+    // switch flag
+    currentLang = lan;
+    // change color of icon to orange
+    $('#MapLang').css('color', color)
+    // reload content
+    loadContent();
+}
+var toggleLanguage = function() {
+    if (currentLang=='en'){setLanguage('nl')} 
+    else {setLanguage('en')};
+  }
 
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)
@@ -203,7 +236,7 @@ ps.update()
 function showReference() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_reference.xml');
-  $('#MenuCurrentIntervention').text('No Intervention')
+  //$('#MenuCurrentIntervention').text('No Intervention')
   /* Figure */
   d3.json('data/reference_waterlevels_norm.json', function (d) {ExploreFigure.updateData(d)});
   
@@ -220,7 +253,7 @@ function showReference() {
 function showRelo() {
   /* Titles and descriptions */
   $('#InterventionDescription').load('xml/'+currentLang+'/explore_relocation.xml');
-  $('#MenuCurrentIntervention').text('Dike relocation')
+  //$('#MenuCurrentIntervention').text('Dike relocation')
   /* Figure */
   d3.json('data/relocation_int100.json', function(d){
           ExploreFigure.updateData(d, function(){
@@ -413,7 +446,7 @@ function showSIDECHAN(){
 /* Execute this function on startup */
 function display(error, dataset, comparedata) {
   // === Background map ===
-  
+  setLanguage(currentLang)
   // === Explore App ===
   console.log("Loading explore app...")
   protoSchematicRiverChart.apply(ExploreFigure);

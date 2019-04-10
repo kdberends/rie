@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml> 
+<h2>River Intervention Explorer</h2>
+<h3>Storylines</h3>
+
+<a href='#' onclick="openStory(0)">I: Rivierkunde </a><br/>
+<a href='#' class='notavailable'>II: Introduction of uncertainty (coming...)</a>
+<a href='#' onclick="openStory(2)">III: Uncertainty of large-scale interventions</a>
+<a href='#' class='notavailable'>IV: Comparing interventions (coming...)</a>
+</xml>

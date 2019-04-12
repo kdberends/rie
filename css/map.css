@@ -150,6 +150,7 @@
 	width: 200px;
 	left: 0px;
 	top: 40px;
+	pointer-events: none;
 }
 
 #MapZoom:hover::after {
@@ -167,6 +168,7 @@
 	width: 200px;
 	left: 0px;
 	top: 40px;
+	pointer-events: none;
 }
 
 #MapTheme:hover::after {
@@ -188,6 +190,7 @@
 	width: 200px;
 	left: 0px;
 	top: 40px;
+	pointer-events: none;
 }
 
 #MapLang:hover::after {

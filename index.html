@@ -28,7 +28,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="utf-8" http-equiv="encoding">
-    <meta name="Koen D. Berends" contents">
+    <meta name="Koen D. Berends" contents>
     <!-- disable caching. replace with service workr later -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -68,18 +68,14 @@
 
   <!-- Loader --> 
   <div id="loader-wrapper">
+    <div id="loadtext"></div>
     <div id="loader"></div>
-    <img id="loadlogo" onclick="location.reload();" src="img/rivercarelogo_grey.svg"></img>
+    <img id="loadlogo" onclick="location.reload();" src="img/rivercarelogo_grey.svg">
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
+
   </div>
 
-  <!-- Beta bart 
-  <div id="beta-bar">
-    Hi there! This website is currently under review. Something not working well for you? <a href="https://github.com/kdberends/rie"> please let me know :) </a>
-    <label class="close-bb" onclick="$('#beta-bar').toggleClass('closed-bb')">x</label>
-  </div>
--->
   <!-- Background map -->
   <div id="map" class="map"></div>   
 
@@ -87,23 +83,20 @@
   <main class="container overlay">
     <!-- NAVIGATION -->
   	<nav role="navigation">
-  	  	<div id="menuToggle" onclick="toggleAppMenu()">
+  	  	<div id="menuToggle">
   		    <input id="hiddenmenucheckbox" type="checkbox">
   		    <!-- Hamburger spans  -->
   		    <span></span>
   		    <span></span>
   		    <span></span>
+        </div>
   	</nav>
     <!-- app navigator -->
     <div id="appnavigation">
-      <span id="app-story" onclick="toggleApp(0)"><i class="fas fa-book-reader"></i></span>
-      <span id="app-explore" onclick="toggleApp(1)"><i class="fas fa-compass"></i></span>
-      <!--<span id="app-compare" onclick="toggleApp(3)"><i class="fas fa-balance-scale"></i></span>-->
-      <span id="app-article" onclick="toggleApp(2)"><i class="fas fa-graduation-cap"></i></span>
-      <span id="app-info" class='app-active' onclick="toggleApp(3)"><i class="fas fa-info"></i></span>
-      <!--
-      <span id="app-settings" onclick="toggleApp(4)"><i class="fas fa-cog"></i></i></span>
-    -->
+      <span id="app-story"><i class="fas fa-book-reader"></i></span>
+      <span id="app-explore"><i class="fas fa-compass"></i></span>
+      <span id="app-article"><i class="fas fa-graduation-cap"></i></span>
+      <span id="app-info"><i class="fas fa-info"></i></span>
     </div>
 
     <!-- Map Controls -->
@@ -112,40 +105,39 @@
       <div id="MapTopBarBackground"></div>
       <div id="MapTopFlexUI">
         <div id="Scenarioselector">
-              <div class='cssmenu'>
-                <ul>
-                   <li class='has-sub'><a id="MenuCurrentIntervention" href='#'>Choose intervention</a>
-                      <ul>
-                         <li class='no-sub'><a class="str_ref" href='#' onclick='showReference();toggleApp(1);'>No Intervention</a></li>
-                         <li class='no-sub'><a class="str_smooth" href='#' onclick="showSmooth();toggleApp(1);">Mowing floodplains</a></li>
-                         <li class='no-sub'><a class="str_relo" href='#' onclick="showRelo();toggleApp(1);">Dike relocation</a></li>
-                         <li class='no-sub'><a class="str_groynlow" href='#' onclick="showGROYNLOW();toggleApp(1);">Groyne lowering</a></li>
-                         <li class='no-sub'><a class="str_minemblow" href='#' onclick="showMINEMBLOW();toggleApp(1);">Embankment lowering</a></li>
-                         <li class='no-sub'><a class="str_sidechan" href='#' onclick="showSIDECHAN();toggleApp(1);">Side channels</a></li>
-                         <li class='no-sub'><a class="str_flplow" href='#' onclick="showFLPLOW();toggleApp(1);">Floodplain lowering</a></li>
-                      </ul>
-                   </li>
-                </ul>
-              </div>
+          <div class='cssmenu'>
+            <ul>
+               <li class='has-sub'><a id="MenuCurrentIntervention" href='#'>Choose intervention</a>
+                  <ul>
+                     <li class='no-sub'><a id="exploreShowReference" class="str_ref" href='#'>No Intervention</a></li>
+                     <li class='no-sub'><a id="exploreShowSmooth" class="str_smooth" href='#'>Mowing floodplains</a></li>
+                     <li class='no-sub'><a id="exploreShowRelo" class="str_relo" href='#'>Dike relocation</a></li>
+                     <li class='no-sub'><a id="exploreShowGroynlow" class="str_groynlow" href='#'>Groyne lowering</a></li>
+                     <li class='no-sub'><a id="exploreShowMinemblow" class="str_minemblow" href='#'>Embankment lowering</a></li>
+                     <li class='no-sub'><a id="exploreShowSidechan" class="str_sidechan" href='#'>Side channels</a></li>
+                     <li class='no-sub'><a id="exploreShowFlplow" class="str_flplow" href='#'>Floodplain lowering</a></li>
+                  </ul>
+               </li>
+            </ul>
+          </div>
         </div>
         <div id="MapButtons">
           <div class='map-ui-button' id='MapZoom' onclick='mapZoomToStudyArea();'><i class="fas fa-search-plus"></i></div>
-          <div class='map-ui-button' id='MapTheme' onclick="toggleTheme()"><i class="fas fa-adjust"></i></div>
-          <div class='map-ui-button' id='MapLang' onclick="toggleLanguage()"><i class="fas fa-language"></i></div>
-          </div>
+          <div class='map-ui-button' id='MapTheme'><i class="fas fa-adjust"></i></div>
+          <div class='map-ui-button' id='MapLang'><i class="fas fa-language"></i></div>
         </div>
       </div>
     </div>
 
-    
-    
     <!-- Main UI elements -->
     <div id='leftbar'>
 
       <!-- The map clone -->
+      
       <div id="map_clone" class="clonemap"></div>
+      <div id="glass_leftbar" class="glass"></div>
       <!-- Glass effect -->
-      <div class="glass"> </div>
+      
         
         <!-- Explore app -->
         <div id="ExplorePanel" class='panel'>
@@ -159,28 +151,8 @@
         <div id="FlowPanel" class='panel'>
           <div><svg id="FlowCanvas" class='canvas'></svg></div>
   	    </div>
-      <!-- Flow panel -->
-      
-      <!-- Settings -->
-      <!--
-      <div id="SettingsPanel", class='panel'>
-        <h2>Language</h2>
-        <p>
-          <span><a href='#' >🇬🇧  English </a></span>
-          <span class='notimplemented'>🇳🇱 Nederlands</span>
-          <span class='notimplemented'>🇩🇪 Deutsch</span>
-          
-        </p>
-        <h2>Theme</h2>
-        <p>
-          <span><a href='#'  onclick="toggleTheme('dark')">Dark </a></span>
-          <span><a href='#' onclick="toggleTheme('light')">Light </a></span>
-        </p>
-      </div>
-    -->
 
-      <!-- Story app -->
-      
+      <!-- Story app -->     
       <div id="StoryPanel" class='panel'>
         <div id="StoryCanvas" class='canvas' style="font-size:144px; text-align:center;">
           <img class='storycanvasimage' src="img/waal_outline_withandries.svg"/>
@@ -190,10 +162,10 @@
           <div id="StoryProgress">
           <div class='progress-inside'></div>
         </div>
-            <i onclick='previousStory();' class="fas fa-step-backward"></i>
-            <i onclick="resetStory();" class="fas fa-fast-backward"></i>
-            <i onclick="openStoryOverview();" class="fas fa-home"></i>
-            <i onclick="nextStory();" class="fas fa-step-forward"></i>
+            <i id="buttonStoryPrevious" class="fas fa-step-backward"></i>
+            <i id="buttonStoryReset" class="fas fa-fast-backward"></i>
+            <i id="buttonStoryOverview" class="fas fa-home"></i>
+            <i id="buttonStoryNext" class="fas fa-step-forward"></i>
         </div>
         <div id="StoryOverview" class='storytext'></div>
         <div id="StoryScroll">
@@ -212,12 +184,9 @@
 
       <!-- Paper app -->
       <div id="PaperPanel" class='panel'>
-        <div id="PaperContent">
-        </div>
-      </div> <!-- about -->
-      </div> <!-- cont' background -->
-
-    </div> <!-- grid -->
+        <div id="PaperContent"></div>
+      </div> 
+    </div> <!-- leftbar-->
   </main>
 
   <!-- FOOTER -->
@@ -229,35 +198,32 @@
     <span id="version-number-explore"> Bladieblabla </span>
   </div>
   <footer>
-      <img src="img/footerlogo.svg" class="logo-footer"></img>
+      <img src="img/footerlogo.svg" class="logo-footer">
   </footer>
-</body>
+
 
 
 <!-- TMP-->
 
 <!-- LOAD THIRDPARTY JS -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script src="js/thirdparty/jquery-ui-slider-pips.js"></script>
-<script src="js/thirdparty/jquery.ui.touch-punch.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-<script src="js/thirdparty/leaflet-velocity.js"></script>
-<script src="js/thirdparty/L.Map.Sync.js"></script>
-<script src="js/thirdparty/d3.js"></script>
-<script src="https://d3js.org/d3-timer.v1.min.js"></script>
-<script src="js/thirdparty/perfect-scrollbar.js"></script>
-<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript' src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script type='text/javascript' src="js/thirdparty/jquery-ui-slider-pips.js"></script>
+<script type='text/javascript' src="js/thirdparty/jquery.ui.touch-punch.min.js"></script>
+<script type='text/javascript' src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script type='text/javascript' src="js/thirdparty/leaflet-velocity.js"></script>
+<script type='text/javascript' src="js/thirdparty/L.Map.Sync.js"></script>
+<script type='text/javascript' src="js/thirdparty/d3.js"></script>
+<script type='text/javascript' src="https://d3js.org/d3-timer.v1.min.js"></script>
+<script type='text/javascript' src="js/thirdparty/perfect-scrollbar.js"></script>
+<script type='text/javascript' src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script type='text/javascript' src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 
+<!-- LOAD APP -->
+<script src="js/startup.js" type="module"></script>
 
-<!-- LOAD JS -->
-<script src="js/data.js"></script>
-<script src="js/protoSchematicRiverChart.js"></script>
-<script src="js/protoSteadyFlowApp.js"></script>
-<script src="js/protoCompareChart.js"></script>
-<script src="js/map.js"></script>
-<script src="js/main.js"></script>
-<script src="js/story.js"></script>
-<script src="js/startup.js"></script>
+<!-- older browsers like IE don't support modules -->
+<script type='text/javascript' nomodule src='js/fallback.js'></script>
+
+</body>
 </html>

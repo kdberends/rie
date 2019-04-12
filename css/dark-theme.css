@@ -8,10 +8,10 @@
     --nav-color: white;
     --nav-size: 26px;
 
-    --accent-1: #191C25; /* used for highlights.  contrast with accent 2*/
-    --accent-2: #DCDCDC; /* main text/ light color */
-    --accent-3: #BCD3F2; /* hover 2*/
-    --accent-4: #56CBF9; /* app menu */
+    --accent-1: #515357; /* Topbar background */
+    --accent-2: #DCDCDC; /* main text/ light color, contrast with 1 */
+    --accent-3: #FB061D; /* hover 2*/
+    --accent-4: #7FBEEB; /* Highlight/focus */
     --accent-5: #7FBEEB;/* hover 4*/
 
     

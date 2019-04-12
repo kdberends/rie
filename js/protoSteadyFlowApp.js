@@ -1,4 +1,4 @@
-var protoSteadyFlowApp = function() {
+export function protoSteadyFlowApp() {
 	/* This chart will depict a one-dimensional figure of river flow
 	 * It contains functions to demonstrate the effect of interventions
 	 * and explain uncertainty. --> simple 1D flow 
@@ -92,6 +92,7 @@ var protoSteadyFlowApp = function() {
     
     this.init = function(){
     	// initialises figure
+        console.log("Initialising steadtflowapp")
     	this.updateScales()
 
     	d3.select(canvas).append('g');
@@ -170,7 +171,7 @@ var protoSteadyFlowApp = function() {
     		let hprev = waterlevel[nsteps-i+1]; 
     		
             // first-order euler
-            dzdx = Math.min(0, dx * this.belanger(hprev - this.get_bedlevel(localx)))
+            let dzdx = Math.min(0, dx * this.belanger(hprev - this.get_bedlevel(localx)))
 
     		waterlevel[nsteps-i] = hprev - dzdx;
     	};
@@ -340,7 +341,7 @@ var protoSteadyFlowApp = function() {
 		  //// Path (line) methods																	///
     */////////////////////////////////////////////////////////////
     this.get_velocity_at_h = function (umean, h, z){
-    	ks = 0.004
+    	let ks = 0.004
     	return umean * (Math.log(33*z / h) + Math.log(h/ks)) / Math.log(12*h/ks)
     };
 
@@ -397,12 +398,11 @@ var protoSteadyFlowApp = function() {
 
 			d3.selectAll(".SteadyflowParticle")
 			  .each(function (d, i) {
-			  	parx = xScale.invert(d3.select(this).attr('cx'))
-			  	pary = yScale.invert(d3.select(this).attr('cy'))
-			  	parh = pary - funcblevel(parx)
-			  	pari = Math.floor(parx / (riverlength / nsteps))  // particle index
-			  	
-			  	uz = funclogu(umean, 1, parh)
+			  	let parx = xScale.invert(d3.select(this).attr('cx'))
+			  	let pary = yScale.invert(d3.select(this).attr('cy'))
+			  	let parh = pary - funcblevel(parx)
+			  	let pari = Math.floor(parx / (riverlength / nsteps))  // particle index
+			  	let uz = funclogu(umean, 1, parh)
 				
 
 			  	if ((parx > riverlength) || (pary < funcblevel(parx))){
@@ -416,9 +416,9 @@ var protoSteadyFlowApp = function() {
 				    // delete particle
 				    d3.select(this).remove()
 			    } else {
-			    	new_x = dt / 1000 * uz * uscale + parx;
+			    	let new_x = dt / 1000 * uz * uscale + parx;
 			    	// if y is higher than waterlevel, reduce to waterlevel
-				    new_y = Math.min(pary + (new_x - parx)*-bedslope, data[pari].y-0.2);
+				    let new_y = Math.min(pary + (new_x - parx)*-bedslope, data[pari].y-0.2);
 				    d3.select(this)
 				      .transition()
 				      .ease(d3.easeLinear)

@@ -23,6 +23,7 @@ a:not([href*='github.io']):not([href^='#']):not([href^='/']):after {
   font-size: 16px;
   border-top: 1px solid orange;
 }
+
 body {
   font-family: var(--font-body-family);
   font-size: var(--font-body-size);
@@ -106,6 +107,7 @@ body a:hover
 
 
 /* preloader */
+ 
 
 #loader-wrapper {
     position: fixed;
@@ -205,6 +207,22 @@ body a:hover
     }
 }
 
+/* info text */
+#loadtext{
+  display: block;
+  position: absolute;
+  right: calc(50% - 150px);
+  bottom: calc(50% - 150px);
+  width: 300px;
+  max-height: 50px;
+  margin: -75px 0 0 -75px;
+  z-index: 1001;
+  font-family: Oswald;
+  font-size: 14px;
+  color: white;
+  transition: all 0.2s ease;
+}
+
 /* Curtains*/
 .loader-section {
     position: fixed;
@@ -224,6 +242,12 @@ body a:hover
 }
 
 /* when loaded, hide the bunch */
+.loaded #loadtext {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s 1s ease-out;
+}
+
 .loaded #loadlogo{
   opacity: 0;
   pointer-events: none;
@@ -239,6 +263,8 @@ body a:hover
     transform: translateY(-200%);
     transition: all 0.3s 2s ease-out;
 }
+
+
 
 .loaded>div {
   transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
@@ -457,15 +483,20 @@ footer {
   max-width:400px;
   height:100%;
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
 }
 
 .map { 
-  z-index:-1;
+  z-index:1;
   position:absolute;
   width:100%;
   height:100%; 
   pointer-events: visible; 
+}
+
+#glass_leftbar{
+  z-index: 2;
+  position: absolute;
 }
 
 #map_clone {
@@ -476,11 +507,12 @@ footer {
 }
 
 .clonemap { 
-  z-index:-1;
+  z-index:1;
   position:absolute;
   pointer-events: visible; 
    -moz-filter: blur(6px);
      -o-filter: blur(6px);
+    -ms-filter: blur(6px);
 -webkit-filter: blur(6px);
         filter: blur(6px); 
 }
@@ -505,7 +537,7 @@ footer {
  */
 
 nav {
-  z-index: 2
+  z-index: 3
 }
 
 #appnavigation {
@@ -629,6 +661,7 @@ nav {
 #AboutPanel{
   transform: translate(-150%, 0%);
   font-size: inherit;
+  z-index: 4;
 }
 
 
@@ -655,6 +688,7 @@ nav {
 
 #PaperPanel{
   transform: translate(-120%, 0%);
+  z-index: 4;
 }
 
 #PaperContent
@@ -709,6 +743,7 @@ nav {
 
 #FlowPanel{
   transform: translate(-150%, 0%);
+  z-index: 4;
 }
 
 
@@ -786,6 +821,7 @@ nav {
 
 #StoryPanel{
   transform: translate(0%, 0%);
+  z-index: 4;
 }
 
 
@@ -897,6 +933,7 @@ nav {
 
 
 #ExplorePanel{
+  position: absolute;
   transform: translate(-150%, 0%);
   z-index: 4;
 }
@@ -1013,7 +1050,7 @@ input:checked + .slider:before {
   top: 20px;
   width: 40px;
   left: 25px;
-  z-index: 1;
+  z-index: 3;
   pointer-events: initial;
   -webkit-user-select: none;
   user-select: none;

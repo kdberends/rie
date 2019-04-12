@@ -1,18 +1,21 @@
 /* Leaflet elements */
+import {settings, charts} from '../js/mainui.js'
 
-const map_version = 0.3;
+export const version = 0.3;
+
+
 var velocityLayerID = {};
-var velocityColorScale = ["rgb(36,104, 180)", "rgb(60,157, 194)", "rgb(128,205,193 )", "rgb(151,218,168 )", "rgb(198,231,181)", "rgb(238,247,217)", "rgb(255,238,159)", "rgb(252,217,125)", "rgb(255,182,100)", "rgb(252,150,75)", "rgb(250,112,52)", "rgb(245,64,32)", "rgb(237,45,28)", "rgb(220,24,32)", "rgb(180,0,35)"];
 var map = {}; 
 var map2 = {}; 
 /* Layer groups */
 var mapElementsGroup = new L.layerGroup(); 
 var mapZoomGroup = new L.layerGroup();  // shows only on very high levels of zoom
 
+
 /* STYLES */
 
 /* Dike */
-var LineStyle = {
+export var LineStyle = {
     "stroke": true,
     "color": "#E28219",
     "weight": 4,
@@ -26,7 +29,7 @@ var MinorEmbankmentStyle = {
     "weight": 2,
   };
 
-var DashStyle = {
+export var DashStyle = {
     "stroke": true,
     "color": "#A96538",
     "weight": 2,
@@ -50,7 +53,7 @@ var InactiveRiverKmStyle = {
     weight: 0,
     opacity: 1,
     fillOpacity: 0.6
-};
+  };
 
 var ActiveRiverKmStyle = {
     radius: 4,
@@ -59,7 +62,7 @@ var ActiveRiverKmStyle = {
     weight: 0,
     opacity: 1,
     fillOpacity: 1
-};
+  };
 
 var PolyMowing = {
           "stroke": true,
@@ -67,7 +70,7 @@ var PolyMowing = {
           "color": "#3BA120", // color of fill
           "opacity": 0,  // opacity of stroke
           "fillOpacity": 0.4,
-};
+  };
 
 var PolySideChannels = {
           "stroke": true,
@@ -75,7 +78,7 @@ var PolySideChannels = {
           "color": "#0CBCD1", // color of fill
           "opacity": 0,  // opacity of stroke
           "fillOpacity": 0.4
-};
+  };
 
 var WaalOutlineStyle = {
           "stroke": true,
@@ -83,7 +86,7 @@ var WaalOutlineStyle = {
           "color": "#0CBCD1", // color of fill
           "opacity": 0,  // opacity of stroke
           "fillOpacity": 0.2
-};
+  };
 
 var PolyLowering = {
           "stroke": true,
@@ -91,7 +94,7 @@ var PolyLowering = {
           "color": "#3BA120", // color of fill
           "opacity": 0,  // opacity of stroke
           "fillOpacity": 0.4,
-};
+  };
 /** ////////////////////////////////////////////////////////////
  * Background map (Leaflet)
  *
@@ -114,24 +117,29 @@ var attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMa
 var tilelayer1 = {};
 var tilelayer2 = {};
 
-var setTileLayerHost = function(theme='dark') {
+export function setTileLayerHost(theme='dark') {
   if (theme == 'dark') {
     host = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png";
-    attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    
   } else if (theme == "light"){
+    // option 1
     host = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
     attr = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+    // option 2
+    //host = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png'
+    //attr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   };
 };
 
-var addTileLayers = function(){
+export function addTileLayers(){
   tilelayer1 = new L.TileLayer(host);
   tilelayer2 = new L.TileLayer(host);
   map.addLayer(tilelayer1);
   map2.addLayer(tilelayer2);
 };
 
-var removeTileLayers = function() {
+export function removeTileLayers() {
   map.removeLayer(tilelayer1)
   map.removeLayer(tilelayer2)
 };
@@ -152,8 +160,8 @@ addTileLayers();
  */
 
 // sync so that they overlap (the numbers are to correct for the margin of mapclone css)
-xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x
-yc = (map2.getContainer().parentElement.offsetTop-20) / map.getSize().y
+let xc = (map2.getContainer().parentElement.offsetLeft-20) / map.getSize().x
+let yc = (map2.getContainer().parentElement.offsetTop-20) / map.getSize().y
 map.sync(map2, {offsetFn: L.Sync.offsetHelper([xc, yc], [0, 0])})
 
 //xc = (map3.getContainer().parentElement.offsetLeft+150) / map.getSize().x
@@ -179,7 +187,7 @@ d3.json('data/waal_bed.json', function(d) {
 var studyarea_rect =  L.rectangle([[51.79, 5.267], [51.889, 5.507]], StudyAreaStyle);
 
 // Reference dikes
-var dike =  new L.geoJson(null, {
+export var dike =  new L.geoJson(null, {
       style: LineStyle,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -192,7 +200,7 @@ d3.json('shp/banddijken.json', function (data) {
 
 // When hovering over the backwater chart, the river km corresponding to the 
 // x coordinate is highlighted
-var riverkmFocus = new L.geoJson(null, {
+export var riverkmFocus = new L.geoJson(null, {
   style: ActiveRiverKmStyle,
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, ActiveRiverKmStyle)
@@ -200,7 +208,7 @@ var riverkmFocus = new L.geoJson(null, {
 });
 
 // Relocated dike
-var dikeNew =  new L.geoJson(null, {
+export var dikeNew =  new L.geoJson(null, {
       style: LineStyle,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -208,7 +216,7 @@ var dikeNew =  new L.geoJson(null, {
   });
 
 // minor embankments
-var embankments =  new L.geoJson(null, {
+export var embankments =  new L.geoJson(null, {
       style: MinorEmbankmentStyle,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -216,7 +224,7 @@ var embankments =  new L.geoJson(null, {
   });
 
 // Lowered groynes
-var groynes =  new L.geoJson(null, {
+export var groynes =  new L.geoJson(null, {
       style: MinorEmbankmentStyle,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -224,7 +232,7 @@ var groynes =  new L.geoJson(null, {
   });
 
 // Constructed side channels
-var sidechannels =  new L.geoJson(null, {
+export var sidechannels =  new L.geoJson(null, {
       style: PolySideChannels,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -232,7 +240,7 @@ var sidechannels =  new L.geoJson(null, {
   });
 
 // Lowered floodplain
-var lowering =  new L.geoJson(null, {
+export var lowering =  new L.geoJson(null, {
       style: PolyLowering,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -240,7 +248,7 @@ var lowering =  new L.geoJson(null, {
   });
 
 // Mowing floodplain
-var mowing =  new L.geoJson(null, {
+export var mowing =  new L.geoJson(null, {
       style: PolyMowing,
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {});
@@ -302,15 +310,15 @@ map.on('zoomend', function() {
    sets and a line in between
  */
 
-function mapZoomToStudyArea() {
+export function mapZoomToStudyArea() {
   map.setView([51.85, 5.35], 12);
 };
 
-function mapZoomToStAndries() {
+export function mapZoomToStAndries() {
   map.setView([51.804, 5.3546], 15);
 };
 
-function resetElementsOnMap(){
+export function resetElementsOnMap(){
   mapElementsGroup.clearLayers();
   mapElementsGroup.addLayer(dike);
   mapElementsGroup.addLayer(waal_outline);
@@ -319,7 +327,7 @@ function resetElementsOnMap(){
   dike.setStyle(LineStyle);
 };
 
-function addElementToMap(element, jsonfile) {
+export function addElementToMap(element, jsonfile) {
   element.clearLayers()
   d3.json(jsonfile, function (data) {
           mapElementsGroup.addLayer(element.addData(data));
@@ -327,7 +335,7 @@ function addElementToMap(element, jsonfile) {
 };
 
 /* Coordinates is set of coordinates ([lat,lon], [lat,lon])*/
-function addTooltipToMap(coordinates, options) {
+export function addTooltipToMap(coordinates, options) {
     if (typeof options.style == "undefined") {options.style = 'map-tooltip'};
     
     // Add marker at first coordinate
@@ -367,7 +375,7 @@ function addTooltipToMap(coordinates, options) {
         endPoint.setTooltipContent(options.text);
     } else {
       $.ajax({type: "GET",
-              url: 'xml/'+currentLang+'/'+options.file,
+              url: 'xml/'+settings.currentLang+'/'+options.file,
               datatype: 'xml',
               success: function(xml) {
                        endPoint.setTooltipContent($(xml).find(options.div).text());
@@ -376,8 +384,8 @@ function addTooltipToMap(coordinates, options) {
     };
 };
 
-function addMaximumEffectTooltip() {
-  let maxeff = ExploreFigure.getLocationOfMaximumEffect();  
+export function addMaximumEffectTooltip() {
+  let maxeff = charts.exploreFigure.getLocationOfMaximumEffect();  
   let tooltiptext = 'The maximum decrease in flood levels is reached here, at km '+
                     maxeff[0] + ' and is on average ' + maxeff[1].toFixed(2)+ 'm'; 
   d3.json('shp/rivierkilometers.json', function (data) {
@@ -391,7 +399,7 @@ function addMaximumEffectTooltip() {
 };
 
 function addDownstreamPeak() {
-  let maxeff = ExploreFigure.getLocationOfMaximumEffect(-1);  
+  let maxeff = charts.exploreFigure.getLocationOfMaximumEffect(-1);  
   let tooltiptext = 'Downstream from the intervention there is a small increase ' +
                     'in water level. This is largest at km '+
                     maxeff[0] + ' and is on average ' + maxeff[1].toFixed(2)+ 'm'; 
@@ -407,12 +415,12 @@ function addDownstreamPeak() {
 };
 
 /* removes velocity layer from layer group mapZoomGroup */
-function removeVelocityLayerFromMap(){
+export function removeVelocityLayerFromMap(){
   mapZoomGroup.eachLayer(function (l){
     if (l.options.maxVelocity > 0) {mapZoomGroup.removeLayer(l)}});
 };
 
-function addVelocityLayerToMap(file, thismap){
+export function addVelocityLayerToMap(file, thismap){
      d3.json(file, function (data) {
       mapZoomGroup.addLayer(new L.velocityLayer({
         displayValues: true, 
@@ -426,8 +434,19 @@ function addVelocityLayerToMap(file, thismap){
         data: data,
         maxVelocity: 2,
         velocityScale: 0.01,
-        colorScale: velocityColorScale
+        colorScale: settings.velocityColorScale
         }));
   });
 };
 
+export function zoom_NL() {
+  map.setView([52, 5], 7);
+};
+
+export function zoom_Waal() {
+  map.setView([51.823, 5.3682], 10);
+};
+  
+export function zoom_StAndries() {
+  map.setView([51.823, 5.3682], 12);
+};

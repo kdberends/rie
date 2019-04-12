@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml> 
 <div id="1">
-	<h2>I<br/>River engineering 101</h2>
-	<em>This story takes you through the basics of open channel flow, without going into the equations. It introduces a few important concepts: friction, backwater curves and how to read a graph of river engineering effects. </em>
+	<h2>Hoe voorspellen we het effect van maatregelen?</h2>
+	<em>
+		Zonder de vergelijkingen in te gaan, vertellen we je hier in het kort hoe rivieren reageren op veranderingen. Je leert meteen over een paar belangrijke termen, zoals ruwheid en verhanglijnen.  
+	</em>
 </div>
 <div id="2">
-	Rivers are a force of nature, and vital to human society. Just like roads, buildings and your teeth, rivers need to be regularly checked and fixed. 
+	Rivieren zijn enorm belangrijk voor onze natuur en voor de samenleving. Het is daarom belangrijk om ze te onderhouden. 
 	<br/>
 	<br/>
-	But how do we 'fix' rivers?... 
+	Hoe hoe doen we dat eigenlijk?
 	<br/>
 	<br/>
-	Let's take a look at one important fix: preventing river flooding.
+	Laten we kijken naar een belangrijke functie: het voorkomen van overstromingen.  
 </div>
 
 <div id="3">
-	A flooding occurs when water level exceeds the level of protective barriers. The river water level 
-	depends on three things: the amount of water, the shape of the river and the resistance against flow. 
+	In bedijkte rivieren gaat het mis als de waterstand hoger is dan de dijk. De waterstand wordt bepaald door de hoeveelheid water dat door de rivier stroomt, en de vorm, omvang en inrichting van de rivier. 
 </div>
 <div id="4">
-	For example, if flow resistance decreases, the water level goes down...
+	Over grasland stroomt water snel, en gaat de waterstand omlaag.. 
 </div>
 
 <div id="5">
-	And if resistance to flow increases, the water level goes up. 
-<br/>
-<br/>
-	<em>Flow resistance is a difficult, but very important concept. Higher resistance causes slower flow velocity and higher water levels. One important thing that increases resistance are plants and trees. For example, water flows slower through trees than it does over sand. </em> 
+	Maar door bomen en struiken stroomt het langzamer. Dan stijgt de waterstand. 
+	<br/><br/>
+	Deze regels liggen vast in computermodellen, waarmee we kunnen berekenen hoe de waterstand reageert op ingrepen.  
 </div>
 
 <div id="6">
-	If we know how riviers work, we can figure out how to lower water levels as well! 
-	<br/>
-	<br/>
-	Let's mark the current water level with a line.
+	Het effect berekenen we zo. We markeren de waterstand in de situatie zonder maatregel. 
 </div>
 <div id="7">
-	If we locally lower the bed level, we make more 'room for the river'. This lowers the water level. 
-<br/>
-<br/>
-<em>Making 'Room for the River' is the title of a large Dutch policy programme (<a href='https://www.ruimtevoorderivier.nl/english'>link</a>). The idea is straightforward: if water can go somewhere else besides 'up', it will go down. This is an alternative to raising the dikes/levees. </em> 
+	Vervolgens veranderen we het model. In dit voorbeeld wordt de rivier lokaal gebaggerd. De waterstand daalt hierdoor lokaal. 
+
+	<br/><br/>
+	<em>Deze maatregel is bijvoorbeeld toegepast in de IJssel, bij Kampen, in het kader van Ruimte voor de Rivier.</em>
 </div>
 <div id="8">
-	We now have a line of the expected water level decrease, due to our flood mitigation measure!
-	<br/><br/>
-	This seems simple enough. But there is an important caveat: we assumed that we knew the friction value to determine the effect! In reality, we don't really know this. This introduces 'uncertainty'.
-	<br/><br/>
-	In the next chapter, we explore the effect of uncertainty. 
+	Als we corrigeren voor het natuurlijk verhang, krijgen we een lijn van het verwachtte effect. 
+	Hier zijn drie interessante zaken te zien:
+	(1) benedenstrooms van de maatregel is er geen effect. 
+	(2) De waterstand daalt gestaag over de maatregel. Het effect is het grootste bij het begin van de maatregel. 
+	(3) Het effect werkt nog ver bovenstrooms door. 
+	<br/>
+	
 </div>
 <!--
 <div id="6">

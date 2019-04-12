@@ -1,3 +1,9 @@
+export function linspace(start, stop, nsteps){
+    //https://gist.github.com/davebiagioni/1ac21feb1c2db04be4e6
+    delta = (stop-start)/(nsteps-1)
+  return d3.range(start, stop+delta, delta).slice(0, nsteps)
+}
+
 var protoCompareChart = function() {
 	/* This chart will depict a one-dimensional figure of river flow
 	 * It contains functions to demonstrate the effect of interventions

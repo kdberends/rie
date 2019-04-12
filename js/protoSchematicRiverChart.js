@@ -1,4 +1,32 @@
-var protoSchematicRiverChart = function() {
+function parseData(rawData){
+    // let's start with a single line
+
+    let x = rawData.x
+
+    let parsedData = {'meta': {'tooltips':['Very high confidence', 
+                                       'High confidence', 
+                                       'Medium confidence', 
+                                       'Low confidence']}, 
+
+                  'data':[]}
+    for (var i = 0; i < x.length; i++){
+        parsedData.data.push({"x": x[i],
+                         "y":rawData.cdfs[i][50],
+                         "pcts": rawData.cdfs[i],
+                         "p":[
+                              [rawData.cdfs[i][5], rawData.cdfs[i][95]],
+                              [rawData.cdfs[i][10], rawData.cdfs[i][90]],
+                              [rawData.cdfs[i][25], rawData.cdfs[i][75]],
+                              [rawData.cdfs[i][40], rawData.cdfs[i][60]],
+                             ]
+                         });
+    }
+    parsedData.extent = rawData.extent
+
+    return parsedData
+};
+
+export function protoSchematicRiverChart() {
 	/* This chart will depict a one-dimensional figure of river flow
 	 * It contains functions to demonstrate the effect of interventions
 	 * and explain uncertainty
@@ -150,8 +178,8 @@ var protoSchematicRiverChart = function() {
     	this.updatePaths()
 
     	// Update confidence limits
-    	DB = this.drawBands
-    	SB = this.showBands
+    	let DB = this.drawBands
+    	let SB = this.showBands
 		
     	// remove current bands, then change line
     	g.selectAll(".area")
@@ -426,7 +454,7 @@ var protoSchematicRiverChart = function() {
     };
 
     this.drawBands = function(){
-    	areas = []
+    	let areas = []
 	    for (var i = 0; i < 4; i ++){
 	      var area = d3.area()
 	         .x(function(d) {return xScale(d.x)})

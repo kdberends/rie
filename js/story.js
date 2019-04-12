@@ -1,6 +1,9 @@
 /** ////////////////////////////////////////////////////////////
  * Storylines app
  */////////////////////////////////////////////////////////////
+import {settings, charts} from '../js/mainui.js'
+import * as ui from '../js/mainui.js'
+import * as map from '../js/map.js'
 
 /////////////////////////////////////////////////////////////
 // Variables
@@ -31,10 +34,10 @@ $(".progress-inside").each(function () {
 /////////////////////////////////////////////////////////////
 
 function get_storyXML(){
-   return 'xml/'+currentLang+'/stories_'+currentStory+'.xml #'
+   return 'xml/'+settings.currentLang+'/stories_'+currentStory+'.xml #'
 };
 
-function openStory (storynum) {
+export function openStory (storynum) {
   // show story navigation buttons
   $('#StoryOptions').css('opacity', '1');  
 
@@ -67,9 +70,17 @@ function openStory (storynum) {
   };
 };
 
-function openStoryOverview() {
+export function openStoryOverview() {
   resetStory();
-  $('#StoryOverview').load('xml/'+currentLang+'/stories_index.xml');
+  $('#StoryOverview').load('xml/'+settings.currentLang+'/stories_index.xml',
+    function(){
+      $('#openstory0').click(function(){openStory(0)})
+      $('#openstory1').click(function(){openStory(1)})
+      $('#openstory2').click(function(){openStory(2)})
+      $('#openstory3').click(function(){openStory(3)})
+    }
+  );
+
   $('#StoryOverview').css('transform', 'translate(0%, 0%)')
   
   // delete stories in carousel
@@ -97,37 +108,20 @@ function show_welcome() {
   $("#StoryCanvas").css('transform', 'translate(0%, 0%)');
 };
 
-
 function draw_studyarea_rectangle() {
-  
 };
 
 /////////////////////////////////////////////////////////////
 //  SFunct
 /////////////////////////////////////////////////////////////
 
-
-
-
-function show_flowcanvas() {
-  
+function show_flowcanvas() { 
 };
 
 function hide_flowcanvas() {  
   $('#FlowPanel').css('transform','translate(-120%, 0%)');
 };
 
-function map_zoom_NL() {
-  map.setView([52, 5], 7);
-};
-
-function map_zoom_Waal() {
-  map.setView([51.823, 5.3682], 10);
-};
-
-function map_zoom_StAndries() {
-  map.setView([51.823, 5.3682], 12);
-};
 
 function show_interventioncanvas() {
   $('#ExplorePanel').css('transform','translate(0%, 0%)');
@@ -141,15 +135,15 @@ function hide_interventioncanvas() {
 };
 
 function story_discharge_down() {
-  FlowFigure.changeDischarge(1250);
+  charts.flowFigure.changeDischarge(1250);
 };
 
 function story_discharge_up() {
-  FlowFigure.changeDischarge(2000);
+  charts.flowFigure.changeDischarge(2000);
 };
 
 function story_lower_bed() {
-  FlowFigure.changeInterventionDepth(-1)
+  charts.flowFigure.changeInterventionDepth(-1)
 };
 
 function show_storycanvas(){
@@ -166,22 +160,22 @@ function show_storycanvas_hide_flow(){
 };
 
 function explorecanvas_show_waterlevels(){
-  d3.json("data/reference_waterlevels.json", function (d) {ExploreFigure.updateData(d)});
-  ExploreFigure.setYLabel("Water level [m+NAP]")
+  d3.json("data/reference_waterlevels.json", function (d) {charts.exploreFigure.updateData(d)});
+  charts.exploreFigure.setYLabel("Water level [m+NAP]")
 }
 
 function explorecanvas_show_normalised_waterlevels(){
-  d3.json("data/reference_waterlevels_norm.json", function (d) {ExploreFigure.updateData(d)})
-  ExploreFigure.setYLabel("Normalised\n water level ")
+  d3.json("data/reference_waterlevels_norm.json", function (d) {charts.exploreFigure.updateData(d)})
+  charts.exploreFigure.setYLabel("Normalised\n water level ")
 };
 
 function explorecanvas_show_smoothing(){
-   d3.json("data/smoothing_int99.json", function (d) {ExploreFigure.updateData(d)})
-   ExploreFigure.setYLabel("Water level decrease [m]")
+   d3.json("data/smoothing_int99.json", function (d) {charts.exploreFigure.updateData(d)})
+   charts.exploreFigure.setYLabel("Water level decrease [m]")
 };
 
 function explorecanvas_show_sidechannels(){
-  d3.json("data/sidechannel_int100.json", function (d) {ExploreFigure.updateData(d)})
+  d3.json("data/sidechannel_int100.json", function (d) {charts.exploreFigure.updateData(d)})
 };
 
 /* story 0*/
@@ -198,72 +192,72 @@ function story_showFlow(reverse=false) {
 
 function story_decreaseFriction(reverse=false) {
   if (reverse) {
-    FlowFigure.changeFriction(0.04);
+    charts.flowFigure.changeFriction(0.04);
   } else {
-    FlowFigure.changeFriction(0.02);
+    charts.flowFigure.changeFriction(0.02);
   };
 };
 
 function story_increaseFriction(reverse=false) {
   if (reverse) {
-    FlowFigure.changeFriction(0.02);
+    charts.flowFigure.changeFriction(0.02);
   } else {
-    FlowFigure.changeFriction(0.04);
+    charts.flowFigure.changeFriction(0.04);
   };
 };
 
 function story_markWaterLevel(reverse=false) {
   if (reverse) {
-    FlowFigure.emptyArchive();
+    charts.flowFigure.emptyArchive();
   } else {
-    FlowFigure.saveLineToArchive();
-    FlowFigure.drawLatestFromArchive('archiveline');
+    charts.flowFigure.saveLineToArchive();
+    charts.flowFigure.drawLatestFromArchive('archiveline');
   };
 };
 
 function story_lowerBed(reverse=false) {
   if (reverse) {
-    FlowFigure.changeInterventionDepth(0)
-    FlowFigure.deleteFromArchive(1);
+    charts.flowFigure.changeInterventionDepth(0)
+    charts.flowFigure.deleteFromArchive(1);
   } else {
-    FlowFigure.changeInterventionDepth(-1)
-    FlowFigure.saveLineToArchive();
-    FlowFigure.drawLatestFromArchive('differenceline')
+    charts.flowFigure.changeInterventionDepth(-1)
+    charts.flowFigure.saveLineToArchive();
+    charts.flowFigure.drawLatestFromArchive('differenceline')
   };
 };
 
 function story_markDifference(reverse=false){
   if (reverse) {
-    FlowFigure.drawLatestFromArchive('differenceline', 'archiveline_1')
+    charts.flowFigure.drawLatestFromArchive('differenceline', 'archiveline_1')
     $('.archiveline').css('opacity', '1')
-    FlowFigure.showFlow();
+    charts.flowFigure.showFlow();
   } else {
-    FlowFigure.drawEffect(1, 0, 'archiveline_1')
+    charts.flowFigure.drawEffect(1, 0, 'archiveline_1')
     $('.archiveline').css('opacity', '0')
-    FlowFigure.hideFlow();
+    charts.flowFigure.hideFlow();
   };
 };
 
 /* Resets the story to first step */
 function reset_story_0(){
-  FlowFigure.emptyArchive();
-  FlowFigure.changeInterventionDepth(0)
-  FlowFigure.changeDischarge(2000);
+  charts.flowFigure.emptyArchive();
+  charts.flowFigure.changeInterventionDepth(0)
+  charts.flowFigure.changeDischarge(2000);
   show_welcome();
-  showReference();
+  ui.showReference();
   hide_flowcanvas();
   hide_interventioncanvas();
-  FlowFigure.showFlow();
-  FlowFigure.removeEffect();
+  charts.flowFigure.showFlow();
+  charts.flowFigure.removeEffect();
 };
 
 /* story 2*/
 function story_showWaal(reverse=false) {
   if (reverse){
-    map_zoom_NL();
+    map.zoom_NL();
     show_storycanvas();
   } else {
-    map_zoom_Waal();
+    map.zoom_Waal();
     $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline.svg'></img>");
     show_storycanvas();
   }
@@ -271,11 +265,11 @@ function story_showWaal(reverse=false) {
 
 function story_showStAndries(reverse=false){
   if (reverse){
-    map_zoom_Waal();
+    map.zoom_Waal();
     $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline.svg'></img>");
     show_storycanvas();
   } else {
-    map_zoom_StAndries();
+    map.zoom_StAndries();
     draw_studyarea_rectangle();
     $("#StoryCanvas").html("<img class='storycanvasimage' src='img/waal_outline_withandries.svg'></img>");
     show_storycanvas();
@@ -307,25 +301,25 @@ function story_show_floodplain_smoothing(reverse=false){
     showReference();
   } else {
     explorecanvas_show_smoothing();
-    showSmooth();
+    ui.showSmooth();
   };
 };
 
 function story_show_sidechannels(reverse=false){
   if (reverse){
     explorecanvas_show_smoothing();
-    showSmooth();
+    ui.showSmooth();
   } else {
     explorecanvas_show_sidechannels();
-    showSIDECHAN();
+    ui.showSidechan();
   }
 };
 
 function reset_story_2(){
-  map_zoom_Waal();
+  map.zoom_Waal();
   hide_interventioncanvas();
   show_storycanvas();
-  showReference();
+  ui.showReference();
 };
 
 /////////////////////////////////////////////////////////////
@@ -368,7 +362,7 @@ StoryFunctions = [[reset_story_0,
 
 
 /* advances story by one increment */
-function nextStory () {
+export function nextStory () {
   var xmlPath = get_storyXML();
   if (StoryProgress < NumberOfStories) {
     // advance story
@@ -389,7 +383,7 @@ function nextStory () {
 };
 
 /* retards story by one increment */
-function previousStory () {
+export function previousStory () {
   var xmlPath = get_storyXML();
   if (StoryProgress > 1) {
     // retard story
@@ -411,7 +405,7 @@ function previousStory () {
 };
 
 /* Called when user clicks 'home' button */
-function resetStory () {
+export function resetStory () {
   StoryProgress = 1;
   var xmlPath = get_storyXML();
   StoryFunctions[currentStory][0]();
@@ -523,5 +517,3 @@ addSwipeDetect(el, function(swipedir){
       
     };
 });
-
-//

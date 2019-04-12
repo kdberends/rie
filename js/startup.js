@@ -32,7 +32,7 @@ $('#app-info').click(function(){ui.toggleApp(3)})
 
 $('#MapTheme').click(function(){ui.toggleTheme()})
 $('#MapLang').click(function(){ui.toggleLanguage()})
-$('#MapZoom').click(function(){mapZoomToStudyArea()})
+$('#MapZoom').click(function(){map.ZoomToStudyArea()})
 
 $('#exploreShowReference').click(function(){ui.showReference(); ui.toggleApp(1)})
 $('#exploreShowSmooth').click(function(){ui.showSmooth(); ui.toggleApp(1)})
@@ -100,6 +100,7 @@ function start_webapp(error, dataset, comparedata) {
 
     $('#loadtext').append("Setting language to "+ui.settings.currentLang+" Flow app<br/>")
     ui.setLanguage(ui.settings.currentLang)
+    story.openStoryOverview()
     $('#loader-wrapper').addClass('loaded');
 };
 

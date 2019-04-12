@@ -310,7 +310,7 @@ map.on('zoomend', function() {
    sets and a line in between
  */
 
-export function mapZoomToStudyArea() {
+export function ZoomToStudyArea() {
   map.setView([51.85, 5.35], 12);
 };
 

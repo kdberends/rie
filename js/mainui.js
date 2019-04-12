@@ -35,8 +35,7 @@ function loadContent() {
   $('#AboutContent').load('xml/'+settings.currentLang+'/about.xml');
   $('#PaperContent').load('xml/'+settings.currentLang+'/learn.xml');
   $('#InterventionDescription').load('xml/'+settings.currentLang+'/explore_'+settings.currentIntervention+'.xml');
-  //$('#StoryOverview').load('xml/'+currentLang+'/stories_index.xml');
-  story.openStoryOverview()
+  
   d3.json('xml/'+settings.currentLang+'/titles.json', function(langString) {
       $('#AppTitle').text(langString.apptitle);
       $('#MenuCurrentIntervention').text(langString[currentIntervention]);

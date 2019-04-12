@@ -382,7 +382,7 @@ footer {
 
 /* this is title text */
 .cssmenu > ul > li > a {
-  padding: 10px 0px 0px 0px;
+  padding: 7px 0px 3px 0px;
   height: 38px;
   cursor: pointer;
   z-index: inherit;
@@ -408,7 +408,7 @@ footer {
   z-index: inherit;
   font-size: 16px;
   text-decoration: none;
-  color: #dddddd;
+  color: var(--accent-2);
   background: var(--accent-1);
   -webkit-transition: color .2s ease;
   -o-transition: color .2s ease;

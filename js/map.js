@@ -133,8 +133,8 @@ export function setTileLayerHost(theme='dark') {
 };
 
 export function addTileLayers(){
-  tilelayer1 = new L.TileLayer(host);
-  tilelayer2 = new L.TileLayer(host);
+  tilelayer1 = new L.TileLayer(host, {minZoom: 8});
+  tilelayer2 = new L.TileLayer(host, {minZoom: 8});
   map.addLayer(tilelayer1);
   map2.addLayer(tilelayer2);
 };

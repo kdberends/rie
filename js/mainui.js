@@ -195,12 +195,12 @@ export function setLanguage (lan) {
     $('#MapLang').css('color', color)
     // reload content
     loadContent();
-}
+};
 
 export function toggleLanguage () {
     if (settings.currentLang=='en'){setLanguage('nl')} 
     else {setLanguage('en')};
-}
+};
 
 /** ////////////////////////////////////////////////////////////
  * Invisible scrollbar (perfectscrollbarjs)

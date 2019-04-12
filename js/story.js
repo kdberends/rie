@@ -441,13 +441,12 @@ function addSwipeDetect(el, callback){
         
         touchsurface.addEventListener('touchstart', function(e){
           if (flagSwipeActive){
-        var touchobj = e.changedTouches[0]
-            swipedir = 'none'
-            dist = 0
-            startX = touchobj.pageX
-            startY = touchobj.pageY
-            startTime = new Date().getTime() // record time when finger first makes contact with surface
-            //e.preventDefault()
+              let touchobj = e.changedTouches[0];
+              swipedir = 'none';
+              startX = touchobj.pageX;
+              startY = touchobj.pageY;
+              startTime = new Date().getTime() // record time when finger first makes contact with surface
+                  //e.preventDefault()
             }}, false)
         
         // On touchy move lefty or righty but not scrolly

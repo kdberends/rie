@@ -18,7 +18,7 @@ console.log('According to your browser, your preferred language is: '+navigator.
 
 // Global constants
 export var settings = {currentTheme: 'light', 
-                       currentLang: 'nl',
+                       currentLang: 'en',
                        currentIntervention: 'reference', 
                        currentFlowData: 'data/waal_reference_0000.json',
                        ui_version: 0.52,
@@ -146,8 +146,9 @@ export function toggleApp (appindex) {
   };
 };
 
-export function toggleTheme () {
-  if (currentTheme=='light'){ 
+
+export function setTheme (theme) {
+  if (theme=='dark'){ 
     document.getElementById('theme_css').href = 'css/dark-theme.css';
     
     // Background map
@@ -181,6 +182,11 @@ export function toggleTheme () {
 
     
   };
+};
+
+export function toggleTheme () {
+  if (currentTheme=='light'){setTheme('dark')}
+  else {setTheme('light')};
 };
 
 export function setLanguage (lan) {

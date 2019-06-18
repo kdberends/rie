@@ -98,8 +98,12 @@ function start_webapp(error, dataset, comparedata) {
         });
       });
 
-    $('#loadtext').append("Setting language to "+ui.settings.currentLang+" Flow app<br/>")
+    $('#loadtext').append("Setting language to "+ui.settings.currentLang+"<br/>")
     ui.setLanguage(ui.settings.currentLang)
+
+    $('#loadtext').append("Setting interface theme to "+ui.settings.currentTheme+"<br/>")
+    ui.setTheme(ui.settings.currentTheme)
+    
     story.openStoryOverview()
     $('#loader-wrapper').addClass('loaded');
 };

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
 <h2>Journal papers</h2>
-Uncertainty quantification take a lot of time, but can be sped up significantly. Read about our method in the paper below, and see the 'coral' tool for an Open Source Python implementation. 
+Onzekerheidskwantificering vereisen vaak zoveel berekeningen, dat het ondoenlijk is om uit te voeren. Wij hebben daarom een nieuwe methode ontwikkeld om de onzekerheid van modelberekeningen af te schatten. De methode is gepubliceerd, en beschikbaar als het Python programma 'CORAL'. 
 <div class='reference'>
 Berends, K.D., Warmink, J.J., Hulscher, S.J.M.H., 2018, Efficient uncertainty quantification for impact analysis of human interventions in rivers, Environmental Modelling &amp; Software 107, 50-58. <a href="https://doi.org/10.1016/j.envsoft.2018.05.021 ">doi: 10.1016/j.envsoft.2018.05.021 	</a>
 </div>
 <br/>
-From previous studies we know that uncertainty in roughness causes large uncertainty in expected water levels during floods. But how does this translate to predictions of river engineering? In the paper below, we explore this for the River Waal. 
+Hoe onzeker zijn modelvoorspellingen voor Ruimte voor de Rivieringrepen eigenlijk? In deze studie hebben we voor 12 ingrepen het effect doorgerekend, en het effect van de onzekerheid meegenomen. 
 <br/>
 <div class='reference'>
 <img style="width: 14px;" src="https://upload.wikimedia.org/wikipedia/commons/7/77/Open_Access_logo_PLoS_transparent.svg"></img>

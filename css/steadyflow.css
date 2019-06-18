@@ -15,6 +15,21 @@
 	stroke-dasharray: 10 1 ;
 }
 
+#FlowCanvas .BackWaterTips{
+  opacity: 1;
+  fill: none;
+  stroke: var(--accent-2);
+  stroke-width: 3px;
+}
+
+#FlowCanvas text{
+	position: relative;
+	stroke: var(--accent-2);
+	fill: var(--accent-2);
+	text-anchor: middle;
+	dominant-baseline: central;
+}
+
 .SteadyFlowAreas{
 	transition: all 200ms ease-out;
 }
@@ -43,3 +58,4 @@
 #ExploreCanvas .tick text{
 	fill: var(--font-body-color);
 }
+

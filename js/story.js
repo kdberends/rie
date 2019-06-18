@@ -231,10 +231,12 @@ function story_markDifference(reverse=false){
     charts.flowFigure.drawLatestFromArchive('differenceline', 'archiveline_1')
     $('.archiveline').css('opacity', '1')
     charts.flowFigure.showFlow();
+    charts.flowFigure.removeBackwaterTips();
   } else {
     charts.flowFigure.drawEffect(1, 0, 'archiveline_1')
     $('.archiveline').css('opacity', '0')
     charts.flowFigure.hideFlow();
+    charts.flowFigure.drawBackwaterTips();
   };
 };
 

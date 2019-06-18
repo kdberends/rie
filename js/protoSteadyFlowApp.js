@@ -520,7 +520,46 @@ export function protoSteadyFlowApp() {
         d3.selectAll('.differenceline').remove();
     };
 
+    /* tmp */
+    this.removeBackwaterTips = function(){
+        d3.selectAll('.BackWaterTips').remove()
+        d3.selectAll('.BackWaterTipsText').remove();
+    };
 
+    this.drawBackwaterTips = function() {
+        g.append("circle")
+         .attr('class', 'BackWaterTips')
+         .attr('cx', xScale(7000))
+         .attr('cy', yScale(2))
+         .attr('r', 20)
+        g.append("text")
+         .attr('class', 'BackWaterTipsText')
+         .attr('x', xScale(7000))
+         .attr('y', yScale(2))
+         .text(function(){return "1"})
+
+        g.append("circle")
+         .attr('class', 'BackWaterTips')
+         .attr('cx', xScale(5000))
+         .attr('cy', yScale(2))
+         .attr('r', 20)
+        g.append("text")
+         .attr('class', 'BackWaterTipsText')
+         .attr('x', xScale(5000))
+         .attr('y', yScale(2))
+         .text(function(){return "2"})
+
+        g.append("circle")
+         .attr('class', 'BackWaterTips')
+         .attr('cx', xScale(3000))
+         .attr('cy', yScale(2))
+         .attr('r', 20)
+        g.append("text")
+        .attr('class', 'BackWaterTipsText')
+         .attr('x', xScale(3000))
+         .attr('y', yScale(2))
+         .text(function(){return "3"})
+    };
     /* /////////////////////////////////////////////////////////////
 	//// Areas 
     *///////////////////////////////////////////////////////////////

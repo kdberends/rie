@@ -3,8 +3,7 @@
 <h2>River Intervention Explorer</h2>
 <h3>Storylines</h3>
 
-<a id='openstory0' href='#' >I: River engineering 101</a><br/>
-<a id='openstory1' href='#' class='notavailable'>II: Introduction of uncertainty (coming...)</a>
-<a id='openstory2' href='#' >III: Uncertainty of large-scale interventions</a>
-<a id='openstory3' href='#' class='notavailable'>IV: Comparing interventions (coming...)</a>
+<a id='openstory0' href='#' >How effects are predicted</a><br/>
+<a id='openstory1' href='#' class='notavailable'>What we mean with uncertainty (coming...)</a>
+<a id='openstory2' href='#' >The uncertainty of interventions</a>
 </xml>

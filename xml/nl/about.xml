@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
 <img style="width: 50%; margin-left: 25%" src="img/spetter.png"></img><br/>
-Dat ben ik!
+Dat ben ik terwijl ik probeer mijn hond wijzer te maken over mijn onderzoek. Dit bleek een flinke uitdaging. 
 <br/>
 <br/>
-
-This website (or 'app') is built to make the most interesting aspects of my <a href="https://people.utwente.nl/k.d.berends">PhD research</a> accessible beyond the <a href='#' onclick="toggleApp(2);">scientific papers</a>. 
+Deze web-app heb ik gebouw om onderzoeksresultaten van mijn PhD onderzoek toegankelijker te maken. 
 <br/>
 <br/>
-Cheers,<br/>
+Veel plezier!<br/>
 Koen
-<h2> About the author </h2>
-Koen Berends is a PhD candidate at the <a href="https://people.utwente.nl/k.d.berends">University of Twente</a> and a researcher at <a href="https://www.deltares.nl/en">Deltares</a>.
+<h2> Over de auteur </h2>
+Koen Berends is een onderzoeker bij het kennisinstituut <a href="https://www.deltares.nl/en">Deltares</a> en een PhD kandidaat aan de <a href="https://people.utwente.nl/k.d.berends">Universiteit Twente</a>.
 <br/>
 <br/>
 <h2> Attribution </h2>
-All this was not possible without the help of friends:
+Ik maak dankbaar gebruik van:
 <br/>
 <br/>
 Map attribution; <br/>
@@ -24,7 +23,7 @@ Map attribution; <br/>
 &#169; <a href="http://cartodb.com/attributions">CartoDB</a>
 <br/>
 <br/>
-<h2> License </h2>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+<h2> Licentie </h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Deze site is uitgebracht onde de <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 Internationale licentie</a>
 
 </xml>

@@ -47,6 +47,8 @@ $('#buttonStoryReset').click(function(){story.resetStory()})
 $('#buttonStoryOverview').click(function(){story.openStoryOverview()})
 $('#buttonStoryNext').click(function(){story.nextStory()})
 
+$('#startapp').click(function(){$('#loader-wrapper').addClass('loaded');})
+
 
 /* Execute this function on startup */
 function start_webapp(error, dataset, comparedata) {
@@ -103,15 +105,23 @@ function start_webapp(error, dataset, comparedata) {
 
     $('#loadtext').append("Setting interface theme to "+ui.settings.currentTheme+"<br/>")
     ui.setTheme(ui.settings.currentTheme)
-    
+    $('#welcometext').css("opacity", 1);
+
     story.openStoryOverview()
-    $('#loader-wrapper').addClass('loaded');
+    //$('#loadtext').css("opacity", 0)
+    setTimeout( function() {
+            $('#loader-wrapper').addClass('loaded');
+       }, 3500);
+    
+    
+    //$('#loader-wrapper').addClass('loaded');
 };
 
 
 $(document).ready(function () {
   // renderProgress();
 });
+
 
 $('#version-number-ui').text('App: v' + ui.settings.ui_version);
 $('#version-number-map').text('Map: v' + ui.settings.map_version);
@@ -121,3 +131,5 @@ d3.queue()
   .defer(d3.json, 'data/relocation_int100.json')
   .defer(d3.json, 'data/exceedance_diagram_data.json')
   .await(start_webapp);
+
+

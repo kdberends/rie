@@ -33,6 +33,7 @@ body {
   overflow: hidden;
 }
 
+
 body h1{
   font-family: var(--font-body-header);
 }
@@ -119,6 +120,7 @@ body a:hover
     pointer-events: none;
     overflow: hidden;
 }
+
 
 #loader-wrapper img {
   left: 50%;
@@ -208,18 +210,43 @@ body a:hover
 }
 
 /* info text */
-#loadtext{
+#welcometext{
   display: block;
   position: absolute;
   right: calc(50% - 150px);
-  bottom: calc(50% - 150px);
+  bottom: calc(50% - 200px);
   width: 300px;
-  max-height: 50px;
+  z-index: 1008;
+  font-family: Oswald;
+  font-size: 18px;
+  color: white;
+  opacity: 0;
+  padding-left: 5px;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  transition: all 2.0s ease;
+  pointer-events: auto;
+}
+
+#welcometext em{
+  font-style: normal;
+  font-weight: bold;
+}
+
+#loadtext{
+  display: block;
+  position: absolute;
+  right: calc(50% - 0px);
+  bottom: calc(50% - 350px);
+  width: 150px;
   margin: -75px 0 0 -75px;
   z-index: 1001;
   font-family: Oswald;
-  font-size: 14px;
-  color: white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #DADADA;
   transition: all 0.2s ease;
 }
 
@@ -248,6 +275,19 @@ body a:hover
     transition: all 0.3s 1s ease-out;
 }
 
+.loaded #welcometext {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s 1s ease-out;
+}
+
+.loaded #loader-wrapper{
+    visibility: hidden;
+    transform: translateY(-200%);
+    transition: all 0.3s 2s ease-out;
+    pointer-events: none;
+}
+
 .loaded #loadlogo{
   opacity: 0;
   pointer-events: none;
@@ -257,11 +297,6 @@ body a:hover
     opacity: 0;
     -webkit-transition: all 0.3s ease-out;  
             transition: all 0.3s ease-out;
-}
-.loaded #loader-wrapper {
-    visibility: hidden;
-    transform: translateY(-200%);
-    transition: all 0.3s 2s ease-out;
 }
 
 
@@ -603,6 +638,10 @@ nav {
   transition: 250ms ease-out;
 }
 
+#app-settings img{
+  width: 20px;
+}
+
 #app-info::after{
   content: "About";
   left: 15px;
@@ -622,12 +661,12 @@ nav {
 }
 
 #app-article::after{
-  content: "More";
+  content: "Research";
   left: 25px;
 }
 
 #app-settings::after{
-  content: "Settings";
+  content: "RiverCare";
   left: 25px;
 }
 

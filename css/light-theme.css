@@ -8,11 +8,11 @@
     --nav-color: white;
     --nav-size: 26px;
   
-    --accent-1: #C6B099;
-    --accent-2: #696260;
-    --accent-3: #3C787E;
-    --accent-4: #114b5f;
-    --accent-5: #028090;
+    --accent-1: #EDEDE0; /* Topbar background */
+    --accent-2: #696260; /* main text/ light color, contrast with 1 */
+    --accent-3: #3C787E; /* hover 2*/
+    --accent-4: #114b5f; /* Highlight/focus */
+    --accent-5: #0AA4B8; /* accent colors*/
 
     --glass-background: rgba(0, 0, 0, 0);
     --glass-accent-1: rgba(246, 247, 249, 0.5);

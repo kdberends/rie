@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
 <img style="width: 50%; margin-left: 25%" src="img/spetter.png"></img><br/>
-That's me trying to explain my research to my dog. As I found out, communicating  research (and why it is useful) <a href="https://xkcd.com/678/">is difficult.</a> 
+That's me trying to explain my research to my dog. As I found out, communicating  research (and why it is useful) is difficult. 
 <br/>
 <br/>
 
-This website (or 'app') is built to make the most interesting aspects of my <a href="https://people.utwente.nl/k.d.berends">PhD research</a> accessible beyond the <a href='#' onclick="toggleApp(2);">scientific papers</a>. 
+This website (or 'app') is built to make the most interesting aspects of my PhD research accessible beyond the <a href='#' onclick="toggleApp(2);">scientific papers</a>. 
 <br/>
 <br/>
 Cheers,<br/>

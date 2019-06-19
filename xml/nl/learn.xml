@@ -14,11 +14,10 @@ Berends, K. D., Straatsma, M. W., Warmink, J. J., and Hulscher, S. J. M. H.: Unc
 
 <h2>  Tools </h2>
 <a href="https://github.com/kdberends/coral"><img style='width: 90%' type="image/svg+xml" src="https://raw.githubusercontent.com/kdberends/coral/master/coralfig.svg?sanitize=true"></img></a>
-Coral is a Python package that can be used for efficient uncertainty estimation, in dealing with computationally demanding models. Click on the link above to go directly to the source code. 
+CORAL is een Python programma dat gebruikt kan worden om onzekerheid efficiënt te berekenen met zware rekenmodellen. Klik op het logo om direct naar de broncode te gaan.  
 
 <h2> Other projects </h2>
 <a href="https://kbase.ncr-web.org/rivercare"><img style='width: 90%' type="image/svg+xml" src="img/rivercarelogo_black.svg"></img></a>
 
-My research is not done in a vacuum. In fact, my project is one of 21 in the RiverCare research project, running from 2015-2019!
-
+Mijn onderzoek vindt plaats in het RiverCare programma. Je kan hier meer over lezen op de Knowledge Base!
 </xml>

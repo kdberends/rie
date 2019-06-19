@@ -7,6 +7,13 @@ var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, cha
 var currentTheme = 'dark';
 var currentLang = 'nl';
 var currentIntervention = 'reference'
+var currentApp = 0;
+
+// Flags to remember which panel is out
+var AppMenuToggle = true;
+var AppToggles = [true, false, false, false, false, false];
+var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel'];
+var ExploreToggle = true;
 
 
 // Print welcome
@@ -17,7 +24,7 @@ console.log('According to your browser, your preferred language is: '+navigator.
 */
 
 // Global constants
-export var settings = {currentTheme: 'light', 
+export var settings = {currentTheme: 'dark', 
                        currentLang: 'en',
                        currentIntervention: 'reference', 
                        currentFlowData: 'data/waal_reference_0000.json',
@@ -30,7 +37,7 @@ export var settings = {currentTheme: 'light',
 export var charts = {exploreFigure: {},
                      flowFigure: {}}
 
-// Load content
+// Load content 
 function loadContent() {
   $('#AboutContent').load('xml/'+settings.currentLang+'/about.xml');
   $('#PaperContent').load('xml/'+settings.currentLang+'/learn.xml');
@@ -104,11 +111,7 @@ document.addEventListener('click', function(event) {
  *
  */////////////////////////////////////////////////////////////
 
-// Flags to remember which panel is out
-var AppMenuToggle = true;
-var AppToggles = [true, false, false, false, false, false];
-var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel'];
-var ExploreToggle = true;
+
  
 // Function to toggle navigation menu
 export function toggleAppMenu () {
@@ -127,7 +130,8 @@ export function toggleAppMenu () {
 
 // Function to switch between apps
 export function toggleApp (appindex) {
-  console.log("Go to app "+appindex)
+  currentApp = appindex;
+  console.log("Go to app "+currentApp)
   for (let i=0;i<AppToggles.length;i++){
     if (i == appindex) { 
       // show requested app and its children
@@ -192,14 +196,25 @@ export function toggleTheme () {
 export function setLanguage (lan) {
     console.log('language set to ' + lan)
     let color = 'white';
-    if (lan=='nl'){color='orange'}else{color='blue'}
+
     // switch flag
     settings.currentLang = lan;
     currentLang = settings.currentLang;
-    // change color of icon to orange
-    $('#MapLang').css('color', color)
+    
+    // change icon
+    if (lan=='nl'){
+      $('#MapLang').children('img').attr('src', 'img/flag_dutch.svg')
+    }else{
+      $('#MapLang').children('img').attr('src', 'img/flag_english.svg')
+    };
+    
     // reload content
     loadContent();
+
+    // if story app is current, reload story app 
+    if (currentApp == 0){
+      story.openStoryOverview()
+    }
 };
 
 export function toggleLanguage () {
@@ -304,6 +319,9 @@ export function showRelo() {
                   id: 'relotooltip2',
                   div: '#2',
                   align: 'right'});
+
+  // Add animated SVG
+  //addInterventionAnimation(loopDikes)
 };
 
 export function showSmooth() {
@@ -334,6 +352,9 @@ export function showSmooth() {
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'}); 
+
+  // Add animated SVG
+  //addInterventionAnimation(loopVegetation)
 };
 
 export function showGroynlow(){
@@ -362,6 +383,9 @@ export function showGroynlow(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
+
+  // Add animated SVG
+  //addInterventionAnimation(loopGroynes)
 };
 
 export function showMinemblow(){
@@ -393,6 +417,9 @@ export function showMinemblow(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
+
+  // Add animated SVG
+  //addInterventionAnimation(loopEmbankments)
 };
 
 export function showFlplow(){
@@ -422,6 +449,9 @@ export function showFlplow(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
+
+  // Add animated SVG
+  //addInterventionAnimation(loopLowerFloodplain)
 };
 
 export function showSidechan(){
@@ -452,11 +482,119 @@ export function showSidechan(){
                  id: 'smoothtooltip',
                  div: '#0',
                  align: 'right'});
+
+  // Add animated SVG
+  //addInterventionAnimation(loopSidechannel)
 };
+
+
+
 
 /** ////////////////////////////////////////////////////////////
  * Interaction
  *//////////////////////////////////////////////////////////////
+
+function addInterventionAnimation(callback){
+// remove old svg
+$("#vis svg").remove()
+
+// Load from source
+d3.xml("img/invanim_test.svg", function(xml) {
+      var importedNode = document.importNode(xml.documentElement, true);
+      d3.select("#vis")
+        .each(function() {
+          this.appendChild(importedNode);
+        })
+
+
+        callback()
+
+
+        // inside of our d3.xml callback, call another function
+        // that styles individual paths inside of our imported svg
+        //loopSidechannel()
+        //loopVegetation()
+        //loopGroynes()
+        //loopEmbankments()
+        //loopDikes()
+        //loopLowerFloodplain()
+      });
+};
+
+//addInterventionAnimation(loopSidechannel)
+function loopSidechannel () {
+  d3.select('#vis svg ')
+    .selectAll('#sidechannel')
+    .transition()
+    .duration(1500)
+    .style('opacity', 1)
+    .transition()
+    .duration(500)
+    .style('opacity', 0)
+    .on("end", loopSidechannel)
+    }
+
+function loopVegetation () {
+        d3.select('#vis svg')
+          .selectAll('#vegetation')
+          .transition()
+          .duration(1500)
+          .style('opacity', 1)
+          .transition()
+          .duration(500)
+          .style('opacity', 0)
+          .on("end", loopVegetation)
+      }
+
+
+function loopGroynes () {
+        d3.select('#vis svg')
+          .selectAll('#groynes')
+          .transition()
+          .duration(1500)
+          .attr('transform', 'translate(0, 10)')
+          .transition()
+          .duration(500)
+          .attr('transform', 'translate(0, 0)')
+          .on("end", loopGroynes)
+      }
+
+function loopEmbankments () {
+        d3.select('#vis svg')
+          .selectAll('#embankment')
+          .transition()
+          .duration(1500)
+          .attr('transform', 'translate(0, 10)')
+          .transition()
+          .duration(500)
+          .attr('transform', 'translate(0, 0)')
+          .on("end", loopEmbankments)
+      }
+
+function loopDikes () {
+        d3.select('#vis svg')
+          .selectAll('#leftdikegroup')
+          .transition()
+          .duration(1500)
+          .attr('transform', 'translate(-20, 0)')
+          .transition()
+          .duration(500)
+          .attr('transform', 'translate(0, 0)')
+          .on("end", loopDikes)
+      }
+
+function loopLowerFloodplain () {
+        d3.select('#vis svg')
+          .selectAll('#lowerfloodplain')
+          .transition()
+          .duration(1500)
+          .attr('transform', 'translate(0, 22)')
+          .transition()
+          .duration(500)
+          .attr('transform', 'translate(0, 0)')
+          .on("end", loopLowerFloodplain)
+      }
+
 
 
 // === ~final

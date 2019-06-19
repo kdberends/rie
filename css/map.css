@@ -63,6 +63,24 @@
 	font-family: Oswald;
 	transition: all 0.2s ease;
 }
+#AppTitle:after{
+	content: "preview";
+	top:-10px;
+	font-size: 13px
+}
+
+#AppTitle:before{
+	position: relative;
+	content: "Welcome to the RiverCare Final Symposium!";
+	top:15px;
+	left:250px;
+	font-size: 13px;
+	font-family: Karla;
+	color: var(--accent-5);
+	
+
+	
+}
 
 @media (max-width: 1050px) {
 	#AppTitle{transform: scale(0.75) translate(75px, 0px)}

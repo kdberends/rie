@@ -43,7 +43,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Oswald:200" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+     
     <!-- EXTERNAL STYLE SHEETS-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
           integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -69,12 +70,20 @@
 
   <!-- Loader --> 
   <div id="loader-wrapper">
+    <div id="welcometext">
+      Welcome to the RiverCare Final Symposium<br/>
+      <em>preview</em> of the River Intervention Explorer
+      <br/>
+      <br/>
+
+      <a id=startapp href="#"> Start here!</a>
+
+    </div>
     <div id="loadtext"></div>
     <div id="loader"></div>
     <img id="loadlogo" onclick="location.reload();" src="img/rivercarelogo_grey.svg">
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
-
   </div>
 
   <!-- Background map -->
@@ -95,9 +104,10 @@
     <!-- app navigator -->
     <div id="appnavigation">
       <span id="app-story"><i class="fas fa-book-reader"></i></span>
-      <span id="app-explore"><i class="fas fa-compass"></i></span>
+      <!--<span id="app-explore"><i class="fas fa-compass"></i></span>-->
       <span id="app-article"><i class="fas fa-graduation-cap"></i></span>
       <span id="app-info"><i class="fas fa-info"></i></span>
+      <span id="app-settings"><a target=”_blank” href="https://kbase.ncr-web.org/rivercare"><img src="img/favico.ico"/></a></span>
     </div>
 
     <!-- Map Controls -->
@@ -124,7 +134,7 @@
         </div>
         <div id="MapButtons">
           <div class='map-ui-button' id='MapZoom'><i class="fas fa-search-plus"></i></div>
-          <div class='map-ui-button' id='MapTheme'><i class="fas fa-moon"></i></div>
+          <div class='map-ui-button' id='MapTheme'><i class="fas fa-adjust"></i></div>
           <div class='map-ui-button' id='MapLang'><img class='storycanvasimage' src="img/flag_english.svg"/></div>
         </div>
       </div>
@@ -143,7 +153,9 @@
         <!-- Explore app -->
         <div id="ExplorePanel" class='panel'>
           <div><svg id="ExploreCanvas" class='canvas'></svg></div>
+          
           <div id="ExploreScroll" class='scroll textframe'>
+            <div id="vis"></div>
               <div id='InterventionDescription'></div>
           </div>
         </div> <!-- /explorepanel -->

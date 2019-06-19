@@ -75,9 +75,9 @@ export function openStoryOverview() {
   $('#StoryOverview').load('xml/'+settings.currentLang+'/stories_index.xml',
     function(){
       $('#openstory0').click(function(){openStory(0)})
-      $('#openstory1').click(function(){openStory(1)})
+      //$('#openstory1').click(function(){openStory(1)})
       $('#openstory2').click(function(){openStory(2)})
-      $('#openstory3').click(function(){openStory(3)})
+      //$('#openstory3').click(function(){openStory(3)})
     }
   );
 
@@ -251,6 +251,7 @@ function reset_story_0(){
   hide_interventioncanvas();
   charts.flowFigure.showFlow();
   charts.flowFigure.removeEffect();
+  charts.flowFigure.removeBackwaterTips();
 };
 
 /* story 2*/

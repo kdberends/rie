@@ -507,17 +507,13 @@ var el = document.getElementById('StoryFrame');
 addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"
     if (swipedir=='right'){
-      $("#StoryFrame").css('overflow', 'hidden')
       if (StoryProgress!=1){previousStory()}
         else {
           $('#StoryCarousel').css('transition', 'all 0.2s ease-out' )
           $('#StoryCarousel').css('transform', 'translate(0%)')
         }
     } else if (swipedir=='left'){
-      ("#StoryFrame").css('overflow', 'hidden')
       if (StoryProgress!=NumberOfStories){nextStory()}
-      else {$('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')}
-
-      
-    } else {("#StoryFrame").css('overflow', 'inherit')};
+      else {$('#StoryCarousel').css('transform', 'translate('+(StoryProgress-1)/NumberOfStories*-100+'%)')} 
+    };
 });

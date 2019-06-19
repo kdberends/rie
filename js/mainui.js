@@ -25,7 +25,7 @@ console.log('According to your browser, your preferred language is: '+navigator.
 
 // Global constants
 export var settings = {currentTheme: 'dark', 
-                       currentLang: 'en',
+                       currentLang: 'nl',
                        currentIntervention: 'reference', 
                        currentFlowData: 'data/waal_reference_0000.json',
                        ui_version: 0.52,

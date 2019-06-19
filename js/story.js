@@ -502,7 +502,7 @@ function addSwipeDetect(el, callback){
         }}, false);
 };
   
-//var el = document.getElementById('StoryFrame');
+var el = document.getElementById('StoryFrame');
 
 addSwipeDetect(el, function(swipedir){
     // swipedir contains either "none", "left", "right", "top", or "down"

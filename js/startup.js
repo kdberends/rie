@@ -9,6 +9,7 @@
 contact: k.d.berends@utwente.nl | koen.berends@deltares.nl
 */////////////////////////////////////////////////////////////
 console.log('hii')
+
 $('#loadtext').append("River Intervention Explorer v.<br/>")
 $('#loadtext').append("Loading javascript libraries <br/>")
 

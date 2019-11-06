@@ -57,18 +57,18 @@ export function protoSchematicRiverChart() {
  	var width = null;
  	var height = null;
  	var g = null 
-    var colormap = ["#440154ff", "#440558ff", "#450a5cff", "#450e60ff", "#451465ff", "#461969ff",
-                  "#461d6dff", "#462372ff", "#472775ff", "#472c7aff", "#46307cff", "#45337dff",
-                  "#433880ff", "#423c81ff", "#404184ff", "#3f4686ff", "#3d4a88ff", "#3c4f8aff",
-                  "#3b518bff", "#39558bff", "#37598cff", "#365c8cff", "#34608cff", "#33638dff",
-                  "#31678dff", "#2f6b8dff", "#2d6e8eff", "#2c718eff", "#2b748eff", "#29788eff",
-                  "#287c8eff", "#277f8eff", "#25848dff", "#24878dff", "#238b8dff", "#218f8dff",
-                  "#21918dff", "#22958bff", "#23988aff", "#239b89ff", "#249f87ff", "#25a186ff",
-                  "#25a584ff", "#26a883ff", "#27ab82ff", "#29ae80ff", "#2eb17dff", "#35b479ff",
-                  "#3cb875ff", "#42bb72ff", "#49be6eff", "#4ec16bff", "#55c467ff", "#5cc863ff",
-                  "#61c960ff", "#6bcc5aff", "#72ce55ff", "#7cd04fff", "#85d349ff", "#8dd544ff",
-                  "#97d73eff", "#9ed93aff", "#a8db34ff", "#b0dd31ff", "#b8de30ff", "#c3df2eff",
-                  "#cbe02dff", "#d6e22bff", "#e1e329ff", "#eae428ff", "#f5e626ff", "#fde725ff"];
+    var colormap = ["#440154", "#440558", "#450a5c", "#450e60", "#451465", "#461969",
+                    "#461d6d", "#462372", "#472775", "#472c7a", "#46307c", "#45337d",
+                    "#433880", "#423c81", "#404184", "#3f4686", "#3d4a88", "#3c4f8a",
+                    "#3b518b", "#39558b", "#37598c", "#365c8c", "#34608c", "#33638d",
+                    "#31678d", "#2f6b8d", "#2d6e8e", "#2c718e", "#2b748e", "#29788e",
+                    "#287c8e", "#277f8e", "#25848d", "#24878d", "#238b8d", "#218f8d",
+                    "#21918d", "#22958b", "#23988a", "#239b89", "#249f87", "#25a186",
+                    "#25a584", "#26a883", "#27ab82", "#29ae80", "#2eb17d", "#35b479",
+                    "#3cb875", "#42bb72", "#49be6e", "#4ec16b", "#55c467", "#5cc863",
+                    "#61c960", "#6bcc5a", "#72ce55", "#7cd04f", "#85d349", "#8dd544",
+                    "#97d73e", "#9ed93a", "#a8db34", "#b0dd31", "#b8de30", "#c3df2e",
+                    "#cbe02d", "#d6e22b", "#e1e329", "#eae428", "#f5e626", "#fde725"];
     
     var line = d3.line()
 		      .x(function(d) { return xScale(d.x); })
@@ -184,8 +184,7 @@ export function protoSchematicRiverChart() {
     	// remove current bands, then change line
     	g.selectAll(".area")
          .remove()
-         .on("end", function () {
-	        console.log('kaaan')    
+         .on("end", function () { 
 			    d3.select(canvas).selectAll('.valueline')
 			    .datum(data.data)
 			    .transition()

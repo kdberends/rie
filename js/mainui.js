@@ -25,7 +25,7 @@ console.log('According to your browser, your preferred language is: '+navigator.
 
 // Global constants
 export var settings = {currentTheme: 'dark', 
-                       currentLang: 'nl',
+                       currentLang: 'en',
                        currentIntervention: 'reference', 
                        currentFlowData: 'data/waal_reference_0000.json',
                        ui_version: 0.52,
@@ -227,6 +227,15 @@ export function toggleLanguage () {
  * Scrollbars are hidden until hovered above (by mouse)
  *
  */////////////////////////////////////////////////////////////
+
+
+//const bs = new PerfectScrollbar('#banner', {
+//  wheelSpeed: 1,
+//  wheelPropagation: false,
+//  minScrollbarLength: 20,
+//  swipeEasing: true
+//});
+//bs.update()
 
 const es = new PerfectScrollbar('#ExploreScroll', {
   wheelSpeed: 1,

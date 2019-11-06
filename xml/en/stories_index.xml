@@ -3,7 +3,7 @@
 <h2>River Intervention Explorer</h2>
 <h3>Storylines</h3>
 
-<a id='openstory0' href='#' >How effects are predicted</a><br/>
-<a id='openstory1' href='#' class='notavailable'>What we mean with uncertainty (coming...)</a>
-<a id='openstory2' href='#' >The uncertainty of interventions</a>
+<a id='openstory0' href='#' >How do we predict the effect of an intervention?</a><br/>
+<!--<a id='openstory1' href='#' class='notavailable'>What we mean with uncertainty (coming...)</a>-->
+<a id='openstory2' href='#' >How uncertain are model predictions?</a>
 </xml>

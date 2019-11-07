@@ -742,6 +742,52 @@ nav {
 }
 
 /* ===========================================
+ * Special
+ * ===========================================
+ */
+
+#SpecialPanel{
+  transform: translate(0%, 0%);
+  font-size: inherit;
+  z-index: 4;
+  background-color: #0785a899;
+  border-radius: 3px;
+}
+
+#SpecialContent
+{ 
+  padding: 25px;
+}
+
+
+.invite_sf_bod{
+  font-family: Times New Roman,Garamond,serif;
+  font-size: 22px;
+
+ }
+
+.invite_ss_bod{
+  font-family: Roboto,Gill Sans MT, Gill Sans,serif;
+  font-size: 20px;
+  font-weight: 50;
+ }
+
+.invite_sf_header{
+  font-family: Garamond,serif;
+  font-size: 40px;
+  line-height: 35px;
+ }
+
+
+.invite_ss_header{
+  font-family: Roboto,Gill Sans MT, Gill Sans,serif;
+  font-size: 28px;
+  font-weight: 50;
+  line-height: 25px;
+  
+ }
+
+/* ===========================================
  * Paper
  * ===========================================
  */
@@ -1372,5 +1418,4 @@ p.bold {
 .closed-bb{
   transform: translate(0px, -100px);
 }
-
 

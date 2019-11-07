@@ -416,11 +416,16 @@ function addDownstreamPeak() {
 
 /* removes velocity layer from layer group mapZoomGroup */
 export function removeVelocityLayerFromMap(){
+  
   mapZoomGroup.eachLayer(function (l){
-    if (l.options.maxVelocity > 0) {mapZoomGroup.removeLayer(l)}});
+
+    if (l.options.maxVelocity > 0) {
+      mapZoomGroup.removeLayer(l);
+    }});
 };
 
 export function addVelocityLayerToMap(file, thismap){
+  console.log('adding '+file)
      d3.json(file, function (data) {
       mapZoomGroup.addLayer(new L.velocityLayer({
         displayValues: true, 
@@ -449,4 +454,8 @@ export function zoom_Waal() {
   
 export function zoom_StAndries() {
   map.setView([51.823, 5.3682], 12);
+};
+
+export function zoom_StAndriesClose() {
+  map.setView([51.823, 5.3682], 14);
 };

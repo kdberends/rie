@@ -108,17 +108,18 @@ function start_webapp(error, dataset, comparedata) {
 
     
     $('#loadtext').append("Setting interface theme to "+ui.settings.currentTheme+"<br/>")
-    ui.setTheme(ui.settings.currentTheme)
+    //ui.setTheme(ui.settings.currentTheme)
   
 
-    story.openStoryOverview()
-    //$('#loadtext').css("opacity", 0)
+    //story.openStoryOverview()
+    ui.toggleApp(6)
+    map.zoom_StAndriesClose()
+    ui.showSidechan()
+
     setTimeout( function() {
             $('#loader-wrapper').addClass('loaded');
-       }, 3500);
+       }, 1500);
     
-    
-    //$('#loader-wrapper').addClass('loaded');
 };
 
 

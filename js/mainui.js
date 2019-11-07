@@ -7,12 +7,12 @@ var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, cha
 var currentTheme = 'dark';
 var currentLang = 'nl';
 var currentIntervention = 'reference'
-var currentApp = 0;
+var currentApp = 6;
 
 // Flags to remember which panel is out
 var AppMenuToggle = true;
-var AppToggles = [true, false, false, false, false, false];
-var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel'];
+var AppToggles = [true, false, false, false, false, false, false];
+var AppIds = ["#StoryPanel", "#ExplorePanel", "#PaperPanel", "#AboutPanel", "#SettingsPanel", '#FlowPanel', '#SpecialPanel'];
 var ExploreToggle = true;
 
 
@@ -40,6 +40,7 @@ export var charts = {exploreFigure: {},
 // Load content 
 function loadContent() {
   $('#AboutContent').load('xml/'+settings.currentLang+'/about.xml');
+  $('#SpecialContent').load('xml/'+settings.currentLang+'/special.xml');
   $('#PaperContent').load('xml/'+settings.currentLang+'/learn.xml');
   $('#InterventionDescription').load('xml/'+settings.currentLang+'/explore_'+settings.currentIntervention+'.xml');
   
@@ -260,6 +261,14 @@ const ps = new PerfectScrollbar('#PaperContent', {
   swipeEasing: true
 });
 ps.update()
+
+const ss = new PerfectScrollbar('#SpecialPanel', {
+  wheelSpeed: 1,
+  wheelPropagation: false,
+  minScrollbarLength: 20,
+  swipeEasing: true
+});
+ss.update()
 
 /** ////////////////////////////////////////////////////////////
  * Exploration app

@@ -750,7 +750,8 @@ nav {
   transform: translate(0%, 0%);
   font-size: inherit;
   z-index: 4;
-  background-color: #0785a899;
+  background-color: #0785a8;
+  opacity: 0.8;
   border-radius: 3px;
 }
 

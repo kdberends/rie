@@ -755,16 +755,18 @@ nav {
   border-radius: 3px;
 }
 
-#SpecialContent
-{ 
+#SpecialContent { 
   padding: 25px;
+  color: white;
 }
 
+#SpecialContent a { 
+  color: white;
+}
 
 .invite_sf_bod{
   font-family: Times New Roman,Garamond,serif;
   font-size: 22px;
-
  }
 
 .invite_ss_bod{
@@ -785,7 +787,6 @@ nav {
   font-size: 28px;
   font-weight: 50;
   line-height: 25px;
-  
  }
 
 /* ===========================================

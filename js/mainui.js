@@ -7,7 +7,7 @@ var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, cha
 var currentTheme = 'dark';
 var currentLang = 'nl';
 var currentIntervention = 'reference'
-var currentApp = 0;
+var currentApp = 1;
 
 // Flags to remember which panel is out
 var AppMenuToggle = true;
@@ -471,6 +471,7 @@ export function showFlplow(){
   // Add animated SVG
   //addInterventionAnimation(loopLowerFloodplain)
 };
+
 
 export function showSidechan(){
   /* Titles and descriptions */

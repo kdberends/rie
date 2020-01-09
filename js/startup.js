@@ -86,8 +86,7 @@ function start_webapp(error, dataset, comparedata) {
   charts.flowFigure.init();
   $('#version-number-flow').text('Flow: v' + charts.flowFigure.getVersion());
   
-  //showReference()
-  
+ 
   // Make sure figure updates when window resizes
 
    d3.select(window)
@@ -115,6 +114,7 @@ function start_webapp(error, dataset, comparedata) {
     ui.toggleApp(1)
     map.zoom_StAndriesClose()
     ui.showSidechan()
+
 
     setTimeout( function() {
             $('#loader-wrapper').addClass('loaded');

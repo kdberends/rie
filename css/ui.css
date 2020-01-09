@@ -257,7 +257,7 @@ body a:hover
 #loadtext{
   display: block;
   position: absolute;
-  right: calc(50% - 0px);
+  right: calc(50% - 100px);
   bottom: calc(50% - 350px);
   width: 200px;
   margin: -75px 0 0 -75px;

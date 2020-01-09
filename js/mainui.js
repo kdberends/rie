@@ -2,12 +2,12 @@
 import * as story from '../js/story.js'
 import * as map from '../js/map.js'
 
-const version = "0.51";
+const version = "0.6";
 var currentFlowData = 'data/waal_reference_0000.json'; // path to flow data, changes if other intervention is selected
 var currentTheme = 'dark';
 var currentLang = 'nl';
 var currentIntervention = 'reference'
-var currentApp = 6;
+var currentApp = 0;
 
 // Flags to remember which panel is out
 var AppMenuToggle = true;

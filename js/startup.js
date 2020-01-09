@@ -78,7 +78,7 @@ function start_webapp(error, dataset, comparedata) {
       });
     });
 
-  // === Compare App ===
+  // === Flow App ===
   console.log("Loading flow app...")
   $('#loadtext').append("Loading Flow app<br/>")
   protoSteadyFlowApp.apply(charts.flowFigure)
@@ -112,7 +112,7 @@ function start_webapp(error, dataset, comparedata) {
   
 
     //story.openStoryOverview()
-    ui.toggleApp(6)
+    ui.toggleApp(1)
     map.zoom_StAndriesClose()
     ui.showSidechan()
 
